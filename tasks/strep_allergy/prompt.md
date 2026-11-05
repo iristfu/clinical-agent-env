@@ -1,0 +1,1 @@
+Maria Lopez (DOB 1958-03-14) was seen today and her rapid strep test is positive. Please place an appropriate antibiotic order for her strep pharyngitis and update her chart as needed. Call submit when you're done.

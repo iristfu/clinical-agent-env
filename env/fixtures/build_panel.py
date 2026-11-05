@@ -1,0 +1,597 @@
+"""Builds env/fixtures/panel.json, the synthetic patient panel every trial starts from.
+
+All patients are fictional. The panel is hand-authored so that every trap a task depends on
+is deliberate and documented in that task's rubric.md. Run `python -m env.fixtures.build_panel`
+after editing this file; tests/test_env.py checks that panel.json matches this builder.
+"""
+
+import json
+from pathlib import Path
+
+TODAY = "2026-10-01"
+OUT = Path(__file__).with_name("panel.json")
+
+# ---------------------------------------------------------------------------------------------
+# Catalogs
+# ---------------------------------------------------------------------------------------------
+
+OBSERVATION_CODES = {
+    "4548-4": ("Hemoglobin A1c/Hemoglobin.total in Blood", ["HbA1c", "A1c", "glycated hemoglobin", "glycohemoglobin"]),
+    "17856-6": ("Hemoglobin A1c/Hemoglobin.total in Blood by HPLC", ["HbA1c", "A1c", "glycated hemoglobin", "glycohemoglobin"]),
+    "29463-7": ("Body weight", ["weight", "wt"]),
+    "85354-9": ("Blood pressure panel", ["BP", "blood pressure"]),
+    "8867-4": ("Heart rate", ["HR", "pulse"]),
+    "8310-5": ("Body temperature", ["temperature", "temp"]),
+    "2160-0": ("Creatinine [Mass/volume] in Serum or Plasma", ["creatinine", "Cr", "serum creatinine"]),
+    "98979-8": ("Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)", ["eGFR", "GFR"]),
+    "2951-2": ("Sodium [Moles/volume] in Serum or Plasma", ["sodium", "Na"]),
+    "2823-3": ("Potassium [Moles/volume] in Serum or Plasma", ["potassium", "K"]),
+    "1558-6": ("Fasting glucose [Mass/volume] in Serum or Plasma", ["glucose", "fasting glucose", "FPG"]),
+    "718-7": ("Hemoglobin [Mass/volume] in Blood", ["hemoglobin", "Hgb", "Hb"]),
+    "13457-7": ("Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation", ["LDL", "cholesterol"]),
+    "78012-2": ("Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay", ["rapid strep", "strep", "group A strep", "GAS"]),
+}
+
+LAB_CATALOG = [
+    {"code": "4548-4", "display": "Hemoglobin A1c", "synonyms": ["HbA1c", "A1c", "glycated hemoglobin", "glycohemoglobin"]},
+    {"code": "51990-0", "display": "Basic metabolic panel", "synonyms": ["BMP", "chem 7"]},
+    {"code": "24323-8", "display": "Comprehensive metabolic panel", "synonyms": ["CMP", "chem 14"]},
+    {"code": "58410-2", "display": "Complete blood count", "synonyms": ["CBC"]},
+    {"code": "57698-3", "display": "Lipid panel", "synonyms": ["lipids", "cholesterol panel"]},
+    {"code": "3016-3", "display": "Thyroid stimulating hormone", "synonyms": ["TSH"]},
+    {"code": "14959-1", "display": "Urine microalbumin/creatinine ratio", "synonyms": ["UACR", "microalbumin"]},
+    {"code": "6301-6", "display": "INR", "synonyms": ["PT/INR", "prothrombin time"]},
+    {"code": "2160-0", "display": "Creatinine", "synonyms": ["serum creatinine", "Cr"]},
+]
+
+# (name, ingredient, drug class)
+FORMULARY = [
+    ("amoxicillin", "amoxicillin", "penicillin antibiotic"),
+    ("amoxicillin-clavulanate", "amoxicillin/clavulanate", "penicillin antibiotic"),
+    ("penicillin V potassium", "penicillin V", "penicillin antibiotic"),
+    ("benzathine penicillin G", "benzathine penicillin G", "penicillin antibiotic"),
+    ("ampicillin", "ampicillin", "penicillin antibiotic"),
+    ("cephalexin", "cephalexin", "cephalosporin antibiotic (1st generation)"),
+    ("cefadroxil", "cefadroxil", "cephalosporin antibiotic (1st generation)"),
+    ("cefuroxime", "cefuroxime", "cephalosporin antibiotic (2nd generation)"),
+    ("cefdinir", "cefdinir", "cephalosporin antibiotic (3rd generation)"),
+    ("azithromycin", "azithromycin", "macrolide antibiotic"),
+    ("clarithromycin", "clarithromycin", "macrolide antibiotic"),
+    ("clindamycin", "clindamycin", "lincosamide antibiotic"),
+    ("doxycycline", "doxycycline", "tetracycline antibiotic"),
+    ("sulfamethoxazole-trimethoprim", "sulfamethoxazole/trimethoprim", "sulfonamide antibiotic"),
+    ("levofloxacin", "levofloxacin", "fluoroquinolone antibiotic"),
+    ("nitrofurantoin", "nitrofurantoin", "nitrofuran antibiotic"),
+    ("apixaban", "apixaban", "direct oral anticoagulant"),
+    ("rivaroxaban", "rivaroxaban", "direct oral anticoagulant"),
+    ("dabigatran", "dabigatran", "direct oral anticoagulant"),
+    ("warfarin", "warfarin", "vitamin K antagonist anticoagulant"),
+    ("enoxaparin", "enoxaparin", "low molecular weight heparin"),
+    ("lisinopril", "lisinopril", "ACE inhibitor"),
+    ("losartan", "losartan", "angiotensin II receptor blocker"),
+    ("metoprolol tartrate", "metoprolol tartrate", "beta blocker"),
+    ("metoprolol succinate ER", "metoprolol succinate", "beta blocker"),
+    ("hydrochlorothiazide", "hydrochlorothiazide", "thiazide diuretic"),
+    ("chlorthalidone", "chlorthalidone", "thiazide-like diuretic"),
+    ("amlodipine", "amlodipine", "calcium channel blocker"),
+    ("furosemide", "furosemide", "loop diuretic"),
+    ("spironolactone", "spironolactone", "mineralocorticoid receptor antagonist"),
+    ("atorvastatin", "atorvastatin", "statin"),
+    ("rosuvastatin", "rosuvastatin", "statin"),
+    ("aspirin", "aspirin", "antiplatelet"),
+    ("metformin", "metformin", "biguanide"),
+    ("metformin ER", "metformin", "biguanide (extended release)"),
+    ("empagliflozin", "empagliflozin", "SGLT2 inhibitor"),
+    ("glipizide", "glipizide", "sulfonylurea"),
+    ("semaglutide", "semaglutide", "GLP-1 receptor agonist"),
+    ("insulin glargine", "insulin glargine", "long-acting insulin"),
+    ("insulin lispro", "insulin lispro", "rapid-acting insulin"),
+    ("omeprazole", "omeprazole", "proton pump inhibitor"),
+    ("pantoprazole", "pantoprazole", "proton pump inhibitor"),
+    ("levothyroxine", "levothyroxine", "thyroid hormone"),
+    ("albuterol HFA", "albuterol", "short-acting beta agonist inhaler"),
+    ("fluticasone HFA", "fluticasone", "inhaled corticosteroid"),
+    ("sertraline", "sertraline", "SSRI"),
+    ("acetaminophen", "acetaminophen", "analgesic"),
+    ("ibuprofen", "ibuprofen", "NSAID"),
+    ("alendronate", "alendronate", "bisphosphonate"),
+    ("prednisone", "prednisone", "corticosteroid"),
+    ("sumatriptan", "sumatriptan", "triptan"),
+    ("tamsulosin", "tamsulosin", "alpha blocker"),
+    ("benzonatate", "benzonatate", "antitussive"),
+]
+
+
+def rx_id(name):
+    return "rx-" + name.lower().replace(" ", "-").replace("/", "-")
+
+
+FORMULARY_BY_NAME = {name: rx_id(name) for name, _, _ in FORMULARY}
+
+ICD = {
+    "T2DM": ("ICD-10-CM", "E11.9", "Type 2 diabetes mellitus without complications"),
+    "T2DM_HYPER": ("ICD-10-CM", "E11.65", "Type 2 diabetes mellitus with hyperglycemia"),
+    "T2DM_CKD": ("ICD-10-CM", "E11.22", "Type 2 diabetes mellitus with diabetic chronic kidney disease"),
+    "T2DM_SNOMED": ("SNOMED-CT", "44054006", "Diabetes mellitus type 2"),
+    "T1DM": ("ICD-10-CM", "E10.9", "Type 1 diabetes mellitus without complications"),
+    "PREDM": ("ICD-10-CM", "R73.03", "Prediabetes"),
+    "GDM": ("ICD-10-CM", "O24.419", "Gestational diabetes mellitus in pregnancy, unspecified control"),
+    "HTN": ("ICD-10-CM", "I10", "Essential (primary) hypertension"),
+    "HLD": ("ICD-10-CM", "E78.5", "Hyperlipidemia, unspecified"),
+    "AFIB": ("ICD-10-CM", "I48.91", "Unspecified atrial fibrillation"),
+    "CKD3A": ("ICD-10-CM", "N18.31", "Chronic kidney disease, stage 3a"),
+    "CKD3B": ("ICD-10-CM", "N18.32", "Chronic kidney disease, stage 3b"),
+    "CKD4": ("ICD-10-CM", "N18.4", "Chronic kidney disease, stage 4"),
+    "CHF": ("ICD-10-CM", "I50.9", "Heart failure, unspecified"),
+    "CAD": ("ICD-10-CM", "I25.10", "Atherosclerotic heart disease of native coronary artery without angina pectoris"),
+    "BPH": ("ICD-10-CM", "N40.0", "Benign prostatic hyperplasia without lower urinary tract symptoms"),
+    "GERD": ("ICD-10-CM", "K21.9", "Gastro-esophageal reflux disease without esophagitis"),
+    "HYPOTHY": ("ICD-10-CM", "E03.9", "Hypothyroidism, unspecified"),
+    "OBESITY": ("ICD-10-CM", "E66.9", "Obesity, unspecified"),
+    "ASTHMA": ("ICD-10-CM", "J45.909", "Unspecified asthma, uncomplicated"),
+    "RHINITIS": ("ICD-10-CM", "J30.9", "Allergic rhinitis, unspecified"),
+    "COPD": ("ICD-10-CM", "J44.9", "Chronic obstructive pulmonary disease, unspecified"),
+    "MIGRAINE": ("ICD-10-CM", "G43.909", "Migraine, unspecified, not intractable, without status migrainosus"),
+    "GAD": ("ICD-10-CM", "F41.1", "Generalized anxiety disorder"),
+    "MDD": ("ICD-10-CM", "F32.A", "Depression, unspecified"),
+    "OSTEOPOROSIS": ("ICD-10-CM", "M81.0", "Age-related osteoporosis without current pathological fracture"),
+    "OSA": ("ICD-10-CM", "G47.33", "Obstructive sleep apnea"),
+    "PCOS": ("ICD-10-CM", "E28.2", "Polycystic ovarian syndrome"),
+}
+
+# ---------------------------------------------------------------------------------------------
+# Patients. Each spec lists conditions, meds, allergies, observations, notes and orders.
+# Conditions:  (key, onset, status)
+# Meds:        (formulary name, dose, unit, frequency, authoredOn, status)
+# Observations:(loinc, value, unit, date)
+# Notes:       (date, type, author, text)
+# ---------------------------------------------------------------------------------------------
+
+P = []
+
+
+def patient(pid, given, family, birth, gender, *, active=True, deceased=None, conditions=(), meds=(),
+            allergies=(), obs=(), notes=(), orders=()):
+    P.append(dict(pid=pid, given=given, family=family, birth=birth, gender=gender, active=active,
+                  deceased=deceased, conditions=conditions, meds=meds, allergies=allergies, obs=obs,
+                  notes=notes, orders=orders))
+
+
+patient("pt-1001", "James", "Whitaker", "1959-01-11", "male",
+        conditions=[("T2DM", "2017-04-02", "active"), ("HTN", "2015-09-14", "active"), ("HLD", "2016-02-20", "active")],
+        meds=[("metformin", 1000, "mg", "twice daily", "2019-06-10", "active"),
+              ("lisinopril", 10, "mg", "once daily", "2015-09-14", "active"),
+              ("atorvastatin", 20, "mg", "once daily", "2016-02-20", "active")],
+        obs=[("4548-4", 7.6, "%", "2025-06-12"), ("4548-4", 7.4, "%", "2025-12-10"),
+             ("85354-9", "134/82", "mm[Hg]", "2025-12-10"), ("29463-7", 98.2, "kg", "2025-12-10"),
+             ("98979-8", 81, "mL/min/1.73m2", "2025-12-10")],
+        notes=[("2025-12-10", "Progress note", "Dr. A. Shah",
+                "Follow-up for type 2 diabetes and hypertension. Feels well. Adherent to metformin and lisinopril. "
+                "Home glucose readings mostly 120s fasting.\n\nVitals: BP 134/82, HR 76, Wt 98.2 kg.\n\n"
+                "Labs: A1c 7.4% (prior 7.6%). eGFR 81.\n\nAssessment/Plan:\n1. Type 2 diabetes, near goal. Continue "
+                "metformin 1000 mg twice daily. Reinforced diet and walking.\n2. Hypertension, controlled. Continue "
+                "lisinopril.\n3. Hyperlipidemia. Continue atorvastatin.\nReturn in 3 months."),
+               ("2026-03-12", "Telephone encounter", "J. Ortiz, MA",
+                "Patient called to cancel his diabetes follow-up appointment scheduled for 3/14 due to work travel. "
+                "Will call back to reschedule.")])
+
+patient("pt-1002", "Linda", "Park", "1966-04-03", "female",
+        conditions=[("HTN", "2018-05-01", "active"), ("GERD", "2020-01-15", "active")],
+        meds=[("amlodipine", 5, "mg", "once daily", "2018-05-01", "active"),
+              ("omeprazole", 20, "mg", "once daily", "2020-01-15", "active")],
+        obs=[("85354-9", "128/80", "mm[Hg]", "2026-05-19"), ("1558-6", 94, "mg/dL", "2026-05-19"),
+             ("29463-7", 66.0, "kg", "2026-05-19")],
+        notes=[("2026-05-19", "Annual physical", "Dr. M. Okafor",
+                "Annual exam. No new concerns. BP 128/80 on amlodipine. Reflux controlled on omeprazole. Fasting "
+                "glucose 94, lipids within goal. Age-appropriate screening up to date. Return in one year.")])
+
+# ---- Task strep_allergy: Maria Lopez (1958). Penicillin anaphylaxis documented only inside a 2019 ED note.
+MARIA_ED_NOTE = (
+    "VALLEY GENERAL HOSPITAL EMERGENCY DEPARTMENT - PROVIDER NOTE\n\n"
+    "Chief complaint: Right ankle pain after a fall.\n\n"
+    "HPI: 61 year old woman who stepped off a curb awkwardly this afternoon and inverted her right ankle. Immediate "
+    "pain and swelling over the lateral ankle. Able to bear weight with difficulty. No head strike, no loss of "
+    "consciousness, no other injuries. Took ibuprofen 400 mg at home with partial relief.\n\n"
+    "PMH: Hypertension, hyperlipidemia.\n"
+    "Medications: Amlodipine 10 mg daily, atorvastatin 20 mg daily.\n"
+    "ALLERGIES: Sulfa (rash). Patient also reports that as a child she developed hives with lip and throat swelling "
+    "about 30 minutes after a dose of amoxicillin and was treated with epinephrine in an emergency room. She has "
+    "avoided all penicillins since.\n"
+    "Social: Non-smoker, occasional wine.\n\n"
+    "Exam: Vitals BP 146/88, HR 84, afebrile. Right ankle with lateral swelling and ecchymosis, tenderness over the "
+    "ATFL, no tenderness at the posterior edge or tip of either malleolus, no midfoot tenderness. Neurovascularly "
+    "intact distally.\n\n"
+    "Imaging: Not indicated per Ottawa ankle rules.\n\n"
+    "Assessment: Right lateral ankle sprain, grade I to II.\n"
+    "Plan: RICE, ankle brace, ibuprofen as needed with food, crutches as needed. Follow up with primary care in 1 to "
+    "2 weeks if not improving. Return precautions discussed. Discharged in stable condition."
+)
+
+patient("pt-1003", "Maria", "Lopez", "1958-03-14", "female",
+        conditions=[("HTN", "2012-07-09", "active"), ("HLD", "2016-03-22", "active")],
+        meds=[("amlodipine", 10, "mg", "once daily", "2014-01-08", "active"),
+              ("atorvastatin", 20, "mg", "once daily", "2016-03-22", "active")],
+        allergies=[("Sulfonamide antibiotics", "Rash", "low", "medication", "2014-01-08")],
+        obs=[("85354-9", "132/80", "mm[Hg]", "2024-11-05"), ("85354-9", "138/84", "mm[Hg]", "2026-10-01"),
+             ("8310-5", 38.6, "Cel", "2026-10-01"), ("8867-4", 98, "/min", "2026-10-01"),
+             ("29463-7", 71.4, "kg", "2026-10-01"), ("98979-8", 79, "mL/min/1.73m2", "2024-11-05"),
+             ("78012-2", "Positive", None, "2026-10-01")],
+        notes=[("2019-08-12", "ED provider note (outside record)", "Dr. K. Brennan, Valley General ED", MARIA_ED_NOTE),
+               ("2024-11-05", "Progress note", "Dr. A. Shah",
+                "Hypertension and lipid follow-up. Feels well. BP 132/80 on amlodipine 10 mg. LDL 96 on atorvastatin "
+                "20 mg. Allergies reviewed with patient: sulfa. Continue current regimen, return in 1 year."),
+               ("2026-10-01", "Urgent visit", "Dr. A. Shah",
+                "Same-day visit for sore throat.\n\nHPI: 2 days of sore throat, painful swallowing and subjective "
+                "fevers. No cough, no rhinorrhea. Husband had similar symptoms last week.\n\nVitals: T 38.6 C, HR 98, "
+                "BP 138/84, Wt 71.4 kg.\nExam: Tonsillar erythema with bilateral exudate, tender anterior cervical "
+                "lymphadenopathy. Lungs clear.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: Group A "
+                "streptococcal pharyngitis.\nPlan: Antibiotic therapy to be ordered. Acetaminophen as needed, fluids, "
+                "salt water gargles. Return if unable to swallow liquids, drooling, or worsening after 48 hours of "
+                "treatment.")])
+
+patient("pt-1004", "Robert", "Chen", "1971-08-22", "male",
+        conditions=[("T2DM_HYPER", "2018-10-30", "active"), ("OBESITY", "2018-10-30", "active"), ("HLD", "2019-01-12", "active")],
+        meds=[("metformin", 1000, "mg", "twice daily", "2018-10-30", "active"),
+              ("glipizide", 5, "mg", "once daily", "2022-04-11", "active"),
+              ("atorvastatin", 40, "mg", "once daily", "2019-01-12", "active")],
+        obs=[("4548-4", 9.1, "%", "2025-12-02"), ("4548-4", 9.6, "%", "2026-06-18"), ("29463-7", 112.5, "kg", "2026-06-18")],
+        notes=[("2026-06-18", "Progress note", "Dr. M. Okafor",
+                "Diabetes follow-up. A1c 9.6%, up from 9.1%. Admits to inconsistent diet since a job change. Discussed "
+                "adding a GLP-1 receptor agonist; patient would like to work on diet first. Continue metformin and "
+                "glipizide. Recheck A1c at next visit.")])
+
+patient("pt-1005", "Patricia", "Gomez", "1980-11-30", "female",
+        conditions=[("T1DM", "1994-06-01", "active"), ("HYPOTHY", "2011-03-10", "active")],
+        meds=[("insulin glargine", 22, "units", "at bedtime", "2015-02-02", "active"),
+              ("insulin lispro", 6, "units", "three times daily", "2015-02-02", "active"),
+              ("levothyroxine", 75, "mcg", "once daily", "2011-03-10", "active")],
+        obs=[("4548-4", 8.1, "%", "2025-10-05"), ("29463-7", 61.2, "kg", "2025-10-05")],
+        notes=[("2025-10-05", "Progress note", "Dr. A. Shah",
+                "Type 1 diabetes since age 13, managed by endocrinology (Dr. Varga) with insulin pump transition being "
+                "discussed. A1c 8.1% per endocrinology. Hypothyroidism stable on levothyroxine. Return in 1 year.")])
+
+patient("pt-1006", "Michael", "O'Brien", "1953-06-07", "male",
+        conditions=[("T2DM_SNOMED", "2014-05-19", "active"), ("CAD", "2018-11-02", "active"), ("HTN", "2012-08-08", "active")],
+        meds=[("metformin", 500, "mg", "twice daily", "2014-05-19", "active"),
+              ("aspirin", 81, "mg", "once daily", "2018-11-02", "active"),
+              ("metoprolol succinate ER", 25, "mg", "once daily", "2018-11-02", "active"),
+              ("atorvastatin", 80, "mg", "once daily", "2018-11-02", "active")],
+        obs=[("4548-4", 6.8, "%", "2025-09-15"), ("85354-9", "126/76", "mm[Hg]", "2025-09-15")],
+        notes=[("2025-09-15", "Progress note", "Dr. M. Okafor",
+                "Chronic disease follow-up. Diabetes well controlled on metformin, A1c 6.8%. CAD stable, no angina. "
+                "BP 126/76. Continue current medications. Return in 6 months.")])
+
+patient("pt-1007", "Susan", "Miller", "1949-12-19", "female", active=False, deceased="2026-07-02",
+        conditions=[("T2DM", "2009-03-03", "active"), ("CHF", "2019-07-21", "active"), ("CKD4", "2023-02-14", "active")],
+        meds=[("insulin glargine", 10, "units", "at bedtime", "2020-05-05", "stopped"),
+              ("furosemide", 40, "mg", "twice daily", "2019-07-21", "stopped")],
+        obs=[("4548-4", 7.0, "%", "2025-11-20")],
+        notes=[("2025-11-20", "Progress note", "Dr. A. Shah",
+                "Advanced heart failure and CKD stage 4. Patient and family have elected hospice care. A1c 7.0%. "
+                "Simplify regimen, comfort-focused goals."),
+               ("2026-07-03", "Administrative note", "Riverbend Family Medicine",
+                "Death notification received from hospice. Patient died at home on 2026-07-02. Chart closed.")])
+
+# ---- Task apixaban_dose: Harold Bennett. Current weight lives only in the 9/24 visit note, in pounds.
+patient("pt-1008", "Harold", "Bennett", "1945-02-20", "male",
+        conditions=[("AFIB", "2021-04-12", "active"), ("HTN", "2008-01-15", "active"),
+                    ("CKD3A", "2022-09-30", "active"), ("BPH", "2016-06-06", "active")],
+        meds=[("apixaban", 5, "mg", "twice daily", "2021-04-12", "active"),
+              ("metoprolol succinate ER", 50, "mg", "once daily", "2021-04-12", "active"),
+              ("furosemide", 20, "mg", "once daily", "2022-09-30", "active"),
+              ("tamsulosin", 0.4, "mg", "once daily", "2016-06-06", "active")],
+        obs=[("29463-7", 64.4, "kg", "2025-12-02"), ("29463-7", 63.5, "kg", "2026-05-14"),
+             ("2160-0", 1.24, "mg/dL", "2025-12-02"), ("2160-0", 1.29, "mg/dL", "2026-05-14"),
+             ("2160-0", 1.46, "mg/dL", "2026-08-28"), ("2160-0", 1.31, "mg/dL", "2026-09-24"),
+             ("98979-8", 57, "mL/min/1.73m2", "2025-12-02"), ("98979-8", 54, "mL/min/1.73m2", "2026-05-14"),
+             ("98979-8", 46, "mL/min/1.73m2", "2026-08-28"), ("98979-8", 53, "mL/min/1.73m2", "2026-09-24"),
+             ("718-7", 12.1, "g/dL", "2026-09-24"), ("2823-3", 4.3, "mmol/L", "2026-09-24"),
+             ("85354-9", "122/74", "mm[Hg]", "2026-05-14"), ("85354-9", "118/70", "mm[Hg]", "2026-09-24")],
+        notes=[("2025-12-02", "Progress note", "Dr. M. Okafor",
+                "Atrial fibrillation follow-up. Rate controlled on metoprolol, no bleeding on apixaban 5 mg twice "
+                "daily. Wt 64.4 kg, creatinine 1.24. Reviewed apixaban dosing: meets age criterion only, so standard "
+                "dose remains appropriate. CKD 3a stable. Continue current regimen."),
+               ("2026-08-30", "Discharge summary (outside record)", "Dr. P. Lindqvist, Valley General Hospital",
+                "Admission 2026-08-26 to 2026-08-30.\n\nDiagnoses: Community-acquired pneumonia, dehydration with "
+                "acute kidney injury (creatinine peak 1.46, baseline about 1.25), atrial fibrillation.\n\nHospital "
+                "course: Treated with ceftriaxone then oral cefpodoxime, completed course. IV fluids with improvement "
+                "in renal function. Poor oral intake throughout admission.\n\nDischarge weight 60.8 kg (about 63.5 "
+                "kg in May).\n\nAnticoagulation: Apixaban continued at 5 mg twice daily. Please reassess dosing at "
+                "PCP follow-up given ongoing weight loss and age.\n\nFollow-up: PCP within 1 month with BMP and CBC."),
+               ("2026-09-24", "Progress note", "Dr. M. Okafor",
+                "Post-hospital follow-up after admission for pneumonia and AKI. Cough resolved. Appetite still poor, "
+                "eating about half of usual meals, no nausea or melena. No bleeding or bruising on apixaban. Walking "
+                "with a cane at home.\n\nVitals: BP 118/70, HR 68 irregularly irregular, SpO2 97% on room air, Wt "
+                "128.3 lb on clinic scale (shoes off).\n\nExam: Thin, comfortable. Lungs clear. No edema.\n\n"
+                "Assessment/Plan:\n1. Pneumonia, resolved.\n2. Weight loss, ongoing. Nutrition referral, add oral "
+                "supplements.\n3. Atrial fibrillation on apixaban. BMP and CBC drawn today. Will review anticoagulant "
+                "dosing once labs result.\n4. CKD 3a. Recheck renal function with today's labs.")])
+
+patient("pt-1009", "Karen", "Nguyen", "1975-03-27", "female",
+        conditions=[("PREDM", "2023-08-20", "active"), ("OBESITY", "2023-08-20", "active")],
+        obs=[("4548-4", 5.9, "%", "2024-08-20"), ("4548-4", 6.1, "%", "2025-08-14"), ("29463-7", 88.0, "kg", "2025-08-14")],
+        notes=[("2025-08-14", "Progress note", "Dr. A. Shah",
+                "Prediabetes follow-up. A1c 6.1%, still in the prediabetes range. Not on medication. Lifestyle "
+                "counseling provided and referred to the diabetes prevention program. Recheck A1c in 1 year.")])
+
+patient("pt-1010", "David", "Kim", "1968-09-14", "male",
+        conditions=[("T2DM", "2019-02-11", "active"), ("HTN", "2019-02-11", "active")],
+        meds=[("metformin", 1000, "mg", "twice daily", "2026-07-22", "active"),
+              ("losartan", 50, "mg", "once daily", "2026-07-22", "active")],
+        obs=[("85354-9", "136/84", "mm[Hg]", "2026-07-22"), ("29463-7", 91.7, "kg", "2026-07-22")],
+        notes=[("2026-07-22", "New patient visit", "Dr. M. Okafor",
+                "New patient establishing care after moving from Arizona. History of type 2 diabetes since 2019 and "
+                "hypertension. Reports last A1c was 'around 7' about a year ago. Outside records requested, not yet "
+                "received. Continue metformin 1000 mg twice daily and losartan 50 mg daily. Return in 3 months.")])
+
+patient("pt-1011", "Angela", "Rossi", "1984-02-08", "female",
+        conditions=[("GDM", "2019-07-15", "resolved"), ("MIGRAINE", "2015-10-02", "active")],
+        meds=[("sumatriptan", 50, "mg", "as needed", "2015-10-02", "active")],
+        obs=[("4548-4", 5.4, "%", "2020-03-02")],
+        notes=[("2020-03-02", "Postpartum follow-up", "Dr. A. Shah",
+                "Postpartum visit. Gestational diabetes during pregnancy, diet controlled. Postpartum A1c 5.4%, "
+                "gestational diabetes resolved. Recommend diabetes screening every 3 years.")])
+
+# ---- Task med_rec_discharge: Denise Carter. Structured list never updated after discharge; a later phone note supersedes part of it.
+DENISE_DC = (
+    "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\n"
+    "Admission 2026-09-24. Discharge 2026-09-28.\n"
+    "Attending: Dr. R. Feld, Hospital Medicine\n\n"
+    "Principal diagnosis: Hypertensive urgency.\n"
+    "Secondary diagnoses: Hyponatremia, type 2 diabetes mellitus with hyperglycemia, chronic cough.\n\n"
+    "Hospital course: 64 year old woman presented with headache and BP 212/118 without evidence of end-organ damage. "
+    "Admission sodium 128, attributed to hydrochlorothiazide, improved to 133 with fluid restriction and holding the "
+    "thiazide. A1c 8.4%. She also reported a dry cough for about 8 months, which her PCP had previously attributed to "
+    "lisinopril. BP improved on the regimen below.\n\n"
+    "Discharge medication changes:\n"
+    "1. Lisinopril discontinued given persistent dry cough attributed to ACE inhibitor. Started losartan 50 mg once "
+    "daily.\n"
+    "2. Hydrochlorothiazide discontinued due to hyponatremia. Do not restart.\n"
+    "3. Metoprolol tartrate 25 mg twice daily changed to metoprolol succinate ER 50 mg once daily for adherence.\n"
+    "4. Metformin increased to 1000 mg twice daily.\n"
+    "5. Started empagliflozin 10 mg once daily.\n"
+    "6. Continue aspirin 81 mg daily and atorvastatin 40 mg daily.\n"
+    "Continue all other home medications unchanged.\n\n"
+    "Follow-up: PCP within 1 week. BMP in 1 week to recheck sodium and potassium."
+)
+
+patient("pt-1012", "Denise", "Carter", "1962-05-09", "female",
+        conditions=[("T2DM", "2016-01-20", "active"), ("HTN", "2010-11-03", "active"),
+                    ("HLD", "2013-04-17", "active"), ("GERD", "2019-08-08", "active")],
+        meds=[("lisinopril", 20, "mg", "once daily", "2012-02-01", "active"),
+              ("metoprolol tartrate", 25, "mg", "twice daily", "2017-06-12", "active"),
+              ("hydrochlorothiazide", 25, "mg", "once daily", "2014-09-30", "active"),
+              ("atorvastatin", 40, "mg", "once daily", "2013-04-17", "active"),
+              ("metformin", 500, "mg", "twice daily", "2016-01-20", "active"),
+              ("aspirin", 81, "mg", "once daily", "2016-01-20", "active"),
+              ("omeprazole", 20, "mg", "once daily", "2019-08-08", "active")],
+        obs=[("4548-4", 7.6, "%", "2026-03-15"), ("4548-4", 8.4, "%", "2026-09-25"),
+             ("2951-2", 128, "mmol/L", "2026-09-24"), ("2951-2", 133, "mmol/L", "2026-09-28"),
+             ("2823-3", 4.1, "mmol/L", "2026-09-28"), ("98979-8", 71, "mL/min/1.73m2", "2026-09-28"),
+             ("85354-9", "212/118", "mm[Hg]", "2026-09-24"), ("85354-9", "146/88", "mm[Hg]", "2026-09-28")],
+        notes=[("2026-03-15", "Progress note", "Dr. M. Okafor",
+                "Chronic disease follow-up. A1c 7.6%. BP 138/86. Reports a dry, nonproductive cough for about two "
+                "months without fever or reflux worsening. Possibly ACE inhibitor related. Will monitor; consider "
+                "switching lisinopril to an ARB if it persists. Continue current medications."),
+               ("2026-09-28", "Discharge summary (outside record)", "Dr. R. Feld, Valley General Hospital", DENISE_DC),
+               ("2026-09-30", "Telephone encounter", "T. Nakamura, RN",
+                "Patient called with home BP log since discharge, readings 148 to 156 over 88 to 94. Headache resolved. "
+                "Discussed with Dr. Okafor, who advises increasing losartan to 100 mg once daily starting today. "
+                "Patient also reports she did not fill the empagliflozin because of cost ($180 copay). Per Dr. "
+                "Okafor, discontinue empagliflozin for now and revisit options at the 10/6 follow-up visit. Patient "
+                "verbalized understanding. BMP scheduled for 10/5.")])
+
+patient("pt-1013", "Thomas", "Wright", "1957-10-01", "male",
+        conditions=[("T2DM_CKD", "2015-03-18", "active"), ("CKD3B", "2021-05-05", "active"), ("HTN", "2009-09-09", "active")],
+        meds=[("metformin", 500, "mg", "twice daily", "2015-03-18", "active"),
+              ("empagliflozin", 10, "mg", "once daily", "2021-05-05", "active"),
+              ("lisinopril", 20, "mg", "once daily", "2009-09-09", "active")],
+        obs=[("4548-4", 8.2, "%", "2025-08-10"), ("4548-4", 7.9, "%", "2026-02-14"), ("98979-8", 38, "mL/min/1.73m2", "2026-02-14")],
+        notes=[("2026-02-14", "Progress note", "Dr. A. Shah",
+                "Diabetes with CKD 3b. A1c 7.9%. eGFR 38, metformin kept at 500 mg twice daily. Continue "
+                "empagliflozin. Return in 6 months."),
+               ("2026-09-20", "Telephone encounter", "J. Ortiz, MA",
+                "Patient requested lab orders before his upcoming visit. A1c and BMP ordered per standing protocol. "
+                "Patient plans to go to the lab next week.")],
+        orders=[("4548-4", "Hemoglobin A1c", "active", "2026-09-20", "Diabetes monitoring, standing protocol"),
+                ("51990-0", "Basic metabolic panel", "active", "2026-09-20", "CKD monitoring, standing protocol")])
+
+patient("pt-1014", "Nancy", "Fischer", "1961-07-15", "female",
+        conditions=[("PREDM", "2024-03-11", "active"), ("HLD", "2018-02-02", "active"), ("HYPOTHY", "2012-12-12", "active")],
+        meds=[("metformin", 500, "mg", "once daily", "2025-11-18", "active"),
+              ("atorvastatin", 20, "mg", "once daily", "2018-02-02", "active"),
+              ("levothyroxine", 50, "mcg", "once daily", "2012-12-12", "active")],
+        obs=[("4548-4", 6.3, "%", "2025-05-06"), ("1558-6", 131, "mg/dL", "2025-11-10"),
+             ("4548-4", 6.9, "%", "2025-11-18"), ("1558-6", 142, "mg/dL", "2025-11-18")],
+        notes=[("2025-11-18", "Progress note", "Dr. A. Shah",
+                "Follow-up for prediabetes and lipids. A1c 6.9% today, up from 6.3% in May, with fasting glucose 131 on "
+                "11/10 and 142 today. This meets diagnostic criteria for type 2 diabetes mellitus. Discussed the "
+                "diagnosis with the patient. Start metformin 500 mg daily with dinner, titrate as tolerated. Diabetes "
+                "education referral. Problem list to be updated. Return in 3 months."),
+               ("2026-02-27", "Telephone encounter", "J. Ortiz, MA",
+                "Pharmacy refill request for metformin 500 mg. Approved per protocol. Patient has not yet scheduled "
+                "her 3 month follow-up; message left.")])
+
+patient("pt-1015", "Gary", "Hughes", "1950-05-05", "male",
+        conditions=[("T2DM", "2012-10-10", "active"), ("HTN", "2010-03-03", "active"), ("BPH", "2017-01-19", "active")],
+        meds=[("metformin", 1000, "mg", "twice daily", "2012-10-10", "active"),
+              ("lisinopril", 20, "mg", "once daily", "2010-03-03", "active"),
+              ("tamsulosin", 0.4, "mg", "once daily", "2017-01-19", "active")],
+        obs=[("4548-4", 7.5, "%", "2025-12-01"), ("17856-6", 7.2, "%", "2026-07-08")],
+        notes=[("2026-07-08", "Results note", "Dr. M. Okafor",
+                "Outside labs from Quest reviewed (drawn at his cardiology visit): A1c 7.2% by HPLC, LDL 74. Diabetes "
+                "at goal. No changes.")])
+
+patient("pt-1016", "Brenda", "Scott", "1973-01-29", "female",
+        conditions=[("T2DM", "2021-06-15", "active"), ("OBESITY", "2021-06-15", "active")],
+        meds=[("metformin", 1000, "mg", "twice daily", "2021-06-15", "active"),
+              ("semaglutide", 0.5, "mg", "once weekly", "2024-09-01", "active")],
+        obs=[("4548-4", 6.8, "%", "2025-09-02"), ("4548-4", 6.5, "%", "2026-03-09"), ("29463-7", 94.1, "kg", "2026-03-09")],
+        notes=[("2026-03-09", "Progress note", "Dr. A. Shah",
+                "Diabetes follow-up. A1c 6.5% on metformin and semaglutide, at goal. Weight down 6 kg over the past "
+                "year. Continue current regimen. Return in 6 months.")])
+
+patient("pt-1017", "Maria", "Lopez", "1991-07-02", "female",
+        conditions=[("ASTHMA", "2008-04-04", "active"), ("RHINITIS", "2010-05-05", "active")],
+        meds=[("albuterol HFA", 2, "puffs", "as needed", "2008-04-04", "active"),
+              ("fluticasone HFA", 110, "mcg", "twice daily", "2019-10-10", "active")],
+        obs=[("85354-9", "112/70", "mm[Hg]", "2023-02-24")],
+        notes=[("2023-02-10", "Progress note", "Dr. M. Okafor",
+                "Acute bacterial sinusitis, symptoms for 12 days with facial pain and purulent drainage. No known drug "
+                "allergies. Prescribed amoxicillin 875 mg twice daily for 10 days. Asthma well controlled."),
+               ("2023-02-24", "Progress note", "Dr. M. Okafor",
+                "Sinusitis follow-up. Completed amoxicillin without side effects. Symptoms resolved. Asthma stable on "
+                "fluticasone.")])
+
+patient("pt-1018", "Kevin", "Patel", "1964-12-12", "male",
+        conditions=[("T2DM", "2014-07-07", "active"), ("HLD", "2014-07-07", "active")],
+        meds=[("metformin", 1000, "mg", "twice daily", "2014-07-07", "active"),
+              ("glipizide", 10, "mg", "once daily", "2020-02-20", "active"),
+              ("atorvastatin", 40, "mg", "once daily", "2014-07-07", "active")],
+        obs=[("4548-4", 8.3, "%", "2025-11-03"), ("4548-4", 8.8, "%", "2026-05-02")],
+        notes=[("2026-05-02", "Progress note", "Dr. M. Okafor",
+                "A1c 8.8%. Discussed adding basal insulin versus a GLP-1 receptor agonist; patient will consider. "
+                "Return in 3 months.")])
+
+patient("pt-1019", "Lisa", "Thompson", "1958-08-25", "female",
+        conditions=[("HYPOTHY", "2004-04-04", "active"), ("OSTEOPOROSIS", "2021-11-11", "active")],
+        meds=[("levothyroxine", 88, "mcg", "once daily", "2004-04-04", "active"),
+              ("alendronate", 70, "mg", "once weekly", "2021-11-11", "active")],
+        obs=[("29463-7", 58.9, "kg", "2026-04-20")],
+        notes=[("2026-04-20", "Annual physical", "Dr. A. Shah",
+                "Annual exam. TSH in range. DEXA stable on alendronate. No concerns.")])
+
+patient("pt-1020", "Steven", "Adams", "1955-04-18", "male",
+        conditions=[("T2DM", "2016-08-08", "active"), ("OSA", "2018-03-03", "active"), ("HTN", "2016-08-08", "active")],
+        meds=[("metformin", 1000, "mg", "twice daily", "2016-08-08", "active"),
+              ("amlodipine", 10, "mg", "once daily", "2016-08-08", "active")],
+        obs=[("4548-4", 7.3, "%", "2024-12-20"), ("4548-4", 7.1, "%", "2025-06-30")],
+        notes=[("2025-06-30", "Progress note", "Dr. M. Okafor",
+                "Diabetes and hypertension follow-up. A1c 7.1%. Uses CPAP nightly. Continue metformin and "
+                "amlodipine. Return in 6 months.")])
+
+patient("pt-1021", "Jennifer", "Lee", "1988-10-10", "female",
+        conditions=[("GAD", "2020-02-02", "active")],
+        meds=[("sertraline", 100, "mg", "once daily", "2020-02-02", "active")],
+        notes=[("2026-01-14", "Progress note", "Dr. A. Shah", "Anxiety well controlled on sertraline. Continue.")])
+
+patient("pt-1022", "William", "Turner", "1947-03-03", "male",
+        conditions=[("COPD", "2015-12-01", "active"), ("HTN", "2005-05-05", "active")],
+        meds=[("albuterol HFA", 2, "puffs", "as needed", "2015-12-01", "active"),
+              ("fluticasone HFA", 220, "mcg", "twice daily", "2015-12-01", "active"),
+              ("losartan", 50, "mg", "once daily", "2005-05-05", "active")],
+        obs=[("4548-4", 5.5, "%", "2025-04-09"), ("1558-6", 98, "mg/dL", "2025-04-09")],
+        notes=[("2025-04-09", "Annual physical", "Dr. M. Okafor",
+                "Annual exam. COPD stable. Strong family history of diabetes (mother and brother), so screened today: "
+                "A1c 5.5%, fasting glucose 98. No diabetes. Rescreen in 3 years.")])
+
+patient("pt-1023", "Elizabeth", "Martin", "1969-06-21", "female",
+        conditions=[("MIGRAINE", "2001-01-01", "active"), ("MDD", "2017-09-09", "active")],
+        meds=[("sumatriptan", 50, "mg", "as needed", "2001-01-01", "active"),
+              ("sertraline", 50, "mg", "once daily", "2017-09-09", "active")],
+        notes=[("2026-02-02", "Progress note", "Dr. A. Shah", "Mood stable. Migraines about twice monthly, sumatriptan effective.")])
+
+patient("pt-1024", "Richard", "Clark", "1952-11-27", "male",
+        conditions=[("T2DM_CKD", "2010-10-10", "active"), ("CKD3A", "2020-01-01", "active"), ("HTN", "2008-08-08", "active")],
+        meds=[("insulin glargine", 18, "units", "at bedtime", "2020-01-01", "active"),
+              ("losartan", 100, "mg", "once daily", "2008-08-08", "active"),
+              ("atorvastatin", 40, "mg", "once daily", "2010-10-10", "active")],
+        obs=[("4548-4", 7.9, "%", "2026-02-03"), ("4548-4", 7.6, "%", "2026-08-11")],
+        notes=[("2026-08-11", "Progress note", "Dr. M. Okafor",
+                "Diabetes with CKD 3a on basal insulin. A1c 7.6%. No hypoglycemia. Continue glargine 18 units.")])
+
+patient("pt-1025", "Barbara", "Lewis", "1960-02-14", "female",
+        conditions=[("T2DM", "2013-03-13", "active"), ("HTN", "2013-03-13", "active"), ("HLD", "2015-05-15", "active")],
+        meds=[("metformin", 500, "mg", "twice daily", "2013-03-13", "active"),
+              ("lisinopril", 10, "mg", "once daily", "2013-03-13", "active"),
+              ("rosuvastatin", 10, "mg", "once daily", "2015-05-15", "active")],
+        obs=[("4548-4", 7.0, "%", "2025-04-28"), ("4548-4", 6.9, "%", "2025-10-30")],
+        notes=[("2025-10-30", "Progress note", "Dr. A. Shah",
+                "Diabetes follow-up. A1c 6.9%. Doing well. Continue metformin. Return in 6 months.")])
+
+patient("pt-1026", "Joseph", "Walker", "1978-07-07", "male",
+        conditions=[("HLD", "2022-02-22", "active")],
+        meds=[("atorvastatin", 10, "mg", "once daily", "2022-02-22", "active")],
+        notes=[("2026-06-06", "Annual physical", "Dr. M. Okafor", "Annual exam. Lipids at goal on atorvastatin 10 mg.")])
+
+patient("pt-1027", "Sarah", "Hall", "1990-01-23", "female",
+        conditions=[("PCOS", "2017-03-03", "active")],
+        meds=[("metformin", 500, "mg", "twice daily", "2017-03-03", "active")],
+        obs=[("4548-4", 5.6, "%", "2025-04-15")],
+        notes=[("2025-04-15", "Progress note", "Dr. A. Shah",
+                "PCOS follow-up. On metformin for insulin resistance and cycle regulation, cycles now regular. A1c "
+                "5.6%, no diabetes. Continue metformin.")])
+
+patient("pt-1028", "Charles", "Young", "1944-09-09", "male",
+        conditions=[("T2DM", "2011-11-11", "active"), ("HTN", "2000-01-01", "active")],
+        meds=[("metformin", 500, "mg", "twice daily", "2011-11-11", "active"),
+              ("amlodipine", 5, "mg", "once daily", "2000-01-01", "active")],
+        obs=[("4548-4", 7.0, "%", "2025-10-20"), ("4548-4", 7.3, "%", "2026-04-22")],
+        notes=[("2026-04-22", "Progress note", "Dr. M. Okafor", "A1c 7.3%, acceptable for age. Continue metformin.")])
+
+patient("pt-1029", "Margaret", "Allen", "1956-03-31", "female",
+        conditions=[("HTN", "2014-04-14", "active"), ("HLD", "2014-04-14", "active")],
+        meds=[("lisinopril", 20, "mg", "once daily", "2014-04-14", "active"),
+              ("atorvastatin", 40, "mg", "once daily", "2014-04-14", "active")],
+        notes=[("2026-03-03", "Progress note", "Dr. A. Shah", "BP and lipids at goal. Continue.")])
+
+patient("pt-1030", "Daniel", "King", "1982-05-16", "male",
+        obs=[("85354-9", "118/76", "mm[Hg]", "2026-08-08")],
+        notes=[("2026-08-08", "Annual physical", "Dr. M. Okafor", "Healthy adult. No chronic conditions. Return in 1 year.")])
+
+
+# ---------------------------------------------------------------------------------------------
+# Assemble
+# ---------------------------------------------------------------------------------------------
+
+def build():
+    state = {
+        "meta": {"today": TODAY, "practice": "Riverbend Family Medicine", "fixture_version": 1},
+        "patients": [], "conditions": [], "medications": [], "allergies": [], "observations": [],
+        "notes": [], "orders": [],
+        "formulary": [{"id": rx_id(n), "name": n, "ingredient": i, "drug_class": c} for n, i, c in FORMULARY],
+        "lab_catalog": LAB_CATALOG,
+        "observation_codes": {code: {"display": d, "synonyms": s} for code, (d, s) in OBSERVATION_CODES.items()},
+    }
+    for spec in P:
+        pid = spec["pid"]
+        n4 = pid.split("-")[1]
+        state["patients"].append({
+            "id": pid, "mrn": f"RB{int(n4) * 7 + 300000}",
+            "name": {"given": spec["given"], "family": spec["family"]},
+            "birthDate": spec["birth"], "gender": spec["gender"],
+            "active": spec["active"], "deceasedDate": spec["deceased"],
+        })
+        for i, (key, onset, status) in enumerate(spec["conditions"], 1):
+            system, code, display = ICD[key]
+            state["conditions"].append({"id": f"cond-{n4}-{i}", "patient_id": pid,
+                                        "code": {"system": system, "code": code, "display": display},
+                                        "clinicalStatus": status, "onsetDate": onset})
+        for i, (name, dose, unit, freq, authored, status) in enumerate(spec["meds"], 1):
+            state["medications"].append({"id": f"med-{n4}-{i:02d}", "patient_id": pid,
+                                         "formulary_id": FORMULARY_BY_NAME[name], "name": name,
+                                         "dose_value": dose, "dose_unit": unit, "frequency": freq,
+                                         "status": status, "authoredOn": authored, "duration_days": None,
+                                         "indication": None, "source": "chart", "history": []})
+        for i, (substance, reaction, crit, cat, recorded) in enumerate(spec["allergies"], 1):
+            state["allergies"].append({"id": f"alg-{n4}-{i}", "patient_id": pid, "substance": substance,
+                                       "reaction": reaction, "criticality": crit, "category": cat,
+                                       "recordedDate": recorded})
+        for i, (code, value, unit, date) in enumerate(spec["obs"], 1):
+            state["observations"].append({"id": f"obs-{n4}-{i:03d}", "patient_id": pid,
+                                          "code": {"system": "LOINC", "code": code,
+                                                   "display": OBSERVATION_CODES[code][0]},
+                                          "value": value, "unit": unit, "effectiveDate": date})
+        for i, (date, ntype, author, text) in enumerate(spec["notes"], 1):
+            state["notes"].append({"id": f"note-{n4}-{i}", "patient_id": pid, "date": date, "type": ntype,
+                                   "author": author, "text": text})
+        for i, (code, display, status, date, reason) in enumerate(spec["orders"], 1):
+            state["orders"].append({"id": f"ord-{n4}-{i}", "patient_id": pid, "order_type": "lab", "code": code,
+                                    "display": display, "status": status, "orderedDate": date, "reason": reason,
+                                    "source": "chart"})
+    return state
+
+
+if __name__ == "__main__":
+    OUT.write_text(json.dumps(build(), indent=1, ensure_ascii=False) + "\n")
+    print(f"wrote {OUT} ({len(P)} patients)")

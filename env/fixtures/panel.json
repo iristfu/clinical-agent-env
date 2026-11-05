@@ -1,0 +1,4015 @@
+{
+ "meta": {
+  "today": "2026-10-01",
+  "practice": "Riverbend Family Medicine",
+  "fixture_version": 1
+ },
+ "patients": [
+  {
+   "id": "pt-1001",
+   "mrn": "RB307007",
+   "name": {
+    "given": "James",
+    "family": "Whitaker"
+   },
+   "birthDate": "1959-01-11",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1002",
+   "mrn": "RB307014",
+   "name": {
+    "given": "Linda",
+    "family": "Park"
+   },
+   "birthDate": "1966-04-03",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1003",
+   "mrn": "RB307021",
+   "name": {
+    "given": "Maria",
+    "family": "Lopez"
+   },
+   "birthDate": "1958-03-14",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1004",
+   "mrn": "RB307028",
+   "name": {
+    "given": "Robert",
+    "family": "Chen"
+   },
+   "birthDate": "1971-08-22",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1005",
+   "mrn": "RB307035",
+   "name": {
+    "given": "Patricia",
+    "family": "Gomez"
+   },
+   "birthDate": "1980-11-30",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1006",
+   "mrn": "RB307042",
+   "name": {
+    "given": "Michael",
+    "family": "O'Brien"
+   },
+   "birthDate": "1953-06-07",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1007",
+   "mrn": "RB307049",
+   "name": {
+    "given": "Susan",
+    "family": "Miller"
+   },
+   "birthDate": "1949-12-19",
+   "gender": "female",
+   "active": false,
+   "deceasedDate": "2026-07-02"
+  },
+  {
+   "id": "pt-1008",
+   "mrn": "RB307056",
+   "name": {
+    "given": "Harold",
+    "family": "Bennett"
+   },
+   "birthDate": "1945-02-20",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1009",
+   "mrn": "RB307063",
+   "name": {
+    "given": "Karen",
+    "family": "Nguyen"
+   },
+   "birthDate": "1975-03-27",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1010",
+   "mrn": "RB307070",
+   "name": {
+    "given": "David",
+    "family": "Kim"
+   },
+   "birthDate": "1968-09-14",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1011",
+   "mrn": "RB307077",
+   "name": {
+    "given": "Angela",
+    "family": "Rossi"
+   },
+   "birthDate": "1984-02-08",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1012",
+   "mrn": "RB307084",
+   "name": {
+    "given": "Denise",
+    "family": "Carter"
+   },
+   "birthDate": "1962-05-09",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1013",
+   "mrn": "RB307091",
+   "name": {
+    "given": "Thomas",
+    "family": "Wright"
+   },
+   "birthDate": "1957-10-01",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1014",
+   "mrn": "RB307098",
+   "name": {
+    "given": "Nancy",
+    "family": "Fischer"
+   },
+   "birthDate": "1961-07-15",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1015",
+   "mrn": "RB307105",
+   "name": {
+    "given": "Gary",
+    "family": "Hughes"
+   },
+   "birthDate": "1950-05-05",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1016",
+   "mrn": "RB307112",
+   "name": {
+    "given": "Brenda",
+    "family": "Scott"
+   },
+   "birthDate": "1973-01-29",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1017",
+   "mrn": "RB307119",
+   "name": {
+    "given": "Maria",
+    "family": "Lopez"
+   },
+   "birthDate": "1991-07-02",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1018",
+   "mrn": "RB307126",
+   "name": {
+    "given": "Kevin",
+    "family": "Patel"
+   },
+   "birthDate": "1964-12-12",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1019",
+   "mrn": "RB307133",
+   "name": {
+    "given": "Lisa",
+    "family": "Thompson"
+   },
+   "birthDate": "1958-08-25",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1020",
+   "mrn": "RB307140",
+   "name": {
+    "given": "Steven",
+    "family": "Adams"
+   },
+   "birthDate": "1955-04-18",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1021",
+   "mrn": "RB307147",
+   "name": {
+    "given": "Jennifer",
+    "family": "Lee"
+   },
+   "birthDate": "1988-10-10",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1022",
+   "mrn": "RB307154",
+   "name": {
+    "given": "William",
+    "family": "Turner"
+   },
+   "birthDate": "1947-03-03",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1023",
+   "mrn": "RB307161",
+   "name": {
+    "given": "Elizabeth",
+    "family": "Martin"
+   },
+   "birthDate": "1969-06-21",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1024",
+   "mrn": "RB307168",
+   "name": {
+    "given": "Richard",
+    "family": "Clark"
+   },
+   "birthDate": "1952-11-27",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1025",
+   "mrn": "RB307175",
+   "name": {
+    "given": "Barbara",
+    "family": "Lewis"
+   },
+   "birthDate": "1960-02-14",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1026",
+   "mrn": "RB307182",
+   "name": {
+    "given": "Joseph",
+    "family": "Walker"
+   },
+   "birthDate": "1978-07-07",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1027",
+   "mrn": "RB307189",
+   "name": {
+    "given": "Sarah",
+    "family": "Hall"
+   },
+   "birthDate": "1990-01-23",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1028",
+   "mrn": "RB307196",
+   "name": {
+    "given": "Charles",
+    "family": "Young"
+   },
+   "birthDate": "1944-09-09",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1029",
+   "mrn": "RB307203",
+   "name": {
+    "given": "Margaret",
+    "family": "Allen"
+   },
+   "birthDate": "1956-03-31",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-1030",
+   "mrn": "RB307210",
+   "name": {
+    "given": "Daniel",
+    "family": "King"
+   },
+   "birthDate": "1982-05-16",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  }
+ ],
+ "conditions": [
+  {
+   "id": "cond-1001-1",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2017-04-02"
+  },
+  {
+   "id": "cond-1001-2",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2015-09-14"
+  },
+  {
+   "id": "cond-1001-3",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2016-02-20"
+  },
+  {
+   "id": "cond-1002-1",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-05-01"
+  },
+  {
+   "id": "cond-1002-2",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "K21.9",
+    "display": "Gastro-esophageal reflux disease without esophagitis"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2020-01-15"
+  },
+  {
+   "id": "cond-1003-1",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2012-07-09"
+  },
+  {
+   "id": "cond-1003-2",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2016-03-22"
+  },
+  {
+   "id": "cond-1004-1",
+   "patient_id": "pt-1004",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.65",
+    "display": "Type 2 diabetes mellitus with hyperglycemia"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-10-30"
+  },
+  {
+   "id": "cond-1004-2",
+   "patient_id": "pt-1004",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E66.9",
+    "display": "Obesity, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-10-30"
+  },
+  {
+   "id": "cond-1004-3",
+   "patient_id": "pt-1004",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2019-01-12"
+  },
+  {
+   "id": "cond-1005-1",
+   "patient_id": "pt-1005",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E10.9",
+    "display": "Type 1 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "1994-06-01"
+  },
+  {
+   "id": "cond-1005-2",
+   "patient_id": "pt-1005",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E03.9",
+    "display": "Hypothyroidism, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2011-03-10"
+  },
+  {
+   "id": "cond-1006-1",
+   "patient_id": "pt-1006",
+   "code": {
+    "system": "SNOMED-CT",
+    "code": "44054006",
+    "display": "Diabetes mellitus type 2"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2014-05-19"
+  },
+  {
+   "id": "cond-1006-2",
+   "patient_id": "pt-1006",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I25.10",
+    "display": "Atherosclerotic heart disease of native coronary artery without angina pectoris"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-11-02"
+  },
+  {
+   "id": "cond-1006-3",
+   "patient_id": "pt-1006",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2012-08-08"
+  },
+  {
+   "id": "cond-1007-1",
+   "patient_id": "pt-1007",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2009-03-03"
+  },
+  {
+   "id": "cond-1007-2",
+   "patient_id": "pt-1007",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I50.9",
+    "display": "Heart failure, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2019-07-21"
+  },
+  {
+   "id": "cond-1007-3",
+   "patient_id": "pt-1007",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.4",
+    "display": "Chronic kidney disease, stage 4"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-02-14"
+  },
+  {
+   "id": "cond-1008-1",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2021-04-12"
+  },
+  {
+   "id": "cond-1008-2",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2008-01-15"
+  },
+  {
+   "id": "cond-1008-3",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.31",
+    "display": "Chronic kidney disease, stage 3a"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2022-09-30"
+  },
+  {
+   "id": "cond-1008-4",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N40.0",
+    "display": "Benign prostatic hyperplasia without lower urinary tract symptoms"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2016-06-06"
+  },
+  {
+   "id": "cond-1009-1",
+   "patient_id": "pt-1009",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "R73.03",
+    "display": "Prediabetes"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-08-20"
+  },
+  {
+   "id": "cond-1009-2",
+   "patient_id": "pt-1009",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E66.9",
+    "display": "Obesity, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-08-20"
+  },
+  {
+   "id": "cond-1010-1",
+   "patient_id": "pt-1010",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2019-02-11"
+  },
+  {
+   "id": "cond-1010-2",
+   "patient_id": "pt-1010",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2019-02-11"
+  },
+  {
+   "id": "cond-1011-1",
+   "patient_id": "pt-1011",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "O24.419",
+    "display": "Gestational diabetes mellitus in pregnancy, unspecified control"
+   },
+   "clinicalStatus": "resolved",
+   "onsetDate": "2019-07-15"
+  },
+  {
+   "id": "cond-1011-2",
+   "patient_id": "pt-1011",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "G43.909",
+    "display": "Migraine, unspecified, not intractable, without status migrainosus"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2015-10-02"
+  },
+  {
+   "id": "cond-1012-1",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2016-01-20"
+  },
+  {
+   "id": "cond-1012-2",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2010-11-03"
+  },
+  {
+   "id": "cond-1012-3",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2013-04-17"
+  },
+  {
+   "id": "cond-1012-4",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "K21.9",
+    "display": "Gastro-esophageal reflux disease without esophagitis"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2019-08-08"
+  },
+  {
+   "id": "cond-1013-1",
+   "patient_id": "pt-1013",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.22",
+    "display": "Type 2 diabetes mellitus with diabetic chronic kidney disease"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2015-03-18"
+  },
+  {
+   "id": "cond-1013-2",
+   "patient_id": "pt-1013",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.32",
+    "display": "Chronic kidney disease, stage 3b"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2021-05-05"
+  },
+  {
+   "id": "cond-1013-3",
+   "patient_id": "pt-1013",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2009-09-09"
+  },
+  {
+   "id": "cond-1014-1",
+   "patient_id": "pt-1014",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "R73.03",
+    "display": "Prediabetes"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-03-11"
+  },
+  {
+   "id": "cond-1014-2",
+   "patient_id": "pt-1014",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-02-02"
+  },
+  {
+   "id": "cond-1014-3",
+   "patient_id": "pt-1014",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E03.9",
+    "display": "Hypothyroidism, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2012-12-12"
+  },
+  {
+   "id": "cond-1015-1",
+   "patient_id": "pt-1015",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2012-10-10"
+  },
+  {
+   "id": "cond-1015-2",
+   "patient_id": "pt-1015",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2010-03-03"
+  },
+  {
+   "id": "cond-1015-3",
+   "patient_id": "pt-1015",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N40.0",
+    "display": "Benign prostatic hyperplasia without lower urinary tract symptoms"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2017-01-19"
+  },
+  {
+   "id": "cond-1016-1",
+   "patient_id": "pt-1016",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2021-06-15"
+  },
+  {
+   "id": "cond-1016-2",
+   "patient_id": "pt-1016",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E66.9",
+    "display": "Obesity, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2021-06-15"
+  },
+  {
+   "id": "cond-1017-1",
+   "patient_id": "pt-1017",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "J45.909",
+    "display": "Unspecified asthma, uncomplicated"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2008-04-04"
+  },
+  {
+   "id": "cond-1017-2",
+   "patient_id": "pt-1017",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "J30.9",
+    "display": "Allergic rhinitis, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2010-05-05"
+  },
+  {
+   "id": "cond-1018-1",
+   "patient_id": "pt-1018",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2014-07-07"
+  },
+  {
+   "id": "cond-1018-2",
+   "patient_id": "pt-1018",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2014-07-07"
+  },
+  {
+   "id": "cond-1019-1",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E03.9",
+    "display": "Hypothyroidism, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2004-04-04"
+  },
+  {
+   "id": "cond-1019-2",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "M81.0",
+    "display": "Age-related osteoporosis without current pathological fracture"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2021-11-11"
+  },
+  {
+   "id": "cond-1020-1",
+   "patient_id": "pt-1020",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2016-08-08"
+  },
+  {
+   "id": "cond-1020-2",
+   "patient_id": "pt-1020",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "G47.33",
+    "display": "Obstructive sleep apnea"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-03-03"
+  },
+  {
+   "id": "cond-1020-3",
+   "patient_id": "pt-1020",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2016-08-08"
+  },
+  {
+   "id": "cond-1021-1",
+   "patient_id": "pt-1021",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "F41.1",
+    "display": "Generalized anxiety disorder"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2020-02-02"
+  },
+  {
+   "id": "cond-1022-1",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "J44.9",
+    "display": "Chronic obstructive pulmonary disease, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2015-12-01"
+  },
+  {
+   "id": "cond-1022-2",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2005-05-05"
+  },
+  {
+   "id": "cond-1023-1",
+   "patient_id": "pt-1023",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "G43.909",
+    "display": "Migraine, unspecified, not intractable, without status migrainosus"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2001-01-01"
+  },
+  {
+   "id": "cond-1023-2",
+   "patient_id": "pt-1023",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "F32.A",
+    "display": "Depression, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2017-09-09"
+  },
+  {
+   "id": "cond-1024-1",
+   "patient_id": "pt-1024",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.22",
+    "display": "Type 2 diabetes mellitus with diabetic chronic kidney disease"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2010-10-10"
+  },
+  {
+   "id": "cond-1024-2",
+   "patient_id": "pt-1024",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.31",
+    "display": "Chronic kidney disease, stage 3a"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2020-01-01"
+  },
+  {
+   "id": "cond-1024-3",
+   "patient_id": "pt-1024",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2008-08-08"
+  },
+  {
+   "id": "cond-1025-1",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2013-03-13"
+  },
+  {
+   "id": "cond-1025-2",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2013-03-13"
+  },
+  {
+   "id": "cond-1025-3",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2015-05-15"
+  },
+  {
+   "id": "cond-1026-1",
+   "patient_id": "pt-1026",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2022-02-22"
+  },
+  {
+   "id": "cond-1027-1",
+   "patient_id": "pt-1027",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E28.2",
+    "display": "Polycystic ovarian syndrome"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2017-03-03"
+  },
+  {
+   "id": "cond-1028-1",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2011-11-11"
+  },
+  {
+   "id": "cond-1028-2",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2000-01-01"
+  },
+  {
+   "id": "cond-1029-1",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2014-04-14"
+  },
+  {
+   "id": "cond-1029-2",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2014-04-14"
+  }
+ ],
+ "medications": [
+  {
+   "id": "med-1001-01",
+   "patient_id": "pt-1001",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2019-06-10",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1001-02",
+   "patient_id": "pt-1001",
+   "formulary_id": "rx-lisinopril",
+   "name": "lisinopril",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2015-09-14",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1001-03",
+   "patient_id": "pt-1001",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2016-02-20",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1002-01",
+   "patient_id": "pt-1002",
+   "formulary_id": "rx-amlodipine",
+   "name": "amlodipine",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2018-05-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1002-02",
+   "patient_id": "pt-1002",
+   "formulary_id": "rx-omeprazole",
+   "name": "omeprazole",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2020-01-15",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1003-01",
+   "patient_id": "pt-1003",
+   "formulary_id": "rx-amlodipine",
+   "name": "amlodipine",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2014-01-08",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1003-02",
+   "patient_id": "pt-1003",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2016-03-22",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1004-01",
+   "patient_id": "pt-1004",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2018-10-30",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1004-02",
+   "patient_id": "pt-1004",
+   "formulary_id": "rx-glipizide",
+   "name": "glipizide",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2022-04-11",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1004-03",
+   "patient_id": "pt-1004",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 40,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2019-01-12",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1005-01",
+   "patient_id": "pt-1005",
+   "formulary_id": "rx-insulin-glargine",
+   "name": "insulin glargine",
+   "dose_value": 22,
+   "dose_unit": "units",
+   "frequency": "at bedtime",
+   "status": "active",
+   "authoredOn": "2015-02-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1005-02",
+   "patient_id": "pt-1005",
+   "formulary_id": "rx-insulin-lispro",
+   "name": "insulin lispro",
+   "dose_value": 6,
+   "dose_unit": "units",
+   "frequency": "three times daily",
+   "status": "active",
+   "authoredOn": "2015-02-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1005-03",
+   "patient_id": "pt-1005",
+   "formulary_id": "rx-levothyroxine",
+   "name": "levothyroxine",
+   "dose_value": 75,
+   "dose_unit": "mcg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2011-03-10",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1006-01",
+   "patient_id": "pt-1006",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2014-05-19",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1006-02",
+   "patient_id": "pt-1006",
+   "formulary_id": "rx-aspirin",
+   "name": "aspirin",
+   "dose_value": 81,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2018-11-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1006-03",
+   "patient_id": "pt-1006",
+   "formulary_id": "rx-metoprolol-succinate-er",
+   "name": "metoprolol succinate ER",
+   "dose_value": 25,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2018-11-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1006-04",
+   "patient_id": "pt-1006",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 80,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2018-11-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1007-01",
+   "patient_id": "pt-1007",
+   "formulary_id": "rx-insulin-glargine",
+   "name": "insulin glargine",
+   "dose_value": 10,
+   "dose_unit": "units",
+   "frequency": "at bedtime",
+   "status": "stopped",
+   "authoredOn": "2020-05-05",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1007-02",
+   "patient_id": "pt-1007",
+   "formulary_id": "rx-furosemide",
+   "name": "furosemide",
+   "dose_value": 40,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "stopped",
+   "authoredOn": "2019-07-21",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1008-01",
+   "patient_id": "pt-1008",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2021-04-12",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1008-02",
+   "patient_id": "pt-1008",
+   "formulary_id": "rx-metoprolol-succinate-er",
+   "name": "metoprolol succinate ER",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2021-04-12",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1008-03",
+   "patient_id": "pt-1008",
+   "formulary_id": "rx-furosemide",
+   "name": "furosemide",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2022-09-30",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1008-04",
+   "patient_id": "pt-1008",
+   "formulary_id": "rx-tamsulosin",
+   "name": "tamsulosin",
+   "dose_value": 0.4,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2016-06-06",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1010-01",
+   "patient_id": "pt-1010",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2026-07-22",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1010-02",
+   "patient_id": "pt-1010",
+   "formulary_id": "rx-losartan",
+   "name": "losartan",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2026-07-22",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1011-01",
+   "patient_id": "pt-1011",
+   "formulary_id": "rx-sumatriptan",
+   "name": "sumatriptan",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "as needed",
+   "status": "active",
+   "authoredOn": "2015-10-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1012-01",
+   "patient_id": "pt-1012",
+   "formulary_id": "rx-lisinopril",
+   "name": "lisinopril",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2012-02-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1012-02",
+   "patient_id": "pt-1012",
+   "formulary_id": "rx-metoprolol-tartrate",
+   "name": "metoprolol tartrate",
+   "dose_value": 25,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2017-06-12",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1012-03",
+   "patient_id": "pt-1012",
+   "formulary_id": "rx-hydrochlorothiazide",
+   "name": "hydrochlorothiazide",
+   "dose_value": 25,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2014-09-30",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1012-04",
+   "patient_id": "pt-1012",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 40,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2013-04-17",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1012-05",
+   "patient_id": "pt-1012",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2016-01-20",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1012-06",
+   "patient_id": "pt-1012",
+   "formulary_id": "rx-aspirin",
+   "name": "aspirin",
+   "dose_value": 81,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2016-01-20",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1012-07",
+   "patient_id": "pt-1012",
+   "formulary_id": "rx-omeprazole",
+   "name": "omeprazole",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2019-08-08",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1013-01",
+   "patient_id": "pt-1013",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2015-03-18",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1013-02",
+   "patient_id": "pt-1013",
+   "formulary_id": "rx-empagliflozin",
+   "name": "empagliflozin",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2021-05-05",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1013-03",
+   "patient_id": "pt-1013",
+   "formulary_id": "rx-lisinopril",
+   "name": "lisinopril",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2009-09-09",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1014-01",
+   "patient_id": "pt-1014",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2025-11-18",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1014-02",
+   "patient_id": "pt-1014",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2018-02-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1014-03",
+   "patient_id": "pt-1014",
+   "formulary_id": "rx-levothyroxine",
+   "name": "levothyroxine",
+   "dose_value": 50,
+   "dose_unit": "mcg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2012-12-12",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1015-01",
+   "patient_id": "pt-1015",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2012-10-10",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1015-02",
+   "patient_id": "pt-1015",
+   "formulary_id": "rx-lisinopril",
+   "name": "lisinopril",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2010-03-03",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1015-03",
+   "patient_id": "pt-1015",
+   "formulary_id": "rx-tamsulosin",
+   "name": "tamsulosin",
+   "dose_value": 0.4,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2017-01-19",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1016-01",
+   "patient_id": "pt-1016",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2021-06-15",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1016-02",
+   "patient_id": "pt-1016",
+   "formulary_id": "rx-semaglutide",
+   "name": "semaglutide",
+   "dose_value": 0.5,
+   "dose_unit": "mg",
+   "frequency": "once weekly",
+   "status": "active",
+   "authoredOn": "2024-09-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1017-01",
+   "patient_id": "pt-1017",
+   "formulary_id": "rx-albuterol-hfa",
+   "name": "albuterol HFA",
+   "dose_value": 2,
+   "dose_unit": "puffs",
+   "frequency": "as needed",
+   "status": "active",
+   "authoredOn": "2008-04-04",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1017-02",
+   "patient_id": "pt-1017",
+   "formulary_id": "rx-fluticasone-hfa",
+   "name": "fluticasone HFA",
+   "dose_value": 110,
+   "dose_unit": "mcg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2019-10-10",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1018-01",
+   "patient_id": "pt-1018",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2014-07-07",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1018-02",
+   "patient_id": "pt-1018",
+   "formulary_id": "rx-glipizide",
+   "name": "glipizide",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2020-02-20",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1018-03",
+   "patient_id": "pt-1018",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 40,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2014-07-07",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1019-01",
+   "patient_id": "pt-1019",
+   "formulary_id": "rx-levothyroxine",
+   "name": "levothyroxine",
+   "dose_value": 88,
+   "dose_unit": "mcg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2004-04-04",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1019-02",
+   "patient_id": "pt-1019",
+   "formulary_id": "rx-alendronate",
+   "name": "alendronate",
+   "dose_value": 70,
+   "dose_unit": "mg",
+   "frequency": "once weekly",
+   "status": "active",
+   "authoredOn": "2021-11-11",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1020-01",
+   "patient_id": "pt-1020",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2016-08-08",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1020-02",
+   "patient_id": "pt-1020",
+   "formulary_id": "rx-amlodipine",
+   "name": "amlodipine",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2016-08-08",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1021-01",
+   "patient_id": "pt-1021",
+   "formulary_id": "rx-sertraline",
+   "name": "sertraline",
+   "dose_value": 100,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2020-02-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1022-01",
+   "patient_id": "pt-1022",
+   "formulary_id": "rx-albuterol-hfa",
+   "name": "albuterol HFA",
+   "dose_value": 2,
+   "dose_unit": "puffs",
+   "frequency": "as needed",
+   "status": "active",
+   "authoredOn": "2015-12-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1022-02",
+   "patient_id": "pt-1022",
+   "formulary_id": "rx-fluticasone-hfa",
+   "name": "fluticasone HFA",
+   "dose_value": 220,
+   "dose_unit": "mcg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2015-12-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1022-03",
+   "patient_id": "pt-1022",
+   "formulary_id": "rx-losartan",
+   "name": "losartan",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2005-05-05",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1023-01",
+   "patient_id": "pt-1023",
+   "formulary_id": "rx-sumatriptan",
+   "name": "sumatriptan",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "as needed",
+   "status": "active",
+   "authoredOn": "2001-01-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1023-02",
+   "patient_id": "pt-1023",
+   "formulary_id": "rx-sertraline",
+   "name": "sertraline",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2017-09-09",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1024-01",
+   "patient_id": "pt-1024",
+   "formulary_id": "rx-insulin-glargine",
+   "name": "insulin glargine",
+   "dose_value": 18,
+   "dose_unit": "units",
+   "frequency": "at bedtime",
+   "status": "active",
+   "authoredOn": "2020-01-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1024-02",
+   "patient_id": "pt-1024",
+   "formulary_id": "rx-losartan",
+   "name": "losartan",
+   "dose_value": 100,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2008-08-08",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1024-03",
+   "patient_id": "pt-1024",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 40,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2010-10-10",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1025-01",
+   "patient_id": "pt-1025",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2013-03-13",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1025-02",
+   "patient_id": "pt-1025",
+   "formulary_id": "rx-lisinopril",
+   "name": "lisinopril",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2013-03-13",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1025-03",
+   "patient_id": "pt-1025",
+   "formulary_id": "rx-rosuvastatin",
+   "name": "rosuvastatin",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2015-05-15",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1026-01",
+   "patient_id": "pt-1026",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2022-02-22",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1027-01",
+   "patient_id": "pt-1027",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2017-03-03",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1028-01",
+   "patient_id": "pt-1028",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2011-11-11",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1028-02",
+   "patient_id": "pt-1028",
+   "formulary_id": "rx-amlodipine",
+   "name": "amlodipine",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2000-01-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1029-01",
+   "patient_id": "pt-1029",
+   "formulary_id": "rx-lisinopril",
+   "name": "lisinopril",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2014-04-14",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1029-02",
+   "patient_id": "pt-1029",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 40,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2014-04-14",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  }
+ ],
+ "allergies": [
+  {
+   "id": "alg-1003-1",
+   "patient_id": "pt-1003",
+   "substance": "Sulfonamide antibiotics",
+   "reaction": "Rash",
+   "criticality": "low",
+   "category": "medication",
+   "recordedDate": "2014-01-08"
+  }
+ ],
+ "observations": [
+  {
+   "id": "obs-1001-001",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.6,
+   "unit": "%",
+   "effectiveDate": "2025-06-12"
+  },
+  {
+   "id": "obs-1001-002",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.4,
+   "unit": "%",
+   "effectiveDate": "2025-12-10"
+  },
+  {
+   "id": "obs-1001-003",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "134/82",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2025-12-10"
+  },
+  {
+   "id": "obs-1001-004",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 98.2,
+   "unit": "kg",
+   "effectiveDate": "2025-12-10"
+  },
+  {
+   "id": "obs-1001-005",
+   "patient_id": "pt-1001",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 81,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2025-12-10"
+  },
+  {
+   "id": "obs-1002-001",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "128/80",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-05-19"
+  },
+  {
+   "id": "obs-1002-002",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "LOINC",
+    "code": "1558-6",
+    "display": "Fasting glucose [Mass/volume] in Serum or Plasma"
+   },
+   "value": 94,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-05-19"
+  },
+  {
+   "id": "obs-1002-003",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 66.0,
+   "unit": "kg",
+   "effectiveDate": "2026-05-19"
+  },
+  {
+   "id": "obs-1003-001",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "132/80",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2024-11-05"
+  },
+  {
+   "id": "obs-1003-002",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "138/84",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1003-003",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "LOINC",
+    "code": "8310-5",
+    "display": "Body temperature"
+   },
+   "value": 38.6,
+   "unit": "Cel",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1003-004",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "LOINC",
+    "code": "8867-4",
+    "display": "Heart rate"
+   },
+   "value": 98,
+   "unit": "/min",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1003-005",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 71.4,
+   "unit": "kg",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1003-006",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 79,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2024-11-05"
+  },
+  {
+   "id": "obs-1003-007",
+   "patient_id": "pt-1003",
+   "code": {
+    "system": "LOINC",
+    "code": "78012-2",
+    "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay"
+   },
+   "value": "Positive",
+   "unit": null,
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1004-001",
+   "patient_id": "pt-1004",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 9.1,
+   "unit": "%",
+   "effectiveDate": "2025-12-02"
+  },
+  {
+   "id": "obs-1004-002",
+   "patient_id": "pt-1004",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 9.6,
+   "unit": "%",
+   "effectiveDate": "2026-06-18"
+  },
+  {
+   "id": "obs-1004-003",
+   "patient_id": "pt-1004",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 112.5,
+   "unit": "kg",
+   "effectiveDate": "2026-06-18"
+  },
+  {
+   "id": "obs-1005-001",
+   "patient_id": "pt-1005",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 8.1,
+   "unit": "%",
+   "effectiveDate": "2025-10-05"
+  },
+  {
+   "id": "obs-1005-002",
+   "patient_id": "pt-1005",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 61.2,
+   "unit": "kg",
+   "effectiveDate": "2025-10-05"
+  },
+  {
+   "id": "obs-1006-001",
+   "patient_id": "pt-1006",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 6.8,
+   "unit": "%",
+   "effectiveDate": "2025-09-15"
+  },
+  {
+   "id": "obs-1006-002",
+   "patient_id": "pt-1006",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "126/76",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2025-09-15"
+  },
+  {
+   "id": "obs-1007-001",
+   "patient_id": "pt-1007",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.0,
+   "unit": "%",
+   "effectiveDate": "2025-11-20"
+  },
+  {
+   "id": "obs-1008-001",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 64.4,
+   "unit": "kg",
+   "effectiveDate": "2025-12-02"
+  },
+  {
+   "id": "obs-1008-002",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 63.5,
+   "unit": "kg",
+   "effectiveDate": "2026-05-14"
+  },
+  {
+   "id": "obs-1008-003",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.24,
+   "unit": "mg/dL",
+   "effectiveDate": "2025-12-02"
+  },
+  {
+   "id": "obs-1008-004",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.29,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-05-14"
+  },
+  {
+   "id": "obs-1008-005",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.46,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-08-28"
+  },
+  {
+   "id": "obs-1008-006",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.31,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-24"
+  },
+  {
+   "id": "obs-1008-007",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 57,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2025-12-02"
+  },
+  {
+   "id": "obs-1008-008",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 54,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-05-14"
+  },
+  {
+   "id": "obs-1008-009",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 46,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-08-28"
+  },
+  {
+   "id": "obs-1008-010",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 53,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-09-24"
+  },
+  {
+   "id": "obs-1008-011",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "718-7",
+    "display": "Hemoglobin [Mass/volume] in Blood"
+   },
+   "value": 12.1,
+   "unit": "g/dL",
+   "effectiveDate": "2026-09-24"
+  },
+  {
+   "id": "obs-1008-012",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "2823-3",
+    "display": "Potassium [Moles/volume] in Serum or Plasma"
+   },
+   "value": 4.3,
+   "unit": "mmol/L",
+   "effectiveDate": "2026-09-24"
+  },
+  {
+   "id": "obs-1008-013",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "122/74",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-05-14"
+  },
+  {
+   "id": "obs-1008-014",
+   "patient_id": "pt-1008",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "118/70",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-09-24"
+  },
+  {
+   "id": "obs-1009-001",
+   "patient_id": "pt-1009",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 5.9,
+   "unit": "%",
+   "effectiveDate": "2024-08-20"
+  },
+  {
+   "id": "obs-1009-002",
+   "patient_id": "pt-1009",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 6.1,
+   "unit": "%",
+   "effectiveDate": "2025-08-14"
+  },
+  {
+   "id": "obs-1009-003",
+   "patient_id": "pt-1009",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 88.0,
+   "unit": "kg",
+   "effectiveDate": "2025-08-14"
+  },
+  {
+   "id": "obs-1010-001",
+   "patient_id": "pt-1010",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "136/84",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-07-22"
+  },
+  {
+   "id": "obs-1010-002",
+   "patient_id": "pt-1010",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 91.7,
+   "unit": "kg",
+   "effectiveDate": "2026-07-22"
+  },
+  {
+   "id": "obs-1011-001",
+   "patient_id": "pt-1011",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 5.4,
+   "unit": "%",
+   "effectiveDate": "2020-03-02"
+  },
+  {
+   "id": "obs-1012-001",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.6,
+   "unit": "%",
+   "effectiveDate": "2026-03-15"
+  },
+  {
+   "id": "obs-1012-002",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 8.4,
+   "unit": "%",
+   "effectiveDate": "2026-09-25"
+  },
+  {
+   "id": "obs-1012-003",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "2951-2",
+    "display": "Sodium [Moles/volume] in Serum or Plasma"
+   },
+   "value": 128,
+   "unit": "mmol/L",
+   "effectiveDate": "2026-09-24"
+  },
+  {
+   "id": "obs-1012-004",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "2951-2",
+    "display": "Sodium [Moles/volume] in Serum or Plasma"
+   },
+   "value": 133,
+   "unit": "mmol/L",
+   "effectiveDate": "2026-09-28"
+  },
+  {
+   "id": "obs-1012-005",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "2823-3",
+    "display": "Potassium [Moles/volume] in Serum or Plasma"
+   },
+   "value": 4.1,
+   "unit": "mmol/L",
+   "effectiveDate": "2026-09-28"
+  },
+  {
+   "id": "obs-1012-006",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 71,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-09-28"
+  },
+  {
+   "id": "obs-1012-007",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "212/118",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-09-24"
+  },
+  {
+   "id": "obs-1012-008",
+   "patient_id": "pt-1012",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "146/88",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-09-28"
+  },
+  {
+   "id": "obs-1013-001",
+   "patient_id": "pt-1013",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 8.2,
+   "unit": "%",
+   "effectiveDate": "2025-08-10"
+  },
+  {
+   "id": "obs-1013-002",
+   "patient_id": "pt-1013",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.9,
+   "unit": "%",
+   "effectiveDate": "2026-02-14"
+  },
+  {
+   "id": "obs-1013-003",
+   "patient_id": "pt-1013",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 38,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-02-14"
+  },
+  {
+   "id": "obs-1014-001",
+   "patient_id": "pt-1014",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 6.3,
+   "unit": "%",
+   "effectiveDate": "2025-05-06"
+  },
+  {
+   "id": "obs-1014-002",
+   "patient_id": "pt-1014",
+   "code": {
+    "system": "LOINC",
+    "code": "1558-6",
+    "display": "Fasting glucose [Mass/volume] in Serum or Plasma"
+   },
+   "value": 131,
+   "unit": "mg/dL",
+   "effectiveDate": "2025-11-10"
+  },
+  {
+   "id": "obs-1014-003",
+   "patient_id": "pt-1014",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 6.9,
+   "unit": "%",
+   "effectiveDate": "2025-11-18"
+  },
+  {
+   "id": "obs-1014-004",
+   "patient_id": "pt-1014",
+   "code": {
+    "system": "LOINC",
+    "code": "1558-6",
+    "display": "Fasting glucose [Mass/volume] in Serum or Plasma"
+   },
+   "value": 142,
+   "unit": "mg/dL",
+   "effectiveDate": "2025-11-18"
+  },
+  {
+   "id": "obs-1015-001",
+   "patient_id": "pt-1015",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.5,
+   "unit": "%",
+   "effectiveDate": "2025-12-01"
+  },
+  {
+   "id": "obs-1015-002",
+   "patient_id": "pt-1015",
+   "code": {
+    "system": "LOINC",
+    "code": "17856-6",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood by HPLC"
+   },
+   "value": 7.2,
+   "unit": "%",
+   "effectiveDate": "2026-07-08"
+  },
+  {
+   "id": "obs-1016-001",
+   "patient_id": "pt-1016",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 6.8,
+   "unit": "%",
+   "effectiveDate": "2025-09-02"
+  },
+  {
+   "id": "obs-1016-002",
+   "patient_id": "pt-1016",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 6.5,
+   "unit": "%",
+   "effectiveDate": "2026-03-09"
+  },
+  {
+   "id": "obs-1016-003",
+   "patient_id": "pt-1016",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 94.1,
+   "unit": "kg",
+   "effectiveDate": "2026-03-09"
+  },
+  {
+   "id": "obs-1017-001",
+   "patient_id": "pt-1017",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "112/70",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2023-02-24"
+  },
+  {
+   "id": "obs-1018-001",
+   "patient_id": "pt-1018",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 8.3,
+   "unit": "%",
+   "effectiveDate": "2025-11-03"
+  },
+  {
+   "id": "obs-1018-002",
+   "patient_id": "pt-1018",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 8.8,
+   "unit": "%",
+   "effectiveDate": "2026-05-02"
+  },
+  {
+   "id": "obs-1019-001",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 58.9,
+   "unit": "kg",
+   "effectiveDate": "2026-04-20"
+  },
+  {
+   "id": "obs-1020-001",
+   "patient_id": "pt-1020",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.3,
+   "unit": "%",
+   "effectiveDate": "2024-12-20"
+  },
+  {
+   "id": "obs-1020-002",
+   "patient_id": "pt-1020",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.1,
+   "unit": "%",
+   "effectiveDate": "2025-06-30"
+  },
+  {
+   "id": "obs-1022-001",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 5.5,
+   "unit": "%",
+   "effectiveDate": "2025-04-09"
+  },
+  {
+   "id": "obs-1022-002",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "1558-6",
+    "display": "Fasting glucose [Mass/volume] in Serum or Plasma"
+   },
+   "value": 98,
+   "unit": "mg/dL",
+   "effectiveDate": "2025-04-09"
+  },
+  {
+   "id": "obs-1024-001",
+   "patient_id": "pt-1024",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.9,
+   "unit": "%",
+   "effectiveDate": "2026-02-03"
+  },
+  {
+   "id": "obs-1024-002",
+   "patient_id": "pt-1024",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.6,
+   "unit": "%",
+   "effectiveDate": "2026-08-11"
+  },
+  {
+   "id": "obs-1025-001",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.0,
+   "unit": "%",
+   "effectiveDate": "2025-04-28"
+  },
+  {
+   "id": "obs-1025-002",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 6.9,
+   "unit": "%",
+   "effectiveDate": "2025-10-30"
+  },
+  {
+   "id": "obs-1027-001",
+   "patient_id": "pt-1027",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 5.6,
+   "unit": "%",
+   "effectiveDate": "2025-04-15"
+  },
+  {
+   "id": "obs-1028-001",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.0,
+   "unit": "%",
+   "effectiveDate": "2025-10-20"
+  },
+  {
+   "id": "obs-1028-002",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "4548-4",
+    "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+   },
+   "value": 7.3,
+   "unit": "%",
+   "effectiveDate": "2026-04-22"
+  },
+  {
+   "id": "obs-1030-001",
+   "patient_id": "pt-1030",
+   "code": {
+    "system": "LOINC",
+    "code": "85354-9",
+    "display": "Blood pressure panel"
+   },
+   "value": "118/76",
+   "unit": "mm[Hg]",
+   "effectiveDate": "2026-08-08"
+  }
+ ],
+ "notes": [
+  {
+   "id": "note-1001-1",
+   "patient_id": "pt-1001",
+   "date": "2025-12-10",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Follow-up for type 2 diabetes and hypertension. Feels well. Adherent to metformin and lisinopril. Home glucose readings mostly 120s fasting.\n\nVitals: BP 134/82, HR 76, Wt 98.2 kg.\n\nLabs: A1c 7.4% (prior 7.6%). eGFR 81.\n\nAssessment/Plan:\n1. Type 2 diabetes, near goal. Continue metformin 1000 mg twice daily. Reinforced diet and walking.\n2. Hypertension, controlled. Continue lisinopril.\n3. Hyperlipidemia. Continue atorvastatin.\nReturn in 3 months."
+  },
+  {
+   "id": "note-1001-2",
+   "patient_id": "pt-1001",
+   "date": "2026-03-12",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Patient called to cancel his diabetes follow-up appointment scheduled for 3/14 due to work travel. Will call back to reschedule."
+  },
+  {
+   "id": "note-1002-1",
+   "patient_id": "pt-1002",
+   "date": "2026-05-19",
+   "type": "Annual physical",
+   "author": "Dr. M. Okafor",
+   "text": "Annual exam. No new concerns. BP 128/80 on amlodipine. Reflux controlled on omeprazole. Fasting glucose 94, lipids within goal. Age-appropriate screening up to date. Return in one year."
+  },
+  {
+   "id": "note-1003-1",
+   "patient_id": "pt-1003",
+   "date": "2019-08-12",
+   "type": "ED provider note (outside record)",
+   "author": "Dr. K. Brennan, Valley General ED",
+   "text": "VALLEY GENERAL HOSPITAL EMERGENCY DEPARTMENT - PROVIDER NOTE\n\nChief complaint: Right ankle pain after a fall.\n\nHPI: 61 year old woman who stepped off a curb awkwardly this afternoon and inverted her right ankle. Immediate pain and swelling over the lateral ankle. Able to bear weight with difficulty. No head strike, no loss of consciousness, no other injuries. Took ibuprofen 400 mg at home with partial relief.\n\nPMH: Hypertension, hyperlipidemia.\nMedications: Amlodipine 10 mg daily, atorvastatin 20 mg daily.\nALLERGIES: Sulfa (rash). Patient also reports that as a child she developed hives with lip and throat swelling about 30 minutes after a dose of amoxicillin and was treated with epinephrine in an emergency room. She has avoided all penicillins since.\nSocial: Non-smoker, occasional wine.\n\nExam: Vitals BP 146/88, HR 84, afebrile. Right ankle with lateral swelling and ecchymosis, tenderness over the ATFL, no tenderness at the posterior edge or tip of either malleolus, no midfoot tenderness. Neurovascularly intact distally.\n\nImaging: Not indicated per Ottawa ankle rules.\n\nAssessment: Right lateral ankle sprain, grade I to II.\nPlan: RICE, ankle brace, ibuprofen as needed with food, crutches as needed. Follow up with primary care in 1 to 2 weeks if not improving. Return precautions discussed. Discharged in stable condition."
+  },
+  {
+   "id": "note-1003-2",
+   "patient_id": "pt-1003",
+   "date": "2024-11-05",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Hypertension and lipid follow-up. Feels well. BP 132/80 on amlodipine 10 mg. LDL 96 on atorvastatin 20 mg. Allergies reviewed with patient: sulfa. Continue current regimen, return in 1 year."
+  },
+  {
+   "id": "note-1003-3",
+   "patient_id": "pt-1003",
+   "date": "2026-10-01",
+   "type": "Urgent visit",
+   "author": "Dr. A. Shah",
+   "text": "Same-day visit for sore throat.\n\nHPI: 2 days of sore throat, painful swallowing and subjective fevers. No cough, no rhinorrhea. Husband had similar symptoms last week.\n\nVitals: T 38.6 C, HR 98, BP 138/84, Wt 71.4 kg.\nExam: Tonsillar erythema with bilateral exudate, tender anterior cervical lymphadenopathy. Lungs clear.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: Group A streptococcal pharyngitis.\nPlan: Antibiotic therapy to be ordered. Acetaminophen as needed, fluids, salt water gargles. Return if unable to swallow liquids, drooling, or worsening after 48 hours of treatment."
+  },
+  {
+   "id": "note-1004-1",
+   "patient_id": "pt-1004",
+   "date": "2026-06-18",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Diabetes follow-up. A1c 9.6%, up from 9.1%. Admits to inconsistent diet since a job change. Discussed adding a GLP-1 receptor agonist; patient would like to work on diet first. Continue metformin and glipizide. Recheck A1c at next visit."
+  },
+  {
+   "id": "note-1005-1",
+   "patient_id": "pt-1005",
+   "date": "2025-10-05",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Type 1 diabetes since age 13, managed by endocrinology (Dr. Varga) with insulin pump transition being discussed. A1c 8.1% per endocrinology. Hypothyroidism stable on levothyroxine. Return in 1 year."
+  },
+  {
+   "id": "note-1006-1",
+   "patient_id": "pt-1006",
+   "date": "2025-09-15",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Chronic disease follow-up. Diabetes well controlled on metformin, A1c 6.8%. CAD stable, no angina. BP 126/76. Continue current medications. Return in 6 months."
+  },
+  {
+   "id": "note-1007-1",
+   "patient_id": "pt-1007",
+   "date": "2025-11-20",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Advanced heart failure and CKD stage 4. Patient and family have elected hospice care. A1c 7.0%. Simplify regimen, comfort-focused goals."
+  },
+  {
+   "id": "note-1007-2",
+   "patient_id": "pt-1007",
+   "date": "2026-07-03",
+   "type": "Administrative note",
+   "author": "Riverbend Family Medicine",
+   "text": "Death notification received from hospice. Patient died at home on 2026-07-02. Chart closed."
+  },
+  {
+   "id": "note-1008-1",
+   "patient_id": "pt-1008",
+   "date": "2025-12-02",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Atrial fibrillation follow-up. Rate controlled on metoprolol, no bleeding on apixaban 5 mg twice daily. Wt 64.4 kg, creatinine 1.24. Reviewed apixaban dosing: meets age criterion only, so standard dose remains appropriate. CKD 3a stable. Continue current regimen."
+  },
+  {
+   "id": "note-1008-2",
+   "patient_id": "pt-1008",
+   "date": "2026-08-30",
+   "type": "Discharge summary (outside record)",
+   "author": "Dr. P. Lindqvist, Valley General Hospital",
+   "text": "Admission 2026-08-26 to 2026-08-30.\n\nDiagnoses: Community-acquired pneumonia, dehydration with acute kidney injury (creatinine peak 1.46, baseline about 1.25), atrial fibrillation.\n\nHospital course: Treated with ceftriaxone then oral cefpodoxime, completed course. IV fluids with improvement in renal function. Poor oral intake throughout admission.\n\nDischarge weight 60.8 kg (about 63.5 kg in May).\n\nAnticoagulation: Apixaban continued at 5 mg twice daily. Please reassess dosing at PCP follow-up given ongoing weight loss and age.\n\nFollow-up: PCP within 1 month with BMP and CBC."
+  },
+  {
+   "id": "note-1008-3",
+   "patient_id": "pt-1008",
+   "date": "2026-09-24",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Post-hospital follow-up after admission for pneumonia and AKI. Cough resolved. Appetite still poor, eating about half of usual meals, no nausea or melena. No bleeding or bruising on apixaban. Walking with a cane at home.\n\nVitals: BP 118/70, HR 68 irregularly irregular, SpO2 97% on room air, Wt 128.3 lb on clinic scale (shoes off).\n\nExam: Thin, comfortable. Lungs clear. No edema.\n\nAssessment/Plan:\n1. Pneumonia, resolved.\n2. Weight loss, ongoing. Nutrition referral, add oral supplements.\n3. Atrial fibrillation on apixaban. BMP and CBC drawn today. Will review anticoagulant dosing once labs result.\n4. CKD 3a. Recheck renal function with today's labs."
+  },
+  {
+   "id": "note-1009-1",
+   "patient_id": "pt-1009",
+   "date": "2025-08-14",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Prediabetes follow-up. A1c 6.1%, still in the prediabetes range. Not on medication. Lifestyle counseling provided and referred to the diabetes prevention program. Recheck A1c in 1 year."
+  },
+  {
+   "id": "note-1010-1",
+   "patient_id": "pt-1010",
+   "date": "2026-07-22",
+   "type": "New patient visit",
+   "author": "Dr. M. Okafor",
+   "text": "New patient establishing care after moving from Arizona. History of type 2 diabetes since 2019 and hypertension. Reports last A1c was 'around 7' about a year ago. Outside records requested, not yet received. Continue metformin 1000 mg twice daily and losartan 50 mg daily. Return in 3 months."
+  },
+  {
+   "id": "note-1011-1",
+   "patient_id": "pt-1011",
+   "date": "2020-03-02",
+   "type": "Postpartum follow-up",
+   "author": "Dr. A. Shah",
+   "text": "Postpartum visit. Gestational diabetes during pregnancy, diet controlled. Postpartum A1c 5.4%, gestational diabetes resolved. Recommend diabetes screening every 3 years."
+  },
+  {
+   "id": "note-1012-1",
+   "patient_id": "pt-1012",
+   "date": "2026-03-15",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Chronic disease follow-up. A1c 7.6%. BP 138/86. Reports a dry, nonproductive cough for about two months without fever or reflux worsening. Possibly ACE inhibitor related. Will monitor; consider switching lisinopril to an ARB if it persists. Continue current medications."
+  },
+  {
+   "id": "note-1012-2",
+   "patient_id": "pt-1012",
+   "date": "2026-09-28",
+   "type": "Discharge summary (outside record)",
+   "author": "Dr. R. Feld, Valley General Hospital",
+   "text": "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-24. Discharge 2026-09-28.\nAttending: Dr. R. Feld, Hospital Medicine\n\nPrincipal diagnosis: Hypertensive urgency.\nSecondary diagnoses: Hyponatremia, type 2 diabetes mellitus with hyperglycemia, chronic cough.\n\nHospital course: 64 year old woman presented with headache and BP 212/118 without evidence of end-organ damage. Admission sodium 128, attributed to hydrochlorothiazide, improved to 133 with fluid restriction and holding the thiazide. A1c 8.4%. She also reported a dry cough for about 8 months, which her PCP had previously attributed to lisinopril. BP improved on the regimen below.\n\nDischarge medication changes:\n1. Lisinopril discontinued given persistent dry cough attributed to ACE inhibitor. Started losartan 50 mg once daily.\n2. Hydrochlorothiazide discontinued due to hyponatremia. Do not restart.\n3. Metoprolol tartrate 25 mg twice daily changed to metoprolol succinate ER 50 mg once daily for adherence.\n4. Metformin increased to 1000 mg twice daily.\n5. Started empagliflozin 10 mg once daily.\n6. Continue aspirin 81 mg daily and atorvastatin 40 mg daily.\nContinue all other home medications unchanged.\n\nFollow-up: PCP within 1 week. BMP in 1 week to recheck sodium and potassium."
+  },
+  {
+   "id": "note-1012-3",
+   "patient_id": "pt-1012",
+   "date": "2026-09-30",
+   "type": "Telephone encounter",
+   "author": "T. Nakamura, RN",
+   "text": "Patient called with home BP log since discharge, readings 148 to 156 over 88 to 94. Headache resolved. Discussed with Dr. Okafor, who advises increasing losartan to 100 mg once daily starting today. Patient also reports she did not fill the empagliflozin because of cost ($180 copay). Per Dr. Okafor, discontinue empagliflozin for now and revisit options at the 10/6 follow-up visit. Patient verbalized understanding. BMP scheduled for 10/5."
+  },
+  {
+   "id": "note-1013-1",
+   "patient_id": "pt-1013",
+   "date": "2026-02-14",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Diabetes with CKD 3b. A1c 7.9%. eGFR 38, metformin kept at 500 mg twice daily. Continue empagliflozin. Return in 6 months."
+  },
+  {
+   "id": "note-1013-2",
+   "patient_id": "pt-1013",
+   "date": "2026-09-20",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Patient requested lab orders before his upcoming visit. A1c and BMP ordered per standing protocol. Patient plans to go to the lab next week."
+  },
+  {
+   "id": "note-1014-1",
+   "patient_id": "pt-1014",
+   "date": "2025-11-18",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Follow-up for prediabetes and lipids. A1c 6.9% today, up from 6.3% in May, with fasting glucose 131 on 11/10 and 142 today. This meets diagnostic criteria for type 2 diabetes mellitus. Discussed the diagnosis with the patient. Start metformin 500 mg daily with dinner, titrate as tolerated. Diabetes education referral. Problem list to be updated. Return in 3 months."
+  },
+  {
+   "id": "note-1014-2",
+   "patient_id": "pt-1014",
+   "date": "2026-02-27",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Pharmacy refill request for metformin 500 mg. Approved per protocol. Patient has not yet scheduled her 3 month follow-up; message left."
+  },
+  {
+   "id": "note-1015-1",
+   "patient_id": "pt-1015",
+   "date": "2026-07-08",
+   "type": "Results note",
+   "author": "Dr. M. Okafor",
+   "text": "Outside labs from Quest reviewed (drawn at his cardiology visit): A1c 7.2% by HPLC, LDL 74. Diabetes at goal. No changes."
+  },
+  {
+   "id": "note-1016-1",
+   "patient_id": "pt-1016",
+   "date": "2026-03-09",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Diabetes follow-up. A1c 6.5% on metformin and semaglutide, at goal. Weight down 6 kg over the past year. Continue current regimen. Return in 6 months."
+  },
+  {
+   "id": "note-1017-1",
+   "patient_id": "pt-1017",
+   "date": "2023-02-10",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Acute bacterial sinusitis, symptoms for 12 days with facial pain and purulent drainage. No known drug allergies. Prescribed amoxicillin 875 mg twice daily for 10 days. Asthma well controlled."
+  },
+  {
+   "id": "note-1017-2",
+   "patient_id": "pt-1017",
+   "date": "2023-02-24",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Sinusitis follow-up. Completed amoxicillin without side effects. Symptoms resolved. Asthma stable on fluticasone."
+  },
+  {
+   "id": "note-1018-1",
+   "patient_id": "pt-1018",
+   "date": "2026-05-02",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "A1c 8.8%. Discussed adding basal insulin versus a GLP-1 receptor agonist; patient will consider. Return in 3 months."
+  },
+  {
+   "id": "note-1019-1",
+   "patient_id": "pt-1019",
+   "date": "2026-04-20",
+   "type": "Annual physical",
+   "author": "Dr. A. Shah",
+   "text": "Annual exam. TSH in range. DEXA stable on alendronate. No concerns."
+  },
+  {
+   "id": "note-1020-1",
+   "patient_id": "pt-1020",
+   "date": "2025-06-30",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Diabetes and hypertension follow-up. A1c 7.1%. Uses CPAP nightly. Continue metformin and amlodipine. Return in 6 months."
+  },
+  {
+   "id": "note-1021-1",
+   "patient_id": "pt-1021",
+   "date": "2026-01-14",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Anxiety well controlled on sertraline. Continue."
+  },
+  {
+   "id": "note-1022-1",
+   "patient_id": "pt-1022",
+   "date": "2025-04-09",
+   "type": "Annual physical",
+   "author": "Dr. M. Okafor",
+   "text": "Annual exam. COPD stable. Strong family history of diabetes (mother and brother), so screened today: A1c 5.5%, fasting glucose 98. No diabetes. Rescreen in 3 years."
+  },
+  {
+   "id": "note-1023-1",
+   "patient_id": "pt-1023",
+   "date": "2026-02-02",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Mood stable. Migraines about twice monthly, sumatriptan effective."
+  },
+  {
+   "id": "note-1024-1",
+   "patient_id": "pt-1024",
+   "date": "2026-08-11",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Diabetes with CKD 3a on basal insulin. A1c 7.6%. No hypoglycemia. Continue glargine 18 units."
+  },
+  {
+   "id": "note-1025-1",
+   "patient_id": "pt-1025",
+   "date": "2025-10-30",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Diabetes follow-up. A1c 6.9%. Doing well. Continue metformin. Return in 6 months."
+  },
+  {
+   "id": "note-1026-1",
+   "patient_id": "pt-1026",
+   "date": "2026-06-06",
+   "type": "Annual physical",
+   "author": "Dr. M. Okafor",
+   "text": "Annual exam. Lipids at goal on atorvastatin 10 mg."
+  },
+  {
+   "id": "note-1027-1",
+   "patient_id": "pt-1027",
+   "date": "2025-04-15",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "PCOS follow-up. On metformin for insulin resistance and cycle regulation, cycles now regular. A1c 5.6%, no diabetes. Continue metformin."
+  },
+  {
+   "id": "note-1028-1",
+   "patient_id": "pt-1028",
+   "date": "2026-04-22",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "A1c 7.3%, acceptable for age. Continue metformin."
+  },
+  {
+   "id": "note-1029-1",
+   "patient_id": "pt-1029",
+   "date": "2026-03-03",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "BP and lipids at goal. Continue."
+  },
+  {
+   "id": "note-1030-1",
+   "patient_id": "pt-1030",
+   "date": "2026-08-08",
+   "type": "Annual physical",
+   "author": "Dr. M. Okafor",
+   "text": "Healthy adult. No chronic conditions. Return in 1 year."
+  }
+ ],
+ "orders": [
+  {
+   "id": "ord-1013-1",
+   "patient_id": "pt-1013",
+   "order_type": "lab",
+   "code": "4548-4",
+   "display": "Hemoglobin A1c",
+   "status": "active",
+   "orderedDate": "2026-09-20",
+   "reason": "Diabetes monitoring, standing protocol",
+   "source": "chart"
+  },
+  {
+   "id": "ord-1013-2",
+   "patient_id": "pt-1013",
+   "order_type": "lab",
+   "code": "51990-0",
+   "display": "Basic metabolic panel",
+   "status": "active",
+   "orderedDate": "2026-09-20",
+   "reason": "CKD monitoring, standing protocol",
+   "source": "chart"
+  }
+ ],
+ "formulary": [
+  {
+   "id": "rx-amoxicillin",
+   "name": "amoxicillin",
+   "ingredient": "amoxicillin",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-amoxicillin-clavulanate",
+   "name": "amoxicillin-clavulanate",
+   "ingredient": "amoxicillin/clavulanate",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-penicillin-v-potassium",
+   "name": "penicillin V potassium",
+   "ingredient": "penicillin V",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-benzathine-penicillin-g",
+   "name": "benzathine penicillin G",
+   "ingredient": "benzathine penicillin G",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-ampicillin",
+   "name": "ampicillin",
+   "ingredient": "ampicillin",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-cephalexin",
+   "name": "cephalexin",
+   "ingredient": "cephalexin",
+   "drug_class": "cephalosporin antibiotic (1st generation)"
+  },
+  {
+   "id": "rx-cefadroxil",
+   "name": "cefadroxil",
+   "ingredient": "cefadroxil",
+   "drug_class": "cephalosporin antibiotic (1st generation)"
+  },
+  {
+   "id": "rx-cefuroxime",
+   "name": "cefuroxime",
+   "ingredient": "cefuroxime",
+   "drug_class": "cephalosporin antibiotic (2nd generation)"
+  },
+  {
+   "id": "rx-cefdinir",
+   "name": "cefdinir",
+   "ingredient": "cefdinir",
+   "drug_class": "cephalosporin antibiotic (3rd generation)"
+  },
+  {
+   "id": "rx-azithromycin",
+   "name": "azithromycin",
+   "ingredient": "azithromycin",
+   "drug_class": "macrolide antibiotic"
+  },
+  {
+   "id": "rx-clarithromycin",
+   "name": "clarithromycin",
+   "ingredient": "clarithromycin",
+   "drug_class": "macrolide antibiotic"
+  },
+  {
+   "id": "rx-clindamycin",
+   "name": "clindamycin",
+   "ingredient": "clindamycin",
+   "drug_class": "lincosamide antibiotic"
+  },
+  {
+   "id": "rx-doxycycline",
+   "name": "doxycycline",
+   "ingredient": "doxycycline",
+   "drug_class": "tetracycline antibiotic"
+  },
+  {
+   "id": "rx-sulfamethoxazole-trimethoprim",
+   "name": "sulfamethoxazole-trimethoprim",
+   "ingredient": "sulfamethoxazole/trimethoprim",
+   "drug_class": "sulfonamide antibiotic"
+  },
+  {
+   "id": "rx-levofloxacin",
+   "name": "levofloxacin",
+   "ingredient": "levofloxacin",
+   "drug_class": "fluoroquinolone antibiotic"
+  },
+  {
+   "id": "rx-nitrofurantoin",
+   "name": "nitrofurantoin",
+   "ingredient": "nitrofurantoin",
+   "drug_class": "nitrofuran antibiotic"
+  },
+  {
+   "id": "rx-apixaban",
+   "name": "apixaban",
+   "ingredient": "apixaban",
+   "drug_class": "direct oral anticoagulant"
+  },
+  {
+   "id": "rx-rivaroxaban",
+   "name": "rivaroxaban",
+   "ingredient": "rivaroxaban",
+   "drug_class": "direct oral anticoagulant"
+  },
+  {
+   "id": "rx-dabigatran",
+   "name": "dabigatran",
+   "ingredient": "dabigatran",
+   "drug_class": "direct oral anticoagulant"
+  },
+  {
+   "id": "rx-warfarin",
+   "name": "warfarin",
+   "ingredient": "warfarin",
+   "drug_class": "vitamin K antagonist anticoagulant"
+  },
+  {
+   "id": "rx-enoxaparin",
+   "name": "enoxaparin",
+   "ingredient": "enoxaparin",
+   "drug_class": "low molecular weight heparin"
+  },
+  {
+   "id": "rx-lisinopril",
+   "name": "lisinopril",
+   "ingredient": "lisinopril",
+   "drug_class": "ACE inhibitor"
+  },
+  {
+   "id": "rx-losartan",
+   "name": "losartan",
+   "ingredient": "losartan",
+   "drug_class": "angiotensin II receptor blocker"
+  },
+  {
+   "id": "rx-metoprolol-tartrate",
+   "name": "metoprolol tartrate",
+   "ingredient": "metoprolol tartrate",
+   "drug_class": "beta blocker"
+  },
+  {
+   "id": "rx-metoprolol-succinate-er",
+   "name": "metoprolol succinate ER",
+   "ingredient": "metoprolol succinate",
+   "drug_class": "beta blocker"
+  },
+  {
+   "id": "rx-hydrochlorothiazide",
+   "name": "hydrochlorothiazide",
+   "ingredient": "hydrochlorothiazide",
+   "drug_class": "thiazide diuretic"
+  },
+  {
+   "id": "rx-chlorthalidone",
+   "name": "chlorthalidone",
+   "ingredient": "chlorthalidone",
+   "drug_class": "thiazide-like diuretic"
+  },
+  {
+   "id": "rx-amlodipine",
+   "name": "amlodipine",
+   "ingredient": "amlodipine",
+   "drug_class": "calcium channel blocker"
+  },
+  {
+   "id": "rx-furosemide",
+   "name": "furosemide",
+   "ingredient": "furosemide",
+   "drug_class": "loop diuretic"
+  },
+  {
+   "id": "rx-spironolactone",
+   "name": "spironolactone",
+   "ingredient": "spironolactone",
+   "drug_class": "mineralocorticoid receptor antagonist"
+  },
+  {
+   "id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "ingredient": "atorvastatin",
+   "drug_class": "statin"
+  },
+  {
+   "id": "rx-rosuvastatin",
+   "name": "rosuvastatin",
+   "ingredient": "rosuvastatin",
+   "drug_class": "statin"
+  },
+  {
+   "id": "rx-aspirin",
+   "name": "aspirin",
+   "ingredient": "aspirin",
+   "drug_class": "antiplatelet"
+  },
+  {
+   "id": "rx-metformin",
+   "name": "metformin",
+   "ingredient": "metformin",
+   "drug_class": "biguanide"
+  },
+  {
+   "id": "rx-metformin-er",
+   "name": "metformin ER",
+   "ingredient": "metformin",
+   "drug_class": "biguanide (extended release)"
+  },
+  {
+   "id": "rx-empagliflozin",
+   "name": "empagliflozin",
+   "ingredient": "empagliflozin",
+   "drug_class": "SGLT2 inhibitor"
+  },
+  {
+   "id": "rx-glipizide",
+   "name": "glipizide",
+   "ingredient": "glipizide",
+   "drug_class": "sulfonylurea"
+  },
+  {
+   "id": "rx-semaglutide",
+   "name": "semaglutide",
+   "ingredient": "semaglutide",
+   "drug_class": "GLP-1 receptor agonist"
+  },
+  {
+   "id": "rx-insulin-glargine",
+   "name": "insulin glargine",
+   "ingredient": "insulin glargine",
+   "drug_class": "long-acting insulin"
+  },
+  {
+   "id": "rx-insulin-lispro",
+   "name": "insulin lispro",
+   "ingredient": "insulin lispro",
+   "drug_class": "rapid-acting insulin"
+  },
+  {
+   "id": "rx-omeprazole",
+   "name": "omeprazole",
+   "ingredient": "omeprazole",
+   "drug_class": "proton pump inhibitor"
+  },
+  {
+   "id": "rx-pantoprazole",
+   "name": "pantoprazole",
+   "ingredient": "pantoprazole",
+   "drug_class": "proton pump inhibitor"
+  },
+  {
+   "id": "rx-levothyroxine",
+   "name": "levothyroxine",
+   "ingredient": "levothyroxine",
+   "drug_class": "thyroid hormone"
+  },
+  {
+   "id": "rx-albuterol-hfa",
+   "name": "albuterol HFA",
+   "ingredient": "albuterol",
+   "drug_class": "short-acting beta agonist inhaler"
+  },
+  {
+   "id": "rx-fluticasone-hfa",
+   "name": "fluticasone HFA",
+   "ingredient": "fluticasone",
+   "drug_class": "inhaled corticosteroid"
+  },
+  {
+   "id": "rx-sertraline",
+   "name": "sertraline",
+   "ingredient": "sertraline",
+   "drug_class": "SSRI"
+  },
+  {
+   "id": "rx-acetaminophen",
+   "name": "acetaminophen",
+   "ingredient": "acetaminophen",
+   "drug_class": "analgesic"
+  },
+  {
+   "id": "rx-ibuprofen",
+   "name": "ibuprofen",
+   "ingredient": "ibuprofen",
+   "drug_class": "NSAID"
+  },
+  {
+   "id": "rx-alendronate",
+   "name": "alendronate",
+   "ingredient": "alendronate",
+   "drug_class": "bisphosphonate"
+  },
+  {
+   "id": "rx-prednisone",
+   "name": "prednisone",
+   "ingredient": "prednisone",
+   "drug_class": "corticosteroid"
+  },
+  {
+   "id": "rx-sumatriptan",
+   "name": "sumatriptan",
+   "ingredient": "sumatriptan",
+   "drug_class": "triptan"
+  },
+  {
+   "id": "rx-tamsulosin",
+   "name": "tamsulosin",
+   "ingredient": "tamsulosin",
+   "drug_class": "alpha blocker"
+  },
+  {
+   "id": "rx-benzonatate",
+   "name": "benzonatate",
+   "ingredient": "benzonatate",
+   "drug_class": "antitussive"
+  }
+ ],
+ "lab_catalog": [
+  {
+   "code": "4548-4",
+   "display": "Hemoglobin A1c",
+   "synonyms": [
+    "HbA1c",
+    "A1c",
+    "glycated hemoglobin",
+    "glycohemoglobin"
+   ]
+  },
+  {
+   "code": "51990-0",
+   "display": "Basic metabolic panel",
+   "synonyms": [
+    "BMP",
+    "chem 7"
+   ]
+  },
+  {
+   "code": "24323-8",
+   "display": "Comprehensive metabolic panel",
+   "synonyms": [
+    "CMP",
+    "chem 14"
+   ]
+  },
+  {
+   "code": "58410-2",
+   "display": "Complete blood count",
+   "synonyms": [
+    "CBC"
+   ]
+  },
+  {
+   "code": "57698-3",
+   "display": "Lipid panel",
+   "synonyms": [
+    "lipids",
+    "cholesterol panel"
+   ]
+  },
+  {
+   "code": "3016-3",
+   "display": "Thyroid stimulating hormone",
+   "synonyms": [
+    "TSH"
+   ]
+  },
+  {
+   "code": "14959-1",
+   "display": "Urine microalbumin/creatinine ratio",
+   "synonyms": [
+    "UACR",
+    "microalbumin"
+   ]
+  },
+  {
+   "code": "6301-6",
+   "display": "INR",
+   "synonyms": [
+    "PT/INR",
+    "prothrombin time"
+   ]
+  },
+  {
+   "code": "2160-0",
+   "display": "Creatinine",
+   "synonyms": [
+    "serum creatinine",
+    "Cr"
+   ]
+  }
+ ],
+ "observation_codes": {
+  "4548-4": {
+   "display": "Hemoglobin A1c/Hemoglobin.total in Blood",
+   "synonyms": [
+    "HbA1c",
+    "A1c",
+    "glycated hemoglobin",
+    "glycohemoglobin"
+   ]
+  },
+  "17856-6": {
+   "display": "Hemoglobin A1c/Hemoglobin.total in Blood by HPLC",
+   "synonyms": [
+    "HbA1c",
+    "A1c",
+    "glycated hemoglobin",
+    "glycohemoglobin"
+   ]
+  },
+  "29463-7": {
+   "display": "Body weight",
+   "synonyms": [
+    "weight",
+    "wt"
+   ]
+  },
+  "85354-9": {
+   "display": "Blood pressure panel",
+   "synonyms": [
+    "BP",
+    "blood pressure"
+   ]
+  },
+  "8867-4": {
+   "display": "Heart rate",
+   "synonyms": [
+    "HR",
+    "pulse"
+   ]
+  },
+  "8310-5": {
+   "display": "Body temperature",
+   "synonyms": [
+    "temperature",
+    "temp"
+   ]
+  },
+  "2160-0": {
+   "display": "Creatinine [Mass/volume] in Serum or Plasma",
+   "synonyms": [
+    "creatinine",
+    "Cr",
+    "serum creatinine"
+   ]
+  },
+  "98979-8": {
+   "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)",
+   "synonyms": [
+    "eGFR",
+    "GFR"
+   ]
+  },
+  "2951-2": {
+   "display": "Sodium [Moles/volume] in Serum or Plasma",
+   "synonyms": [
+    "sodium",
+    "Na"
+   ]
+  },
+  "2823-3": {
+   "display": "Potassium [Moles/volume] in Serum or Plasma",
+   "synonyms": [
+    "potassium",
+    "K"
+   ]
+  },
+  "1558-6": {
+   "display": "Fasting glucose [Mass/volume] in Serum or Plasma",
+   "synonyms": [
+    "glucose",
+    "fasting glucose",
+    "FPG"
+   ]
+  },
+  "718-7": {
+   "display": "Hemoglobin [Mass/volume] in Blood",
+   "synonyms": [
+    "hemoglobin",
+    "Hgb",
+    "Hb"
+   ]
+  },
+  "13457-7": {
+   "display": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation",
+   "synonyms": [
+    "LDL",
+    "cholesterol"
+   ]
+  },
+  "78012-2": {
+   "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay",
+   "synonyms": [
+    "rapid strep",
+    "strep",
+    "group A strep",
+    "GAS"
+   ]
+  }
+ }
+}

@@ -1,0 +1,1 @@
+Quality is running a diabetes care-gap report. For every patient on the panel who has type 2 diabetes and whose most recent hemoglobin A1c was more than 6 months ago (or who has no A1c on record), place a hemoglobin A1c lab order, unless one is already pending. Don't order it for anyone else. When you're done, call submit with the list of patient ids you ordered for.

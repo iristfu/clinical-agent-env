@@ -1,0 +1,1 @@
+Denise Carter (DOB 1962-05-09) was discharged from Valley General on 9/28. Her outpatient medication list hasn't been updated since. Please reconcile it so it reflects exactly what she should currently be taking. Call submit when you're done.
