@@ -1,0 +1,29 @@
+{
+  "run_id": "20261105-131927_controls",
+  "created": "2026-11-05T13:19:27",
+  "policy": "controls",
+  "model": null,
+  "tasks": [
+    "apixaban_dose",
+    "med_rec_discharge",
+    "panel_a1c",
+    "strep_allergy"
+  ],
+  "trials": 10,
+  "effort": "model default",
+  "max_tokens": 32000,
+  "thinking_display": true,
+  "git": {
+    "commit": "568384881480590a91f9f41b5577b1c72b4af114",
+    "dirty": false
+  },
+  "fixture": "env/fixtures/panel.json",
+  "initial_state_hash": "81fe3bed8df60f52",
+  "tool_schema_hash": "bc262cd7a66c",
+  "prompt_hashes": {
+    "apixaban_dose": "d58b0cef1976",
+    "med_rec_discharge": "588525768156",
+    "panel_a1c": "4a066e0b185c",
+    "strep_allergy": "0317f2a229a8"
+  }
+}
