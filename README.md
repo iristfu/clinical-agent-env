@@ -31,7 +31,7 @@ python -m harness.run --task all --model claude-opus-5 --trials 3 --run-name pil
 # Final runs, after committing and tagging the frozen tasks
 python -m harness.run --task all --model claude-opus-5 --trials 10 --run-name final
 
-# Attribute failures, then confirm each label by hand
+# Attribute failures with an LLM labeler (optionally confirm each label yourself)
 python -m harness.triage runs/<run_id>
 python -m harness.triage runs/<run_id> --review
 python -m harness.report runs/<run_id>

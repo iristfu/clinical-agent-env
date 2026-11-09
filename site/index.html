@@ -16,7 +16,7 @@
 <p>I built a mock EHR for a primary care practice with 30 synthetic patients and 17 tools. It has four tasks, state-based graders, reference solutions and a harness with one entry point. Three of the tasks are scored.</p>
 <p>On the final run, frozen at the tag frozen-v2, Opus 5 passed strep_allergy 6/10 and apixaban_dose 3/10, both inside the target 20-70% band, and panel_a1c 9/10, above it. An earlier final at frozen-v1 gave strep 1/10, apixaban 6/10 and panel 7/10. I redesigned strep after that run and report both. Panel’s task was identical in both runs, and pooled it passed 16 of 20.</p>
 <p>The fourth task, med_rec_discharge, is a poor task for training Opus. It passed 10/10 on its frozen final and 18/18 in earlier pilots, so it never failed in any version, and a task that always passes shows nothing about what the model gets wrong. The main reason is that every deciding fact in it is pointed to by something the model is already reading, such as a discharge summary that names a lab or a dated list of post-discharge notes. Opus follows those references reliably, whereas in the other tasks the deciding fact sits in a note nothing points to. I report it separately and do not score it.</p>
-<p>All 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand, and all 28 were the model’s fault. Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn’t look. These tasks therefore measure diligence in searching a chart, not clinical reasoning. A useful next step is a task where every fact is in plain sight and the difficulty comes from interacting dosing rules, so a failure can only come from reasoning.</p>
+<p>All 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause by a second model, Claude Opus 5.5, working from the rubric. All 28 were labeled the model’s fault, and every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn’t look. These tasks therefore measure diligence in searching a chart, not clinical reasoning. A useful next step is a task where every fact is in plain sight and the difficulty comes from interacting dosing rules, so a failure can only come from reasoning.</p>
 <p>The part I spent the most care on is making sure a failure means the model got something wrong. Most of this writeup is about how I checked that.</p>
 <p>A pilot is a small calibration run (3 to 5 trials per task) used to find and fix problems, with tasks edited between pilots. A final is a 10-trial run on frozen tasks, and only finals produce the scored pass rates.</p>
 <h2 id="the-environment">The environment</h2>
@@ -94,7 +94,7 @@
 <li>The grader rejects wrong answers for the right reason. Each task has 6 to 19 wrong-answer controls, 49 controls in all, including 5 alternate-correct ones. These include the obvious mistakes (amoxicillin first-line, the wrong Maria Lopez, following the discharge summary but missing the phone note, ordering for the deceased patient). Each must fail on exactly the checks I expect, not just fail.</li>
 <li>The expected answers follow from the data. Tests re-derive each task’s expected answer directly from the fixture: the panel’s expected set, every apixaban dose, which strep tests were positive and where each hidden allergy lives, and which discharges are in scope and how the lab conditions resolve. They also pin each trap in place (for example, that a deciding result sits past the search preview), so an edit to the data can’t silently break or defuse a task.</li>
 <li>API trouble isn’t model trouble. Rate limits and outages are retried by the SDK, then the trial is retried twice, then marked invalid. Bad requests stop the run entirely.</li>
-<li>Every failure gets a cause. Claude, run as a different model from the one under test and given the rubric, labels every failed trajectory with one of eight causes. Five are model faults (didn’t gather the information, wrong reasoning, incomplete coverage, wrong action, gave up). The other three are environment bug, grader false negative and ambiguous task. I then reviewed each label by hand. I also audited two passing trials per task for passing for the wrong reason.</li>
+<li>Every failure gets a cause. Claude, run as a different model from the one under test and given the rubric, labels every failed trajectory with one of eight causes. Five are model faults (didn’t gather the information, wrong reasoning, incomplete coverage, wrong action, gave up). The other three are environment bug, grader false negative and ambiguous task. The same labeler also checks two passing trials per task for passing for the wrong reason. These labels have not been reviewed by a person.</li>
 <li>When a failure wasn’t the model’s fault, I fixed it and reran. Those fixes are in the calibration log below, and final pass rates come only from trials run after the tasks were frozen.</li>
 </ol>
 <h2 id="results">Results</h2>
@@ -195,7 +195,7 @@
 <p>Apixaban, panel and med rec are untouched: same prompts, graders, rubrics and patients. I verified that every note search those tasks rely on returns identical results at frozen-v1 and frozen-v2. Each fact underlying the v2 traps is pinned by a test, and all 49 grader controls and 101 tests pass at frozen-v2.</p>
 <p>v2 was calibrated with one 8-trial pilot before freezing (3/8), then the 10-trial final (6/10). The tasks/strep_allergy/rubric.md file documents both versions and the reasoning for each change.</p>
 <h3 id="why-trials-failed">Why trials failed</h3>
-<p>Every failure was labeled first by Claude Opus 5.5 (a different model from the one under test) with the rubric in hand, then reviewed by hand against the full trajectory. Each label’s note names the turn where the model went wrong (triage.jsonl in each final run’s folder).</p>
+<p>Every failure was labeled first by Claude Opus 5.5 (a different model from the one under test) with the rubric in hand. Each label’s note names the turn where the model went wrong (triage.jsonl in each final run’s folder). No person has reviewed the labels.</p>
 <p>frozen-v2 final.</p>
 <div class="table-wrap"><table>
 <colgroup>
@@ -233,7 +233,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>The LLM’s labels matched mine on all 18 (12 failures, 6 pass audits). Every audited pass read the deciding notes or lab result before acting.</p>
+<p>The labeler judged every audited pass (6) to have read the deciding notes or lab result before acting.</p>
 <p>frozen-v1 final.</p>
 <div class="table-wrap"><table>
 <colgroup>
@@ -271,7 +271,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>I overturned none of the LLM’s labels in either run. In the frozen-v1 run two came back “unparsed” because of a parser bug in harness/triage.py (the JSON block was malformed). The raw text gave the same category both times, and I fixed the parser afterwards. I also audited two passing trials per task, five in all, plus two med rec passes. All seven reached the trap facts by reading the note and passed for the reasons in the rubric.</p>
+<p>In the frozen-v1 run two labels came back “unparsed” because of a parser bug in harness/triage.py (the JSON block was malformed). The raw text gave the same category both times, and I fixed the parser afterwards. The labeler also audited two passing trials per task, five in all, plus two med rec passes. It judged all seven to have reached the trap facts by reading the note and to have passed for the reasons in the rubric.</p>
 <p>No failure in either final run, or in any pilot after the round-4 search fix, involved a tool returning wrong or misleading data, a grader rejecting a valid answer, or an ambiguous prompt.</p>
 <h3 id="noteworthy-failures">Noteworthy failures</h3>
 <p>The model reasons correctly and then decides not to look (strep v1 final, trial 7). At turn 8 an “allergies” search lists Maria Lopez 1958’s 2019 ED note. At turn 9 the model writes: “I’ll skip pt-1003’s ankle note since it’s probably unrelated.” At turn 11 it orders penicillin V. In the same trial it reads Elizabeth Martin’s scanned urgent care note, recognises her anaphylaxis, adds the allergy and avoids every beta-lactam. It knows exactly what to do with an allergy history and chooses not to read this one because the note’s preview is about an ankle.</p>
@@ -304,7 +304,7 @@
 <td>1</td>
 <td>Pilot 1, 3 trials per task, no task changes before it</td>
 <td>Measure the starting point</td>
-<td>strep 3/3, apixaban 3/3, panel 3/3, med rec 3/3. All 12 passed for the reasons the rubrics give (trajectories read in full). No env errors, validation errors or invalid trials</td>
+<td>strep 3/3, apixaban 3/3, panel 3/3, med rec 3/3. All 12 passed for the reasons the rubrics give. No env errors, validation errors or invalid trials</td>
 </tr>
 <tr class="odd">
 <td>1 → 2</td>
@@ -436,7 +436,7 @@
 <td>Final</td>
 <td>Tagged frozen-v1. 10 trials per scored task, plus 10 for med rec reported separately. No changes after the tag</td>
 <td>Final measurement</td>
-<td>strep 1/10, apixaban 6/10, panel 7/10, med rec 10/10. All 16 failures model_info_gathering, confirmed by hand. Environment identical to pilot 7 (same state, tool schema and prompt hashes)</td>
+<td>strep 1/10, apixaban 6/10, panel 7/10, med rec 10/10. All 16 failures labeled model_info_gathering by the LLM labeler. Environment identical to pilot 7 (same state, tool schema and prompt hashes)</td>
 </tr>
 <tr class="odd">
 <td>v2</td>
@@ -448,7 +448,7 @@
 <td>Final v2</td>
 <td>Tagged frozen-v2. Fresh 10-trial finals on all three scored tasks, so the headline numbers come from one freeze. No changes after the tag</td>
 <td>Final measurement after the strep redesign</td>
-<td>strep (v2) 6/10, apixaban 3/10, panel 9/10. All 12 failures model_info_gathering, confirmed by hand. Apixaban and panel are unchanged from frozen-v1. Their moves (6/10 to 3/10, 7/10 to 9/10) are sampling variance on identical tasks: pooled, apixaban is 9/20 and panel is 16/20</td>
+<td>strep (v2) 6/10, apixaban 3/10, panel 9/10. All 12 failures labeled model_info_gathering by the LLM labeler. Apixaban and panel are unchanged from frozen-v1. Their moves (6/10 to 3/10, 7/10 to 9/10) are sampling variance on identical tasks: pooled, apixaban is 9/20 and panel is 16/20</td>
 </tr>
 </tbody>
 </table></div>
