@@ -252,7 +252,3 @@ Every failure in this project is information gathering, so the scored tasks meas
 - Expect calibration to be slow. Opus 5 got every judgment call in this project right, so a first version would likely score near 10/10. Difficulty would come from stacking interacting rules and choosing ones that contradict the common heuristic, piloted over several rounds like the tasks here. I'd also run an effort sweep. If reasoning failures respond to effort much more than these information-gathering failures do, that's a finding in itself.
 
 I estimate about a day to build one well, plus calibration rounds and the clinician review.
-
-## Limitations
-
-The data and traps were written by one person, so the tasks reflect my idea of realistic chart mess. Every scored failure is an information-gathering miss, so these tasks measure diligence across a chart far more than clinical knowledge. The prompts include light cues ("update her chart as needed") that I kept deliberately, because removing them would make a critical check ambiguous. The note search is literal apart from singular and plural forms, which is realistic for many EHRs but is a design choice that shapes how findable each note is. Ten trials per task give wide intervals, and strep shows a frozen task can move a long way between samples. The graders' tolerances cover the alternatives I could anticipate, and the triage and hand review exist to catch the ones I couldn't. None came up in either final run.
