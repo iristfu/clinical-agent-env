@@ -178,6 +178,12 @@ def test_strep_positives_and_hidden_allergies_follow_from_fixture():
             assert "penicillin" not in n["text"].lower() and "amoxicillin" not in n["text"].lower()
     assert "amoxicillin" in listed["pt-1021"] and POSITIVE["pt-1021"] == "mild"
     assert "pt-1017" not in listed and "pt-1030" not in listed
+    # v2: Kevin's positive exists only as a lab result. His visit note must not name the test, or a note search
+    # for the test would find him and the trap would test nothing.
+    kevin = [n["text"].lower() for n in state["notes"] if n["patient_id"] == "pt-1018" and n["date"] == today]
+    assert kevin and not any(w in t for t in kevin for w in ("strep", "rapid", "pharyngitis", "positive"))
+    ed = next(n for n in state["notes"] if n["id"] == "note-1003-1")["text"]
+    assert "2 drug allergies" in ed[:200] and "Augmentin" not in ed[:200], "v2: preview hints, never names the drug"
 
 
 def test_med_rec_scope_follows_from_fixture():

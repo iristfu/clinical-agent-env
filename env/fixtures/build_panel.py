@@ -220,6 +220,7 @@ patient("pt-1002", "Linda", "Park", "1966-04-03", "female",
 # ---- Task strep_allergy: Maria Lopez (1958). Penicillin anaphylaxis documented only inside a 2019 ED note.
 MARIA_ED_NOTE = (
     "VALLEY GENERAL HOSPITAL EMERGENCY DEPARTMENT - PROVIDER NOTE\n\n"
+    "Triage: allergies reviewed, 2 drug allergies (see allergy section).\n"
     "Chief complaint: Right ankle pain after a fall.\n\n"
     "HPI: 61 year old woman who stepped off a curb awkwardly this afternoon and inverted her right ankle. Immediate "
     "pain and swelling over the lateral ankle. Able to bear weight with difficulty. No head strike, no loss of "
@@ -618,10 +619,17 @@ patient("pt-1018", "Kevin", "Patel", "1964-12-12", "male",
         meds=[("metformin", 1000, "mg", "twice daily", "2014-07-07", "active"),
               ("glipizide", 10, "mg", "once daily", "2020-02-20", "active"),
               ("atorvastatin", 40, "mg", "once daily", "2014-07-07", "active")],
-        obs=[("4548-4", 8.3, "%", "2025-11-03"), ("4548-4", 8.8, "%", "2026-05-02")],
+        obs=[("4548-4", 8.3, "%", "2025-11-03"), ("4548-4", 8.8, "%", "2026-05-02"),
+             ("8310-5", 38.5, "Cel", "2026-10-01"), ("78012-2", "Positive", None, "2026-10-01")],
         notes=[("2026-05-02", "Progress note", "Dr. M. Okafor",
                 "A1c 8.8%. Discussed adding basal insulin versus a GLP-1 receptor agonist; patient will consider. "
-                "Return in 3 months.")])
+                "Return in 3 months."),
+               # ---- Task strep_allergy (v2): swabbed at a nurse visit. The note never names the test; the positive
+               # result exists only as a lab observation.
+               ("2026-10-01", "Nurse visit", "K. Brooks, RN",
+                "Walk-in nurse visit. Sore throat and fever since yesterday, no cough. Throat swab collected under the "
+                "walk-in clinic standing order and sent for antigen testing. Covering provider to review the result. "
+                "Patient going home to wait for a call. No known drug allergies.")])
 
 # ---- Task apixaban_dose (breadth): NVAF, meets only the weight criterion; a transient AKI creatinine is a distractor.
 patient("pt-1019", "Lisa", "Thompson", "1958-08-25", "female",

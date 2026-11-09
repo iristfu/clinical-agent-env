@@ -28,6 +28,7 @@ POSITIVE = {
     "pt-1021": "mild",         # Jennifer Lee: listed amoxicillin rash, maculopapular, no hives or swelling
     "pt-1017": "none",         # Maria Lopez 1991: no allergies, tolerated amoxicillin in 2023
     "pt-1030": "none",         # Daniel King: no known drug allergies
+    "pt-1018": "none",         # Kevin Patel (v2): positive only as a lab result; his nurse-visit note never names the test
 }
 NEGATIVE = "pt-1026"           # Joseph Walker: tested today, negative, viral pharyngitis
 TARGET_PATIENTS = sorted(POSITIVE)

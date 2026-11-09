@@ -3297,6 +3297,30 @@
    "effectiveDate": "2026-05-02"
   },
   {
+   "id": "obs-1018-003",
+   "patient_id": "pt-1018",
+   "code": {
+    "system": "LOINC",
+    "code": "8310-5",
+    "display": "Body temperature"
+   },
+   "value": 38.5,
+   "unit": "Cel",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1018-004",
+   "patient_id": "pt-1018",
+   "code": {
+    "system": "LOINC",
+    "code": "78012-2",
+    "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay"
+   },
+   "value": "Positive",
+   "unit": null,
+   "effectiveDate": "2026-10-01"
+  },
+  {
    "id": "obs-1019-001",
    "patient_id": "pt-1019",
    "code": {
@@ -4000,7 +4024,7 @@
    "date": "2019-08-12",
    "type": "ED provider note (outside record)",
    "author": "Dr. K. Brennan, Valley General ED",
-   "text": "VALLEY GENERAL HOSPITAL EMERGENCY DEPARTMENT - PROVIDER NOTE\n\nChief complaint: Right ankle pain after a fall.\n\nHPI: 61 year old woman who stepped off a curb awkwardly this afternoon and inverted her right ankle. Immediate pain and swelling over the lateral ankle. Able to bear weight with difficulty. No head strike, no loss of consciousness, no other injuries. Took ibuprofen 400 mg at home with partial relief.\n\nPMH: Hypertension, hyperlipidemia.\nMedications: Amlodipine 10 mg daily, atorvastatin 20 mg daily.\nALLERGIES: Sulfa (rash). Patient also reports that in her 30s she developed hives with lip and throat swelling about 30 minutes after a dose of Augmentin prescribed for a sinus infection and was treated with epinephrine in an emergency room. She has not taken it since.\nSocial: Non-smoker, occasional wine.\n\nExam: Vitals BP 146/88, HR 84, afebrile. Right ankle with lateral swelling and ecchymosis, tenderness over the ATFL, no tenderness at the posterior edge or tip of either malleolus, no midfoot tenderness. Neurovascularly intact distally.\n\nImaging: Not indicated per Ottawa ankle rules.\n\nAssessment: Right lateral ankle sprain, grade I to II.\nPlan: RICE, ankle brace, ibuprofen as needed with food, crutches as needed. Follow up with primary care in 1 to 2 weeks if not improving. Return precautions discussed. Discharged in stable condition."
+   "text": "VALLEY GENERAL HOSPITAL EMERGENCY DEPARTMENT - PROVIDER NOTE\n\nTriage: allergies reviewed, 2 drug allergies (see allergy section).\nChief complaint: Right ankle pain after a fall.\n\nHPI: 61 year old woman who stepped off a curb awkwardly this afternoon and inverted her right ankle. Immediate pain and swelling over the lateral ankle. Able to bear weight with difficulty. No head strike, no loss of consciousness, no other injuries. Took ibuprofen 400 mg at home with partial relief.\n\nPMH: Hypertension, hyperlipidemia.\nMedications: Amlodipine 10 mg daily, atorvastatin 20 mg daily.\nALLERGIES: Sulfa (rash). Patient also reports that in her 30s she developed hives with lip and throat swelling about 30 minutes after a dose of Augmentin prescribed for a sinus infection and was treated with epinephrine in an emergency room. She has not taken it since.\nSocial: Non-smoker, occasional wine.\n\nExam: Vitals BP 146/88, HR 84, afebrile. Right ankle with lateral swelling and ecchymosis, tenderness over the ATFL, no tenderness at the posterior edge or tip of either malleolus, no midfoot tenderness. Neurovascularly intact distally.\n\nImaging: Not indicated per Ottawa ankle rules.\n\nAssessment: Right lateral ankle sprain, grade I to II.\nPlan: RICE, ankle brace, ibuprofen as needed with food, crutches as needed. Follow up with primary care in 1 to 2 weeks if not improving. Return precautions discussed. Discharged in stable condition."
   },
   {
    "id": "note-1003-2",
@@ -4385,6 +4409,14 @@
    "type": "Progress note",
    "author": "Dr. M. Okafor",
    "text": "A1c 8.8%. Discussed adding basal insulin versus a GLP-1 receptor agonist; patient will consider. Return in 3 months."
+  },
+  {
+   "id": "note-1018-2",
+   "patient_id": "pt-1018",
+   "date": "2026-10-01",
+   "type": "Nurse visit",
+   "author": "K. Brooks, RN",
+   "text": "Walk-in nurse visit. Sore throat and fever since yesterday, no cough. Throat swab collected under the walk-in clinic standing order and sent for antigen testing. Covering provider to review the result. Patient going home to wait for a call. No known drug allergies."
   },
   {
    "id": "note-1019-1",

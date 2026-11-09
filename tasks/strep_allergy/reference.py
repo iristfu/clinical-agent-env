@@ -1,8 +1,8 @@
 from tasks import Control
 
-MARIA, ELIZABETH, JENNIFER, MARIA_YOUNG, DANIEL, JOSEPH = (
-    "pt-1003", "pt-1023", "pt-1021", "pt-1017", "pt-1030", "pt-1026")
-POSITIVES = [MARIA, ELIZABETH, JENNIFER, MARIA_YOUNG, DANIEL]
+MARIA, ELIZABETH, JENNIFER, MARIA_YOUNG, DANIEL, JOSEPH, KEVIN = (
+    "pt-1003", "pt-1023", "pt-1021", "pt-1017", "pt-1030", "pt-1026", "pt-1018")
+POSITIVES = [MARIA, ELIZABETH, JENNIFER, MARIA_YOUNG, DANIEL, KEVIN]
 SUBMIT = ("submit", {"summary": "Done.", "patient_ids": POSITIVES})
 
 
@@ -26,7 +26,8 @@ ELIZABETH_RX = rx(ELIZABETH, "clindamycin", 300, "three times daily", 10)
 JENNIFER_RX = rx(JENNIFER, "cephalexin", 500, "twice daily", 10)
 MARIA_YOUNG_RX = rx(MARIA_YOUNG, "amoxicillin", 500, "twice daily", 10)
 DANIEL_RX = rx(DANIEL, "penicillin V potassium", 500, "twice daily", 10)
-CORRECT = [MARIA_ALLERGY, MARIA_RX, ELIZABETH_ALLERGY, ELIZABETH_RX, JENNIFER_RX, MARIA_YOUNG_RX, DANIEL_RX]
+KEVIN_RX = rx(KEVIN, "amoxicillin", 500, "twice daily", 10)
+CORRECT = [MARIA_ALLERGY, MARIA_RX, ELIZABETH_ALLERGY, ELIZABETH_RX, JENNIFER_RX, MARIA_YOUNG_RX, DANIEL_RX, KEVIN_RX]
 
 
 def without(*steps):
@@ -34,7 +35,9 @@ def without(*steps):
 
 
 REFERENCE = [
+    # One call per step so it stays under MAX_TURNS when replayed one call per turn (tests/test_harness.py).
     ("search_notes", {"query": "rapid strep"}),
+    ("search_notes", {"query": "throat"}),  # also finds Kevin's nurse visit, which never names the test
     *[("get_observations", {"patient_id": pid, "query": "strep"}) for pid in POSITIVES + [JOSEPH]],
     *[step for pid in POSITIVES for step in (("list_allergies", {"patient_id": pid}),
                                             ("list_medications", {"patient_id": pid}),
@@ -43,14 +46,19 @@ REFERENCE = [
     ("read_note", {"note_id": "note-1003-1"}),
     ("read_note", {"note_id": "note-1023-1"}),
     *CORRECT,
-    ("submit", {"summary": "Five positive rapid strep tests today (pt-1026 was negative, no antibiotic). pt-1003 and "
+    ("submit", {"summary": "Six positive rapid strep tests today, one (pt-1018) recorded only as a lab result from a "
+                           "nurse visit (pt-1026 was negative, no antibiotic). pt-1003 and "
                            "pt-1023 have penicillin anaphylaxis documented only in outside notes: allergies added, "
                            "azithromycin and clindamycin. pt-1021 has a mild amoxicillin rash: cephalexin. pt-1017 "
-                           "and pt-1030 have no allergies: amoxicillin and penicillin V.",
+                           "and pt-1030 have no allergies: amoxicillin and penicillin V. pt-1018: amoxicillin.",
                 "patient_ids": POSITIVES}),
 ]
 
 CONTROLS = [
+    Control("missed_lab_only_positive", [*without(KEVIN_RX), SUBMIT],
+            expect_failed={"one_regimen_per_positive_patient", "antibiotics_appropriate_for_allergy_history"},
+            description="Finds the positives from visit notes only and misses Kevin, whose positive result is recorded "
+                        "only as a lab observation."),
     Control("do_nothing", [SUBMIT], expect_failed={"one_regimen_per_positive_patient",
                                                    "antibiotics_appropriate_for_allergy_history",
                                                    "hidden_anaphylaxis_added_to_allergy_list"}),
@@ -92,6 +100,7 @@ CONTROLS = [
              rx(MARIA_YOUNG, "cefadroxil", 1000, "once daily", 10),
              ("place_medication_order", {"patient_id": DANIEL, "medication": "benzathine penicillin G",
                                          "dose_value": 1.2, "dose_unit": "g", "frequency": "once"}),
+             rx(KEVIN, "cephalexin", 500, "twice daily", 10),
              ("submit", {"summary": "done"})],
             expect_pass=True, description="A different accepted drug for every patient, the azithromycin taper as two "
                                           "orders, allergies recorded under brief wording, no id list."),
