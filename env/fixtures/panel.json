@@ -2937,6 +2937,30 @@
    "effectiveDate": "2025-08-14"
   },
   {
+   "id": "obs-1009-004",
+   "patient_id": "pt-1009",
+   "code": {
+    "system": "LOINC",
+    "code": "718-7",
+    "display": "Hemoglobin [Mass/volume] in Blood"
+   },
+   "value": 10.9,
+   "unit": "g/dL",
+   "effectiveDate": "2026-09-20"
+  },
+  {
+   "id": "obs-1009-005",
+   "patient_id": "pt-1009",
+   "code": {
+    "system": "LOINC",
+    "code": "2276-4",
+    "display": "Ferritin [Mass/volume] in Serum or Plasma"
+   },
+   "value": 12,
+   "unit": "ng/mL",
+   "effectiveDate": "2026-09-23"
+  },
+  {
    "id": "obs-1010-001",
    "patient_id": "pt-1010",
    "code": {
@@ -3609,6 +3633,66 @@
    "effectiveDate": "2025-10-30"
   },
   {
+   "id": "obs-1025-003",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.6,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-20"
+  },
+  {
+   "id": "obs-1025-004",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.3,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-23"
+  },
+  {
+   "id": "obs-1025-005",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.34,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-29"
+  },
+  {
+   "id": "obs-1025-006",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 44,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-09-29"
+  },
+  {
+   "id": "obs-1025-007",
+   "patient_id": "pt-1025",
+   "code": {
+    "system": "LOINC",
+    "code": "2823-3",
+    "display": "Potassium [Moles/volume] in Serum or Plasma"
+   },
+   "value": 4.8,
+   "unit": "mmol/L",
+   "effectiveDate": "2026-09-29"
+  },
+  {
    "id": "obs-1026-001",
    "patient_id": "pt-1026",
    "code": {
@@ -4143,6 +4227,22 @@
    "text": "Prediabetes follow-up. A1c 6.1%, still in the prediabetes range. Not on medication. Lifestyle counseling provided and referred to the diabetes prevention program. Recheck A1c in 1 year."
   },
   {
+   "id": "note-1009-2",
+   "patient_id": "pt-1009",
+   "date": "2026-09-21",
+   "type": "Discharge summary (outside record)",
+   "author": "Dr. T. Alvarez, Valley General Hospital",
+   "text": "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-19. Discharge 2026-09-21.\nAttending: Dr. T. Alvarez, General Surgery\n\nPrincipal diagnosis: Acute calculous cholecystitis, status post laparoscopic cholecystectomy on 9/20.\nSecondary diagnosis: Microcytic anemia (Hgb 10.9, MCV 74), probable iron deficiency from heavy menses.\n\nHospital course: Uncomplicated laparoscopic cholecystectomy. Tolerating a regular diet. Pain controlled on oral medications.\n\nDischarge medications: Acetaminophen 1000 mg by mouth as needed for pain, no more than 3 g a day. Ibuprofen 400 mg three times daily with food for 5 days (last dose 9/25), then stop. A ferritin was sent on 9/21 and will result after discharge: if the ferritin is below 30, start ferrous sulfate 325 mg by mouth once daily; if 30 or above, no iron is needed. She was on no medications before admission.\n\nFollow-up: General surgery clinic in 2 weeks. PCP to follow up the ferritin and anemia."
+  },
+  {
+   "id": "note-1009-3",
+   "patient_id": "pt-1009",
+   "date": "2026-09-28",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Patient called to ask whether she can return to her office job next week. Incisions healing, no fever, eating normally. Advised per surgery handout that desk work is fine after one week; she has her surgery follow-up on 10/5."
+  },
+  {
    "id": "note-1010-1",
    "patient_id": "pt-1010",
    "date": "2026-07-22",
@@ -4428,7 +4528,15 @@
    "date": "2026-09-23",
    "type": "Discharge summary (outside record)",
    "author": "Dr. R. Feld, Valley General Hospital",
-   "text": "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-20. Discharge 2026-09-23.\nAttending: Dr. R. Feld, Hospital Medicine\n\nPrincipal diagnosis: Cellulitis of the left lower leg.\nSecondary diagnoses: Acute kidney injury, hypertension, hyperlipidemia.\n\nHospital course: 66 year old woman with 3 days of spreading redness and swelling of the left shin, fever 38.9. No abscess on ultrasound. Treated with IV cefazolin from 9/20, changed to oral cephalexin 500 mg four times daily on 9/22 to complete 10 days of total antibiotic therapy, with the last dose on 9/29. Admission creatinine 1.6 (baseline 0.9), improved to 1.1 with IV fluids. Lisinopril and her oral home medications were held on admission.\n\nDischarge medications: Lisinopril is restarted at a lower dose of 5 mg once daily (was 10 mg) given the kidney injury. Resume her other home medications at their usual doses. Cephalexin as above until the course is complete.\n\nFollow-up: PCP in 1 to 2 weeks with BMP."
+   "text": "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-20. Discharge 2026-09-23.\nAttending: Dr. R. Feld, Hospital Medicine\n\nPrincipal diagnosis: Cellulitis of the left lower leg.\nSecondary diagnoses: Acute kidney injury, hypertension, hyperlipidemia.\n\nHospital course: 66 year old woman with 3 days of spreading redness and swelling of the left shin, fever 38.9. No abscess on ultrasound. Treated with IV cefazolin from 9/20, changed to oral cephalexin 500 mg four times daily on 9/22 to complete 10 days of total antibiotic therapy, with the last dose on 9/29. Admission creatinine 1.6 (baseline 0.9), improved to 1.3 with IV fluids. Lisinopril and her oral home medications were held on admission.\n\nDischarge medications: Continue to HOLD lisinopril. Restart it at a lower dose of 5 mg once daily only if the BMP at her 9/29 lab visit shows creatinine of 1.2 or lower; if it is higher, keep holding and her PCP will recheck. Resume her other home medications at their usual doses. Cephalexin as above until the course is complete.\n\nFollow-up: BMP at Riverbend lab on 9/29. PCP in 1 to 2 weeks."
+  },
+  {
+   "id": "note-1025-3",
+   "patient_id": "pt-1025",
+   "date": "2026-09-30",
+   "type": "Patient portal message",
+   "author": "Riverbend Family Medicine",
+   "text": "Patient message: got my blood drawn Monday like they asked. Leg looks much better, redness almost gone, finished the antibiotic. When should I come in? Reply from front desk: scheduled 10/7 with Dr. Shah."
   },
   {
    "id": "note-1026-1",
@@ -4851,6 +4959,12 @@
    "drug_class": "NSAID"
   },
   {
+   "id": "rx-ferrous-sulfate",
+   "name": "ferrous sulfate",
+   "ingredient": "ferrous sulfate",
+   "drug_class": "iron supplement"
+  },
+  {
    "id": "rx-alendronate",
    "name": "alendronate",
    "ingredient": "alendronate",
@@ -5073,6 +5187,13 @@
     "strep",
     "group A strep",
     "GAS"
+   ]
+  },
+  "2276-4": {
+   "display": "Ferritin [Mass/volume] in Serum or Plasma",
+   "synonyms": [
+    "ferritin",
+    "iron stores"
    ]
   }
  }

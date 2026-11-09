@@ -194,8 +194,21 @@ def test_med_rec_scope_follows_from_fixture():
     notes = {n["id"]: n["text"] for n in state["notes"]}
     assert "Start pantoprazole 40 mg once daily" in notes["note-1006-2"] and "stopping the lisinopril" in notes["note-1006-3"]
     barbara = next(n for n in state["notes"] if n["id"] == "note-1025-2")["text"]
-    assert "last dose on 9/29" in barbara and "5 mg once daily (was 10 mg)" in barbara
+    assert "last dose on 9/29" in barbara and "Continue to HOLD lisinopril" in barbara
     assert {"clopidogrel", "ticagrelor", "topiramate", "ondansetron"} <= {d["name"] for d in state["formulary"]}
+
+
+def test_med_rec_lab_conditions_follow_from_fixture():
+    """Barbara's lisinopril restart and Karen's iron depend on results that exist only as structured observations,
+    and the two resolve in opposite directions."""
+    state = EHR().state
+    notes = {n["id"]: n["text"] for n in state["notes"]}
+    assert "creatinine of 1.2 or lower" in notes["note-1025-2"] and "if the ferritin is below 30" in notes["note-1009-2"]
+    assert _latest(state, "pt-1025", "2160-0") > 1.2, "Barbara's restart condition must not be met"
+    assert _latest(state, "pt-1009", "2276-4") < 30, "Karen's iron condition must be met"
+    for pid, value in (("pt-1025", "1.34"), ("pt-1009", "12")):
+        assert not any(value in n["text"] for n in state["notes"] if n["patient_id"] == pid), \
+            f"{pid}'s deciding result must exist only as an observation"
 
 
 def test_med_rec_traps_follow_from_fixture():

@@ -8,7 +8,7 @@ Before round 4 this was a single-patient task about Denise Carter. It passed 9 o
 
 ## Who is in scope
 
-Six Valley General discharge documents are on the panel. Five are filed as discharge summaries. Angela Rossi's is a scanned "hospital course and discharge instructions" document that never uses the word "summary", so a search for "discharge summary" misses it, while searches for "Valley General" or "discharge" find it. The dates decide which are in scope.
+Seven Valley General discharge documents are on the panel. Six are filed as discharge summaries. Angela Rossi's is a scanned "hospital course and discharge instructions" document that never uses the word "summary", so a search for "discharge summary" misses it, while searches for "Valley General" or "discharge" find it. The dates decide which are in scope.
 
 | Patient | Discharged | In scope |
 |---|---|---|
@@ -16,6 +16,7 @@ Six Valley General discharge documents are on the panel. Five are filed as disch
 | pt-1011 Angela Rossi | 9/28, status migrainosus (discharge instructions) | yes |
 | pt-1025 Barbara Lewis | 9/23, cellulitis | yes |
 | pt-1006 Michael O'Brien | 9/22, NSTEMI | yes |
+| pt-1009 Karen Nguyen | 9/21, laparoscopic cholecystectomy | yes |
 | pt-1008 Harold Bennett | 8/30, pneumonia | no, before 9/17 (and his apixaban dose, which is wrong, belongs to another task) |
 | pt-1029 Margaret Allen | 8/15, pulmonary embolism | no, before 9/17 |
 
@@ -58,13 +59,21 @@ Six Valley General discharge documents are on the panel. Five are filed as disch
 | ondansetron | 4 mg as needed | started for nausea |
 | metoclopramide, ketorolac, dihydroergotamine | not on the list | IV, in hospital only |
 
-**Barbara Lewis (pt-1025).** Source: the 9/23 cellulitis discharge summary.
+**Barbara Lewis (pt-1025).** Sources: the 9/23 cellulitis discharge summary, her 9/29 lab results (structured observations only) and a 9/30 portal message that says she had blood drawn but not what it showed.
 
 | Medication | Expected | Where it comes from |
 |---|---|---|
-| lisinopril | 5 mg once daily | reduced from 10 mg after acute kidney injury |
+| lisinopril | not on the list (held) | the discharge says to keep holding it and restart 5 mg only if the 9/29 creatinine is 1.2 or lower. It was 1.34, so it stays held. The pre-admission 10 mg entry must be stopped |
 | metformin 500 mg twice daily, rosuvastatin 10 mg daily | unchanged | "resume her other home medications at their usual doses" |
 | cephalexin | not on the list | course ended with the 9/29 dose |
+
+**Karen Nguyen (pt-1009).** Sources: the 9/21 discharge summary, a ferritin that resulted 12 ng/mL on 9/23 (structured observation only), and a 9/28 phone call about returning to work. She was on no medications before admission.
+
+| Medication | Expected | Where it comes from |
+|---|---|---|
+| acetaminophen | 1000 mg as needed | discharge medication |
+| ferrous sulfate | 325 mg once daily | start only if the ferritin is below 30. It was 12 |
+| ibuprofen | not on the list | 5-day course ended with the 9/25 dose |
 
 ## Critical checks (all must pass)
 
@@ -75,6 +84,7 @@ Six Valley General discharge documents are on the panel. Five are filed as disch
 | michael_list_matches_expected | Same for Michael |
 | barbara_list_matches_expected | Same for Barbara |
 | angela_list_matches_expected | Same for Angela |
+| karen_list_matches_expected | Same for Karen |
 | no_changes_to_other_patients | Nothing changed in any other chart, including the two out-of-window discharges |
 
 Diagnostic checks: one per trap (denise_losartan_100_mg_daily, denise_empagliflozin_restarted, denise_no_inpatient_pantoprazole, michael_pantoprazole_started, michael_lisinopril_stopped_by_phone_note, barbara_completed_cephalexin_not_active and so on), plus submitted_list_matches_scope. The partial score is the mean Jaccard overlap across the three patients.
@@ -88,20 +98,23 @@ Diagnostic checks: one per trap (denise_losartan_100_mg_daily, denise_empagliflo
 
 ## Why it's hard
 
-About twenty decisions across four patients have to all be right, and the same surface pattern means different things in different charts. Pantoprazole is an inpatient-only substitution for Denise and a deliberate discharge start for Michael. Each patient has a superseding note or a finished course that the discharge summary alone gets wrong. The run also has to find the in-scope patients itself, including one whose document isn't titled a discharge summary, and leave Harold and Margaret alone. Michael's decisive change is in a cardiology letter among routine post-discharge notes.
+About twenty-five decisions across five patients have to all be right, and the same surface pattern means different things in different charts. Pantoprazole is an inpatient-only substitution for Denise and a deliberate discharge start for Michael. Each patient has a superseding note or a finished course that the discharge summary alone gets wrong. The run also has to find the in-scope patients itself, including one whose document isn't titled a discharge summary, and leave Harold and Margaret alone. Michael's decisive change is in a cardiology letter among routine post-discharge notes. Two decisions depend on lab results that are never mentioned in any note, and they resolve in opposite directions. Barbara's restart condition is not met (creatinine 1.34 against a cutoff of 1.2). Karen's iron condition is met (ferritin 12 against 30). A run that applies the discharge instructions without looking up the labs gets at least one wrong whichever way it guesses. In every pilot through round 5, no med rec trial called get_observations.
 
 ## Difficulty knobs
 
 - Easier. Name the three patients in the prompt, or remove the out-of-window decoys.
 - Applied in round 5. Added Angela's discharge instructions and Michael's cardiology letter switching clopidogrel to ticagrelor. In pilot 4 every trial got all three discharges right.
 - Easier. Retitle Angela's document as a discharge summary, or move the ticagrelor switch into a phone note.
+- Applied in round 6. Made Barbara's lisinopril restart conditional on her 9/29 creatinine, and added Karen's discharge with iron conditional on a ferritin. In pilot 5 every trial found Angela and read Michael's letter.
+- Easier. Mention the 9/29 creatinine and the ferritin result in a note, or make both conditions resolve the way the instruction's default reads.
 
 ## Reference solution
 
-Search notes for "Valley General", keep the four discharges since 9/17, read each patient's notes, apply the changes above, submit. See reference.py.
+Search notes for "Valley General", keep the five discharges since 9/17, look up Barbara's creatinine and Karen's ferritin, read each patient's notes, apply the changes above, submit. See reference.py.
 
 ## Calibration history
 
 - Rounds 1 to 3 (Denise only): 3/3, 3/3, 3/3. The changes were writing the discharge changes as narrative, adding the finished cefpodoxime course and the pantoprazole substitution, and adding the 10/1 empagliflozin restart. Every trial read all of her notes and applied every change.
 - Round 4: redesigned to cover every recent discharge, adding Michael and Barbara and two out-of-window decoys. Pilot 4: 3/3.
-- Round 5: added Angela and Michael's cardiology letter.
+- Round 5: added Angela and Michael's cardiology letter. Pilot 5: 3/3.
+- Round 6: Barbara's lab-conditional restart and Karen's discharge with lab-conditional iron.

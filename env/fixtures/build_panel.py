@@ -30,6 +30,7 @@ OBSERVATION_CODES = {
     "718-7": ("Hemoglobin [Mass/volume] in Blood", ["hemoglobin", "Hgb", "Hb"]),
     "13457-7": ("Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation", ["LDL", "cholesterol"]),
     "78012-2": ("Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay", ["rapid strep", "strep", "group A strep", "GAS"]),
+    "2276-4": ("Ferritin [Mass/volume] in Serum or Plasma", ["ferritin", "iron stores"]),
 }
 
 LAB_CATALOG = [
@@ -97,6 +98,7 @@ FORMULARY = [
     ("sertraline", "sertraline", "SSRI"),
     ("acetaminophen", "acetaminophen", "analgesic"),
     ("ibuprofen", "ibuprofen", "NSAID"),
+    ("ferrous sulfate", "ferrous sulfate", "iron supplement"),
     ("alendronate", "alendronate", "bisphosphonate"),
     ("prednisone", "prednisone", "corticosteroid"),
     ("sumatriptan", "sumatriptan", "triptan"),
@@ -421,12 +423,31 @@ patient("pt-1008", "Harold", "Bennett", "1945-02-20", "male",
                 "mg/dL (9/24/2026): does not meet (<1.5).\n\nMeets 1 of 3 criteria. Recommend continuing apixaban "
                 "5 mg twice daily. Hgb 12.1, stable. No interacting medications identified.")])
 
+# ---- Task med_rec_discharge (round 6): cholecystectomy discharge. Ibuprofen course finished 9/25; iron to start
+# only if the ferritin sent at discharge is low, and it is (12, resulted 9/23, structured only).
 patient("pt-1009", "Karen", "Nguyen", "1975-03-27", "female",
         conditions=[("PREDM", "2023-08-20", "active"), ("OBESITY", "2023-08-20", "active")],
-        obs=[("4548-4", 5.9, "%", "2024-08-20"), ("4548-4", 6.1, "%", "2025-08-14"), ("29463-7", 88.0, "kg", "2025-08-14")],
+        obs=[("4548-4", 5.9, "%", "2024-08-20"), ("4548-4", 6.1, "%", "2025-08-14"), ("29463-7", 88.0, "kg", "2025-08-14"),
+             ("718-7", 10.9, "g/dL", "2026-09-20"), ("2276-4", 12, "ng/mL", "2026-09-23")],
         notes=[("2025-08-14", "Progress note", "Dr. A. Shah",
                 "Prediabetes follow-up. A1c 6.1%, still in the prediabetes range. Not on medication. Lifestyle "
-                "counseling provided and referred to the diabetes prevention program. Recheck A1c in 1 year.")])
+                "counseling provided and referred to the diabetes prevention program. Recheck A1c in 1 year."),
+               ("2026-09-21", "Discharge summary (outside record)", "Dr. T. Alvarez, Valley General Hospital",
+                "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-19. Discharge 2026-09-21.\n"
+                "Attending: Dr. T. Alvarez, General Surgery\n\nPrincipal diagnosis: Acute calculous cholecystitis, "
+                "status post laparoscopic cholecystectomy on 9/20.\nSecondary diagnosis: Microcytic anemia (Hgb "
+                "10.9, MCV 74), probable iron deficiency from heavy menses.\n\nHospital course: Uncomplicated "
+                "laparoscopic cholecystectomy. Tolerating a regular diet. Pain controlled on oral medications.\n\n"
+                "Discharge medications: Acetaminophen 1000 mg by mouth as needed for pain, no more than 3 g a day. "
+                "Ibuprofen 400 mg three times daily with food for 5 days (last dose 9/25), then stop. A ferritin was "
+                "sent on 9/21 and will result after discharge: if the ferritin is below 30, start ferrous sulfate "
+                "325 mg by mouth once daily; if 30 or above, no iron is needed. She was on no medications before "
+                "admission.\n\nFollow-up: General surgery clinic in 2 weeks. PCP to follow up the ferritin and "
+                "anemia."),
+               ("2026-09-28", "Telephone encounter", "J. Ortiz, MA",
+                "Patient called to ask whether she can return to her office job next week. Incisions healing, no "
+                "fever, eating normally. Advised per surgery handout that desk work is fine after one week; she has "
+                "her surgery follow-up on 10/5.")])
 
 patient("pt-1010", "David", "Kim", "1968-09-14", "male",
         conditions=[("T2DM", "2019-02-11", "active"), ("HTN", "2019-02-11", "active")],
@@ -733,7 +754,10 @@ patient("pt-1025", "Barbara", "Lewis", "1960-02-14", "female",
         meds=[("metformin", 500, "mg", "twice daily", "2013-03-13", "active"),
               ("lisinopril", 10, "mg", "once daily", "2013-03-13", "active"),
               ("rosuvastatin", 10, "mg", "once daily", "2015-05-15", "active")],
-        obs=[("4548-4", 7.0, "%", "2025-04-28"), ("4548-4", 6.9, "%", "2025-10-30")],
+        obs=[("4548-4", 7.0, "%", "2025-04-28"), ("4548-4", 6.9, "%", "2025-10-30"),
+             ("2160-0", 1.6, "mg/dL", "2026-09-20"), ("2160-0", 1.3, "mg/dL", "2026-09-23"),
+             ("2160-0", 1.34, "mg/dL", "2026-09-29"), ("98979-8", 44, "mL/min/1.73m2", "2026-09-29"),
+             ("2823-3", 4.8, "mmol/L", "2026-09-29")],
         notes=[("2025-10-30", "Progress note", "Dr. A. Shah",
                 "Diabetes follow-up. A1c 6.9%. Doing well. Continue metformin. Return in 6 months."),
                # ---- Task med_rec_discharge (breadth): one dose change, a finished antibiotic course to leave off.
@@ -744,11 +768,16 @@ patient("pt-1025", "Barbara", "Lewis", "1960-02-14", "female",
                 "66 year old woman with 3 days of spreading redness and swelling of the left shin, fever 38.9. No "
                 "abscess on ultrasound. Treated with IV cefazolin from 9/20, changed to oral cephalexin 500 mg four "
                 "times daily on 9/22 to complete 10 days of total antibiotic therapy, with the last dose on 9/29. "
-                "Admission creatinine 1.6 (baseline 0.9), improved to 1.1 with IV fluids. Lisinopril and her oral "
-                "home medications were held on admission.\n\nDischarge medications: Lisinopril is restarted at a "
-                "lower dose of 5 mg once daily (was 10 mg) given the kidney injury. Resume her other home medications "
-                "at their usual doses. Cephalexin as above until the course is complete.\n\nFollow-up: PCP in "
-                "1 to 2 weeks with BMP.")])
+                "Admission creatinine 1.6 (baseline 0.9), improved to 1.3 with IV fluids. Lisinopril and her oral "
+                "home medications were held on admission.\n\nDischarge medications: Continue to HOLD lisinopril. "
+                "Restart it at a lower dose of 5 mg once daily only if the BMP at her 9/29 lab visit shows "
+                "creatinine of 1.2 or lower; if it is higher, keep holding and her PCP will recheck. Resume her other "
+                "home medications at their usual doses. Cephalexin as above until the course is complete.\n\n"
+                "Follow-up: BMP at Riverbend lab on 9/29. PCP in 1 to 2 weeks."),
+               ("2026-09-30", "Patient portal message", "Riverbend Family Medicine",
+                "Patient message: got my blood drawn Monday like they asked. Leg looks much better, redness almost "
+                "gone, finished the antibiotic. When should I come in? Reply from front desk: scheduled 10/7 with "
+                "Dr. Shah.")])
 
 patient("pt-1026", "Joseph", "Walker", "1978-07-07", "male",
         conditions=[("HLD", "2022-02-22", "active")],
