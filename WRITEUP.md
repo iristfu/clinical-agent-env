@@ -4,11 +4,11 @@
 
 ## Summary
 
-Terms: a *pilot* is a small calibration run (3 to 5 trials per task) that I used to find and fix problems, and tasks were edited between pilots. A *final* is a 10-trial run on frozen tasks with no changes after the tag. Only finals produce the scored pass rates.
-
 I built a mock EHR for a primary care practice with 30 synthetic patients and 17 tools, four tasks inside it, state-based graders, reference solutions and a harness with one entry point. Three tasks are scored. On the final run, frozen at the tag frozen-v2, Opus 5 passed strep_allergy 6/10 and apixaban_dose 3/10, both in the 2-7 band, and panel_a1c 9/10, above it. An earlier final at frozen-v1 gave strep 1/10, apixaban 6/10 and panel 7/10; I redesigned strep after it and report both runs. Panel's task was identical in both, and pooled it passed 16 of 20. The fourth task, med_rec_discharge, passed 10/10 on its frozen final and is reported separately as a calibration miss. It also passed all 18 trials in the earlier pilot rounds, so it never failed in any version. Separately, all 28 failed trials across the two scored final runs (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand, and all 28 were the model's fault. Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn't look.
 
 The part I spent the most care on is making sure a failure means the model got something wrong. Most of this writeup is about how I checked that.
+
+*Note: a pilot is a small calibration run (3 to 5 trials per task) used to find and fix problems, with tasks edited between pilots. A final is a 10-trial run on frozen tasks. Only finals produce the scored pass rates.*
 
 ## The environment
 
