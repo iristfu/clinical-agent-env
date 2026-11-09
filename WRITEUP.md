@@ -239,6 +239,8 @@ Something clinically reasonable I hadn't anticipated, which led to a grader chan
 
 Every failure in this project is information gathering, so the scored tasks measure diligence across a chart. With more time, the task I would most want to add is one where finding the facts is trivial and the judgment is the whole difficulty. What it would take:
 
+I built a first prototype of this on the branch doac-reasoning-task, and it is not part of the scored results. It has 17 patients on four DOACs with every fact in structured data, 29 wrong-answer and alternate-correct controls, and tests that re-derive each expected dose from the chart. Opus 5 passed 3 of 3 on the first six-patient version. On a twelve-patient version it passed 0 of 5, and all five failures were one decision, halving apixaban for a patient on clarithromycin. The current Eliquis label says no adjustment is needed with clarithromycin, but older labels did not, so I made that check diagnostic only. After adding five more independent traps it passed 4 of 5 and then 5 of 5, and the one failure was a defensible judgment call about a patient turning 80 in two weeks, which I fixed by moving his birthday. So far Opus gets the dosing rules right when it can see every fact, which fits the finding above. The prototype has not been frozen, run as a final, or reviewed by a clinician.
+
 - Put every fact in plain sight: one or two patients, a short chart, and the deciding values in structured data or the prompt itself, so a failure can't come from not reading.
 - Draw the difficulty from rules that are counterintuitive or interact, and that have a single citable answer. Drug labels are the best source because they are explicit. Some examples:
   - Edoxaban shouldn't be used for atrial fibrillation when creatinine clearance is above 95 mL/min, so good kidney function is the contraindication, the opposite of most renal rules.
@@ -251,4 +253,4 @@ Every failure in this project is information gathering, so the scored tasks meas
 - Have a clinician review it. A pharmacist or physician should sign off on each rubric's accepted answers before calibration starts, because this is exactly where my own judgment is the weak point.
 - Expect calibration to be slow. Opus 5 got every judgment call in this project right, so a first version would likely score near 10/10. Difficulty would come from stacking interacting rules and choosing ones that contradict the common heuristic, piloted over several rounds like the tasks here. I'd also run an effort sweep. If reasoning failures respond to effort much more than these information-gathering failures do, that's a finding in itself.
 
-I estimate about a day to build one well, plus calibration rounds and the clinician review.
+The prototype took a few hours to build. Calibrating it properly and getting the clinician review would take more.
