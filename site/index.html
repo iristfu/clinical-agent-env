@@ -83,43 +83,11 @@
 <li><strong>When a failure wasn’t the model’s fault, I fixed it and reran.</strong> Those fixes are in the calibration log below, and final pass rates come only from trials run after the tasks were frozen.</li>
 </ol>
 <h2 id="results">Results</h2>
-<p>There are two final runs, each on a frozen tag, with Opus 5 at its default effort and no task changes after the tag. Every trial in both was valid, started from the run’s single state hash, and hit no environment errors.</p>
-<p><strong>Final at frozen-v2 (headline).</strong> runs/20261109-134124_final_v2. Strep is version 2. Apixaban and panel are unchanged from frozen-v1. The fixture differs from frozen-v1 only by strep’s two traps (one note edited, one note and two lab results added), and every note search the other tasks rely on returns identical results.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr class="header">
-<th>Task</th>
-<th>Passed</th>
-<th>Pass rate</th>
-<th>95% CI (Wilson)</th>
-<th>In 20-70% band</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>strep_allergy (v2)</td>
-<td>6/10</td>
-<td>60%</td>
-<td>31% to 83%</td>
-<td>yes</td>
-</tr>
-<tr class="even">
-<td>apixaban_dose</td>
-<td>3/10</td>
-<td>30%</td>
-<td>11% to 60%</td>
-<td>yes</td>
-</tr>
-<tr class="odd">
-<td>panel_a1c</td>
-<td>9/10</td>
-<td>90%</td>
-<td>60% to 98%</td>
-<td>no, above</td>
-</tr>
-</tbody>
-</table></div>
-<p><strong>Earlier final at frozen-v1.</strong> runs/20261109-130217_final and runs/20261109-131318_final_medrec_unscored.</p>
+<p>There are two final runs, each made on a frozen git tag with Opus 5 at its default effort and no task changes after the tag. Every trial in both was valid, started from the run’s single state hash, and hit no environment errors.</p>
+<ul>
+<li><strong>frozen-v1 final:</strong> runs/20261109-130217_final, plus runs/20261109-131318_final_medrec_unscored for med rec.</li>
+<li><strong>frozen-v2 final:</strong> runs/20261109-134124_final_v2. It differs from frozen-v1 only in the strep_allergy task, described below.</li>
+</ul>
 <div class="table-wrap"><table>
 <colgroup>
 <col style="width: 20%" />
@@ -131,45 +99,60 @@
 <thead>
 <tr class="header">
 <th>Task</th>
-<th>Passed</th>
-<th>Pass rate</th>
-<th>95% CI (Wilson)</th>
+<th>frozen-v1 final</th>
+<th>frozen-v2 final</th>
+<th>Pooled over both finals</th>
 <th>In 20-70% band</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>strep_allergy (v1)</td>
-<td>1/10</td>
-<td>10%</td>
-<td>2% to 40%</td>
-<td>no, below</td>
+<td>strep_allergy</td>
+<td>1/10, 10% (2% to 40%). Task version 1</td>
+<td>6/10, 60% (31% to 83%). Task version 2</td>
+<td>Not pooled: the two runs tested different versions of the task</td>
+<td>v1 no (below); v2 yes</td>
 </tr>
 <tr class="even">
 <td>apixaban_dose</td>
-<td>6/10</td>
-<td>60%</td>
-<td>31% to 83%</td>
-<td>yes</td>
+<td>6/10, 60% (31% to 83%)</td>
+<td>3/10, 30% (11% to 60%)</td>
+<td>9/20, 45% (26% to 66%)</td>
+<td>yes in both runs and pooled</td>
 </tr>
 <tr class="odd">
 <td>panel_a1c</td>
-<td>7/10</td>
-<td>70%</td>
-<td>40% to 89%</td>
-<td>yes, at the top edge</td>
+<td>7/10, 70% (40% to 89%)</td>
+<td>9/10, 90% (60% to 98%)</td>
+<td>16/20, 80% (58% to 92%)</td>
+<td>v1 yes (top edge); v2 no (above); pooled just above</td>
 </tr>
 <tr class="even">
 <td>med_rec_discharge (not scored)</td>
-<td>10/10</td>
-<td>100%</td>
-<td>72% to 100%</td>
-<td>no, above</td>
+<td>10/10, 100% (72% to 100%)</td>
+<td>not rerun (task unchanged)</td>
+<td>28/28 across every pilot and final</td>
+<td>no, above in every version</td>
 </tr>
 </tbody>
 </table></div>
-<p>With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Ten trials can show a task is in the target band, but not exactly where in it. The two runs make that concrete. Apixaban and panel didn’t change between them, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Pooled over both finals, apixaban is 9/20 (45%, CI 26% to 66%) and panel is 16/20 (80%, CI 58% to 92%). That puts apixaban comfortably inside the band and panel near its top edge, slightly above. I report panel’s 9/10 as measured and did not retune it, because retuning on scored trials would make the number meaningless.</p>
-<p><strong>Why there is a second final.</strong> strep v1 missed the band at frozen-v1. The same frozen version passed 5 of 8 in pilots 4b and 7. I checked that nothing changed between them: the final run’s initial state hash, tool schema hash and prompt hash match pilot 7 exactly, and no code changed. The failures are the same miss the pilots showed, just more often: eight of the nine failing trials saw Maria Lopez 1958’s ED note in their own search results and chose not to open it. Pooled over every trial on the frozen version (pilots and final), strep is 6/18, about 33%, which suggests its true rate sits near the bottom of the band and ten trials landed below it. I did not retune v1 on its scored trials. Instead I treated the result as a design finding: v1’s outcome hinged on one decision per trial. I built v2 with two independent traps of moderate difficulty: a preview hint on Maria’s ED note, and a new positive test that exists only as a lab result. I piloted it (3/8), froze it as frozen-v2, and ran a fresh final on all three scored tasks, so the headline numbers come from a single freeze.</p>
+<p><strong>How to read the two runs.</strong> Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task’s pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled column is the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.</p>
+<h3 id="what-changed-between-frozen-v1-and-frozen-v2">What changed between frozen-v1 and frozen-v2</h3>
+<p>Only the strep_allergy task changed. Here is exactly what I did and why.</p>
+<p><strong>Why.</strong> At frozen-v1, strep’s outcome hinged on a single decision per trial: whether to open one outside ED note for Maria Lopez (born 1958) that documents anaphylaxis to Augmentin. In pilots the frozen v1 task passed 5 of 8. In the final it passed 1 of 10, with the same miss each time: eight of the nine failing trials saw that note in their own search results and chose not to open it. I confirmed nothing else had changed (the final’s state, tool-schema and prompt hashes match the last pilot exactly). A task whose result rests on one yes-or-no choice swings this much between samples. Rather than retune v1 on its scored trials, I treated this as a design finding and built a version whose pass rate rests on two independent, moderately hard traps.</p>
+<p><strong>What changed in the data</strong> (env/fixtures/build_panel.py, commit be82311). The diff from frozen-v1 is one note edited, plus one note and two lab results added:</p>
+<ol type="1">
+<li><strong>Maria Lopez’s 2019 ED note (note-1003-1) gained one line at the top:</strong> “Triage: allergies reviewed, 2 drug allergies (see allergy section).” That line falls inside the 200-character search preview, so a model skimming her notes now sees a hint that she has two drug allergies, while her structured allergy list shows only one (sulfa). The note still names the second allergy only as Augmentin, further down, so the model still has to open the note and know that Augmentin is a penicillin.</li>
+<li><strong>A new positive patient, Kevin Patel (pt-1018), who exists only in lab results.</strong> He was swabbed at a walk-in nurse visit on 2026-10-01. His positive rapid strep result is a structured lab observation, and he has a temperature of 38.5 °C. His nurse-visit note says only that a throat swab was “sent for antigen testing” for the provider to review, plus “No known drug allergies”. It never uses the words strep, rapid or positive, so a note search for “rapid strep” doesn’t find him. He has no penicillin allergy, so penicillin V, amoxicillin, benzathine penicillin G or a first-generation cephalosporin are all accepted. A model that lists today’s tests from visit notes alone misses him. The prompt asks for every patient whose rapid strep was positive, and lab results are where test results live.</li>
+</ol>
+<p><strong>What changed in the grader and checks.</strong></p>
+<ul>
+<li>tasks/strep_allergy/task.py: Kevin was added to the list of positive patients, so he must get exactly one appropriate regimen. Every other check is unchanged.</li>
+<li>tasks/strep_allergy/reference.py: the reference solution now also searches notes for “throat” and checks lab results, and orders amoxicillin for Kevin. A new control, missed_lab_only_positive, must fail exactly on the missing-regimen and appropriateness checks. The alternate-correct control gives Kevin cephalexin and must still pass.</li>
+<li>tests/test_graders.py: new tests that Kevin’s visit note never names the test (otherwise a note search would find him and the trap would test nothing), and that the ED note’s preview mentions two allergies without naming Augmentin.</li>
+</ul>
+<p><strong>What did not change.</strong> Apixaban, panel and med rec are untouched: same prompts, graders, rubrics and patients. I verified that every note search those tasks rely on returns identical results at frozen-v1 and frozen-v2. Each fact underlying the v2 traps is pinned by a test, and all 49 grader controls and 101 tests pass at frozen-v2.</p>
+<p><strong>How v2 was calibrated.</strong> One 8-trial pilot before freezing (3/8), then the 10-trial final (6/10). The tasks/strep_allergy/rubric.md file documents both versions and the reasoning for each change.</p>
 <h3 id="why-trials-failed">Why trials failed</h3>
 <p>Every failure was labeled first by Claude Opus 5.5 (a different model from the one under test) with the rubric in hand, then reviewed by hand against the full trajectory. Each label’s note names the turn where the model went wrong (triage.jsonl in each final run’s folder).</p>
 <p><strong>frozen-v2 final.</strong></p>

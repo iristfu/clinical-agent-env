@@ -56,28 +56,40 @@ I used several layers of checks, each closing off a different way a failure coul
 
 ## Results
 
-There are two final runs, each on a frozen tag, with Opus 5 at its default effort and no task changes after the tag. Every trial in both was valid, started from the run's single state hash, and hit no environment errors.
+There are two final runs, each made on a frozen git tag with Opus 5 at its default effort and no task changes after the tag. Every trial in both was valid, started from the run's single state hash, and hit no environment errors.
 
-**Final at frozen-v2 (headline).** runs/20261109-134124_final_v2. Strep is version 2. Apixaban and panel are unchanged from frozen-v1. The fixture differs from frozen-v1 only by strep's two traps (one note edited, one note and two lab results added), and every note search the other tasks rely on returns identical results.
+- **frozen-v1 final:** runs/20261109-130217_final, plus runs/20261109-131318_final_medrec_unscored for med rec.
+- **frozen-v2 final:** runs/20261109-134124_final_v2. It differs from frozen-v1 only in the strep_allergy task, described below.
 
-| Task | Passed | Pass rate | 95% CI (Wilson) | In 20-70% band |
+| Task | frozen-v1 final | frozen-v2 final | Pooled over both finals | In 20-70% band |
 |---|---|---|---|---|
-| strep_allergy (v2) | 6/10 | 60% | 31% to 83% | yes |
-| apixaban_dose | 3/10 | 30% | 11% to 60% | yes |
-| panel_a1c | 9/10 | 90% | 60% to 98% | no, above |
+| strep_allergy | 1/10, 10% (2% to 40%). Task version 1 | 6/10, 60% (31% to 83%). Task version 2 | Not pooled: the two runs tested different versions of the task | v1 no (below); v2 yes |
+| apixaban_dose | 6/10, 60% (31% to 83%) | 3/10, 30% (11% to 60%) | 9/20, 45% (26% to 66%) | yes in both runs and pooled |
+| panel_a1c | 7/10, 70% (40% to 89%) | 9/10, 90% (60% to 98%) | 16/20, 80% (58% to 92%) | v1 yes (top edge); v2 no (above); pooled just above |
+| med_rec_discharge (not scored) | 10/10, 100% (72% to 100%) | not rerun (task unchanged) | 28/28 across every pilot and final | no, above in every version |
 
-**Earlier final at frozen-v1.** runs/20261109-130217_final and runs/20261109-131318_final_medrec_unscored.
+**How to read the two runs.** Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task's pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled column is the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.
 
-| Task | Passed | Pass rate | 95% CI (Wilson) | In 20-70% band |
-|---|---|---|---|---|
-| strep_allergy (v1) | 1/10 | 10% | 2% to 40% | no, below |
-| apixaban_dose | 6/10 | 60% | 31% to 83% | yes |
-| panel_a1c | 7/10 | 70% | 40% to 89% | yes, at the top edge |
-| med_rec_discharge (not scored) | 10/10 | 100% | 72% to 100% | no, above |
+### What changed between frozen-v1 and frozen-v2
 
-With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Ten trials can show a task is in the target band, but not exactly where in it. The two runs make that concrete. Apixaban and panel didn't change between them, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Pooled over both finals, apixaban is 9/20 (45%, CI 26% to 66%) and panel is 16/20 (80%, CI 58% to 92%). That puts apixaban comfortably inside the band and panel near its top edge, slightly above. I report panel's 9/10 as measured and did not retune it, because retuning on scored trials would make the number meaningless.
+Only the strep_allergy task changed. Here is exactly what I did and why.
 
-**Why there is a second final.** strep v1 missed the band at frozen-v1. The same frozen version passed 5 of 8 in pilots 4b and 7. I checked that nothing changed between them: the final run's initial state hash, tool schema hash and prompt hash match pilot 7 exactly, and no code changed. The failures are the same miss the pilots showed, just more often: eight of the nine failing trials saw Maria Lopez 1958's ED note in their own search results and chose not to open it. Pooled over every trial on the frozen version (pilots and final), strep is 6/18, about 33%, which suggests its true rate sits near the bottom of the band and ten trials landed below it. I did not retune v1 on its scored trials. Instead I treated the result as a design finding: v1's outcome hinged on one decision per trial. I built v2 with two independent traps of moderate difficulty: a preview hint on Maria's ED note, and a new positive test that exists only as a lab result. I piloted it (3/8), froze it as frozen-v2, and ran a fresh final on all three scored tasks, so the headline numbers come from a single freeze.
+**Why.** At frozen-v1, strep's outcome hinged on a single decision per trial: whether to open one outside ED note for Maria Lopez (born 1958) that documents anaphylaxis to Augmentin. In pilots the frozen v1 task passed 5 of 8. In the final it passed 1 of 10, with the same miss each time: eight of the nine failing trials saw that note in their own search results and chose not to open it. I confirmed nothing else had changed (the final's state, tool-schema and prompt hashes match the last pilot exactly). A task whose result rests on one yes-or-no choice swings this much between samples. Rather than retune v1 on its scored trials, I treated this as a design finding and built a version whose pass rate rests on two independent, moderately hard traps.
+
+**What changed in the data** (env/fixtures/build_panel.py, commit be82311). The diff from frozen-v1 is one note edited, plus one note and two lab results added:
+
+1. **Maria Lopez's 2019 ED note (note-1003-1) gained one line at the top:** "Triage: allergies reviewed, 2 drug allergies (see allergy section)." That line falls inside the 200-character search preview, so a model skimming her notes now sees a hint that she has two drug allergies, while her structured allergy list shows only one (sulfa). The note still names the second allergy only as Augmentin, further down, so the model still has to open the note and know that Augmentin is a penicillin.
+2. **A new positive patient, Kevin Patel (pt-1018), who exists only in lab results.** He was swabbed at a walk-in nurse visit on 2026-10-01. His positive rapid strep result is a structured lab observation, and he has a temperature of 38.5 °C. His nurse-visit note says only that a throat swab was "sent for antigen testing" for the provider to review, plus "No known drug allergies". It never uses the words strep, rapid or positive, so a note search for "rapid strep" doesn't find him. He has no penicillin allergy, so penicillin V, amoxicillin, benzathine penicillin G or a first-generation cephalosporin are all accepted. A model that lists today's tests from visit notes alone misses him. The prompt asks for every patient whose rapid strep was positive, and lab results are where test results live.
+
+**What changed in the grader and checks.**
+
+- tasks/strep_allergy/task.py: Kevin was added to the list of positive patients, so he must get exactly one appropriate regimen. Every other check is unchanged.
+- tasks/strep_allergy/reference.py: the reference solution now also searches notes for "throat" and checks lab results, and orders amoxicillin for Kevin. A new control, missed_lab_only_positive, must fail exactly on the missing-regimen and appropriateness checks. The alternate-correct control gives Kevin cephalexin and must still pass.
+- tests/test_graders.py: new tests that Kevin's visit note never names the test (otherwise a note search would find him and the trap would test nothing), and that the ED note's preview mentions two allergies without naming Augmentin.
+
+**What did not change.** Apixaban, panel and med rec are untouched: same prompts, graders, rubrics and patients. I verified that every note search those tasks rely on returns identical results at frozen-v1 and frozen-v2. Each fact underlying the v2 traps is pinned by a test, and all 49 grader controls and 101 tests pass at frozen-v2.
+
+**How v2 was calibrated.** One 8-trial pilot before freezing (3/8), then the 10-trial final (6/10). The tasks/strep_allergy/rubric.md file documents both versions and the reasoning for each change.
 
 ### Why trials failed
 
