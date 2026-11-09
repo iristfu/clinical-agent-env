@@ -1,0 +1,23 @@
+{
+  "run_id": "20261109-122344_pilot4b",
+  "created": "2026-11-09T12:23:44",
+  "policy": "model",
+  "model": "claude-opus-5",
+  "tasks": [
+    "strep_allergy"
+  ],
+  "trials": 3,
+  "effort": "model default",
+  "max_tokens": 32000,
+  "thinking_display": true,
+  "git": {
+    "commit": "662bedf6973a45582d8678b22132ff3e01ed4086",
+    "dirty": true
+  },
+  "fixture": "env/fixtures/panel.json",
+  "initial_state_hash": "6c38f487cdb4999e",
+  "tool_schema_hash": "01e919b04286",
+  "prompt_hashes": {
+    "strep_allergy": "f41ea62ac93c"
+  }
+}

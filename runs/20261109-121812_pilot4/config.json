@@ -1,0 +1,23 @@
+{
+  "run_id": "20261109-121812_pilot4",
+  "created": "2026-11-09T12:21:02",
+  "policy": "model",
+  "model": "claude-opus-5",
+  "tasks": [
+    "med_rec_discharge"
+  ],
+  "trials": 3,
+  "effort": "model default",
+  "max_tokens": 32000,
+  "thinking_display": true,
+  "git": {
+    "commit": "662bedf6973a45582d8678b22132ff3e01ed4086",
+    "dirty": false
+  },
+  "fixture": "env/fixtures/panel.json",
+  "initial_state_hash": "6c38f487cdb4999e",
+  "tool_schema_hash": "bc262cd7a66c",
+  "prompt_hashes": {
+    "med_rec_discharge": "216442aea36a"
+  }
+}

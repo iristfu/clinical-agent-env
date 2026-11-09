@@ -68,6 +68,16 @@ def test_note_previews_say_they_are_truncated():
     assert "preview truncated" in ed_note["preview"] and "Augmentin" not in ed_note["preview"]
 
 
+def test_note_search_matches_singular_and_plural():
+    ehr = EHR()
+    ids = {n["note_id"] for n in call_tool(ehr, "search_notes", {"patient_id": "pt-1003", "query": "allergy"})["results"]}
+    ids |= {n["note_id"] for n in call_tool(ehr, "search_notes", {"patient_id": "pt-1003", "query": "allergy",
+                                                                  "page": 2})["results"]}
+    assert "note-1003-1" in ids, "a search for 'allergy' must find the ED note's ALLERGIES section"
+    assert call_tool(ehr, "search_notes", {"query": "allergies"})["total"] >= \
+        call_tool(ehr, "search_notes", {"query": "allergy"})["total"] > 0
+
+
 def test_pagination_tells_the_model_there_is_more():
     res = call_tool(EHR(), "list_patients", {})
     assert res["has_more"] and "page=2" in res["note"] and res["total"] == 30

@@ -63,7 +63,8 @@ TOOLS = [
           ["patient_id"]),
     _tool("search_notes",
           "Search clinical notes, newest first. Give a patient_id, a query, or both. Every word in the query must "
-          "appear in the note (case-insensitive). Results show a short preview only; use read_note for full text. "
+          "appear in the note (case-insensitive; singular and plural forms match). Results show a short preview "
+          "only; use read_note for full text. "
           "Paginated, 10 per page.",
           {"patient_id": PID, "query": {"type": "string"}, "page": PAGE}),
     _tool("read_note", "Read the full text of one clinical note.", {"note_id": {"type": "string"}}, ["note_id"]),
@@ -264,6 +265,17 @@ def _obs_matches(ehr, obs, query):
             or any(q in s.lower() for s in entry["synonyms"]))
 
 
+def _word_in(word, haystack):
+    """Substring match that also treats -y and -ies as the same word, so "allergy" finds "Allergies:" and
+    "therapies" finds "therapy". Plain -s plurals already match by substring. Added after pilot 4, where a search
+    for "allergy" returned "No results" on a chart whose notes have allergy sections."""
+    if word in haystack:
+        return True
+    if word.endswith("y") and word[:-1] + "ies" in haystack:
+        return True
+    return word.endswith("ies") and word[:-3] + "y" in haystack
+
+
 def _active_med_or_error(ehr, med_id):
     med = ehr.find("medications", med_id)
     if med is None:
@@ -345,7 +357,7 @@ def search_notes(ehr, patient_id=None, query=None, page=None):
     rows = []
     for n in ehr.records("notes", patient_id):
         haystack = f"{n['type']} {n['author']} {n['text']}".lower()
-        if all(w in haystack for w in words):
+        if all(_word_in(w, haystack) for w in words):
             rows.append(n)
     rows.sort(key=lambda n: (n["date"], n["id"]), reverse=True)
     view = []
