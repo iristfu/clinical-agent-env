@@ -1,0 +1,23 @@
+{
+  "run_id": "20261109-125255_pilot7",
+  "created": "2026-11-09T12:58:02",
+  "policy": "model",
+  "model": "claude-opus-5",
+  "tasks": [
+    "panel_a1c"
+  ],
+  "trials": 5,
+  "effort": "model default",
+  "max_tokens": 32000,
+  "thinking_display": true,
+  "git": {
+    "commit": "37350e673b9692ef852b5be8deb1c1190fdd6e01",
+    "dirty": false
+  },
+  "fixture": "env/fixtures/panel.json",
+  "initial_state_hash": "f396b2656fa7cb59",
+  "tool_schema_hash": "01e919b04286",
+  "prompt_hashes": {
+    "panel_a1c": "4a066e0b185c"
+  }
+}
