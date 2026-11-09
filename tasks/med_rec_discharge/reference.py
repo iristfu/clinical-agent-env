@@ -21,6 +21,7 @@ CORE = [
     stop(TARTRATE, "Changed to metoprolol succinate ER"),
     rx("metoprolol succinate ER", 50, "once daily"),
     ("update_medication", {"medication_id": METFORMIN, "dose_value": 1000, "reason": "Increased at discharge, A1c 8.4"}),
+    rx("empagliflozin", 10, "once daily"),
 ]
 
 REFERENCE = [
@@ -29,9 +30,10 @@ REFERENCE = [
     ("search_notes", {"patient_id": P}),
     ("read_note", {"note_id": "note-1012-2"}),
     ("read_note", {"note_id": "note-1012-3"}),
+    ("read_note", {"note_id": "note-1012-4"}),
     *CORE,
-    ("submit", {"summary": "Applied 9/28 discharge changes, then 9/30 phone note: losartan 100 mg daily and "
-                           "empagliflozin discontinued before starting."}),
+    ("submit", {"summary": "Applied 9/28 discharge changes, then the 9/30 phone note (losartan 100 mg daily) and the "
+                           "10/1 phone note (empagliflozin 10 mg daily started after the savings card)."}),
 ]
 
 CONTROLS = [
@@ -42,7 +44,10 @@ CONTROLS = [
              ("update_medication", {"medication_id": METFORMIN, "dose_value": 1000, "reason": "A1c"}),
              rx("empagliflozin", 10, "once daily"), SUBMIT],
             expect_failed={"active_list_matches_expected"},
-            description="Follows the discharge summary and never reads the later phone note."),
+            description="Follows the discharge summary and never reads the later phone notes."),
+    Control("stopped_at_9_30_note", [c for c in CORE if c != rx("empagliflozin", 10, "once daily")] + [SUBMIT],
+            expect_failed={"active_list_matches_expected"},
+            description="Applies the 9/30 phone note but misses the 10/1 note that restarts empagliflozin."),
     Control("forgot_to_stop_tartrate", [c for c in CORE if c != stop(TARTRATE, "Changed to metoprolol succinate ER")]
             + [SUBMIT], expect_failed={"active_list_matches_expected"}),
     Control("swapped_to_metformin_er",
@@ -58,7 +63,7 @@ CONTROLS = [
     Control("alt_correct_documents_completed_course",
             [*CORE, ("place_medication_order", {"patient_id": P, "medication": "cefpodoxime", "dose_value": 200,
                                                 "dose_unit": "mg", "frequency": "twice daily", "duration_days": 5}),
-             stop("med-new-003", "Course completed 9/30"), SUBMIT],
+             stop("med-new-004", "Course completed 9/30"), SUBMIT],
             expect_pass=True, description="Records the antibiotic course and then marks it stopped, leaving the "
                                           "active list correct."),
     Control("alt_correct_two_step_losartan",
@@ -67,7 +72,10 @@ CONTROLS = [
              stop(HCTZ, "hyponatremia"), stop(TARTRATE, "switch"), rx("metoprolol succinate ER", 50, "every 24 hours"),
              ("update_medication", {"medication_id": METFORMIN, "dose_value": 1000, "frequency": "every 12 hours",
                                     "reason": "discharge"}),
+             rx("empagliflozin", 10, "once daily"), stop("med-new-003", "9/30 phone note: not filled"),
+             rx("empagliflozin", 10, "every 24 hours"),
              SUBMIT],
-            expect_pass=True, description="Applies the discharge dose then the phone-note change, uses equivalent "
-                                          "frequency spellings."),
+            expect_pass=True, description="Follows each source in date order: discharge losartan dose then the "
+                                          "9/30 increase, empagliflozin started, stopped (9/30) and restarted "
+                                          "(10/1), with equivalent frequency spellings."),
 ]

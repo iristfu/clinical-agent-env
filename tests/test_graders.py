@@ -126,6 +126,7 @@ def test_apixaban_pharmacist_note_uses_the_stale_weight():
     pharm = notes["note-1008-4"]
     assert pharm["date"] > notes["note-1008-3"]["date"], "the wrong review must postdate the 9/24 visit"
     assert "63.5 kg" in pharm["text"] and "continuing apixaban 5 mg" in pharm["text"]
+    assert "no weight was recorded at the 9/24 visit" in pharm["text"] and "128.3 lb" in notes["note-1008-3"]["text"]
     assert "reassess" not in notes["note-1008-2"]["text"], "harder knob: discharge summary no longer flags dosing"
 
 
@@ -145,5 +146,9 @@ def test_med_rec_traps_follow_from_fixture():
     dc = next(n for n in state["notes"] if n["id"] == "note-1012-2")["text"]
     assert "final dose due the evening of 9/30" in dc and state["meta"]["today"] == "2026-10-01"
     assert "pantoprazole 40 mg daily, which was substituted for her home omeprazole" in dc
+    later = sorted((n for n in state["notes"] if n["patient_id"] == "pt-1012" and n["date"] > "2026-09-28"),
+                   key=lambda n: n["date"])
+    assert [n["date"] for n in later] == ["2026-09-30", "2026-10-01"]
+    assert "discontinue empagliflozin" in later[0]["text"] and "starting empagliflozin 10 mg once daily" in later[1]["text"]
     names = {d["name"] for d in state["formulary"]}
     assert {"cefpodoxime", "pantoprazole"} <= names, "the model must be able to make the mistake"

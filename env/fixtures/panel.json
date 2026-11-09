@@ -3191,13 +3191,101 @@
   {
    "id": "note-1003-2",
    "patient_id": "pt-1003",
+   "date": "2019-08-27",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "ED follow-up for right ankle sprain sustained 8/12. Swelling much improved, walking without the brace most of the day. Mild residual tenderness over the ATFL. Reviewed home balance and range-of-motion exercises. BP 134/82 on amlodipine. Return as needed."
+  },
+  {
+   "id": "note-1003-3",
+   "patient_id": "pt-1003",
+   "date": "2020-02-11",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Patient requested refills of amlodipine and atorvastatin. 90-day supplies sent to pharmacy per protocol."
+  },
+  {
+   "id": "note-1003-4",
+   "patient_id": "pt-1003",
+   "date": "2020-11-03",
+   "type": "Annual physical",
+   "author": "Dr. A. Shah",
+   "text": "Annual exam. Feels well. BP 136/84 on amlodipine 10 mg. LDL 102 on atorvastatin 20 mg, continue. Allergies: sulfa (rash). Mammogram and colonoscopy up to date. Influenza vaccine given. Return in 1 year."
+  },
+  {
+   "id": "note-1003-5",
+   "patient_id": "pt-1003",
+   "date": "2021-06-15",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Two days of dysuria and urinary frequency. No fever, flank pain or vaginal symptoms. Urinalysis positive for leukocyte esterase and nitrites. Uncomplicated cystitis. Nitrofurantoin 100 mg twice daily for 5 days. Return if fever, flank pain or no improvement in 48 hours."
+  },
+  {
+   "id": "note-1003-6",
+   "patient_id": "pt-1003",
+   "date": "2021-11-09",
+   "type": "Annual physical",
+   "author": "Dr. A. Shah",
+   "text": "Annual exam. BP 132/80. LDL 94. Allergies: sulfa (rash). Shingles vaccine series started. Influenza vaccine given. Continue amlodipine and atorvastatin. Return in 1 year."
+  },
+  {
+   "id": "note-1003-7",
+   "patient_id": "pt-1003",
+   "date": "2022-11-15",
+   "type": "Annual physical",
+   "author": "Dr. A. Shah",
+   "text": "Annual exam. No new concerns. BP 130/82, LDL 98. Second shingles vaccine dose given. Mammogram ordered. Continue current medications."
+  },
+  {
+   "id": "note-1003-8",
+   "patient_id": "pt-1003",
+   "date": "2023-03-07",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Left shoulder pain for 6 weeks after painting her kitchen, worse reaching overhead. Painful arc, strength preserved, negative drop-arm test. Rotator cuff tendinopathy. Physical therapy referral, ibuprofen 400 mg as needed with food for up to 2 weeks."
+  },
+  {
+   "id": "note-1003-9",
+   "patient_id": "pt-1003",
+   "date": "2023-11-14",
+   "type": "Annual physical",
+   "author": "Dr. A. Shah",
+   "text": "Annual exam. Shoulder pain resolved after physical therapy. BP 134/80, LDL 99. Colonoscopy due next year, referral placed. Influenza and updated COVID-19 vaccines given. Continue current regimen."
+  },
+  {
+   "id": "note-1003-10",
+   "patient_id": "pt-1003",
+   "date": "2025-05-20",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Pharmacy refill request for atorvastatin 20 mg. Approved per protocol. Reminded patient she is due for her annual visit in the fall."
+  },
+  {
+   "id": "note-1003-11",
+   "patient_id": "pt-1003",
+   "date": "2025-11-18",
+   "type": "Annual physical",
+   "author": "Dr. A. Shah",
+   "text": "Annual exam. Feels well, walking 3 days a week. BP 130/78 on amlodipine 10 mg. LDL 92 on atorvastatin 20 mg. Medication allergies reviewed with patient: sulfa (rash). Influenza vaccine given. Return in 1 year."
+  },
+  {
+   "id": "note-1003-12",
+   "patient_id": "pt-1003",
+   "date": "2026-09-30",
+   "type": "Patient portal message",
+   "author": "Riverbend Family Medicine",
+   "text": "Patient message: sore throat since yesterday with fever to 101 at home, and her husband was treated for strep last week. Scheduled for a same-day visit tomorrow morning with Dr. Shah."
+  },
+  {
+   "id": "note-1003-13",
+   "patient_id": "pt-1003",
    "date": "2024-11-05",
    "type": "Progress note",
    "author": "Dr. A. Shah",
    "text": "Hypertension and lipid follow-up. Feels well. BP 132/80 on amlodipine 10 mg. LDL 96 on atorvastatin 20 mg. Allergies reviewed with patient: sulfa. Continue current regimen, return in 1 year."
   },
   {
-   "id": "note-1003-3",
+   "id": "note-1003-14",
    "patient_id": "pt-1003",
    "date": "2026-10-01",
    "type": "Urgent visit",
@@ -3274,7 +3362,7 @@
    "date": "2026-09-28",
    "type": "Pharmacy consult",
    "author": "S. Patel, PharmD, Clinical Pharmacist",
-   "text": "Anticoagulation review requested by Dr. Okafor after the 9/24 visit.\n\nIndication: nonvalvular atrial fibrillation. Current regimen: apixaban 5 mg twice daily.\n\nLabel dose-reduction criteria (2.5 mg twice daily if at least 2 of 3), using results in the chart:\n- Age 81: meets.\n- Weight 63.5 kg (5/14/2026, most recent weight on the flowsheet): does not meet (>60 kg).\n- Serum creatinine 1.31 mg/dL (9/24/2026): does not meet (<1.5).\n\nMeets 1 of 3 criteria. Recommend continuing apixaban 5 mg twice daily. Hgb 12.1, stable. No interacting medications identified."
+   "text": "Anticoagulation review requested by Dr. Okafor after the 9/24 visit.\n\nIndication: nonvalvular atrial fibrillation. Current regimen: apixaban 5 mg twice daily.\n\nLabel dose-reduction criteria (2.5 mg twice daily if at least 2 of 3), using results in the chart:\n- Age 81: meets.\n- Weight 63.5 kg (5/14/2026, most recent weight on the flowsheet; no weight was recorded at the 9/24 visit): does not meet (>60 kg).\n- Serum creatinine 1.31 mg/dL (9/24/2026): does not meet (<1.5).\n\nMeets 1 of 3 criteria. Recommend continuing apixaban 5 mg twice daily. Hgb 12.1, stable. No interacting medications identified."
   },
   {
    "id": "note-1009-1",
@@ -3323,6 +3411,14 @@
    "type": "Telephone encounter",
    "author": "T. Nakamura, RN",
    "text": "Patient called with home BP log since discharge, readings 148 to 156 over 88 to 94. Headache resolved. Discussed with Dr. Okafor, who advises increasing losartan to 100 mg once daily starting today. Patient also reports she did not fill the empagliflozin because of cost ($180 copay). Per Dr. Okafor, discontinue empagliflozin for now and revisit options at the 10/6 follow-up visit. Patient verbalized understanding. BMP scheduled for 10/5."
+  },
+  {
+   "id": "note-1012-4",
+   "patient_id": "pt-1012",
+   "date": "2026-10-01",
+   "type": "Telephone encounter",
+   "author": "T. Nakamura, RN",
+   "text": "Patient called back this morning. She enrolled in the manufacturer savings program, her empagliflozin copay is now $10, and she picked it up today. Discussed with Dr. Okafor, who advises starting empagliflozin 10 mg once daily today as prescribed at discharge. All other medications as discussed on 9/30. Reviewed sick-day guidance and genital hygiene. Keep 10/6 follow-up."
   },
   {
    "id": "note-1013-1",

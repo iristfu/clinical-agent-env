@@ -218,6 +218,46 @@ patient("pt-1003", "Maria", "Lopez", "1958-03-14", "female",
              ("29463-7", 71.4, "kg", "2026-10-01"), ("98979-8", 79, "mL/min/1.73m2", "2024-11-05"),
              ("78012-2", "Positive", None, "2026-10-01")],
         notes=[("2019-08-12", "ED provider note (outside record)", "Dr. K. Brennan, Valley General ED", MARIA_ED_NOTE),
+               # Routine chart volume (round 3 harder knob). Pushes the ED note to page 2 of her notes; three of
+               # these restate the incomplete allergy list. None mention penicillins or the reaction.
+               ("2019-08-27", "Progress note", "Dr. A. Shah",
+                "ED follow-up for right ankle sprain sustained 8/12. Swelling much improved, walking without the brace "
+                "most of the day. Mild residual tenderness over the ATFL. Reviewed home balance and range-of-motion "
+                "exercises. BP 134/82 on amlodipine. Return as needed."),
+               ("2020-02-11", "Telephone encounter", "J. Ortiz, MA",
+                "Patient requested refills of amlodipine and atorvastatin. 90-day supplies sent to pharmacy per "
+                "protocol."),
+               ("2020-11-03", "Annual physical", "Dr. A. Shah",
+                "Annual exam. Feels well. BP 136/84 on amlodipine 10 mg. LDL 102 on atorvastatin 20 mg, continue. "
+                "Allergies: sulfa (rash). Mammogram and colonoscopy up to date. Influenza vaccine given. Return in 1 "
+                "year."),
+               ("2021-06-15", "Progress note", "Dr. M. Okafor",
+                "Two days of dysuria and urinary frequency. No fever, flank pain or vaginal symptoms. Urinalysis "
+                "positive for leukocyte esterase and nitrites. Uncomplicated cystitis. Nitrofurantoin 100 mg twice "
+                "daily for 5 days. Return if fever, flank pain or no improvement in 48 hours."),
+               ("2021-11-09", "Annual physical", "Dr. A. Shah",
+                "Annual exam. BP 132/80. LDL 94. Allergies: sulfa (rash). Shingles vaccine series started. Influenza "
+                "vaccine given. Continue amlodipine and atorvastatin. Return in 1 year."),
+               ("2022-11-15", "Annual physical", "Dr. A. Shah",
+                "Annual exam. No new concerns. BP 130/82, LDL 98. Second shingles vaccine dose given. Mammogram "
+                "ordered. Continue current medications."),
+               ("2023-03-07", "Progress note", "Dr. M. Okafor",
+                "Left shoulder pain for 6 weeks after painting her kitchen, worse reaching overhead. Painful arc, "
+                "strength preserved, negative drop-arm test. Rotator cuff tendinopathy. Physical therapy referral, "
+                "ibuprofen 400 mg as needed with food for up to 2 weeks."),
+               ("2023-11-14", "Annual physical", "Dr. A. Shah",
+                "Annual exam. Shoulder pain resolved after physical therapy. BP 134/80, LDL 99. Colonoscopy due next "
+                "year, referral placed. Influenza and updated COVID-19 vaccines given. Continue current regimen."),
+               ("2025-05-20", "Telephone encounter", "J. Ortiz, MA",
+                "Pharmacy refill request for atorvastatin 20 mg. Approved per protocol. Reminded patient she is due "
+                "for her annual visit in the fall."),
+               ("2025-11-18", "Annual physical", "Dr. A. Shah",
+                "Annual exam. Feels well, walking 3 days a week. BP 130/78 on amlodipine 10 mg. LDL 92 on "
+                "atorvastatin 20 mg. Medication allergies reviewed with patient: sulfa (rash). Influenza vaccine "
+                "given. Return in 1 year."),
+               ("2026-09-30", "Patient portal message", "Riverbend Family Medicine",
+                "Patient message: sore throat since yesterday with fever to 101 at home, and her husband was treated "
+                "for strep last week. Scheduled for a same-day visit tomorrow morning with Dr. Shah."),
                ("2024-11-05", "Progress note", "Dr. A. Shah",
                 "Hypertension and lipid follow-up. Feels well. BP 132/80 on amlodipine 10 mg. LDL 96 on atorvastatin "
                 "20 mg. Allergies reviewed with patient: sulfa. Continue current regimen, return in 1 year."),
@@ -311,7 +351,8 @@ patient("pt-1008", "Harold", "Bennett", "1945-02-20", "male",
                 "Anticoagulation review requested by Dr. Okafor after the 9/24 visit.\n\nIndication: nonvalvular atrial "
                 "fibrillation. Current regimen: apixaban 5 mg twice daily.\n\nLabel dose-reduction criteria (2.5 mg "
                 "twice daily if at least 2 of 3), using results in the chart:\n- Age 81: meets.\n- Weight 63.5 kg "
-                "(5/14/2026, most recent weight on the flowsheet): does not meet (>60 kg).\n- Serum creatinine 1.31 "
+                "(5/14/2026, most recent weight on the flowsheet; no weight was recorded at the 9/24 visit): does not "
+                "meet (>60 kg).\n- Serum creatinine 1.31 "
                 "mg/dL (9/24/2026): does not meet (<1.5).\n\nMeets 1 of 3 criteria. Recommend continuing apixaban "
                 "5 mg twice daily. Hgb 12.1, stable. No interacting medications identified.")])
 
@@ -390,7 +431,12 @@ patient("pt-1012", "Denise", "Carter", "1962-05-09", "female",
                 "Discussed with Dr. Okafor, who advises increasing losartan to 100 mg once daily starting today. "
                 "Patient also reports she did not fill the empagliflozin because of cost ($180 copay). Per Dr. "
                 "Okafor, discontinue empagliflozin for now and revisit options at the 10/6 follow-up visit. Patient "
-                "verbalized understanding. BMP scheduled for 10/5.")])
+                "verbalized understanding. BMP scheduled for 10/5."),
+               ("2026-10-01", "Telephone encounter", "T. Nakamura, RN",
+                "Patient called back this morning. She enrolled in the manufacturer savings program, her empagliflozin "
+                "copay is now $10, and she picked it up today. Discussed with Dr. Okafor, who advises starting "
+                "empagliflozin 10 mg once daily today as prescribed at discharge. All other medications as discussed "
+                "on 9/30. Reviewed sick-day guidance and genital hygiene. Keep 10/6 follow-up.")])
 
 patient("pt-1013", "Thomas", "Wright", "1957-10-01", "male",
         conditions=[("T2DM_CKD", "2015-03-18", "active"), ("CKD3B", "2021-05-05", "active"), ("HTN", "2009-09-09", "active")],

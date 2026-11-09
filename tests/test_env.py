@@ -59,7 +59,11 @@ def test_invalid_requests_return_clear_tool_errors(name, args, fragment):
 
 
 def test_note_previews_say_they_are_truncated():
-    res = call_tool(EHR(), "search_notes", {"patient_id": "pt-1003"})
+    ehr = EHR()
+    first = call_tool(ehr, "search_notes", {"patient_id": "pt-1003"})
+    assert first["has_more"] and "page=2" in first["note"], "the model must be told there is a second page"
+    assert all(n["note_id"] != "note-1003-1" for n in first["results"]), "strep trap: ED note sits on page 2"
+    res = call_tool(ehr, "search_notes", {"patient_id": "pt-1003", "page": 2})
     ed_note = next(n for n in res["results"] if n["note_id"] == "note-1003-1")
     assert "preview truncated" in ed_note["preview"] and "Augmentin" not in ed_note["preview"]
 

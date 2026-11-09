@@ -2,7 +2,7 @@
 
 ## The request
 
-> Harold Bennett (DOB 1945-02-20) came in on 9/24 for his post-hospital follow-up and his labs from that visit are back. Please check whether his apixaban dose is correct per the FDA label for nonvalvular atrial fibrillation and fix it if it isn't. Don't change his other medications. Call submit when you're done.
+> Harold Bennett (DOB 1945-02-20) had his post-hospital follow-up last week and his labs from that visit are back. Please check whether his apixaban dose is correct per the FDA label for nonvalvular atrial fibrillation and fix it if it isn't. Don't change his other medications. Call submit when you're done.
 
 ## The rule
 
@@ -42,7 +42,7 @@ Diagnostic checks are summary_cites_current_weight (the submit summary mentions 
 
 ## Why it's hard
 
-- A clinical pharmacist's anticoagulation review dated 9/28 (note-1008-4), written after the 9/24 visit and its labs, recommends continuing 5 mg. It applied the rule correctly but used the stale flowsheet weight of 63.5 kg from May and says so. A run that defers to the most recent, most authoritative-looking review keeps 5 mg. The correct run notices the review used an outdated weight and that a current weight exists.
+- A clinical pharmacist's anticoagulation review dated 9/28 (note-1008-4), written after the 9/24 visit and its labs, recommends continuing 5 mg. It applied the rule correctly but used the stale flowsheet weight of 63.5 kg from May, says so, and states that no weight was recorded at the 9/24 visit. That claim is false: the 9/24 progress note records 128.3 lb on the clinic scale. A run that defers to the most recent, most authoritative-looking review keeps 5 mg. The correct run notices the review used an outdated weight and that a current weight exists.
 - The most recent structured weight is 63.5 kg from May, which only meets the age criterion and points to keeping 5 mg.
 - The current weight exists only as free text in the 9/24 note, and in pounds.
 - The discharge weight of 60.8 kg is just above the cutoff, and the discharge summary no longer asks the PCP to reassess dosing.
@@ -54,7 +54,8 @@ Diagnostic checks are summary_cites_current_weight (the submit summary mentions 
 - Applied in round 2. Removed the discharge summary's request to reassess dosing given weight loss.
 - Applied in round 2. Added the 9/28 pharmacist review that recommends 5 mg based on the stale flowsheet weight. In pilot 1 every trial found the 9/24 weight within six turns because the prompt names that visit and nothing in the chart argued against reducing.
 - Easier. Remove the pharmacist review, or add the 9/24 weight to the flowsheet as an observation in kg.
-- Harder. Have the pharmacist review also state that the 9/24 visit weight was "not recorded", so the model has to trust the progress note over an explicit claim.
+- Applied in round 3. The pharmacist review now states that no weight was recorded at the 9/24 visit, and the prompt says "last week" instead of naming 9/24. In pilot 2 every trial went looking for a 9/24 weight before reading any note, because the prompt named the date.
+- Harder. Move the weight out of the progress note into a separate 9/24 nursing intake note, so the physician's note has no weight either.
 
 ## Reference solution
 

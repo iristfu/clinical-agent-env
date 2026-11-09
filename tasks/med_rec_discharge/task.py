@@ -9,8 +9,8 @@ MAX_TURNS = 40
 TARGET = "pt-1012"
 TARGET_PATIENTS = [TARGET]
 
-# Discharge summary (9/28) changes, then the 9/30 phone note supersedes two of them
-# (losartan 50 -> 100 mg; empagliflozin discontinued before it was ever started). Cefpodoxime finished on 9/30 and
+# Discharge summary (9/28) changes, then the 9/30 phone note supersedes two of them (losartan 50 -> 100 mg;
+# empagliflozin discontinued before it was ever started), then the 10/1 phone note restarts empagliflozin. Cefpodoxime finished on 9/30 and
 # inpatient pantoprazole was a formulary substitution for home omeprazole, so neither belongs on the current list.
 EXPECTED = Counter([
     ("losartan", 100.0, "mg", "once daily"),
@@ -19,6 +19,7 @@ EXPECTED = Counter([
     ("aspirin", 81.0, "mg", "once daily"),
     ("atorvastatin", 40.0, "mg", "once daily"),
     ("omeprazole", 20.0, "mg", "once daily"),
+    ("empagliflozin", 10.0, "mg", "once daily"),
 ])
 
 
@@ -45,8 +46,9 @@ def grade(ctx):
               critical=False),
         Check("metformin_1000_mg_twice_daily", has(("metformin", 1000.0, "mg", "twice daily")) and names["metformin"] == 1,
               critical=False),
-        Check("empagliflozin_not_active", names["empagliflozin"] == 0, critical=False,
-              detail="started at discharge, discontinued by phone note before she filled it"),
+        Check("empagliflozin_10_mg_daily_restarted",
+              has(("empagliflozin", 10.0, "mg", "once daily")) and names["empagliflozin"] == 1, critical=False,
+              detail="stopped by the 9/30 phone note, restarted by the 10/1 phone note"),
         Check("completed_cefpodoxime_not_active", names["cefpodoxime"] == 0, critical=False,
               detail="7-day UTI course ended with the 9/30 evening dose; today is 10/1"),
         Check("no_inpatient_pantoprazole_substitution", names["pantoprazole"] == 0, critical=False,

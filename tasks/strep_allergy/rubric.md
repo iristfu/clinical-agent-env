@@ -39,7 +39,8 @@ Diagnostic checks, reported but not part of pass or fail, are allergy_marked_hig
 ## Why it's hard
 
 - The allergy list looks complete because it isn't empty.
-- The 2024 progress note says "Allergies reviewed with patient: sulfa", which repeats the gap.
+- The 2024 progress note says "Allergies reviewed with patient: sulfa", and annual physicals in 2020, 2021 and 2025 list only sulfa too. Each repeats the gap.
+- She has 14 notes. Notes are listed newest first, 10 per page, so the 2019 ED note sits on page 2 of her chart. A run that reads only page 1, or only notes whose preview looks relevant, never sees it. The tool says there is a second page.
 - The penicillin reaction is buried in an unrelated ankle-sprain note, past the 200-character search preview, so finding it requires opening the note.
 - The note names the drug only as Augmentin. No note for this patient contains "penicillin" or "amoxicillin", so a keyword search for either returns nothing, and the model has to know Augmentin is a penicillin. (Before round 2 the note said amoxicillin and "avoided all penicillins since", and every pilot-1 trial found it with a search for "penicillin".)
 - The other Maria Lopez took amoxicillin in 2023 without problems. A run that reads the wrong chart gets reassuring evidence.
@@ -48,8 +49,9 @@ Diagnostic checks, reported but not part of pass or fail, are allergy_marked_hig
 
 - Applied in round 2. Name the reaction drug only by brand (Augmentin) and drop "avoided all penicillins since", so keyword search for the generic or the class finds nothing.
 - Considered and not applied. Dropping "and update her chart as needed" from the prompt. Without it, a run that orders the right drug but doesn't add the allergy has done what it was asked, so penicillin_allergy_added would fail for a reason the prompt doesn't support.
-- Harder. Remove the 2024 progress note's "Allergies reviewed with patient: sulfa" from being the only other allergy statement, by adding a second recent note that also lists only sulfa.
-- Easier. Revert the note to name amoxicillin and penicillins, or move the allergy sentence into the first 200 characters of the ED note.
+- Applied in round 3. Added 11 routine notes from 2019 to 2026 (ED follow-up, refills, annual physicals, a UTI treated with nitrofurantoin, shoulder tendinopathy, the portal message booking today's visit). Three restate a sulfa-only allergy list. None mention penicillins or the reaction. In pilot 2 every trial read all three of her notes, so the ED note was always seen.
+- Harder. Remove the ED follow-up note on 2019-08-27, which is the only other note that points back to the ED visit.
+- Easier. Remove the round-3 routine notes so the ED note is back on page 1, revert the note to name amoxicillin and penicillins, or move the allergy sentence into the first 200 characters of the ED note.
 
 ## Reference solution
 

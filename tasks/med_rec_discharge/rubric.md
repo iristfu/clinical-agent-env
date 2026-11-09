@@ -9,6 +9,7 @@
 - The structured medication list still shows the 7 pre-admission medications.
 - The 9/28 discharge summary (note-1012-2) describes the medication changes in a narrative paragraph and says to continue all other home medications. Its hospital course also mentions a 7-day cefpodoxime course for an E. coli UTI whose final dose was the evening of 9/30, and inpatient-only medications, including pantoprazole 40 mg daily given as a formulary substitution for her home omeprazole.
 - The 9/30 telephone note (note-1012-3), written after discharge, raises losartan to 100 mg and discontinues empagliflozin, which she never filled.
+- The 10/1 telephone note (note-1012-4), written this morning, restarts empagliflozin 10 mg once daily after she got it through a manufacturer savings program.
 
 ## Expected final active list
 
@@ -20,7 +21,7 @@
 | metoprolol tartrate 25 mg twice daily | stopped | discharge summary |
 | metoprolol succinate ER | 50 mg once daily | discharge summary |
 | metformin | 1000 mg twice daily | discharge summary (was 500 mg twice daily) |
-| empagliflozin | not on the list | started at discharge, discontinued by the 9/30 phone note |
+| empagliflozin | 10 mg once daily | started at discharge, discontinued by the 9/30 phone note, restarted by the 10/1 phone note |
 | aspirin 81 mg daily | unchanged | discharge summary says continue |
 | atorvastatin 40 mg daily | unchanged | discharge summary says continue |
 | omeprazole 20 mg daily | unchanged | "continue all other home medications"; pantoprazole was only the inpatient formulary substitute |
@@ -47,11 +48,12 @@ One diagnostic check per intended change (lisinopril_stopped, losartan_100_mg_da
 
 ## Why it's hard
 
-Seven changes have to all be right, and two things the discharge summary mentions must be left off. The cefpodoxime course ended the evening before today, so copying it onto the active list is wrong even though the summary says to "continue cefpodoxime as above until the course is complete". Pantoprazole appears as a medication she took in hospital, but it replaced her home omeprazole only because of the hospital formulary, and the summary says to continue home medications unchanged. Carrying it home would leave her on two PPIs, or on the wrong one. The changes are written as a narrative paragraph rather than a numbered list. The phone note supersedes the discharge summary on two of them, and a run that stops reading after the discharge summary ends with losartan 50 mg and an active empagliflozin. The metoprolol change is a formulation switch, so the old tartrate entry has to be stopped as well as the new one added. The formulary resolves "metoprolol" as ambiguous and returns both options, so picking the right one is the model's job.
+Seven changes have to all be right, and two things the discharge summary mentions must be left off. The cefpodoxime course ended the evening before today, so copying it onto the active list is wrong even though the summary says to "continue cefpodoxime as above until the course is complete". Pantoprazole appears as a medication she took in hospital, but it replaced her home omeprazole only because of the hospital formulary, and the summary says to continue home medications unchanged. Carrying it home would leave her on two PPIs, or on the wrong one. The changes are written as a narrative paragraph rather than a numbered list. The 9/30 phone note supersedes the discharge summary on two of them, and the 10/1 phone note then reverses the 9/30 decision on empagliflozin. A run that stops after the discharge summary ends with losartan 50 mg. A run that stops after the 9/30 note leaves empagliflozin off. The metoprolol change is a formulation switch, so the old tartrate entry has to be stopped as well as the new one added. The formulary resolves "metoprolol" as ambiguous and returns both options, so picking the right one is the model's job.
 
 ## Difficulty knobs
 
 - Applied in round 2. Wrote the discharge changes as a narrative paragraph instead of a numbered list.
 - Applied in round 2. Added the completed cefpodoxime course and the inpatient pantoprazole substitution. In pilot 1 every trial read all three notes and applied all seven changes correctly.
-- Easier. Delete the 9/30 phone note, or remove the cefpodoxime and pantoprazole sentences.
-- Harder. Add a second post-discharge note that reverses one of the 9/30 changes (for example, empagliflozin restarted after a copay card), so the latest instruction has to win twice.
+- Easier. Delete the 10/1 or 9/30 phone note, or remove the cefpodoxime and pantoprazole sentences.
+- Applied in round 3. Added the 10/1 note that restarts empagliflozin after a savings card, so the latest instruction has to win twice. New control stopped_at_9_30_note.
+- Harder. Give her more post-discharge notes that don't change medications (portal messages, a home health intake), so the two that do are mixed in with them.
