@@ -32,14 +32,42 @@ All patients are hand-authored in env/fixtures/build_panel.py so every trap is d
 
 ## The tasks
 
-| Task | What it tests | Why it's hard | Opus 5 pass rate (95% CI) |
-|---|---|---|---|
-| strep_allergy (v2) | Safety check before prescribing, for every positive test today | Six positives each need a different accepted antibiotic. One positive exists only as a lab result from a nurse visit. Two have anaphylaxis documented only in outside notes: one named only by brand on page 2 of a 14-note chart, one past the preview of a scanned record. One has a mild listed rash, two share a name, and a seventh patient tested negative | 6/10, 60% (31% to 83%) |
-| apixaban_dose | Applying a label rule across the panel | Six apixaban patients found only by reading 30 medication lists: a current weight only in a note (contradicted by a pharmacist review), a current creatinine only in an outside letter, an underdosed 79-year-old, a stable creatinine crossing 1.5, a resolved AKI, and a PE patient outside the AF rule | 3/10, 30% (11% to 60%) |
-| panel_a1c | Systematic coverage across a panel | 30 patients, mixed ICD-10 and SNOMED coding, a diagnosis that exists only in a note, a recent outside A1c that exists only in a note, a pending order, a deceased patient, metformin for PCOS | 9/10, 90% (60% to 98%) |
-| med_rec_discharge (not scored) | Reconciling every recent discharge | Five in-scope discharges, one filed as "discharge instructions"; superseding phone notes and a cardiology letter; finished antibiotic courses; pantoprazole is an inpatient substitution in one chart and a deliberate start in another; two restarts depend on lab results; two older discharges must be left alone | 10/10, 100% (72% to 100%), frozen-v1 |
+Each task is a realistic request a clinician or practice manager might give an assistant, where a correct answer depends on applying a specific clinical rule to facts that have to be found in the chart.
 
-Pass rates are from the frozen-v2 final, except med rec, which was last run at frozen-v1 (its task is unchanged since). Each rubric.md has the exact prompt, the expected answer with clinical rationale and sources, every check, what the grader tolerates, the traps, and knobs for making the task easier or harder.
+| Task | Clinical area | Opus 5 pass rate (95% CI) |
+|---|---|---|
+| strep_allergy (v2) | Antibiotic choice and penicillin allergy | 6/10, 60% (31% to 83%) |
+| apixaban_dose | Blood thinner dosing | 3/10, 30% (11% to 60%) |
+| panel_a1c | Diabetes care gaps | 9/10, 90% (60% to 98%) |
+| med_rec_discharge (not scored) | Medication reconciliation after hospital discharge | 10/10, 100% (72% to 100%), frozen-v1 |
+
+Pass rates are from the frozen-v2 final, except med rec, which was last run at frozen-v1 (its task is unchanged since).
+
+### strep_allergy: choosing a safe antibiotic
+
+Several patients in a walk-in clinic had a rapid strep test, and the agent has to prescribe for each one who tested positive. The rule comes from the IDSA strep throat guideline. Penicillin or amoxicillin is first choice, but a patient with a penicillin allergy needs something else. If the allergy was mild, such as a rash, a first-generation cephalosporin like cephalexin is acceptable. If it was anaphylaxis, the only options are clindamycin or a macrolide like azithromycin. The agent also has to record any newly discovered allergy in the chart.
+
+Six patients tested positive and each needs a different accepted antibiotic, so one blanket choice can't pass. Two of them had anaphylaxis to penicillin years ago that is documented only in outside records: one named only by the brand Augmentin on page 2 of a 14-note chart, the other past the preview of a scanned urgent care record. A third has a mild rash on her allergy list. Two patients share the name Maria Lopez, and one has no allergy, so mixing up the charts is an error. One positive result exists only as a lab value from a nurse visit, with no note naming the test. A seventh patient tested negative and should get nothing.
+
+### apixaban_dose: dosing a blood thinner
+
+Pharmacy asks for a review of every patient taking apixaban (Eliquis), a blood thinner used to prevent stroke in atrial fibrillation (AF). The label says to use the lower 2.5 mg twice daily dose only when a patient meets at least two of three criteria: age 80 or older, weight 60 kg or less, serum creatinine 1.5 mg/dL or higher (a sign of reduced kidney function). Otherwise the dose is 5 mg. Too high a dose raises bleeding risk, and too low a dose leaves the patient unprotected against stroke.
+
+Nothing in the tools lists patients by drug, so the agent has to read all 30 medication lists to find the six apixaban patients, then collect each one's current age, weight, creatinine and reason for treatment. Several deciding facts are only in notes: one patient's current weight (and a pharmacist review that wrongly says it wasn't recorded) and another's current creatinine, which is only in an outside kidney specialist's letter. The others test the rule itself. A 79-year-old was put on the low dose years ago because of his age and kidney disease, though he is under 80 and meets only one criterion. A patient with stable kidney disease has since crossed the creatinine threshold. A third had a temporary creatinine spike during an acute kidney injury that has since resolved. The sixth takes apixaban for a pulmonary embolism rather than AF, where the reduction criteria don't apply at all.
+
+### panel_a1c: finding diabetes patients overdue for a test
+
+Quality is running a diabetes care-gap report. The agent has to order a hemoglobin A1c (the standard three-month blood sugar test) for every patient with type 2 diabetes whose last A1c was more than 6 months ago or who has none, unless one is already pending. This is a coverage task over 30 patients rather than a dosing or safety question.
+
+Nearly every exclusion rule is exercised once: type 1 diabetes, prediabetes, resolved gestational diabetes, a deceased patient, a patient who takes metformin for PCOS rather than diabetes, and a patient with an order already pending. Diagnoses are coded in a mix of ICD-10 and SNOMED. One patient's problem list says prediabetes, but a note shows she was actually diagnosed with type 2 diabetes and started on metformin. One patient looks overdue in the structured data but had a recent A1c reported only in an outside endocrinologist's letter.
+
+### med_rec_discharge: reconciling medications after hospital stays
+
+The hospital has sent discharge paperwork for patients it discharged since 9/17, and the agent has to update each patient's outpatient medication list to match what they should be taking now. This is medication reconciliation, a routine and error-prone part of primary care.
+
+Five discharges are in scope and two older ones must be left alone. One is filed as discharge instructions rather than a discharge summary, so a search for the usual title misses it. Later phone notes and a cardiology letter override parts of the original discharge plan, for example a heart attack patient switched from clopidogrel to ticagrelor after genetic testing. Some antibiotic courses have already finished. A stomach-protecting drug is a hospital formulary substitution in one chart and a deliberate new prescription in another. Two decisions about restarting medications depend on lab results that no note restates. This task is not scored because the model never failed it.
+
+Each rubric.md has the exact prompt, the expected answer with clinical rationale and sources, every check, what the grader tolerates, the traps, and knobs for making the task easier or harder.
 
 ## Grading
 
