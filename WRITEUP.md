@@ -97,14 +97,25 @@ There are two final runs, each made on a frozen git tag with Opus 5 at its defau
 - frozen-v1 final: runs/20261109-130217_final, plus runs/20261109-131318_final_medrec_unscored for med rec.
 - frozen-v2 final: runs/20261109-134124_final_v2. It differs from frozen-v1 only in the strep_allergy task, described below.
 
-| Task | frozen-v1 final | frozen-v2 final | Pooled over both finals | In 20-70% band |
-|---|---|---|---|---|
-| strep_allergy | 1/10, 10% (2% to 40%). Task version 1 | 6/10, 60% (31% to 83%). Task version 2 | Not pooled: the two runs tested different versions of the task | v1 no (below); v2 yes |
-| apixaban_dose | 6/10, 60% (31% to 83%) | 3/10, 30% (11% to 60%) | 9/20, 45% (26% to 66%) | yes in both runs and pooled |
-| panel_a1c | 7/10, 70% (40% to 89%) | 9/10, 90% (60% to 98%) | 16/20, 80% (58% to 92%) | v1 yes (top edge); v2 no (above); pooled just above |
-| med_rec_discharge (not scored) | 10/10, 100% (72% to 100%) | not rerun (task unchanged) | 10/10 on the frozen task (a further 18/18 in pilots 1-6, on earlier versions) | no, above in every version |
+Pass rates pooled over both finals, with 95% intervals:
 
-Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task's pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled column is the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.
+| Task | Pooled over both finals | In 20-70% band |
+|---|---|---|
+| strep_allergy | Not pooled, because the two runs tested different versions of the task. The latest version (v2) passed 6/10, 60% (31% to 83%) | yes |
+| apixaban_dose | 9/20, 45% (26% to 66%) | yes |
+| panel_a1c | 16/20, 80% (58% to 92%) | just above |
+| med_rec_discharge (not scored) | 10/10 on the frozen task, and a further 18/18 in pilots 1-6 on earlier versions | no, above in every version |
+
+The same results by run:
+
+| Task | frozen-v1 final | frozen-v2 final |
+|---|---|---|
+| strep_allergy | 1/10, 10% (2% to 40%). Task version 1, below the band | 6/10, 60% (31% to 83%). Task version 2, in the band |
+| apixaban_dose | 6/10, 60% (31% to 83%), in the band | 3/10, 30% (11% to 60%), in the band |
+| panel_a1c | 7/10, 70% (40% to 89%), at the top of the band | 9/10, 90% (60% to 98%), above the band |
+| med_rec_discharge (not scored) | 10/10, 100% (72% to 100%) | not rerun, the task is unchanged |
+
+Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task's pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled rates are the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.
 
 ### What changed between frozen-v1 and frozen-v2
 
@@ -153,7 +164,7 @@ I overturned none of the LLM's labels in either run. In the frozen-v1 run two ca
 
 No failure in either final run, or in any pilot after the round-4 search fix, involved a tool returning wrong or misleading data, a grader rejecting a valid answer, or an ambiguous prompt.
 
-### A few failures worth reading
+### Noteworthy failures
 
 The model reasons correctly and then decides not to look (strep v1 final, trial 7). At turn 8 an "allergies" search lists Maria Lopez 1958's 2019 ED note. At turn 9 the model writes: "I'll skip pt-1003's ankle note since it's probably unrelated." At turn 11 it orders penicillin V. In the same trial it reads Elizabeth Martin's scanned urgent care note, recognises her anaphylaxis, adds the allergy and avoids every beta-lactam. It knows exactly what to do with an allergy history and chooses not to read this one because the note's preview is about an ankle.
 

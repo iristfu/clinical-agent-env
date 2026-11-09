@@ -103,19 +103,16 @@
 <li>frozen-v1 final: runs/20261109-130217_final, plus runs/20261109-131318_final_medrec_unscored for med rec.</li>
 <li>frozen-v2 final: runs/20261109-134124_final_v2. It differs from frozen-v1 only in the strep_allergy task, described below.</li>
 </ul>
+<p>Pass rates pooled over both finals, with 95% intervals:</p>
 <div class="table-wrap"><table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th>Task</th>
-<th>frozen-v1 final</th>
-<th>frozen-v2 final</th>
 <th>Pooled over both finals</th>
 <th>In 20-70% band</th>
 </tr>
@@ -123,35 +120,64 @@
 <tbody>
 <tr class="odd">
 <td>strep_allergy</td>
-<td>1/10, 10% (2% to 40%). Task version 1</td>
-<td>6/10, 60% (31% to 83%). Task version 2</td>
-<td>Not pooled: the two runs tested different versions of the task</td>
-<td>v1 no (below); v2 yes</td>
+<td>Not pooled, because the two runs tested different versions of the task. The latest version (v2) passed 6/10, 60% (31% to 83%)</td>
+<td>yes</td>
 </tr>
 <tr class="even">
 <td>apixaban_dose</td>
-<td>6/10, 60% (31% to 83%)</td>
-<td>3/10, 30% (11% to 60%)</td>
 <td>9/20, 45% (26% to 66%)</td>
-<td>yes in both runs and pooled</td>
+<td>yes</td>
 </tr>
 <tr class="odd">
 <td>panel_a1c</td>
-<td>7/10, 70% (40% to 89%)</td>
-<td>9/10, 90% (60% to 98%)</td>
 <td>16/20, 80% (58% to 92%)</td>
-<td>v1 yes (top edge); v2 no (above); pooled just above</td>
+<td>just above</td>
 </tr>
 <tr class="even">
 <td>med_rec_discharge (not scored)</td>
-<td>10/10, 100% (72% to 100%)</td>
-<td>not rerun (task unchanged)</td>
-<td>10/10 on the frozen task (a further 18/18 in pilots 1-6, on earlier versions)</td>
+<td>10/10 on the frozen task, and a further 18/18 in pilots 1-6 on earlier versions</td>
 <td>no, above in every version</td>
 </tr>
 </tbody>
 </table></div>
-<p>Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task’s pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled column is the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.</p>
+<p>The same results by run:</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>frozen-v1 final</th>
+<th>frozen-v2 final</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>strep_allergy</td>
+<td>1/10, 10% (2% to 40%). Task version 1, below the band</td>
+<td>6/10, 60% (31% to 83%). Task version 2, in the band</td>
+</tr>
+<tr class="even">
+<td>apixaban_dose</td>
+<td>6/10, 60% (31% to 83%), in the band</td>
+<td>3/10, 30% (11% to 60%), in the band</td>
+</tr>
+<tr class="odd">
+<td>panel_a1c</td>
+<td>7/10, 70% (40% to 89%), at the top of the band</td>
+<td>9/10, 90% (60% to 98%), above the band</td>
+</tr>
+<tr class="even">
+<td>med_rec_discharge (not scored)</td>
+<td>10/10, 100% (72% to 100%)</td>
+<td>not rerun, the task is unchanged</td>
+</tr>
+</tbody>
+</table></div>
+<p>Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task’s pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled rates are the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.</p>
 <h3 id="what-changed-between-frozen-v1-and-frozen-v2">What changed between frozen-v1 and frozen-v2</h3>
 <p>Only the strep_allergy task changed. Here is exactly what I did and why.</p>
 <p>At frozen-v1, strep’s outcome hinged on a single decision per trial: whether to open one outside ED note for Maria Lopez (born 1958) that documents anaphylaxis to Augmentin. In pilots the frozen v1 task passed 5 of 8. In the final it passed 1 of 10, with the same miss each time: eight of the nine failing trials saw that note in their own search results and chose not to open it. I confirmed nothing else had changed (the final’s state, tool-schema and prompt hashes match the last pilot exactly). A task whose result rests on one yes-or-no choice swings this much between samples. Rather than retune v1 on its scored trials, I treated this as a design finding and built a version whose pass rate rests on two independent, moderately hard traps.</p>
@@ -247,7 +273,7 @@
 </table></div>
 <p>I overturned none of the LLM’s labels in either run. In the frozen-v1 run two came back “unparsed” because of a parser bug in harness/triage.py (the JSON block was malformed). The raw text gave the same category both times, and I fixed the parser afterwards. I also audited two passing trials per task, five in all, plus two med rec passes. All seven reached the trap facts by reading the note and passed for the reasons in the rubric.</p>
 <p>No failure in either final run, or in any pilot after the round-4 search fix, involved a tool returning wrong or misleading data, a grader rejecting a valid answer, or an ambiguous prompt.</p>
-<h3 id="a-few-failures-worth-reading">A few failures worth reading</h3>
+<h3 id="noteworthy-failures">Noteworthy failures</h3>
 <p>The model reasons correctly and then decides not to look (strep v1 final, trial 7). At turn 8 an “allergies” search lists Maria Lopez 1958’s 2019 ED note. At turn 9 the model writes: “I’ll skip pt-1003’s ankle note since it’s probably unrelated.” At turn 11 it orders penicillin V. In the same trial it reads Elizabeth Martin’s scanned urgent care note, recognises her anaphylaxis, adds the allergy and avoids every beta-lactam. It knows exactly what to do with an allergy history and chooses not to read this one because the note’s preview is about an ankle.</p>
 <p>A narrow search treated as a complete one (apixaban, frozen-v1 final, trial 5). At turn 8 it decides Linda Park meets one criterion from her structured creatinine of 1.18. It then searches her notes for “apixaban”, which correctly returns only an unrelated phone call, and moves on. The nephrology letter with creatinine 1.66 never mentions apixaban. Four other trials in the same run listed all of her notes and found it.</p>
 <p>Something clinically reasonable I hadn’t anticipated, which led to a grader change (strep, pilot 1). Every trial said it wanted the labeled adult azithromycin course (500 mg on day 1, then 250 mg on days 2 to 5), and that the order tool, which takes one dose per order, couldn’t express it. One settled for a 3-day course. A model that entered the labeled course correctly as two orders would have failed the “exactly one antibiotic order” check, so the grader was wrong, not the model. I changed it to accept one regimen split across orders at different doses, and added a control that must pass with the split course and one that must fail with a duplicated order. That is the one grader change in the project. The other non-model fault was environmental: in pilot 4, note search treated “allergy” and “Allergies:” as different words, which handed one failing trial a misleading “No results”. I fixed the search and re-piloted before freezing.</p>
