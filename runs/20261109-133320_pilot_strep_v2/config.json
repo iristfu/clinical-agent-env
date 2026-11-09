@@ -1,0 +1,23 @@
+{
+  "run_id": "20261109-133320_pilot_strep_v2",
+  "created": "2026-11-09T13:33:20",
+  "policy": "model",
+  "model": "claude-opus-5",
+  "tasks": [
+    "strep_allergy"
+  ],
+  "trials": 8,
+  "effort": "model default",
+  "max_tokens": 32000,
+  "thinking_display": true,
+  "git": {
+    "commit": "be82311c14ad31644a3c68248fdd9f82f38825c9",
+    "dirty": false
+  },
+  "fixture": "env/fixtures/panel.json",
+  "initial_state_hash": "eaa87f3c56ec380b",
+  "tool_schema_hash": "01e919b04286",
+  "prompt_hashes": {
+    "strep_allergy": "f41ea62ac93c"
+  }
+}
