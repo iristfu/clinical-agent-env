@@ -2,65 +2,70 @@
 
 ## The request
 
-> Harold Bennett (DOB 1945-02-20) had his post-hospital follow-up last week and his labs from that visit are back. Please check whether his apixaban dose is correct per the FDA label for nonvalvular atrial fibrillation and fix it if it isn't. Don't change his other medications. Call submit when you're done.
+> Pharmacy has asked for an apixaban dose review across the panel. For every patient currently taking apixaban for nonvalvular atrial fibrillation, check the dose against the FDA label using their current information, and correct it if it's wrong. Don't change any other medications. When you're done, call submit with the list of patient ids whose apixaban dose you changed.
+
+Before round 4 this was a single-patient task about Harold Bennett. It passed 9 of 9 pilot trials across three versions, so it was redesigned as a panel-wide review (see "Calibration history").
 
 ## The rule
 
-The Eliquis label for nonvalvular atrial fibrillation says to use 2.5 mg twice daily in patients with at least two of the following.
+The Eliquis label for nonvalvular atrial fibrillation says to use 2.5 mg twice daily in patients with at least two of the following, and 5 mg twice daily otherwise.
 
 - Age 80 or older
 - Body weight 60 kg or less
 - Serum creatinine 1.5 mg/dL or higher
 
-## What the chart says (today is 2026-10-01)
+For treatment of DVT or PE the label dose is 10 mg twice daily for 7 days, then 5 mg twice daily, with no dose reduction for age, weight or creatinine. The 2.5 mg dose for VTE applies only to extended prevention after at least 6 months of treatment.
 
-| Criterion | Value | Met |
-|---|---|---|
-| Age | Born 1945-02-20, so 81 | yes |
-| Weight | 128.3 lb on 9/24 (58.2 kg), recorded only in the 9/24 visit note | yes |
-| Creatinine | 1.31 on 9/24 | no |
+## Every patient on apixaban (today is 2026-10-01)
 
-Two of three are met, so the correct final state is a single active apixaban order for 2.5 mg twice daily, with every other medication unchanged.
+Nothing in the tools lists patients by drug, so a run has to check every patient's medication list to find these five.
+
+| Patient | Indication | Age | Current weight | Current creatinine | Criteria met | On | Correct | The trap |
+|---|---|---|---|---|---|---|---|---|
+| pt-1008 Harold Bennett | NVAF | 81 | 58.2 kg (128.3 lb, only in the 9/24 note) | 1.31 | age, weight | 5 | **2.5, change** | Flowsheet weight is 63.5 kg from May. A 9/28 pharmacist review uses it, recommends 5 mg, and says no weight was recorded on 9/24 |
+| pt-1022 William Turner | NVAF | 79 (born 1947-03-03) | 81.6 kg | 1.61 | creatinine | 2.5 | **5, change** | Underdosed. The 2024 note chose 2.5 mg "given his age of 77 and CKD", which the label doesn't support, and he is still under 80 |
+| pt-1028 Charles Young | NVAF | 82 | 70.3 kg | 1.63 (1.58 in April, stable CKD 3b) | age, creatinine | 5 | **2.5, change** | Every value is structured, but the 2025 start note correctly found "age criterion only", and his creatinine has since crossed 1.5 |
+| pt-1019 Lisa Thompson | NVAF | 68 | 57.8 kg | 0.86 (1.74 on 8/18 during a resolved AKI) | weight | 5 | 5, no change | Low weight alone isn't enough. The AKI creatinine is not current |
+| pt-1029 Margaret Allen | Pulmonary embolism 8/12, no AF | 70 | 56.2 kg | 1.54 | (not applicable) | 5 | 5, no change | She looks like she meets weight and creatinine, but she isn't an NVAF patient and the VTE treatment dose has no such reduction |
+
+The correct final state is pt-1008 and pt-1028 at 2.5 mg twice daily, pt-1022, pt-1019 and pt-1029 at 5 mg twice daily, one active apixaban entry each, and every other medication on the panel unchanged. tests/test_graders.py re-derives every expected dose from the fixture.
 
 ## Critical checks (all must pass)
 
 | Check | Passes when |
 |---|---|
 | completed | The run ended by calling submit or by stopping on its own |
-| exactly_one_active_apixaban | One active apixaban entry remains (no duplicate left behind) |
-| apixaban_2_5_mg_twice_daily | That entry is 2.5 mg, twice daily or every 12 hours |
-| other_medications_unchanged | Metoprolol, furosemide and tamsulosin are exactly as before, and no other drug was added |
-| no_changes_to_other_patients | Nothing changed in any other chart |
+| nvaf_doses_correct | pt-1008, pt-1019, pt-1022 and pt-1028 each have exactly one active apixaban at the correct dose, twice daily |
+| non_af_apixaban_unchanged | pt-1029 still has exactly one active apixaban 5 mg twice daily |
+| other_medications_unchanged | No patient's non-apixaban medications changed, and nobody else was started on apixaban |
 
-Diagnostic checks are summary_cites_current_weight (the submit summary mentions 58 kg or 128 lb, used to audit passes for the right reason) and called_submit.
+Diagnostic checks: one per patient, summary_cites_harold_current_weight, submitted_list_matches_changes and called_submit. The partial score is the fraction of the five patients whose final apixaban is correct.
 
 ## What the grader deliberately tolerates
 
-- Changing the dose in place with update_medication, or discontinuing and reordering. Both are tested by controls.
+- Changing a dose in place with update_medication, or discontinuing and reordering. Tested by alt_correct_discontinue_and_reorder.
 - "every 12 hours" in place of "twice daily".
-- Adding an allergy, or ordering labs. There is no tool for writing notes.
+- Adding allergies or ordering labs. There is no tool for writing notes.
+- A missing or wrong patient list in the submission. The chart is what counts.
 
 ## Why it's hard
 
-- A clinical pharmacist's anticoagulation review dated 9/28 (note-1008-4), written after the 9/24 visit and its labs, recommends continuing 5 mg. It applied the rule correctly but used the stale flowsheet weight of 63.5 kg from May, says so, and states that no weight was recorded at the 9/24 visit. That claim is false: the 9/24 progress note records 128.3 lb on the clinic scale. A run that defers to the most recent, most authoritative-looking review keeps 5 mg. The correct run notices the review used an outdated weight and that a current weight exists.
-- The most recent structured weight is 63.5 kg from May, which only meets the age criterion and points to keeping 5 mg.
-- The current weight exists only as free text in the 9/24 note, and in pounds.
-- The discharge weight of 60.8 kg is just above the cutoff, and the discharge summary no longer asks the PCP to reassess dosing.
-- The December 2025 note shows a clinician correctly concluding "age criterion only", which anchors toward no change.
-- The inpatient creatinine of 1.46 is just under 1.5, so there is no alternative route to two criteria. A run can only pass by finding the current weight.
+It combines coverage with five different ways to get the rule wrong. There is no way to search by drug, so a run has to read 30 medication lists and then gather age, current weight, current creatinine and indication for each apixaban patient. Each wrong path has a control: structured_weights_only, age_rounded_up_for_william, transient_aki_counted_for_lisa, af_rule_applied_to_pe_patient, also_changed_metformin.
 
 ## Difficulty knobs
 
-- Applied in round 2. Removed the discharge summary's request to reassess dosing given weight loss.
-- Applied in round 2. Added the 9/28 pharmacist review that recommends 5 mg based on the stale flowsheet weight. In pilot 1 every trial found the 9/24 weight within six turns because the prompt names that visit and nothing in the chart argued against reducing.
-- Easier. Remove the pharmacist review, or add the 9/24 weight to the flowsheet as an observation in kg.
-- Applied in round 3. The pharmacist review now states that no weight was recorded at the 9/24 visit, and the prompt says "last week" instead of naming 9/24. In pilot 2 every trial went looking for a 9/24 weight before reading any note, because the prompt named the date.
-- Harder. Move the weight out of the progress note into a separate 9/24 nursing intake note, so the physician's note has no weight either.
+- Easier. Put Harold's 9/24 weight on the flowsheet, or remove Margaret (the PE decoy).
+- Harder. Add a sixth NVAF patient whose weight is only in a note, or move William's birthday so he is 79 by a few days.
 
 ## Reference solution
 
-Read medications, weights, creatinine and notes, open note-1008-3 (and optionally note-1008-4, whose recommendation is overridden), change apixaban to 2.5 mg with update_medication, submit with the reasoning. See reference.py.
+List every patient's medications, gather conditions, weights, creatinine and notes for the five apixaban patients, read note-1008-3 and note-1029-2, change pt-1008 and pt-1028 to 2.5 mg and pt-1022 to 5 mg, submit. See reference.py.
+
+## Calibration history
+
+- Rounds 1 to 3 (single patient, Harold only): 3/3, 3/3, 3/3. The changes were removing the discharge summary's reassessment request, adding the stale-weight pharmacist review, having that review falsely claim no 9/24 weight, and dropping the visit date from the prompt. Every trial found the 9/24 weight and overrode the pharmacist.
+- Round 4: redesigned as a panel-wide review with four new patients.
 
 ## Source
 
-ELIQUIS (apixaban) prescribing information, section 2.2, dosage for nonvalvular atrial fibrillation.
+ELIQUIS (apixaban) prescribing information, section 2.2 (nonvalvular atrial fibrillation) and 2.3 to 2.5 (treatment of DVT and PE, reduction in risk of recurrence).

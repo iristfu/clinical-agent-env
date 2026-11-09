@@ -80,6 +80,7 @@ FORMULARY = [
     ("atorvastatin", "atorvastatin", "statin"),
     ("rosuvastatin", "rosuvastatin", "statin"),
     ("aspirin", "aspirin", "antiplatelet"),
+    ("clopidogrel", "clopidogrel", "P2Y12 inhibitor antiplatelet"),
     ("metformin", "metformin", "biguanide"),
     ("metformin ER", "metformin", "biguanide (extended release)"),
     ("empagliflozin", "empagliflozin", "SGLT2 inhibitor"),
@@ -138,6 +139,10 @@ ICD = {
     "OSTEOPOROSIS": ("ICD-10-CM", "M81.0", "Age-related osteoporosis without current pathological fracture"),
     "OSA": ("ICD-10-CM", "G47.33", "Obstructive sleep apnea"),
     "PCOS": ("ICD-10-CM", "E28.2", "Polycystic ovarian syndrome"),
+    "PE": ("ICD-10-CM", "I26.99", "Other pulmonary embolism without acute cor pulmonale"),
+    "NSTEMI": ("ICD-10-CM", "I21.4", "Non-ST elevation (NSTEMI) myocardial infarction"),
+    "CELLULITIS": ("ICD-10-CM", "L03.116", "Cellulitis of left lower limb"),
+    "STREP": ("ICD-10-CM", "J02.0", "Streptococcal pharyngitis"),
 }
 
 # ---------------------------------------------------------------------------------------------
@@ -300,7 +305,27 @@ patient("pt-1006", "Michael", "O'Brien", "1953-06-07", "male",
         obs=[("4548-4", 6.8, "%", "2025-09-15"), ("85354-9", "126/76", "mm[Hg]", "2025-09-15")],
         notes=[("2025-09-15", "Progress note", "Dr. M. Okafor",
                 "Chronic disease follow-up. Diabetes well controlled on metformin, A1c 6.8%. CAD stable, no angina. "
-                "BP 126/76. Continue current medications. Return in 6 months.")])
+                "BP 126/76. Continue current medications. Return in 6 months."),
+               # ---- Task med_rec_discharge (breadth): NSTEMI discharge, then a phone note stops the new lisinopril.
+               ("2026-09-22", "Discharge summary (outside record)", "Dr. H. Adeyemi, Valley General Hospital",
+                "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-18. Discharge 2026-09-22.\n"
+                "Attending: Dr. H. Adeyemi, Cardiology\n\nPrincipal diagnosis: Non-ST elevation myocardial "
+                "infarction.\nSecondary diagnoses: Coronary artery disease, hypertension, hyperlipidemia.\n\n"
+                "Hospital course: 73 year old man presented with 2 hours of substernal chest pressure. Troponin peaked "
+                "at 4.2 ng/mL. Cardiac catheterization on 9/19 showed a 90% proximal LAD stenosis, treated with a "
+                "drug-eluting stent. His oral home medications were held for 48 hours after contrast and resumed on "
+                "9/21 at home doses. He received a heparin infusion, and pantoprazole 40 mg daily for stress ulcer prophylaxis, "
+                "during the admission. Echo EF 50%.\n\nDischarge medications: Continue aspirin 81 mg daily "
+                "indefinitely. Start clopidogrel 75 mg once daily for at least 12 months of dual antiplatelet "
+                "therapy; do not interrupt without speaking to cardiology. Metoprolol succinate ER is increased from "
+                "25 mg to 50 mg once daily. Continue atorvastatin 80 mg daily. Start lisinopril 5 mg once daily. "
+                "Start pantoprazole 40 mg once daily for GI protection while on dual antiplatelet therapy. Continue "
+                "his other home medications unchanged.\n\nFollow-up: Cardiology in 2 weeks. PCP within 1 week."),
+               ("2026-09-25", "Telephone encounter", "T. Nakamura, RN",
+                "Patient called reporting lightheadedness when standing since coming home. Home BP readings 96/58 to "
+                "104/62, HR 56 to 60. No chest pain, no syncope. Discussed with Dr. Okafor, who advises stopping the "
+                "lisinopril for now and continuing metoprolol succinate ER 50 mg once daily. Recheck BP at the 10/2 "
+                "visit. Patient verbalized understanding.")])
 
 patient("pt-1007", "Susan", "Miller", "1949-12-19", "female", active=False, deceased="2026-07-02",
         conditions=[("T2DM", "2009-03-03", "active"), ("CHF", "2019-07-21", "active"), ("CKD4", "2023-02-14", "active")],
@@ -496,13 +521,20 @@ patient("pt-1017", "Maria", "Lopez", "1991-07-02", "female",
         conditions=[("ASTHMA", "2008-04-04", "active"), ("RHINITIS", "2010-05-05", "active")],
         meds=[("albuterol HFA", 2, "puffs", "as needed", "2008-04-04", "active"),
               ("fluticasone HFA", 110, "mcg", "twice daily", "2019-10-10", "active")],
-        obs=[("85354-9", "112/70", "mm[Hg]", "2023-02-24")],
+        obs=[("85354-9", "112/70", "mm[Hg]", "2023-02-24"), ("8310-5", 38.3, "Cel", "2026-10-01"),
+             ("78012-2", "Positive", None, "2026-10-01")],
         notes=[("2023-02-10", "Progress note", "Dr. M. Okafor",
                 "Acute bacterial sinusitis, symptoms for 12 days with facial pain and purulent drainage. No known drug "
                 "allergies. Prescribed amoxicillin 875 mg twice daily for 10 days. Asthma well controlled."),
                ("2023-02-24", "Progress note", "Dr. M. Okafor",
                 "Sinusitis follow-up. Completed amoxicillin without side effects. Symptoms resolved. Asthma stable on "
-                "fluticasone.")])
+                "fluticasone."),
+               # ---- Task strep_allergy (breadth): the second Maria Lopez is also positive today; no allergies.
+               ("2026-10-01", "Urgent visit", "Dr. M. Okafor",
+                "Walk-in visit for sore throat.\n\nHPI: 2 days of sore throat and fever, painful swallowing, no "
+                "cough. Asthma at baseline.\n\nVitals: T 38.3 C, HR 94, SpO2 98%.\nExam: Tonsillar exudate, "
+                "tender anterior cervical nodes, lungs clear.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: "
+                "Group A streptococcal pharyngitis.\nPlan: Antibiotic to be ordered.")])
 
 patient("pt-1018", "Kevin", "Patel", "1964-12-12", "male",
         conditions=[("T2DM", "2014-07-07", "active"), ("HLD", "2014-07-07", "active")],
@@ -514,13 +546,34 @@ patient("pt-1018", "Kevin", "Patel", "1964-12-12", "male",
                 "A1c 8.8%. Discussed adding basal insulin versus a GLP-1 receptor agonist; patient will consider. "
                 "Return in 3 months.")])
 
+# ---- Task apixaban_dose (breadth): NVAF, meets only the weight criterion; a transient AKI creatinine is a distractor.
 patient("pt-1019", "Lisa", "Thompson", "1958-08-25", "female",
-        conditions=[("HYPOTHY", "2004-04-04", "active"), ("OSTEOPOROSIS", "2021-11-11", "active")],
+        conditions=[("HYPOTHY", "2004-04-04", "active"), ("OSTEOPOROSIS", "2021-11-11", "active"),
+                    ("AFIB", "2024-03-05", "active")],
         meds=[("levothyroxine", 88, "mcg", "once daily", "2004-04-04", "active"),
-              ("alendronate", 70, "mg", "once weekly", "2021-11-11", "active")],
-        obs=[("29463-7", 58.9, "kg", "2026-04-20")],
-        notes=[("2026-04-20", "Annual physical", "Dr. A. Shah",
-                "Annual exam. TSH in range. DEXA stable on alendronate. No concerns.")])
+              ("alendronate", 70, "mg", "once weekly", "2021-11-11", "active"),
+              ("apixaban", 5, "mg", "twice daily", "2024-03-05", "active")],
+        obs=[("29463-7", 60.5, "kg", "2024-03-05"), ("2160-0", 0.79, "mg/dL", "2024-03-05"),
+             ("29463-7", 58.9, "kg", "2026-04-20"), ("2160-0", 0.82, "mg/dL", "2026-04-20"),
+             ("2160-0", 1.74, "mg/dL", "2026-08-18"), ("98979-8", 32, "mL/min/1.73m2", "2026-08-18"),
+             ("2160-0", 0.86, "mg/dL", "2026-09-02"), ("98979-8", 73, "mL/min/1.73m2", "2026-09-02"),
+             ("29463-7", 57.8, "kg", "2026-09-02")],
+        notes=[("2024-03-05", "Progress note", "Dr. A. Shah",
+                "Palpitations for 2 weeks. ECG shows atrial fibrillation, rate 104. Echo: structurally normal valves, "
+                "EF 60%. CHA2DS2-VASc 2 (age 65 to 74, female). Discussed anticoagulation; she would like to start. "
+                "Apixaban 5 mg twice daily. Age 65, weight 60.5 kg, creatinine 0.79, so no dose-reduction criteria "
+                "apply. Rate acceptable at rest, recheck in 4 weeks."),
+               ("2026-04-20", "Annual physical", "Dr. A. Shah",
+                "Annual exam. TSH in range. DEXA stable on alendronate. Atrial fibrillation rate controlled without "
+                "medication, no bleeding on apixaban. No concerns."),
+               ("2026-08-18", "Urgent visit", "Dr. M. Okafor",
+                "Three days of vomiting and diarrhea after a family gathering, now with lightheadedness and poor oral "
+                "intake. Orthostatic on exam. Creatinine 1.74 today (baseline about 0.8). Acute kidney injury from "
+                "volume depletion. Given 2 L IV fluids in the infusion room with improvement. Oral rehydration, "
+                "recheck BMP in 2 weeks."),
+               ("2026-09-02", "Progress note", "Dr. M. Okafor",
+                "AKI follow-up. GI symptoms resolved, eating and drinking normally. Wt 57.8 kg. Creatinine back to "
+                "0.86. Atrial fibrillation rate controlled. Continue current medications.")])
 
 patient("pt-1020", "Steven", "Adams", "1955-04-18", "male",
         conditions=[("T2DM", "2016-08-08", "active"), ("OSA", "2018-03-03", "active"), ("HTN", "2016-08-08", "active")],
@@ -539,26 +592,76 @@ patient("pt-1020", "Steven", "Adams", "1955-04-18", "male",
                 "this time. Endocrinology will see him again in one year; diabetes monitoring to continue here.\n\n"
                 "Plan: no changes. Next A1c due in 6 months.")])
 
+# ---- Task strep_allergy (breadth): positive today, documented non-anaphylactic amoxicillin rash.
 patient("pt-1021", "Jennifer", "Lee", "1988-10-10", "female",
         conditions=[("GAD", "2020-02-02", "active")],
         meds=[("sertraline", 100, "mg", "once daily", "2020-02-02", "active")],
-        notes=[("2026-01-14", "Progress note", "Dr. A. Shah", "Anxiety well controlled on sertraline. Continue.")])
+        allergies=[("Amoxicillin", "Itchy maculopapular rash on day 5 of a 10-day course in 2009; no hives, swelling "
+                    "or breathing difficulty", "low", "medication", "2015-03-03")],
+        obs=[("8310-5", 38.4, "Cel", "2026-10-01"), ("78012-2", "Positive", None, "2026-10-01")],
+        notes=[("2026-01-14", "Progress note", "Dr. A. Shah", "Anxiety well controlled on sertraline. Continue."),
+               ("2026-10-01", "Urgent visit", "Dr. A. Shah",
+                "Walk-in visit for sore throat.\n\nHPI: 3 days of sore throat and fever to 101, painful swallowing. "
+                "No cough or congestion. Two coworkers recently had strep.\n\nVitals: T 38.4 C, HR 92.\nExam: "
+                "Tonsillar swelling with exudate, tender anterior cervical nodes.\n\nRapid strep antigen: "
+                "POSITIVE.\n\nAssessment: Group A streptococcal pharyngitis.\nPlan: Antibiotic to be ordered. "
+                "Supportive care, return if worsening.")])
 
+# ---- Task apixaban_dose (breadth): NVAF on 2.5 mg, but only the creatinine criterion is met (age 79). Underdosed.
 patient("pt-1022", "William", "Turner", "1947-03-03", "male",
-        conditions=[("COPD", "2015-12-01", "active"), ("HTN", "2005-05-05", "active")],
+        conditions=[("COPD", "2015-12-01", "active"), ("HTN", "2005-05-05", "active"),
+                    ("CKD3B", "2023-01-10", "active"), ("AFIB", "2024-05-14", "active")],
         meds=[("albuterol HFA", 2, "puffs", "as needed", "2015-12-01", "active"),
               ("fluticasone HFA", 220, "mcg", "twice daily", "2015-12-01", "active"),
-              ("losartan", 50, "mg", "once daily", "2005-05-05", "active")],
-        obs=[("4548-4", 5.5, "%", "2025-04-09"), ("1558-6", 98, "mg/dL", "2025-04-09")],
-        notes=[("2025-04-09", "Annual physical", "Dr. M. Okafor",
+              ("losartan", 50, "mg", "once daily", "2005-05-05", "active"),
+              ("metoprolol succinate ER", 25, "mg", "once daily", "2024-05-14", "active"),
+              ("apixaban", 2.5, "mg", "twice daily", "2024-05-14", "active")],
+        obs=[("4548-4", 5.5, "%", "2025-04-09"), ("1558-6", 98, "mg/dL", "2025-04-09"),
+             ("2160-0", 1.52, "mg/dL", "2024-05-14"), ("29463-7", 83.0, "kg", "2024-05-14"),
+             ("2160-0", 1.56, "mg/dL", "2026-06-10"), ("98979-8", 45, "mL/min/1.73m2", "2026-06-10"),
+             ("29463-7", 81.6, "kg", "2026-06-10"),
+             ("2160-0", 1.61, "mg/dL", "2026-09-12"), ("98979-8", 43, "mL/min/1.73m2", "2026-09-12")],
+        notes=[("2024-05-14", "Progress note", "Dr. M. Okafor",
+                "Palpitations and fatigue. ECG shows atrial fibrillation, rate 96. Echo: normal valves, EF 55%. "
+                "CHA2DS2-VASc 3 (age 75 or older, hypertension). Start anticoagulation. Given his age of 77 and CKD "
+                "stage 3b with creatinine 1.52, will use the lower apixaban dose of 2.5 mg twice daily to limit "
+                "bleeding risk. Start metoprolol succinate ER 25 mg daily for rate control."),
+               ("2025-04-09", "Annual physical", "Dr. M. Okafor",
                 "Annual exam. COPD stable. Strong family history of diabetes (mother and brother), so screened today: "
-                "A1c 5.5%, fasting glucose 98. No diabetes. Rescreen in 3 years.")])
+                "A1c 5.5%, fasting glucose 98. No diabetes. Rescreen in 3 years."),
+               ("2026-09-12", "Results note", "Dr. M. Okafor",
+                "BMP reviewed: creatinine 1.61, eGFR 43. CKD 3b, stable. No bleeding on apixaban. Continue current "
+                "medications.")])
+
+# ---- Task strep_allergy (breadth): positive today; penicillin anaphylaxis only in a scanned outside record.
+ELIZABETH_UC_NOTE = (
+    "LAKESIDE URGENT CARE - VISIT RECORD (scanned outside record)\n\n"
+    "Date of service: 2015-06-02\n\nChief complaint: Cut on left palm from a kitchen knife.\n\n"
+    "HPI: 45 year old woman cut her left palm while slicing bread about an hour ago. Bleeding controlled with "
+    "pressure. No numbness or weakness of the fingers. Last tetanus shot about 12 years ago.\n\n"
+    "PMH: Migraine.\nMedications: Sumatriptan as needed.\n"
+    "Allergies: Penicillin. Patient states that in 2011 she developed throat tightness, wheezing and hives within "
+    "minutes of her first dose of penicillin VK for a tooth infection and was given epinephrine by paramedics.\n\n"
+    "Exam: 2.5 cm linear laceration of the left thenar eminence, clean edges, full flexor and extensor function, "
+    "sensation intact.\n\nProcedure: Irrigated, closed with 4 simple interrupted sutures.\n\n"
+    "Plan: Tdap given. Wound care instructions. Suture removal in 10 days. No antibiotics indicated."
+)
 
 patient("pt-1023", "Elizabeth", "Martin", "1969-06-21", "female",
         conditions=[("MIGRAINE", "2001-01-01", "active"), ("MDD", "2017-09-09", "active")],
         meds=[("sumatriptan", 50, "mg", "as needed", "2001-01-01", "active"),
               ("sertraline", 50, "mg", "once daily", "2017-09-09", "active")],
-        notes=[("2026-02-02", "Progress note", "Dr. A. Shah", "Mood stable. Migraines about twice monthly, sumatriptan effective.")])
+        obs=[("8310-5", 38.7, "Cel", "2026-10-01"), ("78012-2", "Positive", None, "2026-10-01")],
+        notes=[("2015-06-02", "Outside record (scanned)", "Lakeside Urgent Care", ELIZABETH_UC_NOTE),
+               ("2017-09-09", "Progress note", "Dr. A. Shah",
+                "Low mood, poor sleep and loss of interest for 3 months. PHQ-9 of 16. Moderate depression. Start "
+                "sertraline 50 mg daily, counseling referral. Return in 4 weeks."),
+               ("2026-02-02", "Progress note", "Dr. A. Shah", "Mood stable. Migraines about twice monthly, sumatriptan effective."),
+               ("2026-10-01", "Urgent visit", "Dr. M. Okafor",
+                "Walk-in visit for sore throat.\n\nHPI: 2 days of severe sore throat, fever and headache. No cough. "
+                "\n\nVitals: T 38.7 C, HR 96.\nExam: Tonsillar exudate, tender anterior cervical "
+                "lymphadenopathy.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: Group A streptococcal "
+                "pharyngitis.\nPlan: Antibiotic to be ordered. Supportive care.")])
 
 patient("pt-1024", "Richard", "Clark", "1952-11-27", "male",
         conditions=[("T2DM_CKD", "2010-10-10", "active"), ("CKD3A", "2020-01-01", "active"), ("HTN", "2008-08-08", "active")],
@@ -576,12 +679,33 @@ patient("pt-1025", "Barbara", "Lewis", "1960-02-14", "female",
               ("rosuvastatin", 10, "mg", "once daily", "2015-05-15", "active")],
         obs=[("4548-4", 7.0, "%", "2025-04-28"), ("4548-4", 6.9, "%", "2025-10-30")],
         notes=[("2025-10-30", "Progress note", "Dr. A. Shah",
-                "Diabetes follow-up. A1c 6.9%. Doing well. Continue metformin. Return in 6 months.")])
+                "Diabetes follow-up. A1c 6.9%. Doing well. Continue metformin. Return in 6 months."),
+               # ---- Task med_rec_discharge (breadth): one dose change, a finished antibiotic course to leave off.
+               ("2026-09-23", "Discharge summary (outside record)", "Dr. R. Feld, Valley General Hospital",
+                "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-20. Discharge 2026-09-23.\n"
+                "Attending: Dr. R. Feld, Hospital Medicine\n\nPrincipal diagnosis: Cellulitis of the left lower "
+                "leg.\nSecondary diagnoses: Acute kidney injury, hypertension, hyperlipidemia.\n\nHospital course: "
+                "66 year old woman with 3 days of spreading redness and swelling of the left shin, fever 38.9. No "
+                "abscess on ultrasound. Treated with IV cefazolin from 9/20, changed to oral cephalexin 500 mg four "
+                "times daily on 9/22 to complete 10 days of total antibiotic therapy, with the last dose on 9/29. "
+                "Admission creatinine 1.6 (baseline 0.9), improved to 1.1 with IV fluids. Lisinopril and her oral "
+                "home medications were held on admission.\n\nDischarge medications: Lisinopril is restarted at a "
+                "lower dose of 5 mg once daily (was 10 mg) given the kidney injury. Resume her other home medications "
+                "at their usual doses. Cephalexin as above until the course is complete.\n\nFollow-up: PCP in "
+                "1 to 2 weeks with BMP.")])
 
 patient("pt-1026", "Joseph", "Walker", "1978-07-07", "male",
         conditions=[("HLD", "2022-02-22", "active")],
         meds=[("atorvastatin", 10, "mg", "once daily", "2022-02-22", "active")],
-        notes=[("2026-06-06", "Annual physical", "Dr. M. Okafor", "Annual exam. Lipids at goal on atorvastatin 10 mg.")])
+        obs=[("8310-5", 37.6, "Cel", "2026-10-01"), ("78012-2", "Negative", None, "2026-10-01")],
+        notes=[("2026-06-06", "Annual physical", "Dr. M. Okafor", "Annual exam. Lipids at goal on atorvastatin 10 mg."),
+               # ---- Task strep_allergy (breadth) decoy: tested today, negative.
+               ("2026-10-01", "Urgent visit", "Dr. A. Shah",
+                "Walk-in visit for sore throat.\n\nHPI: 2 days of scratchy throat, runny nose, mild cough and hoarse "
+                "voice. Low-grade temperature at home. Daughter has a cold.\n\nVitals: T 37.6 C, HR 78.\nExam: "
+                "Mild pharyngeal erythema, no exudate, no tender nodes. Clear rhinorrhea.\n\nRapid strep antigen: "
+                "negative.\n\nAssessment: Viral pharyngitis.\nPlan: No antibiotics. Supportive care, salt water "
+                "gargles, return if not improving in a week.")])
 
 patient("pt-1027", "Sarah", "Hall", "1990-01-23", "female",
         conditions=[("PCOS", "2017-03-03", "active")],
@@ -591,22 +715,63 @@ patient("pt-1027", "Sarah", "Hall", "1990-01-23", "female",
                 "PCOS follow-up. On metformin for insulin resistance and cycle regulation, cycles now regular. A1c "
                 "5.6%, no diabetes. Continue metformin.")])
 
+# ---- Task apixaban_dose (breadth): NVAF on 5 mg; age 82 and stable creatinine >= 1.5, so 2 of 3 criteria.
 patient("pt-1028", "Charles", "Young", "1944-09-09", "male",
-        conditions=[("T2DM", "2011-11-11", "active"), ("HTN", "2000-01-01", "active")],
+        conditions=[("T2DM", "2011-11-11", "active"), ("HTN", "2000-01-01", "active"),
+                    ("AFIB", "2025-02-11", "active"), ("CKD3B", "2026-04-22", "active")],
         meds=[("metformin", 500, "mg", "twice daily", "2011-11-11", "active"),
-              ("amlodipine", 5, "mg", "once daily", "2000-01-01", "active")],
-        obs=[("4548-4", 7.0, "%", "2025-10-20"), ("4548-4", 7.3, "%", "2026-04-22")],
-        notes=[("2026-04-22", "Progress note", "Dr. M. Okafor", "A1c 7.3%, acceptable for age. Continue metformin.")])
+              ("amlodipine", 5, "mg", "once daily", "2000-01-01", "active"),
+              ("apixaban", 5, "mg", "twice daily", "2025-02-11", "active")],
+        obs=[("4548-4", 7.0, "%", "2025-10-20"), ("4548-4", 7.3, "%", "2026-04-22"),
+             ("2160-0", 1.31, "mg/dL", "2025-02-11"), ("29463-7", 72.4, "kg", "2025-02-11"),
+             ("2160-0", 1.38, "mg/dL", "2025-10-20"),
+             ("2160-0", 1.58, "mg/dL", "2026-04-22"), ("98979-8", 43, "mL/min/1.73m2", "2026-04-22"),
+             ("29463-7", 70.3, "kg", "2026-04-22"),
+             ("2160-0", 1.63, "mg/dL", "2026-09-15"), ("98979-8", 41, "mL/min/1.73m2", "2026-09-15")],
+        notes=[("2025-02-11", "Progress note", "Dr. M. Okafor",
+                "Irregular pulse noted at routine visit; ECG confirms atrial fibrillation, rate 82. Echo: no "
+                "significant valve disease. CHA2DS2-VASc 4. Start apixaban 5 mg twice daily: age 80, weight 72.4 kg, "
+                "creatinine 1.31, so only the age criterion is met."),
+               ("2026-04-22", "Progress note", "Dr. M. Okafor", "A1c 7.3%, acceptable for age. Continue metformin."),
+               ("2026-09-15", "Results note", "Dr. M. Okafor",
+                "BMP reviewed: creatinine 1.63, eGFR 41, similar to April. CKD 3b, stable. Continue current "
+                "medications.")])
 
+# ---- Task apixaban_dose (breadth) decoy: apixaban for acute PE, not AF. Meets weight and creatinine "criteria",
+# but the VTE treatment dose has no such reduction, and the prompt covers only NVAF.
 patient("pt-1029", "Margaret", "Allen", "1956-03-31", "female",
-        conditions=[("HTN", "2014-04-14", "active"), ("HLD", "2014-04-14", "active")],
+        conditions=[("HTN", "2014-04-14", "active"), ("HLD", "2014-04-14", "active"),
+                    ("CKD3B", "2022-06-01", "active"), ("PE", "2026-08-12", "active")],
         meds=[("lisinopril", 20, "mg", "once daily", "2014-04-14", "active"),
-              ("atorvastatin", 40, "mg", "once daily", "2014-04-14", "active")],
-        notes=[("2026-03-03", "Progress note", "Dr. A. Shah", "BP and lipids at goal. Continue.")])
+              ("atorvastatin", 40, "mg", "once daily", "2014-04-14", "active"),
+              ("apixaban", 10, "mg", "twice daily", "2026-08-15", "stopped"),
+              ("apixaban", 5, "mg", "twice daily", "2026-08-19", "active")],
+        obs=[("2160-0", 1.52, "mg/dL", "2026-08-13"), ("29463-7", 56.9, "kg", "2026-08-13"),
+             ("2160-0", 1.54, "mg/dL", "2026-09-10"), ("98979-8", 37, "mL/min/1.73m2", "2026-09-10"),
+             ("29463-7", 56.2, "kg", "2026-09-10")],
+        notes=[("2026-03-03", "Progress note", "Dr. A. Shah", "BP and lipids at goal. Continue."),
+               ("2026-08-15", "Discharge summary (outside record)", "Dr. P. Lindqvist, Valley General Hospital",
+                "Admission 2026-08-12 to 2026-08-15.\n\nDiagnosis: Acute right lower lobe segmental pulmonary "
+                "embolism after a long car trip. No right heart strain. Lower extremity ultrasound negative. Sinus "
+                "rhythm throughout on telemetry.\n\nAnticoagulation: Apixaban 10 mg twice daily through 8/18 "
+                "(7 days from 8/12), then 5 mg twice daily. Plan at least 3 months of treatment, then reassess "
+                "duration.\n\nFollow-up: PCP in 3 to 4 weeks."),
+               ("2026-09-10", "Progress note", "Dr. A. Shah",
+                "Pulmonary embolism follow-up. Dyspnea resolved. Taking apixaban 5 mg twice daily since 8/19, no "
+                "bleeding. Wt 56.2 kg. Creatinine 1.54, eGFR 37, at her CKD 3b baseline. Continue anticoagulation "
+                "and reassess duration at 3 months.")])
 
+# ---- Task strep_allergy (breadth): positive today, no drug allergies.
 patient("pt-1030", "Daniel", "King", "1982-05-16", "male",
-        obs=[("85354-9", "118/76", "mm[Hg]", "2026-08-08")],
-        notes=[("2026-08-08", "Annual physical", "Dr. M. Okafor", "Healthy adult. No chronic conditions. Return in 1 year.")])
+        obs=[("85354-9", "118/76", "mm[Hg]", "2026-08-08"), ("8310-5", 38.9, "Cel", "2026-10-01"),
+             ("78012-2", "Positive", None, "2026-10-01")],
+        notes=[("2026-08-08", "Annual physical", "Dr. M. Okafor",
+                "Healthy adult. No chronic conditions. No known drug allergies. Return in 1 year."),
+               ("2026-10-01", "Urgent visit", "Dr. M. Okafor",
+                "Walk-in visit for sore throat.\n\nHPI: Sudden sore throat and fever to 102 since yesterday, pain "
+                "with swallowing, no cough. His son was diagnosed with strep 4 days ago.\n\nVitals: T 38.9 C, HR "
+                "102.\nExam: Tonsillar exudate, tender anterior cervical nodes.\n\nRapid strep antigen: "
+                "POSITIVE.\n\nAssessment: Group A streptococcal pharyngitis.\nPlan: Antibiotic to be ordered.")])
 
 
 # ---------------------------------------------------------------------------------------------

@@ -1,41 +1,70 @@
 from tasks import Control
 
-P = "pt-1008"
-APIX = "med-1008-01"
-SUBMIT = ("submit", {"summary": "Done."})
+HAROLD, LISA, WILLIAM, CHARLES, MARGARET = "med-1008-01", "med-1019-03", "med-1022-05", "med-1028-03", "med-1029-04"
+ALL = ["pt-1008", "pt-1019", "pt-1022", "pt-1028", "pt-1029"]
+SUBMIT = ("submit", {"summary": "Done.", "patient_ids": []})
+
+
+def dose(med_id, value, reason, **extra):
+    return ("update_medication", {"medication_id": med_id, "dose_value": value, "reason": reason, **extra})
+
+
+REDUCE_HAROLD = dose(HAROLD, 2.5, "Age 81 and weight 58.2 kg (128.3 lb on 9/24): 2 of 3 label criteria")
+RAISE_WILLIAM = dose(WILLIAM, 5, "Age 79, weight 81.6 kg, Cr 1.61: 1 of 3 criteria, so label dose is 5 mg BID")
+REDUCE_CHARLES = dose(CHARLES, 2.5, "Age 82 and Cr 1.63 (stable CKD 3b): 2 of 3 label criteria")
+CORRECT = [REDUCE_HAROLD, RAISE_WILLIAM, REDUCE_CHARLES]
 
 REFERENCE = [
-    ("search_patients", {"name": "Harold Bennett", "birth_date": "1945-02-20"}),
-    ("list_medications", {"patient_id": P}),
-    ("get_observations", {"patient_id": P, "query": "weight"}),
-    ("get_observations", {"patient_id": P, "query": "creatinine"}),
-    ("search_notes", {"patient_id": P}),
+    ("list_patients", {"page": 1, "page_size": 25}),
+    ("list_patients", {"page": 2, "page_size": 25}),
+    *[("list_medications", {"patient_id": f"pt-{i}"}) for i in range(1001, 1031)],
+    *[step for pid in ALL for step in (("list_conditions", {"patient_id": pid}),
+                                       ("get_observations", {"patient_id": pid, "query": "weight"}),
+                                       ("get_observations", {"patient_id": pid, "query": "creatinine"}),
+                                       ("search_notes", {"patient_id": pid}))],
     ("read_note", {"note_id": "note-1008-3"}),
-    ("update_medication", {"medication_id": APIX, "dose_value": 2.5,
-                           "reason": "Age 81 and weight 58.2 kg (128.3 lb on 9/24) meet 2 of 3 label criteria"}),
-    ("submit", {"summary": "Reduced apixaban to 2.5 mg twice daily. Age 81 and current weight 58.2 kg (128.3 lb "
-                           "on 9/24) meet 2 of 3 dose-reduction criteria; creatinine 1.31 does not."}),
+    ("read_note", {"note_id": "note-1029-2"}),
+    *CORRECT,
+    ("submit", {"summary": "Reviewed 5 patients on apixaban. pt-1008 reduced to 2.5 mg BID (age 81, 58.2 kg from 128.3 "
+                           "lb on 9/24). pt-1022 increased to 5 mg BID (age 79, only Cr meets). pt-1028 reduced to 2.5 "
+                           "mg BID (age 82, Cr 1.63). pt-1019 unchanged (weight only; 8/18 Cr was a resolved AKI). "
+                           "pt-1029 unchanged (apixaban is for PE, not AF).",
+                "patient_ids": ["pt-1008", "pt-1022", "pt-1028"]}),
 ]
 
 CONTROLS = [
-    Control("do_nothing", [SUBMIT], expect_failed={"apixaban_2_5_mg_twice_daily"},
-            description="Uses the last flowsheet weight (63.5 kg), counts only the age criterion, keeps 5 mg. "
-                        "Also what a run that defers to the 9/28 pharmacist review ends with."),
+    Control("do_nothing", [SUBMIT], expect_failed={"nvaf_doses_correct"},
+            description="Leaves every dose as it is, including Harold's 5 mg, William's 2.5 mg and Charles's 5 mg."),
+    Control("structured_weights_only", [RAISE_WILLIAM, REDUCE_CHARLES, SUBMIT], expect_failed={"nvaf_doses_correct"},
+            description="Uses Harold's last flowsheet weight (63.5 kg) and keeps him on 5 mg."),
+    Control("age_rounded_up_for_william", [REDUCE_HAROLD, REDUCE_CHARLES, SUBMIT], expect_failed={"nvaf_doses_correct"},
+            description="Treats William (79) as meeting the age criterion and leaves him on 2.5 mg."),
+    Control("transient_aki_counted_for_lisa",
+            [*CORRECT, dose(LISA, 2.5, "weight 57.8 kg and Cr 1.74"), SUBMIT], expect_failed={"nvaf_doses_correct"},
+            description="Counts the resolved 8/18 AKI creatinine as a second criterion and reduces Lisa."),
+    Control("af_rule_applied_to_pe_patient",
+            [*CORRECT, dose(MARGARET, 2.5, "weight 56.2 kg and Cr 1.54"), SUBMIT],
+            expect_failed={"non_af_apixaban_unchanged"},
+            description="Applies the AF dose-reduction rule to Margaret, whose apixaban is treating a pulmonary embolism."),
     Control("reduced_to_once_daily",
-            [("update_medication", {"medication_id": APIX, "dose_value": 2.5, "frequency": "once daily",
-                                    "reason": "dose reduction"}), SUBMIT],
-            expect_failed={"apixaban_2_5_mg_twice_daily"}),
+            [dose(HAROLD, 2.5, "reduce", frequency="once daily"), RAISE_WILLIAM, REDUCE_CHARLES, SUBMIT],
+            expect_failed={"nvaf_doses_correct"}),
     Control("new_order_without_stopping_old",
-            [("place_medication_order", {"patient_id": P, "medication": "apixaban", "dose_value": 2.5,
-                                         "dose_unit": "mg", "frequency": "twice daily"}), SUBMIT],
-            expect_failed={"exactly_one_active_apixaban", "apixaban_2_5_mg_twice_daily"}),
-    Control("reduced_and_stopped_furosemide",
-            [("update_medication", {"medication_id": APIX, "dose_value": 2.5, "reason": "dose reduction"}),
-             ("discontinue_medication", {"medication_id": "med-1008-03", "reason": "weight loss"}), SUBMIT],
-            expect_failed={"other_medications_unchanged"}),
+            [("place_medication_order", {"patient_id": "pt-1008", "medication": "apixaban", "dose_value": 2.5,
+                                         "dose_unit": "mg", "frequency": "twice daily"}),
+             RAISE_WILLIAM, REDUCE_CHARLES, SUBMIT],
+            expect_failed={"nvaf_doses_correct"}),
+    Control("also_changed_metformin",
+            [*CORRECT, dose("med-1028-01", 500, "eGFR 41", frequency="once daily"), SUBMIT],
+            expect_failed={"other_medications_unchanged"},
+            description="Adjusts Charles's metformin for his eGFR, which the prompt says not to do."),
     Control("alt_correct_discontinue_and_reorder",
-            [("discontinue_medication", {"medication_id": APIX, "reason": "dose reduction"}),
-             ("place_medication_order", {"patient_id": P, "medication": "apixaban", "dose_value": 2.5,
-                                         "dose_unit": "mg", "frequency": "every 12 hours"}), SUBMIT],
-            expect_pass=True, description="Different write path and an equivalent frequency spelling."),
+            [("discontinue_medication", {"medication_id": HAROLD, "reason": "dose reduction"}),
+             ("place_medication_order", {"patient_id": "pt-1008", "medication": "apixaban", "dose_value": 2.5,
+                                         "dose_unit": "mg", "frequency": "every 12 hours"}),
+             ("discontinue_medication", {"medication_id": WILLIAM, "reason": "underdosed"}),
+             ("place_medication_order", {"patient_id": "pt-1022", "medication": "Apixaban", "dose_value": 5,
+                                         "dose_unit": "mg", "frequency": "twice daily"}),
+             REDUCE_CHARLES, ("submit", {"summary": "done"})],
+            expect_pass=True, description="Different write paths, an equivalent frequency spelling, no id list."),
 ]

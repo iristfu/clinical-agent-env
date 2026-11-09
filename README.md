@@ -12,7 +12,7 @@ Python 3.10 or newer.
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env          # then add your ANTHROPIC_API_KEY
-python -m pytest -q           # 76 tests, no API calls
+python -m pytest -q           # 89 tests, no API calls
 python -m harness.models      # confirm claude-opus-5 is available to your key
 ```
 
@@ -74,10 +74,10 @@ WRITEUP.md
 
 | Task | Shape | The deciding fact |
 |---|---|---|
-| strep_allergy | Single patient, safety | Anaphylaxis to Augmentin recorded only inside a 2019 ED note on page 2 of her chart |
-| apixaban_dose | Rule application | Current weight (128.3 lb) exists only in the 9/24 visit note, and a later pharmacist review says otherwise |
+| strep_allergy | Every positive strep test today, safety | Five positives with different allergy histories, two anaphylaxes documented only in outside notes, a shared name, a negative test |
+| apixaban_dose | Panel-wide rule application | Five apixaban patients: a weight only in a note, an underdosed 79-year-old, a resolved AKI, a PE patient who isn't on it for AF |
 | panel_a1c | Panel-wide coverage | 30 patients with mixed coding, a note-only diagnosis, a note-only outside A1c, a pending order, a death |
-| med_rec_discharge | Multi-change reconciliation | Two phone notes after discharge supersede three discharge changes; a finished antibiotic and an inpatient substitution must be left off |
+| med_rec_discharge | Reconcile every recent discharge | Three in-scope discharges with superseding phone notes, finished antibiotic courses and pantoprazole meaning different things in two charts; two older discharges to leave alone |
 
 ## How a trial can end
 

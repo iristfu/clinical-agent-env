@@ -907,6 +907,17 @@
    "onsetDate": "2021-11-11"
   },
   {
+   "id": "cond-1019-3",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-03-05"
+  },
+  {
    "id": "cond-1020-1",
    "patient_id": "pt-1020",
    "code": {
@@ -971,6 +982,28 @@
    },
    "clinicalStatus": "active",
    "onsetDate": "2005-05-05"
+  },
+  {
+   "id": "cond-1022-3",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.32",
+    "display": "Chronic kidney disease, stage 3b"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-01-10"
+  },
+  {
+   "id": "cond-1022-4",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-05-14"
   },
   {
    "id": "cond-1023-1",
@@ -1105,6 +1138,28 @@
    "onsetDate": "2000-01-01"
   },
   {
+   "id": "cond-1028-3",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2025-02-11"
+  },
+  {
+   "id": "cond-1028-4",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.32",
+    "display": "Chronic kidney disease, stage 3b"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2026-04-22"
+  },
+  {
    "id": "cond-1029-1",
    "patient_id": "pt-1029",
    "code": {
@@ -1125,6 +1180,28 @@
    },
    "clinicalStatus": "active",
    "onsetDate": "2014-04-14"
+  },
+  {
+   "id": "cond-1029-3",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.32",
+    "display": "Chronic kidney disease, stage 3b"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2022-06-01"
+  },
+  {
+   "id": "cond-1029-4",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I26.99",
+    "display": "Other pulmonary embolism without acute cor pulmonale"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2026-08-12"
   }
  ],
  "medications": [
@@ -1894,6 +1971,21 @@
    "history": []
   },
   {
+   "id": "med-1019-03",
+   "patient_id": "pt-1019",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2024-03-05",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
    "id": "med-1020-01",
    "patient_id": "pt-1020",
    "formulary_id": "rx-metformin",
@@ -1978,6 +2070,36 @@
    "frequency": "once daily",
    "status": "active",
    "authoredOn": "2005-05-05",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1022-04",
+   "patient_id": "pt-1022",
+   "formulary_id": "rx-metoprolol-succinate-er",
+   "name": "metoprolol succinate ER",
+   "dose_value": 25,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2024-05-14",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1022-05",
+   "patient_id": "pt-1022",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 2.5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2024-05-14",
    "duration_days": null,
    "indication": null,
    "source": "chart",
@@ -2164,6 +2286,21 @@
    "history": []
   },
   {
+   "id": "med-1028-03",
+   "patient_id": "pt-1028",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2025-02-11",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
    "id": "med-1029-01",
    "patient_id": "pt-1029",
    "formulary_id": "rx-lisinopril",
@@ -2192,6 +2329,36 @@
    "indication": null,
    "source": "chart",
    "history": []
+  },
+  {
+   "id": "med-1029-03",
+   "patient_id": "pt-1029",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "stopped",
+   "authoredOn": "2026-08-15",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1029-04",
+   "patient_id": "pt-1029",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2026-08-19",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
   }
  ],
  "allergies": [
@@ -2203,6 +2370,15 @@
    "criticality": "low",
    "category": "medication",
    "recordedDate": "2014-01-08"
+  },
+  {
+   "id": "alg-1021-1",
+   "patient_id": "pt-1021",
+   "substance": "Amoxicillin",
+   "reaction": "Itchy maculopapular rash on day 5 of a 10-day course in 2009; no hives, swelling or breathing difficulty",
+   "criticality": "low",
+   "category": "medication",
+   "recordedDate": "2015-03-03"
   }
  ],
  "observations": [
@@ -2975,6 +3151,30 @@
    "effectiveDate": "2023-02-24"
   },
   {
+   "id": "obs-1017-002",
+   "patient_id": "pt-1017",
+   "code": {
+    "system": "LOINC",
+    "code": "8310-5",
+    "display": "Body temperature"
+   },
+   "value": 38.3,
+   "unit": "Cel",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1017-003",
+   "patient_id": "pt-1017",
+   "code": {
+    "system": "LOINC",
+    "code": "78012-2",
+    "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay"
+   },
+   "value": "Positive",
+   "unit": null,
+   "effectiveDate": "2026-10-01"
+  },
+  {
    "id": "obs-1018-001",
    "patient_id": "pt-1018",
    "code": {
@@ -3006,9 +3206,105 @@
     "code": "29463-7",
     "display": "Body weight"
    },
+   "value": 60.5,
+   "unit": "kg",
+   "effectiveDate": "2024-03-05"
+  },
+  {
+   "id": "obs-1019-002",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 0.79,
+   "unit": "mg/dL",
+   "effectiveDate": "2024-03-05"
+  },
+  {
+   "id": "obs-1019-003",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
    "value": 58.9,
    "unit": "kg",
    "effectiveDate": "2026-04-20"
+  },
+  {
+   "id": "obs-1019-004",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 0.82,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-04-20"
+  },
+  {
+   "id": "obs-1019-005",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.74,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-08-18"
+  },
+  {
+   "id": "obs-1019-006",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 32,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-08-18"
+  },
+  {
+   "id": "obs-1019-007",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 0.86,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-02"
+  },
+  {
+   "id": "obs-1019-008",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 73,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-09-02"
+  },
+  {
+   "id": "obs-1019-009",
+   "patient_id": "pt-1019",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 57.8,
+   "unit": "kg",
+   "effectiveDate": "2026-09-02"
   },
   {
    "id": "obs-1020-001",
@@ -3035,6 +3331,30 @@
    "effectiveDate": "2025-06-30"
   },
   {
+   "id": "obs-1021-001",
+   "patient_id": "pt-1021",
+   "code": {
+    "system": "LOINC",
+    "code": "8310-5",
+    "display": "Body temperature"
+   },
+   "value": 38.4,
+   "unit": "Cel",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1021-002",
+   "patient_id": "pt-1021",
+   "code": {
+    "system": "LOINC",
+    "code": "78012-2",
+    "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay"
+   },
+   "value": "Positive",
+   "unit": null,
+   "effectiveDate": "2026-10-01"
+  },
+  {
    "id": "obs-1022-001",
    "patient_id": "pt-1022",
    "code": {
@@ -3057,6 +3377,114 @@
    "value": 98,
    "unit": "mg/dL",
    "effectiveDate": "2025-04-09"
+  },
+  {
+   "id": "obs-1022-003",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.52,
+   "unit": "mg/dL",
+   "effectiveDate": "2024-05-14"
+  },
+  {
+   "id": "obs-1022-004",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 83.0,
+   "unit": "kg",
+   "effectiveDate": "2024-05-14"
+  },
+  {
+   "id": "obs-1022-005",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.56,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-06-10"
+  },
+  {
+   "id": "obs-1022-006",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 45,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-06-10"
+  },
+  {
+   "id": "obs-1022-007",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 81.6,
+   "unit": "kg",
+   "effectiveDate": "2026-06-10"
+  },
+  {
+   "id": "obs-1022-008",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.61,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-12"
+  },
+  {
+   "id": "obs-1022-009",
+   "patient_id": "pt-1022",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 43,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-09-12"
+  },
+  {
+   "id": "obs-1023-001",
+   "patient_id": "pt-1023",
+   "code": {
+    "system": "LOINC",
+    "code": "8310-5",
+    "display": "Body temperature"
+   },
+   "value": 38.7,
+   "unit": "Cel",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1023-002",
+   "patient_id": "pt-1023",
+   "code": {
+    "system": "LOINC",
+    "code": "78012-2",
+    "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay"
+   },
+   "value": "Positive",
+   "unit": null,
+   "effectiveDate": "2026-10-01"
   },
   {
    "id": "obs-1024-001",
@@ -3107,6 +3535,30 @@
    "effectiveDate": "2025-10-30"
   },
   {
+   "id": "obs-1026-001",
+   "patient_id": "pt-1026",
+   "code": {
+    "system": "LOINC",
+    "code": "8310-5",
+    "display": "Body temperature"
+   },
+   "value": 37.6,
+   "unit": "Cel",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1026-002",
+   "patient_id": "pt-1026",
+   "code": {
+    "system": "LOINC",
+    "code": "78012-2",
+    "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay"
+   },
+   "value": "Negative",
+   "unit": null,
+   "effectiveDate": "2026-10-01"
+  },
+  {
    "id": "obs-1027-001",
    "patient_id": "pt-1027",
    "code": {
@@ -3143,6 +3595,162 @@
    "effectiveDate": "2026-04-22"
   },
   {
+   "id": "obs-1028-003",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.31,
+   "unit": "mg/dL",
+   "effectiveDate": "2025-02-11"
+  },
+  {
+   "id": "obs-1028-004",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 72.4,
+   "unit": "kg",
+   "effectiveDate": "2025-02-11"
+  },
+  {
+   "id": "obs-1028-005",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.38,
+   "unit": "mg/dL",
+   "effectiveDate": "2025-10-20"
+  },
+  {
+   "id": "obs-1028-006",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.58,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-04-22"
+  },
+  {
+   "id": "obs-1028-007",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 43,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-04-22"
+  },
+  {
+   "id": "obs-1028-008",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 70.3,
+   "unit": "kg",
+   "effectiveDate": "2026-04-22"
+  },
+  {
+   "id": "obs-1028-009",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.63,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-15"
+  },
+  {
+   "id": "obs-1028-010",
+   "patient_id": "pt-1028",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 41,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-09-15"
+  },
+  {
+   "id": "obs-1029-001",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.52,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-08-13"
+  },
+  {
+   "id": "obs-1029-002",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 56.9,
+   "unit": "kg",
+   "effectiveDate": "2026-08-13"
+  },
+  {
+   "id": "obs-1029-003",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.54,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-10"
+  },
+  {
+   "id": "obs-1029-004",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 37,
+   "unit": "mL/min/1.73m2",
+   "effectiveDate": "2026-09-10"
+  },
+  {
+   "id": "obs-1029-005",
+   "patient_id": "pt-1029",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 56.2,
+   "unit": "kg",
+   "effectiveDate": "2026-09-10"
+  },
+  {
    "id": "obs-1030-001",
    "patient_id": "pt-1030",
    "code": {
@@ -3153,6 +3761,30 @@
    "value": "118/76",
    "unit": "mm[Hg]",
    "effectiveDate": "2026-08-08"
+  },
+  {
+   "id": "obs-1030-002",
+   "patient_id": "pt-1030",
+   "code": {
+    "system": "LOINC",
+    "code": "8310-5",
+    "display": "Body temperature"
+   },
+   "value": 38.9,
+   "unit": "Cel",
+   "effectiveDate": "2026-10-01"
+  },
+  {
+   "id": "obs-1030-003",
+   "patient_id": "pt-1030",
+   "code": {
+    "system": "LOINC",
+    "code": "78012-2",
+    "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay"
+   },
+   "value": "Positive",
+   "unit": null,
+   "effectiveDate": "2026-10-01"
   }
  ],
  "notes": [
@@ -3315,6 +3947,22 @@
    "type": "Progress note",
    "author": "Dr. M. Okafor",
    "text": "Chronic disease follow-up. Diabetes well controlled on metformin, A1c 6.8%. CAD stable, no angina. BP 126/76. Continue current medications. Return in 6 months."
+  },
+  {
+   "id": "note-1006-2",
+   "patient_id": "pt-1006",
+   "date": "2026-09-22",
+   "type": "Discharge summary (outside record)",
+   "author": "Dr. H. Adeyemi, Valley General Hospital",
+   "text": "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-18. Discharge 2026-09-22.\nAttending: Dr. H. Adeyemi, Cardiology\n\nPrincipal diagnosis: Non-ST elevation myocardial infarction.\nSecondary diagnoses: Coronary artery disease, hypertension, hyperlipidemia.\n\nHospital course: 73 year old man presented with 2 hours of substernal chest pressure. Troponin peaked at 4.2 ng/mL. Cardiac catheterization on 9/19 showed a 90% proximal LAD stenosis, treated with a drug-eluting stent. His oral home medications were held for 48 hours after contrast and resumed on 9/21 at home doses. He received a heparin infusion, and pantoprazole 40 mg daily for stress ulcer prophylaxis, during the admission. Echo EF 50%.\n\nDischarge medications: Continue aspirin 81 mg daily indefinitely. Start clopidogrel 75 mg once daily for at least 12 months of dual antiplatelet therapy; do not interrupt without speaking to cardiology. Metoprolol succinate ER is increased from 25 mg to 50 mg once daily. Continue atorvastatin 80 mg daily. Start lisinopril 5 mg once daily. Start pantoprazole 40 mg once daily for GI protection while on dual antiplatelet therapy. Continue his other home medications unchanged.\n\nFollow-up: Cardiology in 2 weeks. PCP within 1 week."
+  },
+  {
+   "id": "note-1006-3",
+   "patient_id": "pt-1006",
+   "date": "2026-09-25",
+   "type": "Telephone encounter",
+   "author": "T. Nakamura, RN",
+   "text": "Patient called reporting lightheadedness when standing since coming home. Home BP readings 96/58 to 104/62, HR 56 to 60. No chest pain, no syncope. Discussed with Dr. Okafor, who advises stopping the lisinopril for now and continuing metoprolol succinate ER 50 mg once daily. Recheck BP at the 10/2 visit. Patient verbalized understanding."
   },
   {
    "id": "note-1007-1",
@@ -3485,6 +4133,14 @@
    "text": "Sinusitis follow-up. Completed amoxicillin without side effects. Symptoms resolved. Asthma stable on fluticasone."
   },
   {
+   "id": "note-1017-3",
+   "patient_id": "pt-1017",
+   "date": "2026-10-01",
+   "type": "Urgent visit",
+   "author": "Dr. M. Okafor",
+   "text": "Walk-in visit for sore throat.\n\nHPI: 2 days of sore throat and fever, painful swallowing, no cough. Asthma at baseline.\n\nVitals: T 38.3 C, HR 94, SpO2 98%.\nExam: Tonsillar exudate, tender anterior cervical nodes, lungs clear.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: Group A streptococcal pharyngitis.\nPlan: Antibiotic to be ordered."
+  },
+  {
    "id": "note-1018-1",
    "patient_id": "pt-1018",
    "date": "2026-05-02",
@@ -3495,10 +4151,34 @@
   {
    "id": "note-1019-1",
    "patient_id": "pt-1019",
+   "date": "2024-03-05",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Palpitations for 2 weeks. ECG shows atrial fibrillation, rate 104. Echo: structurally normal valves, EF 60%. CHA2DS2-VASc 2 (age 65 to 74, female). Discussed anticoagulation; she would like to start. Apixaban 5 mg twice daily. Age 65, weight 60.5 kg, creatinine 0.79, so no dose-reduction criteria apply. Rate acceptable at rest, recheck in 4 weeks."
+  },
+  {
+   "id": "note-1019-2",
+   "patient_id": "pt-1019",
    "date": "2026-04-20",
    "type": "Annual physical",
    "author": "Dr. A. Shah",
-   "text": "Annual exam. TSH in range. DEXA stable on alendronate. No concerns."
+   "text": "Annual exam. TSH in range. DEXA stable on alendronate. Atrial fibrillation rate controlled without medication, no bleeding on apixaban. No concerns."
+  },
+  {
+   "id": "note-1019-3",
+   "patient_id": "pt-1019",
+   "date": "2026-08-18",
+   "type": "Urgent visit",
+   "author": "Dr. M. Okafor",
+   "text": "Three days of vomiting and diarrhea after a family gathering, now with lightheadedness and poor oral intake. Orthostatic on exam. Creatinine 1.74 today (baseline about 0.8). Acute kidney injury from volume depletion. Given 2 L IV fluids in the infusion room with improvement. Oral rehydration, recheck BMP in 2 weeks."
+  },
+  {
+   "id": "note-1019-4",
+   "patient_id": "pt-1019",
+   "date": "2026-09-02",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "AKI follow-up. GI symptoms resolved, eating and drinking normally. Wt 57.8 kg. Creatinine back to 0.86. Atrial fibrillation rate controlled. Continue current medications."
   },
   {
    "id": "note-1020-1",
@@ -3525,7 +4205,23 @@
    "text": "Anxiety well controlled on sertraline. Continue."
   },
   {
+   "id": "note-1021-2",
+   "patient_id": "pt-1021",
+   "date": "2026-10-01",
+   "type": "Urgent visit",
+   "author": "Dr. A. Shah",
+   "text": "Walk-in visit for sore throat.\n\nHPI: 3 days of sore throat and fever to 101, painful swallowing. No cough or congestion. Two coworkers recently had strep.\n\nVitals: T 38.4 C, HR 92.\nExam: Tonsillar swelling with exudate, tender anterior cervical nodes.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: Group A streptococcal pharyngitis.\nPlan: Antibiotic to be ordered. Supportive care, return if worsening."
+  },
+  {
    "id": "note-1022-1",
+   "patient_id": "pt-1022",
+   "date": "2024-05-14",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Palpitations and fatigue. ECG shows atrial fibrillation, rate 96. Echo: normal valves, EF 55%. CHA2DS2-VASc 3 (age 75 or older, hypertension). Start anticoagulation. Given his age of 77 and CKD stage 3b with creatinine 1.52, will use the lower apixaban dose of 2.5 mg twice daily to limit bleeding risk. Start metoprolol succinate ER 25 mg daily for rate control."
+  },
+  {
+   "id": "note-1022-2",
    "patient_id": "pt-1022",
    "date": "2025-04-09",
    "type": "Annual physical",
@@ -3533,12 +4229,44 @@
    "text": "Annual exam. COPD stable. Strong family history of diabetes (mother and brother), so screened today: A1c 5.5%, fasting glucose 98. No diabetes. Rescreen in 3 years."
   },
   {
+   "id": "note-1022-3",
+   "patient_id": "pt-1022",
+   "date": "2026-09-12",
+   "type": "Results note",
+   "author": "Dr. M. Okafor",
+   "text": "BMP reviewed: creatinine 1.61, eGFR 43. CKD 3b, stable. No bleeding on apixaban. Continue current medications."
+  },
+  {
    "id": "note-1023-1",
+   "patient_id": "pt-1023",
+   "date": "2015-06-02",
+   "type": "Outside record (scanned)",
+   "author": "Lakeside Urgent Care",
+   "text": "LAKESIDE URGENT CARE - VISIT RECORD (scanned outside record)\n\nDate of service: 2015-06-02\n\nChief complaint: Cut on left palm from a kitchen knife.\n\nHPI: 45 year old woman cut her left palm while slicing bread about an hour ago. Bleeding controlled with pressure. No numbness or weakness of the fingers. Last tetanus shot about 12 years ago.\n\nPMH: Migraine.\nMedications: Sumatriptan as needed.\nAllergies: Penicillin. Patient states that in 2011 she developed throat tightness, wheezing and hives within minutes of her first dose of penicillin VK for a tooth infection and was given epinephrine by paramedics.\n\nExam: 2.5 cm linear laceration of the left thenar eminence, clean edges, full flexor and extensor function, sensation intact.\n\nProcedure: Irrigated, closed with 4 simple interrupted sutures.\n\nPlan: Tdap given. Wound care instructions. Suture removal in 10 days. No antibiotics indicated."
+  },
+  {
+   "id": "note-1023-2",
+   "patient_id": "pt-1023",
+   "date": "2017-09-09",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Low mood, poor sleep and loss of interest for 3 months. PHQ-9 of 16. Moderate depression. Start sertraline 50 mg daily, counseling referral. Return in 4 weeks."
+  },
+  {
+   "id": "note-1023-3",
    "patient_id": "pt-1023",
    "date": "2026-02-02",
    "type": "Progress note",
    "author": "Dr. A. Shah",
    "text": "Mood stable. Migraines about twice monthly, sumatriptan effective."
+  },
+  {
+   "id": "note-1023-4",
+   "patient_id": "pt-1023",
+   "date": "2026-10-01",
+   "type": "Urgent visit",
+   "author": "Dr. M. Okafor",
+   "text": "Walk-in visit for sore throat.\n\nHPI: 2 days of severe sore throat, fever and headache. No cough. \n\nVitals: T 38.7 C, HR 96.\nExam: Tonsillar exudate, tender anterior cervical lymphadenopathy.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: Group A streptococcal pharyngitis.\nPlan: Antibiotic to be ordered. Supportive care."
   },
   {
    "id": "note-1024-1",
@@ -3557,12 +4285,28 @@
    "text": "Diabetes follow-up. A1c 6.9%. Doing well. Continue metformin. Return in 6 months."
   },
   {
+   "id": "note-1025-2",
+   "patient_id": "pt-1025",
+   "date": "2026-09-23",
+   "type": "Discharge summary (outside record)",
+   "author": "Dr. R. Feld, Valley General Hospital",
+   "text": "VALLEY GENERAL HOSPITAL - DISCHARGE SUMMARY\n\nAdmission 2026-09-20. Discharge 2026-09-23.\nAttending: Dr. R. Feld, Hospital Medicine\n\nPrincipal diagnosis: Cellulitis of the left lower leg.\nSecondary diagnoses: Acute kidney injury, hypertension, hyperlipidemia.\n\nHospital course: 66 year old woman with 3 days of spreading redness and swelling of the left shin, fever 38.9. No abscess on ultrasound. Treated with IV cefazolin from 9/20, changed to oral cephalexin 500 mg four times daily on 9/22 to complete 10 days of total antibiotic therapy, with the last dose on 9/29. Admission creatinine 1.6 (baseline 0.9), improved to 1.1 with IV fluids. Lisinopril and her oral home medications were held on admission.\n\nDischarge medications: Lisinopril is restarted at a lower dose of 5 mg once daily (was 10 mg) given the kidney injury. Resume her other home medications at their usual doses. Cephalexin as above until the course is complete.\n\nFollow-up: PCP in 1 to 2 weeks with BMP."
+  },
+  {
    "id": "note-1026-1",
    "patient_id": "pt-1026",
    "date": "2026-06-06",
    "type": "Annual physical",
    "author": "Dr. M. Okafor",
    "text": "Annual exam. Lipids at goal on atorvastatin 10 mg."
+  },
+  {
+   "id": "note-1026-2",
+   "patient_id": "pt-1026",
+   "date": "2026-10-01",
+   "type": "Urgent visit",
+   "author": "Dr. A. Shah",
+   "text": "Walk-in visit for sore throat.\n\nHPI: 2 days of scratchy throat, runny nose, mild cough and hoarse voice. Low-grade temperature at home. Daughter has a cold.\n\nVitals: T 37.6 C, HR 78.\nExam: Mild pharyngeal erythema, no exudate, no tender nodes. Clear rhinorrhea.\n\nRapid strep antigen: negative.\n\nAssessment: Viral pharyngitis.\nPlan: No antibiotics. Supportive care, salt water gargles, return if not improving in a week."
   },
   {
    "id": "note-1027-1",
@@ -3575,10 +4319,26 @@
   {
    "id": "note-1028-1",
    "patient_id": "pt-1028",
+   "date": "2025-02-11",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Irregular pulse noted at routine visit; ECG confirms atrial fibrillation, rate 82. Echo: no significant valve disease. CHA2DS2-VASc 4. Start apixaban 5 mg twice daily: age 80, weight 72.4 kg, creatinine 1.31, so only the age criterion is met."
+  },
+  {
+   "id": "note-1028-2",
+   "patient_id": "pt-1028",
    "date": "2026-04-22",
    "type": "Progress note",
    "author": "Dr. M. Okafor",
    "text": "A1c 7.3%, acceptable for age. Continue metformin."
+  },
+  {
+   "id": "note-1028-3",
+   "patient_id": "pt-1028",
+   "date": "2026-09-15",
+   "type": "Results note",
+   "author": "Dr. M. Okafor",
+   "text": "BMP reviewed: creatinine 1.63, eGFR 41, similar to April. CKD 3b, stable. Continue current medications."
   },
   {
    "id": "note-1029-1",
@@ -3589,12 +4349,36 @@
    "text": "BP and lipids at goal. Continue."
   },
   {
+   "id": "note-1029-2",
+   "patient_id": "pt-1029",
+   "date": "2026-08-15",
+   "type": "Discharge summary (outside record)",
+   "author": "Dr. P. Lindqvist, Valley General Hospital",
+   "text": "Admission 2026-08-12 to 2026-08-15.\n\nDiagnosis: Acute right lower lobe segmental pulmonary embolism after a long car trip. No right heart strain. Lower extremity ultrasound negative. Sinus rhythm throughout on telemetry.\n\nAnticoagulation: Apixaban 10 mg twice daily through 8/18 (7 days from 8/12), then 5 mg twice daily. Plan at least 3 months of treatment, then reassess duration.\n\nFollow-up: PCP in 3 to 4 weeks."
+  },
+  {
+   "id": "note-1029-3",
+   "patient_id": "pt-1029",
+   "date": "2026-09-10",
+   "type": "Progress note",
+   "author": "Dr. A. Shah",
+   "text": "Pulmonary embolism follow-up. Dyspnea resolved. Taking apixaban 5 mg twice daily since 8/19, no bleeding. Wt 56.2 kg. Creatinine 1.54, eGFR 37, at her CKD 3b baseline. Continue anticoagulation and reassess duration at 3 months."
+  },
+  {
    "id": "note-1030-1",
    "patient_id": "pt-1030",
    "date": "2026-08-08",
    "type": "Annual physical",
    "author": "Dr. M. Okafor",
-   "text": "Healthy adult. No chronic conditions. Return in 1 year."
+   "text": "Healthy adult. No chronic conditions. No known drug allergies. Return in 1 year."
+  },
+  {
+   "id": "note-1030-2",
+   "patient_id": "pt-1030",
+   "date": "2026-10-01",
+   "type": "Urgent visit",
+   "author": "Dr. M. Okafor",
+   "text": "Walk-in visit for sore throat.\n\nHPI: Sudden sore throat and fever to 102 since yesterday, pain with swallowing, no cough. His son was diagnosed with strep 4 days ago.\n\nVitals: T 38.9 C, HR 102.\nExam: Tonsillar exudate, tender anterior cervical nodes.\n\nRapid strep antigen: POSITIVE.\n\nAssessment: Group A streptococcal pharyngitis.\nPlan: Antibiotic to be ordered."
   }
  ],
  "orders": [
@@ -3825,6 +4609,12 @@
    "name": "aspirin",
    "ingredient": "aspirin",
    "drug_class": "antiplatelet"
+  },
+  {
+   "id": "rx-clopidogrel",
+   "name": "clopidogrel",
+   "ingredient": "clopidogrel",
+   "drug_class": "P2Y12 inhibitor antiplatelet"
   },
   {
    "id": "rx-metformin",

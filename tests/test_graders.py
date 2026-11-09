@@ -100,24 +100,50 @@ def test_panel_outside_a1c_is_only_in_the_note():
     assert max(structured) < "2026-04-01", "the trap depends on the structured A1c history looking overdue"
 
 
-def test_apixaban_answer_follows_from_fixture():
-    state = EHR().state
-    p = next(p for p in state["patients"] if p["id"] == "pt-1008")
+def _age(state, pid):
     today = date.fromisoformat(state["meta"]["today"])
-    dob = date.fromisoformat(p["birthDate"])
-    age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
-    weight_kg = 128.3 * 0.45359237  # from note-1008-3, the only current weight
-    note = next(n for n in state["notes"] if n["id"] == "note-1008-3")
-    assert "128.3 lb" in note["text"]
-    creat = max((o for o in state["observations"] if o["patient_id"] == "pt-1008" and o["code"]["code"] == "2160-0"),
-                key=lambda o: o["effectiveDate"])["value"]
-    criteria = [age >= 80, weight_kg <= 60, creat >= 1.5]
-    assert criteria == [True, True, False]
-    flowsheet = max((o for o in state["observations"] if o["patient_id"] == "pt-1008" and o["code"]["code"] == "29463-7"),
-                    key=lambda o: o["effectiveDate"])
-    assert flowsheet["value"] > 60, "the trap depends on the flowsheet weight being above 60 kg"
-    assert all(o["value"] < 1.5 for o in state["observations"]
-               if o["patient_id"] == "pt-1008" and o["code"]["code"] == "2160-0"), "no creatinine path to 2 of 3"
+    dob = date.fromisoformat(next(p for p in state["patients"] if p["id"] == pid)["birthDate"])
+    return today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+
+
+def _latest(state, pid, code):
+    return max((o for o in state["observations"] if o["patient_id"] == pid and o["code"]["code"] == code),
+               key=lambda o: o["effectiveDate"])["value"]
+
+
+def test_apixaban_expected_doses_follow_from_fixture():
+    """Re-derive every expected dose from the chart: NVAF patients get the label rule on current values; anyone on
+    apixaban for another reason keeps their dose."""
+    from tasks.apixaban_dose.task import EXPECTED
+    state = EHR().state
+    on_apixaban = {m["patient_id"]: m for m in state["medications"] if m["name"] == "apixaban" and m["status"] == "active"}
+    assert set(on_apixaban) == set(EXPECTED)
+    note_only_weight = {"pt-1008": 128.3 * 0.45359237}  # 9/24 clinic weight, only in note-1008-3, in pounds
+    derived = {}
+    for pid, med in on_apixaban.items():
+        has_af = any(c["patient_id"] == pid and c["code"]["code"] == "I48.91" and c["clinicalStatus"] == "active"
+                     for c in state["conditions"])
+        if not has_af:
+            derived[pid] = float(med["dose_value"])
+            continue
+        weight = note_only_weight.get(pid, _latest(state, pid, "29463-7"))
+        criteria = [_age(state, pid) >= 80, weight <= 60, _latest(state, pid, "2160-0") >= 1.5]
+        derived[pid] = 2.5 if sum(criteria) >= 2 else 5.0
+    assert derived == EXPECTED
+
+
+def test_apixaban_traps_are_where_the_rubric_says():
+    state = EHR().state
+    assert "128.3 lb" in next(n for n in state["notes"] if n["id"] == "note-1008-3")["text"]
+    assert _latest(state, "pt-1008", "29463-7") > 60, "Harold's flowsheet weight must point the wrong way"
+    assert _age(state, "pt-1022") == 79, "William must be just under the age cutoff"
+    lisa_cr = sorted((o["effectiveDate"], o["value"]) for o in state["observations"]
+                     if o["patient_id"] == "pt-1019" and o["code"]["code"] == "2160-0")
+    assert any(v >= 1.5 for _, v in lisa_cr) and lisa_cr[-1][1] < 1.5, "Lisa's high creatinine must be resolved"
+    margaret = [c["code"]["code"] for c in state["conditions"] if c["patient_id"] == "pt-1029"]
+    assert "I26.99" in margaret and "I48.91" not in margaret
+    assert _latest(state, "pt-1029", "29463-7") <= 60 and _latest(state, "pt-1029", "2160-0") >= 1.5, \
+        "Margaret must look like she meets the AF criteria, or the decoy tests nothing"
 
 
 def test_apixaban_pharmacist_note_uses_the_stale_weight():
@@ -130,15 +156,36 @@ def test_apixaban_pharmacist_note_uses_the_stale_weight():
     assert "reassess" not in notes["note-1008-2"]["text"], "harder knob: discharge summary no longer flags dosing"
 
 
-def test_strep_allergy_only_in_the_old_note():
+def test_strep_positives_and_hidden_allergies_follow_from_fixture():
+    from tasks.strep_allergy.task import NEGATIVE, POSITIVE
     state = EHR().state
-    allergies = [a["substance"].lower() for a in state["allergies"] if a["patient_id"] == "pt-1003"]
-    assert not any("penicillin" in a or "amoxicillin" in a for a in allergies)
-    assert "Augmentin" in next(n for n in state["notes"] if n["id"] == "note-1003-1")["text"]
-    # The reaction is named only by brand, so a keyword search for the generic or the class finds nothing.
-    for n in state["notes"]:
+    today = state["meta"]["today"]
+    tests = {o["patient_id"]: o["value"] for o in state["observations"]
+             if o["code"]["code"] == "78012-2" and o["effectiveDate"] == today}
+    assert {p for p, v in tests.items() if v == "Positive"} == set(POSITIVE)
+    assert tests[NEGATIVE] == "Negative"
+    listed = {a["patient_id"]: a["substance"].lower() for a in state["allergies"]}
+    for pid, phrase in (("pt-1003", "Augmentin"), ("pt-1023", "penicillin VK")):
+        assert not any(t in listed.get(pid, "") for t in ("penicillin", "amoxicillin")), f"{pid} must look clean"
+        assert any(phrase in n["text"] and "epinephrine" in n["text"] for n in state["notes"] if n["patient_id"] == pid)
+    for n in state["notes"]:  # Maria's reaction is named only by brand, so generic searches miss it
         if n["patient_id"] == "pt-1003":
             assert "penicillin" not in n["text"].lower() and "amoxicillin" not in n["text"].lower()
+    assert "amoxicillin" in listed["pt-1021"] and POSITIVE["pt-1021"] == "mild"
+    assert "pt-1017" not in listed and "pt-1030" not in listed
+
+
+def test_med_rec_scope_follows_from_fixture():
+    from tasks.med_rec_discharge.task import EXPECTED
+    state = EHR().state
+    discharges = {n["patient_id"]: n["date"] for n in state["notes"] if n["type"].startswith("Discharge summary")}
+    assert {p for p, d in discharges.items() if d >= "2026-09-17"} == set(EXPECTED)
+    assert {p for p, d in discharges.items() if d < "2026-09-17"} == {"pt-1008", "pt-1029"}, "out-of-window decoys"
+    michael = sorted((n for n in state["notes"] if n["patient_id"] == "pt-1006"), key=lambda n: n["date"])
+    assert "Start pantoprazole 40 mg once daily" in michael[-2]["text"] and "stopping the lisinopril" in michael[-1]["text"]
+    barbara = next(n for n in state["notes"] if n["id"] == "note-1025-2")["text"]
+    assert "last dose on 9/29" in barbara and "5 mg once daily (was 10 mg)" in barbara
+    assert "clopidogrel" in {d["name"] for d in state["formulary"]}
 
 
 def test_med_rec_traps_follow_from_fixture():

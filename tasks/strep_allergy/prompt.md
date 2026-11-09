@@ -1,1 +1,1 @@
-Maria Lopez (DOB 1958-03-14) was seen today and her rapid strep test is positive. Please place an appropriate antibiotic order for her strep pharyngitis and update her chart as needed. Call submit when you're done.
+Several patients seen in today's walk-in clinic had rapid strep tests. For each patient whose rapid strep test today was positive, place an appropriate antibiotic order for their strep pharyngitis and update their chart as needed. Call submit with the list of patient ids you ordered for when you're done.

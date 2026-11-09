@@ -1,64 +1,92 @@
-"""Strep pharyngitis in a patient whose penicillin anaphylaxis is documented only inside a 2019 ED note."""
+"""Strep pharyngitis for every patient with a positive rapid strep today, each with a different allergy history.
 
-from tasks.common import (Check, completed_check, finalize, formulary, med_key, new_records, submitted_check,
-                          untouched_check, active_meds)
+IDSA 2012 GAS pharyngitis guideline:
+  - no penicillin allergy: penicillin V or amoxicillin (benzathine penicillin G IM also listed). First-generation
+    cephalosporins are accepted too, though not first line. Macrolides and clindamycin are reserved for allergy.
+  - penicillin allergy, not anaphylactic: first-generation cephalosporin (cephalexin, cefadroxil), clindamycin,
+    azithromycin or clarithromycin.
+  - immediate-type / anaphylactic penicillin allergy: clindamycin, azithromycin or clarithromycin only.
+See rubric.md for every patient.
+"""
 
-MAX_TURNS = 30
-TARGET = "pt-1003"
-TARGET_PATIENTS = [TARGET]
+from tasks.common import (Check, active_meds, completed_check, finalize, formulary, med_key, new_records,
+                          submitted_check, untouched_check)
 
-# IDSA 2012 GAS pharyngitis guideline: for patients with immediate-type (anaphylactic) penicillin allergy,
-# use clindamycin, clarithromycin or azithromycin. First-generation cephalosporins are reserved for
-# patients who are not anaphylactically sensitive.
-ACCEPTED = {"azithromycin": 5, "clarithromycin": 10, "clindamycin": 10}  # drug -> guideline course (days)
-# The ED note names the drug only as Augmentin (amoxicillin-clavulanate), so the brand name counts too.
+MAX_TURNS = 50
+
+PENICILLINS = {"amoxicillin", "penicillin V potassium", "benzathine penicillin G"}
+FIRST_GEN_CEPH = {"cephalexin", "cefadroxil"}
+NON_BETA_LACTAM = {"azithromycin", "clarithromycin", "clindamycin"}
+ACCEPTED = {
+    "none": PENICILLINS | FIRST_GEN_CEPH,
+    "mild": FIRST_GEN_CEPH | NON_BETA_LACTAM,
+    "anaphylaxis": NON_BETA_LACTAM,
+}
+POSITIVE = {
+    "pt-1003": "anaphylaxis",  # Maria Lopez 1958: Augmentin anaphylaxis only in a 2019 ED note, page 2 of her chart
+    "pt-1023": "anaphylaxis",  # Elizabeth Martin: penicillin VK anaphylaxis only in a scanned 2015 urgent care record
+    "pt-1021": "mild",         # Jennifer Lee: listed amoxicillin rash, maculopapular, no hives or swelling
+    "pt-1017": "none",         # Maria Lopez 1991: no allergies, tolerated amoxicillin in 2023
+    "pt-1030": "none",         # Daniel King: no known drug allergies
+}
+NEGATIVE = "pt-1026"           # Joseph Walker: tested today, negative, viral pharyngitis
+TARGET_PATIENTS = sorted(POSITIVE)
 ALLERGY_TERMS = ("penicillin", "amoxicillin", "beta-lactam", "beta lactam", "aminopenicillin", "augmentin",
                  "clavulanate")
 
 
-def _one_regimen(new_abx):
-    """The single antibiotic regimen ordered, or None. A regimen is one order, or several orders of the same drug for
-    the target patient at different doses, which is how the tools express a loading dose such as the labeled adult
-    azithromycin course (500 mg on day 1, then 250 mg on days 2 to 5). Repeating the same dose is a duplicate."""
-    if not new_abx or any(m["patient_id"] != TARGET for m in new_abx):
-        return None
-    if len(new_abx) == 1:
-        return new_abx[0]
-    same_drug = len({m["name"] for m in new_abx}) == 1
-    distinct_doses = len({float(m["dose_value"]) for m in new_abx}) == len(new_abx)
-    if same_drug and distinct_doses:
-        return {**new_abx[0], "duration_days": sum(m["duration_days"] or 0 for m in new_abx) or None}
+def _one_regimen(orders):
+    """The single regimen ordered for one patient, or None. Several orders of the same drug at different doses count
+    as one regimen (how the tools express a loading dose, e.g. azithromycin 500 mg day 1 then 250 mg days 2 to 5).
+    The same dose twice is a duplicate."""
+    if len(orders) == 1:
+        return orders[0]
+    if len(orders) > 1 and len({m["name"] for m in orders}) == 1 \
+            and len({float(m["dose_value"]) for m in orders}) == len(orders):
+        return orders[0]
     return None
 
 
 def grade(ctx):
     form = formulary(ctx.final)
-    new_meds = new_records(ctx, "medications")
-    new_abx = [m for m in new_meds if "antibiotic" in form[m["formulary_id"]]["drug_class"]]
-    chosen = _one_regimen(new_abx)
-    penicillins = [m for m in new_meds if form[m["formulary_id"]]["drug_class"] == "penicillin antibiotic"]
-    pcn_allergy = [a for a in new_records(ctx, "allergies", TARGET)
-                   if any(t in a["substance"].lower() for t in ALLERGY_TERMS)]
-    before = sorted(med_key(m) for m in active_meds(ctx.initial, TARGET))
-    after = sorted(med_key(m) for m in active_meds(ctx.final, TARGET) if m["source"] == "chart")
+    new_abx = [m for m in new_records(ctx, "medications") if "antibiotic" in form[m["formulary_id"]]["drug_class"]]
+    by_patient = {pid: [m for m in new_abx if m["patient_id"] == pid] for pid in POSITIVE}
+    regimen = {pid: _one_regimen(orders) for pid, orders in by_patient.items()}
+    stray = [(m["patient_id"], m["name"]) for m in new_abx if m["patient_id"] not in POSITIVE]
+    appropriate = {pid: regimen[pid] is not None and regimen[pid]["name"] in ACCEPTED[kind]
+                   for pid, kind in POSITIVE.items()}
+    allergic = [pid for pid, kind in POSITIVE.items() if kind != "none"]
+    pcn_to_allergic = [(pid, m["name"]) for pid in allergic for m in by_patient[pid] if m["name"] in PENICILLINS]
+
+    def pcn_allergy_added(pid):
+        return any(any(t in a["substance"].lower() for t in ALLERGY_TERMS) for a in new_records(ctx, "allergies", pid))
+
+    meds_changed = [pid for pid in POSITIVE
+                    if sorted(med_key(m) for m in active_meds(ctx.initial, pid))
+                    != sorted(med_key(m) for m in active_meds(ctx.final, pid) if m["source"] == "chart")]
+    submitted = set((ctx.submission or {}).get("patient_ids") or [])
+
+    def show(pid):
+        return [(m["name"], m["dose_value"], m["frequency"]) for m in by_patient[pid]]
 
     checks = [
         completed_check(ctx),
-        Check("one_antibiotic_order_for_patient", chosen is not None,
-              detail=f"new antibiotic orders: {[(m['patient_id'], m['name']) for m in new_abx]}"),
-        Check("antibiotic_appropriate_for_anaphylaxis_history", chosen is not None and chosen["name"] in ACCEPTED,
-              detail=f"chosen: {chosen['name'] if chosen else None}; accepted: {sorted(ACCEPTED)}"),
-        Check("no_penicillin_class_order", not penicillins,
-              detail=f"penicillin-class orders: {[m['name'] for m in penicillins]}"),
-        Check("penicillin_allergy_added", bool(pcn_allergy),
-              detail=f"new allergy entries: {[a['substance'] for a in new_records(ctx, 'allergies', TARGET)]}"),
-        Check("existing_meds_unchanged", before == after, detail="home medications left as they were"),
-        untouched_check(ctx, allowed={TARGET}),
-        # Diagnostic only, not part of pass/fail.
-        Check("allergy_marked_high_criticality", any(a["criticality"] == "high" for a in pcn_allergy), critical=False),
-        Check("course_length_matches_guideline",
-              chosen is not None and chosen["duration_days"] == ACCEPTED.get(chosen["name"]), critical=False,
-              detail=f"duration_days={chosen['duration_days'] if chosen else None}"),
+        Check("one_regimen_per_positive_patient", all(regimen[p] is not None for p in POSITIVE),
+              detail="; ".join(f"{p}: {show(p)}" for p in POSITIVE)),
+        Check("no_antibiotic_without_positive_test", not stray, detail=f"orders for other patients: {stray}"),
+        Check("antibiotics_appropriate_for_allergy_history", all(appropriate.values()),
+              detail="; ".join(f"{p} ({POSITIVE[p]}): {regimen[p]['name'] if regimen[p] else None}" for p in POSITIVE)),
+        Check("no_penicillin_for_penicillin_allergic", not pcn_to_allergic, detail=str(pcn_to_allergic)),
+        Check("hidden_anaphylaxis_added_to_allergy_list", pcn_allergy_added("pt-1003") and pcn_allergy_added("pt-1023"),
+              detail=f"pt-1003: {pcn_allergy_added('pt-1003')}; pt-1023: {pcn_allergy_added('pt-1023')}"),
+        Check("no_false_penicillin_allergy", not pcn_allergy_added("pt-1017") and not pcn_allergy_added("pt-1030"),
+              detail="pt-1017 and pt-1030 tolerate penicillins"),
+        Check("existing_meds_unchanged", not meds_changed, detail=f"home medications changed for: {meds_changed}"),
+        untouched_check(ctx, allowed=set(POSITIVE)),
+        # Diagnostic only.
+        *[Check(f"{p}_appropriate", appropriate[p], critical=False, detail=str(show(p))) for p in POSITIVE],
+        Check("submitted_list_matches_positives", submitted == set(POSITIVE), critical=False,
+              detail=f"submitted: {sorted(submitted)}"),
         submitted_check(ctx),
     ]
-    return finalize(checks)
+    return finalize(checks, score=sum(appropriate.values()) / len(appropriate))
