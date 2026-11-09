@@ -8,7 +8,7 @@
 <div class="page">
 <nav class="rail" aria-label="Contents"><h2>Contents</h2><ol><li><a href="#summary">Summary</a></li><li><a href="#the-environment">The environment</a></li><li><a href="#the-tasks">The tasks</a></li><li><a href="#grading">Grading</a></li><li><a href="#telling-model-failures-apart-from-everything-else">Telling model failures apart from everything else</a></li><li><a href="#results">Results</a></li><li><a href="#calibration-log">Calibration log</a></li><li><a href="#what-surprised-me">What surprised me</a></li><li><a href="#what-id-change-and-do-next">What I’d change and do next</a></li><li><a href="#limitations">Limitations</a></li></ol></nav>
 <main>
-<header class="top"><p>Writeup · synthetic patient data</p><h1>Clinical agent environment</h1></header>
+<header class="top"><h1>Clinical agent environment</h1></header>
 <h2 id="summary">Summary</h2>
 <p>I built a mock EHR for a primary care practice with 30 synthetic patients and 17 tools, four tasks inside it, state-based graders, reference solutions and a harness with one entry point. Three tasks are scored. On the final run, frozen at the tag frozen-v1, Opus 5 passed apixaban_dose 6/10 and panel_a1c 7/10, both in the 2-7 band, and strep_allergy 1/10, below it. The fourth task, med_rec_discharge, passed every one of 28 trials across six versions and is reported separately as a calibration miss. All 16 failed trials were labeled by cause and confirmed by hand, and all 16 were the model’s fault. Every one is an information-gathering miss: the deciding fact was in a note the model listed or could have listed, and it didn’t open it.</p>
 <p>The part I spent the most care on is making sure a failure means the model got something wrong. Most of this writeup is about how I checked that.</p>
@@ -369,7 +369,6 @@
 </ul>
 <h2 id="limitations">Limitations</h2>
 <p>The data and traps were written by one person, so the tasks reflect my idea of realistic chart mess. Every scored failure is an information-gathering miss, so these tasks measure diligence across a chart far more than clinical knowledge. The prompts include light cues (“update her chart as needed”) that I kept deliberately, because removing them would make a critical check ambiguous. The note search is literal apart from singular and plural forms, which is realistic for many EHRs but is a design choice that shapes how findable each note is. Ten trials per task give wide intervals, and strep shows a frozen task can move a long way between samples. The graders’ tolerances cover the alternatives I could anticipate, and the triage and hand review exist to catch the ones I couldn’t. None came up in the final run.</p>
-<footer class="top"><p>Generated from WRITEUP.md. Source of truth is the markdown in the repository.</p></footer>
 </main>
 </div>
 </body></html>

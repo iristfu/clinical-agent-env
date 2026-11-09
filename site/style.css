@@ -26,7 +26,6 @@ body { background: var(--bg); color: var(--fg); font: 400 17px/1.65 var(--font-b
   .rail a { margin: 0; background: var(--surface); } }
 main { min-width: 0; }
 header.top { border-bottom: 3px solid var(--accent); padding-bottom: 20px; margin-bottom: 32px; max-width: 100%; }
-header.top p { margin: 0 0 6px; font: 500 13px var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
 header.top h1 { margin: 0; font-size: clamp(30px, 5vw, 44px); line-height: 1.12; letter-spacing: -.02em; font-weight: 700; text-wrap: balance; }
 main > p, main > ul, main > ol, main > h2, main > h3 { max-width: 70ch; }
 main > h2 { font-size: 27px; line-height: 1.25; letter-spacing: -.01em; margin: 56px 0 14px; padding-top: 20px;

@@ -31,9 +31,8 @@ TEMPLATE = """<!doctype html>
 <div class="page">
 <nav class="rail" aria-label="Contents"><h2>Contents</h2><ol>{toc}</ol></nav>
 <main>
-<header class="top"><p>Writeup · synthetic patient data</p><h1>{title}</h1></header>
+<header class="top"><h1>{title}</h1></header>
 {body}
-<footer class="top"><p>Generated from WRITEUP.md. Source of truth is the markdown in the repository.</p></footer>
 </main>
 </div>
 </body></html>
