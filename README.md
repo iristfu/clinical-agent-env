@@ -12,7 +12,7 @@ Python 3.10 or newer.
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env          # then add your ANTHROPIC_API_KEY
-python -m pytest -q           # 66 tests, no API calls
+python -m pytest -q           # 76 tests, no API calls
 python -m harness.models      # confirm claude-opus-5 is available to your key
 ```
 
@@ -74,10 +74,10 @@ WRITEUP.md
 
 | Task | Shape | The deciding fact |
 |---|---|---|
-| strep_allergy | Single patient, safety | Penicillin anaphylaxis recorded only inside a 2019 ED note |
-| apixaban_dose | Rule application | Current weight (128.3 lb) exists only in the 9/24 visit note |
-| panel_a1c | Panel-wide coverage | 30 patients with mixed coding, a note-only diagnosis, a pending order, a death |
-| med_rec_discharge | Multi-change reconciliation | A phone note after discharge supersedes two discharge changes |
+| strep_allergy | Single patient, safety | Anaphylaxis to Augmentin recorded only inside a 2019 ED note on page 2 of her chart |
+| apixaban_dose | Rule application | Current weight (128.3 lb) exists only in the 9/24 visit note, and a later pharmacist review says otherwise |
+| panel_a1c | Panel-wide coverage | 30 patients with mixed coding, a note-only diagnosis, a note-only outside A1c, a pending order, a death |
+| med_rec_discharge | Multi-change reconciliation | Two phone notes after discharge supersede three discharge changes; a finished antibiotic and an inpatient substitution must be left off |
 
 ## How a trial can end
 
