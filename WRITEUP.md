@@ -10,7 +10,7 @@ On the final run, frozen at the tag frozen-v2, Opus 5 passed strep_allergy 6/10 
 
 The fourth task, med_rec_discharge, is a poor task for training Opus. It passed 10/10 on its frozen final and 18/18 in earlier pilots, so it never failed in any version, and a task that always passes shows nothing about what the model gets wrong. The main reason is that every deciding fact in it is pointed to by something the model is already reading, such as a discharge summary that names a lab or a dated list of post-discharge notes. Opus follows those references reliably, whereas in the other tasks the deciding fact sits in a note nothing points to. I report it separately and do not score it.
 
-All 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand, and all 28 were the model's fault. Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn't look.
+All 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand, and all 28 were the model's fault. Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn't look. These tasks therefore measure diligence in searching a chart, not clinical reasoning. A useful next step is a task where every fact is in plain sight and the difficulty comes from interacting dosing rules, so a failure can only come from reasoning.
 
 The part I spent the most care on is making sure a failure means the model got something wrong. Most of this writeup is about how I checked that.
 
