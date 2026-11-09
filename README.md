@@ -12,7 +12,7 @@ Python 3.10 or newer.
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env          # then add your ANTHROPIC_API_KEY
-python -m pytest -q           # 90 tests, no API calls
+python -m pytest -q           # 99 tests, no API calls
 python -m harness.models      # confirm claude-opus-5 is available to your key
 ```
 
