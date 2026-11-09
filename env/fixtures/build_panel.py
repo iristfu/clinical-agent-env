@@ -872,15 +872,22 @@ patient("pt-1030", "Daniel", "King", "1982-05-16", "male",
 # ---------------------------------------------------------------------------------------------
 
 def build():
+    return assemble(P)
+
+
+def assemble(specs, extra_formulary=(), fixture_version=1):
+    """Turn patient specs into a fixture. Other fixtures (see build_doac.py) reuse this with their own patients."""
     state = {
-        "meta": {"today": TODAY, "practice": "Riverbend Family Medicine", "fixture_version": 1},
+        "meta": {"today": TODAY, "practice": "Riverbend Family Medicine", "fixture_version": fixture_version},
         "patients": [], "conditions": [], "medications": [], "allergies": [], "observations": [],
         "notes": [], "orders": [],
-        "formulary": [{"id": rx_id(n), "name": n, "ingredient": i, "drug_class": c} for n, i, c in FORMULARY],
+        "formulary": [{"id": rx_id(n), "name": n, "ingredient": i, "drug_class": c}
+                      for n, i, c in [*FORMULARY, *extra_formulary]],
         "lab_catalog": LAB_CATALOG,
         "observation_codes": {code: {"display": d, "synonyms": s} for code, (d, s) in OBSERVATION_CODES.items()},
     }
-    for spec in P:
+    formulary_ids = {rx_id(n) for n, _, _ in [*FORMULARY, *extra_formulary]}
+    for spec in specs:
         pid = spec["pid"]
         n4 = pid.split("-")[1]
         state["patients"].append({
@@ -895,8 +902,9 @@ def build():
                                         "code": {"system": system, "code": code, "display": display},
                                         "clinicalStatus": status, "onsetDate": onset})
         for i, (name, dose, unit, freq, authored, status) in enumerate(spec["meds"], 1):
+            assert rx_id(name) in formulary_ids, f"{name} is not in the formulary"
             state["medications"].append({"id": f"med-{n4}-{i:02d}", "patient_id": pid,
-                                         "formulary_id": FORMULARY_BY_NAME[name], "name": name,
+                                         "formulary_id": rx_id(name), "name": name,
                                          "dose_value": dose, "dose_unit": unit, "frequency": freq,
                                          "status": status, "authoredOn": authored, "duration_days": None,
                                          "indication": None, "source": "chart", "history": []})

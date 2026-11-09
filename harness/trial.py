@@ -86,7 +86,7 @@ def finish_trial(task, ehr, initial, start_hash, stop_reason, log, meta, stats):
 # ---- scripted policy (reference solutions and grader controls) -------------------------------
 
 def run_scripted(task, calls, *, policy="reference", trial=0, traj_path=None, run_id=None):
-    ehr = EHR()
+    ehr = EHR(task.fixture)
     initial, start_hash = ehr.snapshot(), ehr.state_hash()
     log = TrajectoryLog(traj_path)
     meta = {"run_id": run_id, "task": task.id, "policy": policy, "model": None, "trial": trial, "attempt": 1}
@@ -109,8 +109,8 @@ def run_scripted(task, calls, *, policy="reference", trial=0, traj_path=None, ru
     return finish_trial(task, ehr, initial, start_hash, stop_reason, log, meta, stats)
 
 
-def initial_hash():
-    return hash_state(EHR().state)
+def initial_hash(fixture=None):
+    return hash_state((EHR(fixture) if fixture else EHR()).state)
 
 
 def tools_for_api():

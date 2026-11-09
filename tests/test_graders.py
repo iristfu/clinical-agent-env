@@ -228,3 +228,73 @@ def test_med_rec_traps_follow_from_fixture():
     assert "discontinue empagliflozin" in later[0]["text"] and "starting empagliflozin 10 mg once daily" in later[1]["text"]
     names = {d["name"] for d in state["formulary"]}
     assert {"cefpodoxime", "pantoprazole"} <= names, "the model must be able to make the mistake"
+
+
+def _kg(state, pid):
+    """Latest weight in kilograms (one chart records it in pounds)."""
+    o = max((o for o in state["observations"] if o["patient_id"] == pid and o["code"]["code"] == "29463-7"),
+            key=lambda o: o["effectiveDate"])
+    return o["value"] * 0.45359237 if o["unit"] == "lb" else o["value"]
+
+
+def _crcl(state, pid):
+    """Cockcroft-Gault on actual body weight with the latest chart values."""
+    age = _age(state, pid)
+    sex = next(p["gender"] for p in state["patients"] if p["id"] == pid)
+    value = (140 - age) * _kg(state, pid) / (72 * _latest(state, pid, "2160-0"))
+    return value * 0.85 if sex == "female" else value
+
+
+def test_doac_expected_doses_follow_from_fixture():
+    """Re-derive every doac_dose_reasoning answer from the chart using the four labels' rules, independently of the
+    grader's hand-written EXPECTED table."""
+    from tasks.doac_dose_reasoning.task import EXPECTED, FIXTURE, SWITCH_OK
+    state = EHR(FIXTURE).state
+    derived, switch = {}, set()
+    strong_dual = {"itraconazole", "ketoconazole", "ritonavir"}  # clarithromycin is the apixaban label's exception
+    for m in (m for m in state["medications"] if m["status"] == "active" and m["name"] in
+              ("apixaban", "rivaroxaban", "dabigatran", "edoxaban")):
+        pid, name = m["patient_id"], m["name"]
+        crcl = _crcl(state, pid)
+        on = {x["name"] for x in state["medications"] if x["patient_id"] == pid and x["status"] == "active"}
+        if name == "apixaban":
+            criteria = [_age(state, pid) >= 80, _kg(state, pid) <= 60, _latest(state, pid, "2160-0") >= 1.5]
+            dose = 2.5 if sum(criteria) >= 2 else 5
+            if on & strong_dual:
+                assert dose == 5, "avoid-coadministration case is not in this fixture"
+                dose = 2.5
+            derived[pid] = ("apixaban", dose, "twice daily")
+        elif name == "rivaroxaban":
+            assert crcl >= 15
+            derived[pid] = ("rivaroxaban", 15 if crcl <= 50 else 20, "once daily")
+        elif name == "dabigatran":
+            assert crcl >= 15 and not on & {"ketoconazole", "ritonavir", "itraconazole"}
+            reduce = (30 <= crcl <= 50 and bool(on & {"dronedarone", "ketoconazole"})) or crcl < 30
+            derived[pid] = ("dabigatran", 75 if reduce else 150, "twice daily")
+        elif name == "edoxaban":
+            if crcl > 95:
+                switch.add(pid)
+            else:
+                assert crcl >= 15
+                derived[pid] = ("edoxaban", 30 if crcl <= 50 else 60, "once daily")
+    assert switch == {"pt-2001"}
+    assert derived == EXPECTED
+    # Each alternative is valid for pt-2001 on that label's own rule.
+    crcl = _crcl(state, "pt-2001")
+    assert crcl > 50 and crcl > 30 and _age(state, "pt-2001") < 80 and _kg(state, "pt-2001") > 60
+    assert SWITCH_OK == {("apixaban", 5, "twice daily"), ("rivaroxaban", 20, "once daily"),
+                         ("dabigatran", 150, "twice daily")}
+
+
+def test_doac_ambiguous_weight_choice_does_not_change_any_answer():
+    """The rubric says actual body weight. The answers must not flip if someone uses a lower, ideal-like weight."""
+    from tasks.doac_dose_reasoning.task import FIXTURE
+    state = EHR(FIXTURE).state
+    for pid, band in {"pt-2001": (95, None), "pt-2002": (None, 50), "pt-2003": (30, 50), "pt-2006": (50, None)}.items():
+        age = _age(state, pid)
+        sex = next(p["gender"] for p in state["patients"] if p["id"] == pid)
+        cr = _latest(state, pid, "2160-0")
+        for weight in (_kg(state, pid), 0.8 * _kg(state, pid)):
+            c = (140 - age) * weight / (72 * cr) * (0.85 if sex == "female" else 1)
+            lo, hi = band
+            assert (lo is None or c > lo) and (hi is None or c <= hi) or pid == "pt-2003" and 30 <= c <= 50, (pid, c)

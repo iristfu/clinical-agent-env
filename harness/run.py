@@ -174,6 +174,8 @@ def main(argv=None):
         "trials": args.trials, "effort": args.effort or "model default", "max_tokens": args.max_tokens,
         "thinking_display": not args.no_thinking_display, "git": _git_info(),
         "fixture": str(DEFAULT_FIXTURE.relative_to(ROOT)), "initial_state_hash": initial_hash(),
+        "task_fixtures": {t: str(Path(load_task(t).fixture).relative_to(ROOT)) for t in tasks
+                          if load_task(t).fixture != DEFAULT_FIXTURE},
         "tool_schema_hash": _sha(json.dumps(TOOLS, sort_keys=True)),
         "prompt_hashes": {t: _sha(load_task(t).prompt) for t in tasks},
     }

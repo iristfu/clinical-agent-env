@@ -1,0 +1,2133 @@
+{
+ "meta": {
+  "today": "2026-10-01",
+  "practice": "Riverbend Family Medicine, anticoagulation clinic",
+  "fixture_version": 1
+ },
+ "patients": [
+  {
+   "id": "pt-2001",
+   "mrn": "RB314007",
+   "name": {
+    "given": "Daniel",
+    "family": "Brooks"
+   },
+   "birthDate": "1964-03-12",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2002",
+   "mrn": "RB314014",
+   "name": {
+    "given": "Priya",
+    "family": "Raman"
+   },
+   "birthDate": "1952-05-20",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2003",
+   "mrn": "RB314021",
+   "name": {
+    "given": "Walter",
+    "family": "Novak"
+   },
+   "birthDate": "1948-02-02",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2004",
+   "mrn": "RB314028",
+   "name": {
+    "given": "Samuel",
+    "family": "Greene"
+   },
+   "birthDate": "1945-07-15",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2005",
+   "mrn": "RB314035",
+   "name": {
+    "given": "Eleanor",
+    "family": "Voss"
+   },
+   "birthDate": "1943-01-09",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2006",
+   "mrn": "RB314042",
+   "name": {
+    "given": "Marcus",
+    "family": "Lee"
+   },
+   "birthDate": "1960-04-04",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2007",
+   "mrn": "RB314049",
+   "name": {
+    "given": "Raymond",
+    "family": "Castillo"
+   },
+   "birthDate": "1956-09-10",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2008",
+   "mrn": "RB314056",
+   "name": {
+    "given": "Gregory",
+    "family": "Hale"
+   },
+   "birthDate": "1960-02-21",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2009",
+   "mrn": "RB314063",
+   "name": {
+    "given": "Albert",
+    "family": "Soto"
+   },
+   "birthDate": "1951-06-30",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2010",
+   "mrn": "RB314070",
+   "name": {
+    "given": "Victor",
+    "family": "Tran"
+   },
+   "birthDate": "1956-03-03",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2011",
+   "mrn": "RB314077",
+   "name": {
+    "given": "Edgar",
+    "family": "Whitfield"
+   },
+   "birthDate": "1947-11-08",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2012",
+   "mrn": "RB314084",
+   "name": {
+    "given": "Joan",
+    "family": "Mercer"
+   },
+   "birthDate": "1958-05-17",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2013",
+   "mrn": "RB314091",
+   "name": {
+    "given": "Theodore",
+    "family": "Ward"
+   },
+   "birthDate": "1960-08-09",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2014",
+   "mrn": "RB314098",
+   "name": {
+    "given": "Stanley",
+    "family": "Rhodes"
+   },
+   "birthDate": "1954-01-20",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2015",
+   "mrn": "RB314105",
+   "name": {
+    "given": "Harvey",
+    "family": "Lindqvist"
+   },
+   "birthDate": "1947-02-10",
+   "gender": "male",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2016",
+   "mrn": "RB314112",
+   "name": {
+    "given": "Dorothy",
+    "family": "Quinn"
+   },
+   "birthDate": "1944-02-14",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  },
+  {
+   "id": "pt-2017",
+   "mrn": "RB314119",
+   "name": {
+    "given": "Margaret",
+    "family": "Doyle"
+   },
+   "birthDate": "1950-04-22",
+   "gender": "female",
+   "active": true,
+   "deceasedDate": null
+  }
+ ],
+ "conditions": [
+  {
+   "id": "cond-2001-1",
+   "patient_id": "pt-2001",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-02-08"
+  },
+  {
+   "id": "cond-2001-2",
+   "patient_id": "pt-2001",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2019-05-10"
+  },
+  {
+   "id": "cond-2002-1",
+   "patient_id": "pt-2002",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-03-01"
+  },
+  {
+   "id": "cond-2002-2",
+   "patient_id": "pt-2002",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2010-08-22"
+  },
+  {
+   "id": "cond-2003-1",
+   "patient_id": "pt-2003",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2022-11-30"
+  },
+  {
+   "id": "cond-2003-2",
+   "patient_id": "pt-2003",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2012-04-17"
+  },
+  {
+   "id": "cond-2003-3",
+   "patient_id": "pt-2003",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2014-06-03"
+  },
+  {
+   "id": "cond-2004-1",
+   "patient_id": "pt-2004",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2021-09-06"
+  },
+  {
+   "id": "cond-2004-2",
+   "patient_id": "pt-2004",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2008-01-19"
+  },
+  {
+   "id": "cond-2005-1",
+   "patient_id": "pt-2005",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2020-06-25"
+  },
+  {
+   "id": "cond-2005-2",
+   "patient_id": "pt-2005",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E03.9",
+    "display": "Hypothyroidism, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2011-03-02"
+  },
+  {
+   "id": "cond-2006-1",
+   "patient_id": "pt-2006",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2025-02-14"
+  },
+  {
+   "id": "cond-2006-2",
+   "patient_id": "pt-2006",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E11.9",
+    "display": "Type 2 diabetes mellitus without complications"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-10-09"
+  },
+  {
+   "id": "cond-2007-1",
+   "patient_id": "pt-2007",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2022-04-19"
+  },
+  {
+   "id": "cond-2007-2",
+   "patient_id": "pt-2007",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2016-12-05"
+  },
+  {
+   "id": "cond-2008-1",
+   "patient_id": "pt-2008",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-07-02"
+  },
+  {
+   "id": "cond-2008-2",
+   "patient_id": "pt-2008",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2017-03-14"
+  },
+  {
+   "id": "cond-2009-1",
+   "patient_id": "pt-2009",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-09-11"
+  },
+  {
+   "id": "cond-2009-2",
+   "patient_id": "pt-2009",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.4",
+    "display": "Chronic kidney disease, stage 4"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-02-08"
+  },
+  {
+   "id": "cond-2010-1",
+   "patient_id": "pt-2010",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2025-01-27"
+  },
+  {
+   "id": "cond-2010-2",
+   "patient_id": "pt-2010",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2015-10-20"
+  },
+  {
+   "id": "cond-2011-1",
+   "patient_id": "pt-2011",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-05-23"
+  },
+  {
+   "id": "cond-2011-2",
+   "patient_id": "pt-2011",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2009-02-16"
+  },
+  {
+   "id": "cond-2011-3",
+   "patient_id": "pt-2011",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "N18.32",
+    "display": "Chronic kidney disease, stage 3b"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-08-30"
+  },
+  {
+   "id": "cond-2012-1",
+   "patient_id": "pt-2012",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2025-06-03"
+  },
+  {
+   "id": "cond-2012-2",
+   "patient_id": "pt-2012",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "F41.1",
+    "display": "Generalized anxiety disorder"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2020-01-12"
+  },
+  {
+   "id": "cond-2013-1",
+   "patient_id": "pt-2013",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2025-03-18"
+  },
+  {
+   "id": "cond-2013-2",
+   "patient_id": "pt-2013",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "E78.5",
+    "display": "Hyperlipidemia, unspecified"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2018-09-04"
+  },
+  {
+   "id": "cond-2014-1",
+   "patient_id": "pt-2014",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-10-07"
+  },
+  {
+   "id": "cond-2014-2",
+   "patient_id": "pt-2014",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2011-11-29"
+  },
+  {
+   "id": "cond-2015-1",
+   "patient_id": "pt-2015",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2023-12-04"
+  },
+  {
+   "id": "cond-2015-2",
+   "patient_id": "pt-2015",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2007-07-11"
+  },
+  {
+   "id": "cond-2016-1",
+   "patient_id": "pt-2016",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2022-08-23"
+  },
+  {
+   "id": "cond-2016-2",
+   "patient_id": "pt-2016",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "M81.0",
+    "display": "Age-related osteoporosis without current pathological fracture"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2019-04-30"
+  },
+  {
+   "id": "cond-2017-1",
+   "patient_id": "pt-2017",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2024-06-14"
+  },
+  {
+   "id": "cond-2017-2",
+   "patient_id": "pt-2017",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I10",
+    "display": "Essential (primary) hypertension"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2013-02-25"
+  }
+ ],
+ "medications": [
+  {
+   "id": "med-2001-01",
+   "patient_id": "pt-2001",
+   "formulary_id": "rx-lisinopril",
+   "name": "lisinopril",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2019-05-10",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2001-02",
+   "patient_id": "pt-2001",
+   "formulary_id": "rx-edoxaban",
+   "name": "edoxaban",
+   "dose_value": 60,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2023-02-08",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2002-01",
+   "patient_id": "pt-2002",
+   "formulary_id": "rx-amlodipine",
+   "name": "amlodipine",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2010-08-22",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2002-02",
+   "patient_id": "pt-2002",
+   "formulary_id": "rx-rivaroxaban",
+   "name": "rivaroxaban",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2024-03-01",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2003-01",
+   "patient_id": "pt-2003",
+   "formulary_id": "rx-dronedarone",
+   "name": "dronedarone",
+   "dose_value": 400,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2022-11-30",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2003-02",
+   "patient_id": "pt-2003",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2014-06-03",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2003-03",
+   "patient_id": "pt-2003",
+   "formulary_id": "rx-dabigatran",
+   "name": "dabigatran",
+   "dose_value": 150,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2022-11-30",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2004-01",
+   "patient_id": "pt-2004",
+   "formulary_id": "rx-diltiazem",
+   "name": "diltiazem",
+   "dose_value": 180,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2021-09-06",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2004-02",
+   "patient_id": "pt-2004",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 2.5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2024-01-12",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2005-01",
+   "patient_id": "pt-2005",
+   "formulary_id": "rx-levothyroxine",
+   "name": "levothyroxine",
+   "dose_value": 50,
+   "dose_unit": "mcg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2011-03-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2005-02",
+   "patient_id": "pt-2005",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 2.5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2020-06-25",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2006-01",
+   "patient_id": "pt-2006",
+   "formulary_id": "rx-metformin",
+   "name": "metformin",
+   "dose_value": 1000,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2018-10-09",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2006-02",
+   "patient_id": "pt-2006",
+   "formulary_id": "rx-rivaroxaban",
+   "name": "rivaroxaban",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2025-02-14",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2007-01",
+   "patient_id": "pt-2007",
+   "formulary_id": "rx-itraconazole",
+   "name": "itraconazole",
+   "dose_value": 200,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2026-08-18",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2007-02",
+   "patient_id": "pt-2007",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2022-04-19",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2008-01",
+   "patient_id": "pt-2008",
+   "formulary_id": "rx-clarithromycin",
+   "name": "clarithromycin",
+   "dose_value": 500,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2026-09-24",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2008-02",
+   "patient_id": "pt-2008",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2024-07-02",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2009-01",
+   "patient_id": "pt-2009",
+   "formulary_id": "rx-metoprolol-succinate-er",
+   "name": "metoprolol succinate ER",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2023-09-11",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2009-02",
+   "patient_id": "pt-2009",
+   "formulary_id": "rx-dabigatran",
+   "name": "dabigatran",
+   "dose_value": 150,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2023-09-11",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2010-01",
+   "patient_id": "pt-2010",
+   "formulary_id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "dose_value": 40,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2015-10-20",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2010-02",
+   "patient_id": "pt-2010",
+   "formulary_id": "rx-edoxaban",
+   "name": "edoxaban",
+   "dose_value": 60,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2025-01-27",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2011-01",
+   "patient_id": "pt-2011",
+   "formulary_id": "rx-losartan",
+   "name": "losartan",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2009-02-16",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2011-02",
+   "patient_id": "pt-2011",
+   "formulary_id": "rx-edoxaban",
+   "name": "edoxaban",
+   "dose_value": 60,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2023-05-23",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2012-01",
+   "patient_id": "pt-2012",
+   "formulary_id": "rx-sertraline",
+   "name": "sertraline",
+   "dose_value": 50,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2020-01-12",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2012-02",
+   "patient_id": "pt-2012",
+   "formulary_id": "rx-rivaroxaban",
+   "name": "rivaroxaban",
+   "dose_value": 15,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2025-06-03",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2013-01",
+   "patient_id": "pt-2013",
+   "formulary_id": "rx-rosuvastatin",
+   "name": "rosuvastatin",
+   "dose_value": 10,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2018-09-04",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2013-02",
+   "patient_id": "pt-2013",
+   "formulary_id": "rx-edoxaban",
+   "name": "edoxaban",
+   "dose_value": 60,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2025-03-18",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2014-01",
+   "patient_id": "pt-2014",
+   "formulary_id": "rx-dronedarone",
+   "name": "dronedarone",
+   "dose_value": 400,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2024-10-07",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2014-02",
+   "patient_id": "pt-2014",
+   "formulary_id": "rx-dabigatran",
+   "name": "dabigatran",
+   "dose_value": 75,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2024-10-07",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2015-01",
+   "patient_id": "pt-2015",
+   "formulary_id": "rx-amlodipine",
+   "name": "amlodipine",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2007-07-11",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2015-02",
+   "patient_id": "pt-2015",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 2.5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2023-12-04",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2016-01",
+   "patient_id": "pt-2016",
+   "formulary_id": "rx-alendronate",
+   "name": "alendronate",
+   "dose_value": 70,
+   "dose_unit": "mg",
+   "frequency": "once weekly",
+   "status": "active",
+   "authoredOn": "2019-04-30",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2016-02",
+   "patient_id": "pt-2016",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2022-08-23",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2017-01",
+   "patient_id": "pt-2017",
+   "formulary_id": "rx-amlodipine",
+   "name": "amlodipine",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2013-02-25",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-2017-02",
+   "patient_id": "pt-2017",
+   "formulary_id": "rx-rivaroxaban",
+   "name": "rivaroxaban",
+   "dose_value": 20,
+   "dose_unit": "mg",
+   "frequency": "once daily",
+   "status": "active",
+   "authoredOn": "2024-06-14",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  }
+ ],
+ "allergies": [],
+ "observations": [
+  {
+   "id": "obs-2001-001",
+   "patient_id": "pt-2001",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 104.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-14"
+  },
+  {
+   "id": "obs-2001-002",
+   "patient_id": "pt-2001",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 0.7,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-14"
+  },
+  {
+   "id": "obs-2002-001",
+   "patient_id": "pt-2002",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 52.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-09"
+  },
+  {
+   "id": "obs-2002-002",
+   "patient_id": "pt-2002",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.4,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-09"
+  },
+  {
+   "id": "obs-2003-001",
+   "patient_id": "pt-2003",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 78.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-02"
+  },
+  {
+   "id": "obs-2003-002",
+   "patient_id": "pt-2003",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.7,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-02"
+  },
+  {
+   "id": "obs-2004-001",
+   "patient_id": "pt-2004",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.6,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-01-20"
+  },
+  {
+   "id": "obs-2004-002",
+   "patient_id": "pt-2004",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 88.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-21"
+  },
+  {
+   "id": "obs-2004-003",
+   "patient_id": "pt-2004",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.2,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-21"
+  },
+  {
+   "id": "obs-2005-001",
+   "patient_id": "pt-2005",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 57.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-18"
+  },
+  {
+   "id": "obs-2005-002",
+   "patient_id": "pt-2005",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.1,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-18"
+  },
+  {
+   "id": "obs-2006-001",
+   "patient_id": "pt-2006",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 95.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-11"
+  },
+  {
+   "id": "obs-2006-002",
+   "patient_id": "pt-2006",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.1,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-11"
+  },
+  {
+   "id": "obs-2007-001",
+   "patient_id": "pt-2007",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 80.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-15"
+  },
+  {
+   "id": "obs-2007-002",
+   "patient_id": "pt-2007",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.0,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-15"
+  },
+  {
+   "id": "obs-2008-001",
+   "patient_id": "pt-2008",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 90.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-26"
+  },
+  {
+   "id": "obs-2008-002",
+   "patient_id": "pt-2008",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.0,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-26"
+  },
+  {
+   "id": "obs-2009-001",
+   "patient_id": "pt-2009",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 60.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-04"
+  },
+  {
+   "id": "obs-2009-002",
+   "patient_id": "pt-2009",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 2.2,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-04"
+  },
+  {
+   "id": "obs-2010-001",
+   "patient_id": "pt-2010",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 85.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-08"
+  },
+  {
+   "id": "obs-2010-002",
+   "patient_id": "pt-2010",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 0.9,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-08"
+  },
+  {
+   "id": "obs-2011-001",
+   "patient_id": "pt-2011",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 68.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-17"
+  },
+  {
+   "id": "obs-2011-002",
+   "patient_id": "pt-2011",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.5,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-17"
+  },
+  {
+   "id": "obs-2012-001",
+   "patient_id": "pt-2012",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 88.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-22"
+  },
+  {
+   "id": "obs-2012-002",
+   "patient_id": "pt-2012",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.0,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-22"
+  },
+  {
+   "id": "obs-2013-001",
+   "patient_id": "pt-2013",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 58.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-10"
+  },
+  {
+   "id": "obs-2013-002",
+   "patient_id": "pt-2013",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 0.8,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-10"
+  },
+  {
+   "id": "obs-2014-001",
+   "patient_id": "pt-2014",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 85.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-03"
+  },
+  {
+   "id": "obs-2014-002",
+   "patient_id": "pt-2014",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.2,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-03"
+  },
+  {
+   "id": "obs-2015-001",
+   "patient_id": "pt-2015",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 58.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-16"
+  },
+  {
+   "id": "obs-2015-002",
+   "patient_id": "pt-2015",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.0,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-16"
+  },
+  {
+   "id": "obs-2016-001",
+   "patient_id": "pt-2016",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 125.0,
+   "unit": "lb",
+   "effectiveDate": "2026-09-12"
+  },
+  {
+   "id": "obs-2016-002",
+   "patient_id": "pt-2016",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.1,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-12"
+  },
+  {
+   "id": "obs-2017-001",
+   "patient_id": "pt-2017",
+   "code": {
+    "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 61.0,
+   "unit": "kg",
+   "effectiveDate": "2026-09-20"
+  },
+  {
+   "id": "obs-2017-002",
+   "patient_id": "pt-2017",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.05,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-09-20"
+  }
+ ],
+ "notes": [],
+ "orders": [],
+ "formulary": [
+  {
+   "id": "rx-amoxicillin",
+   "name": "amoxicillin",
+   "ingredient": "amoxicillin",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-amoxicillin-clavulanate",
+   "name": "amoxicillin-clavulanate",
+   "ingredient": "amoxicillin/clavulanate",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-penicillin-v-potassium",
+   "name": "penicillin V potassium",
+   "ingredient": "penicillin V",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-benzathine-penicillin-g",
+   "name": "benzathine penicillin G",
+   "ingredient": "benzathine penicillin G",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-ampicillin",
+   "name": "ampicillin",
+   "ingredient": "ampicillin",
+   "drug_class": "penicillin antibiotic"
+  },
+  {
+   "id": "rx-cephalexin",
+   "name": "cephalexin",
+   "ingredient": "cephalexin",
+   "drug_class": "cephalosporin antibiotic (1st generation)"
+  },
+  {
+   "id": "rx-cefadroxil",
+   "name": "cefadroxil",
+   "ingredient": "cefadroxil",
+   "drug_class": "cephalosporin antibiotic (1st generation)"
+  },
+  {
+   "id": "rx-cefuroxime",
+   "name": "cefuroxime",
+   "ingredient": "cefuroxime",
+   "drug_class": "cephalosporin antibiotic (2nd generation)"
+  },
+  {
+   "id": "rx-cefdinir",
+   "name": "cefdinir",
+   "ingredient": "cefdinir",
+   "drug_class": "cephalosporin antibiotic (3rd generation)"
+  },
+  {
+   "id": "rx-cefpodoxime",
+   "name": "cefpodoxime",
+   "ingredient": "cefpodoxime",
+   "drug_class": "cephalosporin antibiotic (3rd generation)"
+  },
+  {
+   "id": "rx-azithromycin",
+   "name": "azithromycin",
+   "ingredient": "azithromycin",
+   "drug_class": "macrolide antibiotic"
+  },
+  {
+   "id": "rx-clarithromycin",
+   "name": "clarithromycin",
+   "ingredient": "clarithromycin",
+   "drug_class": "macrolide antibiotic"
+  },
+  {
+   "id": "rx-clindamycin",
+   "name": "clindamycin",
+   "ingredient": "clindamycin",
+   "drug_class": "lincosamide antibiotic"
+  },
+  {
+   "id": "rx-doxycycline",
+   "name": "doxycycline",
+   "ingredient": "doxycycline",
+   "drug_class": "tetracycline antibiotic"
+  },
+  {
+   "id": "rx-sulfamethoxazole-trimethoprim",
+   "name": "sulfamethoxazole-trimethoprim",
+   "ingredient": "sulfamethoxazole/trimethoprim",
+   "drug_class": "sulfonamide antibiotic"
+  },
+  {
+   "id": "rx-levofloxacin",
+   "name": "levofloxacin",
+   "ingredient": "levofloxacin",
+   "drug_class": "fluoroquinolone antibiotic"
+  },
+  {
+   "id": "rx-nitrofurantoin",
+   "name": "nitrofurantoin",
+   "ingredient": "nitrofurantoin",
+   "drug_class": "nitrofuran antibiotic"
+  },
+  {
+   "id": "rx-apixaban",
+   "name": "apixaban",
+   "ingredient": "apixaban",
+   "drug_class": "direct oral anticoagulant"
+  },
+  {
+   "id": "rx-rivaroxaban",
+   "name": "rivaroxaban",
+   "ingredient": "rivaroxaban",
+   "drug_class": "direct oral anticoagulant"
+  },
+  {
+   "id": "rx-dabigatran",
+   "name": "dabigatran",
+   "ingredient": "dabigatran",
+   "drug_class": "direct oral anticoagulant"
+  },
+  {
+   "id": "rx-warfarin",
+   "name": "warfarin",
+   "ingredient": "warfarin",
+   "drug_class": "vitamin K antagonist anticoagulant"
+  },
+  {
+   "id": "rx-enoxaparin",
+   "name": "enoxaparin",
+   "ingredient": "enoxaparin",
+   "drug_class": "low molecular weight heparin"
+  },
+  {
+   "id": "rx-lisinopril",
+   "name": "lisinopril",
+   "ingredient": "lisinopril",
+   "drug_class": "ACE inhibitor"
+  },
+  {
+   "id": "rx-losartan",
+   "name": "losartan",
+   "ingredient": "losartan",
+   "drug_class": "angiotensin II receptor blocker"
+  },
+  {
+   "id": "rx-metoprolol-tartrate",
+   "name": "metoprolol tartrate",
+   "ingredient": "metoprolol tartrate",
+   "drug_class": "beta blocker"
+  },
+  {
+   "id": "rx-metoprolol-succinate-er",
+   "name": "metoprolol succinate ER",
+   "ingredient": "metoprolol succinate",
+   "drug_class": "beta blocker"
+  },
+  {
+   "id": "rx-hydrochlorothiazide",
+   "name": "hydrochlorothiazide",
+   "ingredient": "hydrochlorothiazide",
+   "drug_class": "thiazide diuretic"
+  },
+  {
+   "id": "rx-chlorthalidone",
+   "name": "chlorthalidone",
+   "ingredient": "chlorthalidone",
+   "drug_class": "thiazide-like diuretic"
+  },
+  {
+   "id": "rx-amlodipine",
+   "name": "amlodipine",
+   "ingredient": "amlodipine",
+   "drug_class": "calcium channel blocker"
+  },
+  {
+   "id": "rx-furosemide",
+   "name": "furosemide",
+   "ingredient": "furosemide",
+   "drug_class": "loop diuretic"
+  },
+  {
+   "id": "rx-spironolactone",
+   "name": "spironolactone",
+   "ingredient": "spironolactone",
+   "drug_class": "mineralocorticoid receptor antagonist"
+  },
+  {
+   "id": "rx-atorvastatin",
+   "name": "atorvastatin",
+   "ingredient": "atorvastatin",
+   "drug_class": "statin"
+  },
+  {
+   "id": "rx-rosuvastatin",
+   "name": "rosuvastatin",
+   "ingredient": "rosuvastatin",
+   "drug_class": "statin"
+  },
+  {
+   "id": "rx-aspirin",
+   "name": "aspirin",
+   "ingredient": "aspirin",
+   "drug_class": "antiplatelet"
+  },
+  {
+   "id": "rx-clopidogrel",
+   "name": "clopidogrel",
+   "ingredient": "clopidogrel",
+   "drug_class": "P2Y12 inhibitor antiplatelet"
+  },
+  {
+   "id": "rx-ticagrelor",
+   "name": "ticagrelor",
+   "ingredient": "ticagrelor",
+   "drug_class": "P2Y12 inhibitor antiplatelet"
+  },
+  {
+   "id": "rx-metformin",
+   "name": "metformin",
+   "ingredient": "metformin",
+   "drug_class": "biguanide"
+  },
+  {
+   "id": "rx-metformin-er",
+   "name": "metformin ER",
+   "ingredient": "metformin",
+   "drug_class": "biguanide (extended release)"
+  },
+  {
+   "id": "rx-empagliflozin",
+   "name": "empagliflozin",
+   "ingredient": "empagliflozin",
+   "drug_class": "SGLT2 inhibitor"
+  },
+  {
+   "id": "rx-glipizide",
+   "name": "glipizide",
+   "ingredient": "glipizide",
+   "drug_class": "sulfonylurea"
+  },
+  {
+   "id": "rx-semaglutide",
+   "name": "semaglutide",
+   "ingredient": "semaglutide",
+   "drug_class": "GLP-1 receptor agonist"
+  },
+  {
+   "id": "rx-insulin-glargine",
+   "name": "insulin glargine",
+   "ingredient": "insulin glargine",
+   "drug_class": "long-acting insulin"
+  },
+  {
+   "id": "rx-insulin-lispro",
+   "name": "insulin lispro",
+   "ingredient": "insulin lispro",
+   "drug_class": "rapid-acting insulin"
+  },
+  {
+   "id": "rx-omeprazole",
+   "name": "omeprazole",
+   "ingredient": "omeprazole",
+   "drug_class": "proton pump inhibitor"
+  },
+  {
+   "id": "rx-pantoprazole",
+   "name": "pantoprazole",
+   "ingredient": "pantoprazole",
+   "drug_class": "proton pump inhibitor"
+  },
+  {
+   "id": "rx-levothyroxine",
+   "name": "levothyroxine",
+   "ingredient": "levothyroxine",
+   "drug_class": "thyroid hormone"
+  },
+  {
+   "id": "rx-albuterol-hfa",
+   "name": "albuterol HFA",
+   "ingredient": "albuterol",
+   "drug_class": "short-acting beta agonist inhaler"
+  },
+  {
+   "id": "rx-fluticasone-hfa",
+   "name": "fluticasone HFA",
+   "ingredient": "fluticasone",
+   "drug_class": "inhaled corticosteroid"
+  },
+  {
+   "id": "rx-sertraline",
+   "name": "sertraline",
+   "ingredient": "sertraline",
+   "drug_class": "SSRI"
+  },
+  {
+   "id": "rx-acetaminophen",
+   "name": "acetaminophen",
+   "ingredient": "acetaminophen",
+   "drug_class": "analgesic"
+  },
+  {
+   "id": "rx-ibuprofen",
+   "name": "ibuprofen",
+   "ingredient": "ibuprofen",
+   "drug_class": "NSAID"
+  },
+  {
+   "id": "rx-ferrous-sulfate",
+   "name": "ferrous sulfate",
+   "ingredient": "ferrous sulfate",
+   "drug_class": "iron supplement"
+  },
+  {
+   "id": "rx-alendronate",
+   "name": "alendronate",
+   "ingredient": "alendronate",
+   "drug_class": "bisphosphonate"
+  },
+  {
+   "id": "rx-prednisone",
+   "name": "prednisone",
+   "ingredient": "prednisone",
+   "drug_class": "corticosteroid"
+  },
+  {
+   "id": "rx-sumatriptan",
+   "name": "sumatriptan",
+   "ingredient": "sumatriptan",
+   "drug_class": "triptan"
+  },
+  {
+   "id": "rx-topiramate",
+   "name": "topiramate",
+   "ingredient": "topiramate",
+   "drug_class": "anticonvulsant (migraine prevention)"
+  },
+  {
+   "id": "rx-ondansetron",
+   "name": "ondansetron",
+   "ingredient": "ondansetron",
+   "drug_class": "antiemetic"
+  },
+  {
+   "id": "rx-tamsulosin",
+   "name": "tamsulosin",
+   "ingredient": "tamsulosin",
+   "drug_class": "alpha blocker"
+  },
+  {
+   "id": "rx-benzonatate",
+   "name": "benzonatate",
+   "ingredient": "benzonatate",
+   "drug_class": "antitussive"
+  },
+  {
+   "id": "rx-edoxaban",
+   "name": "edoxaban",
+   "ingredient": "edoxaban",
+   "drug_class": "direct oral anticoagulant"
+  },
+  {
+   "id": "rx-dronedarone",
+   "name": "dronedarone",
+   "ingredient": "dronedarone",
+   "drug_class": "antiarrhythmic"
+  },
+  {
+   "id": "rx-diltiazem",
+   "name": "diltiazem",
+   "ingredient": "diltiazem",
+   "drug_class": "calcium channel blocker (non-dihydropyridine)"
+  },
+  {
+   "id": "rx-itraconazole",
+   "name": "itraconazole",
+   "ingredient": "itraconazole",
+   "drug_class": "azole antifungal"
+  }
+ ],
+ "lab_catalog": [
+  {
+   "code": "4548-4",
+   "display": "Hemoglobin A1c",
+   "synonyms": [
+    "HbA1c",
+    "A1c",
+    "glycated hemoglobin",
+    "glycohemoglobin"
+   ]
+  },
+  {
+   "code": "51990-0",
+   "display": "Basic metabolic panel",
+   "synonyms": [
+    "BMP",
+    "chem 7"
+   ]
+  },
+  {
+   "code": "24323-8",
+   "display": "Comprehensive metabolic panel",
+   "synonyms": [
+    "CMP",
+    "chem 14"
+   ]
+  },
+  {
+   "code": "58410-2",
+   "display": "Complete blood count",
+   "synonyms": [
+    "CBC"
+   ]
+  },
+  {
+   "code": "57698-3",
+   "display": "Lipid panel",
+   "synonyms": [
+    "lipids",
+    "cholesterol panel"
+   ]
+  },
+  {
+   "code": "3016-3",
+   "display": "Thyroid stimulating hormone",
+   "synonyms": [
+    "TSH"
+   ]
+  },
+  {
+   "code": "14959-1",
+   "display": "Urine microalbumin/creatinine ratio",
+   "synonyms": [
+    "UACR",
+    "microalbumin"
+   ]
+  },
+  {
+   "code": "6301-6",
+   "display": "INR",
+   "synonyms": [
+    "PT/INR",
+    "prothrombin time"
+   ]
+  },
+  {
+   "code": "2160-0",
+   "display": "Creatinine",
+   "synonyms": [
+    "serum creatinine",
+    "Cr"
+   ]
+  }
+ ],
+ "observation_codes": {
+  "4548-4": {
+   "display": "Hemoglobin A1c/Hemoglobin.total in Blood",
+   "synonyms": [
+    "HbA1c",
+    "A1c",
+    "glycated hemoglobin",
+    "glycohemoglobin"
+   ]
+  },
+  "17856-6": {
+   "display": "Hemoglobin A1c/Hemoglobin.total in Blood by HPLC",
+   "synonyms": [
+    "HbA1c",
+    "A1c",
+    "glycated hemoglobin",
+    "glycohemoglobin"
+   ]
+  },
+  "29463-7": {
+   "display": "Body weight",
+   "synonyms": [
+    "weight",
+    "wt"
+   ]
+  },
+  "85354-9": {
+   "display": "Blood pressure panel",
+   "synonyms": [
+    "BP",
+    "blood pressure"
+   ]
+  },
+  "8867-4": {
+   "display": "Heart rate",
+   "synonyms": [
+    "HR",
+    "pulse"
+   ]
+  },
+  "8310-5": {
+   "display": "Body temperature",
+   "synonyms": [
+    "temperature",
+    "temp"
+   ]
+  },
+  "2160-0": {
+   "display": "Creatinine [Mass/volume] in Serum or Plasma",
+   "synonyms": [
+    "creatinine",
+    "Cr",
+    "serum creatinine"
+   ]
+  },
+  "98979-8": {
+   "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)",
+   "synonyms": [
+    "eGFR",
+    "GFR"
+   ]
+  },
+  "2951-2": {
+   "display": "Sodium [Moles/volume] in Serum or Plasma",
+   "synonyms": [
+    "sodium",
+    "Na"
+   ]
+  },
+  "2823-3": {
+   "display": "Potassium [Moles/volume] in Serum or Plasma",
+   "synonyms": [
+    "potassium",
+    "K"
+   ]
+  },
+  "1558-6": {
+   "display": "Fasting glucose [Mass/volume] in Serum or Plasma",
+   "synonyms": [
+    "glucose",
+    "fasting glucose",
+    "FPG"
+   ]
+  },
+  "718-7": {
+   "display": "Hemoglobin [Mass/volume] in Blood",
+   "synonyms": [
+    "hemoglobin",
+    "Hgb",
+    "Hb"
+   ]
+  },
+  "13457-7": {
+   "display": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation",
+   "synonyms": [
+    "LDL",
+    "cholesterol"
+   ]
+  },
+  "78012-2": {
+   "display": "Streptococcus pyogenes Ag [Presence] in Throat by Rapid immunoassay",
+   "synonyms": [
+    "rapid strep",
+    "strep",
+    "group A strep",
+    "GAS"
+   ]
+  },
+  "2276-4": {
+   "display": "Ferritin [Mass/volume] in Serum or Plasma",
+   "synonyms": [
+    "ferritin",
+    "iron stores"
+   ]
+  }
+ }
+}

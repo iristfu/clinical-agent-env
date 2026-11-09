@@ -4,6 +4,8 @@ import importlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from env.store import DEFAULT_FIXTURE
+
 TASKS_DIR = Path(__file__).parent
 
 
@@ -27,6 +29,7 @@ class Task:
     reference: list
     controls: list
     target_patients: list
+    fixture: Path = DEFAULT_FIXTURE
 
 
 def task_ids():
@@ -40,4 +43,5 @@ def load_task(task_id) -> Task:
     ref = importlib.import_module(f"tasks.{task_id}.reference")
     prompt = (TASKS_DIR / task_id / "prompt.md").read_text().strip()
     return Task(id=task_id, prompt=prompt, max_turns=mod.MAX_TURNS, grade=mod.grade, reference=ref.REFERENCE,
-                controls=ref.CONTROLS, target_patients=mod.TARGET_PATIENTS)
+                controls=ref.CONTROLS, target_patients=mod.TARGET_PATIENTS,
+                fixture=getattr(mod, "FIXTURE", DEFAULT_FIXTURE))

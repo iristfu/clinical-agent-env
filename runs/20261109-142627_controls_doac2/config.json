@@ -1,0 +1,26 @@
+{
+  "run_id": "20261109-142627_controls_doac2",
+  "created": "2026-11-09T14:26:27",
+  "policy": "controls",
+  "model": null,
+  "tasks": [
+    "doac_dose_reasoning"
+  ],
+  "trials": 10,
+  "effort": "model default",
+  "max_tokens": 32000,
+  "thinking_display": true,
+  "git": {
+    "commit": "a3421c27386025b49e8cd26acc13aad88663fbfb",
+    "dirty": true
+  },
+  "fixture": "env/fixtures/panel.json",
+  "initial_state_hash": "eaa87f3c56ec380b",
+  "task_fixtures": {
+    "doac_dose_reasoning": "env/fixtures/doac.json"
+  },
+  "tool_schema_hash": "01e919b04286",
+  "prompt_hashes": {
+    "doac_dose_reasoning": "8141e7b3e877"
+  }
+}

@@ -10,6 +10,11 @@ from env.store import DEFAULT_FIXTURE, EHR
 from env.tools import TOOLS, ToolError, call_tool
 
 
+def test_doac_fixture_matches_builder():
+    from env.fixtures import build_doac
+    assert json.loads(build_doac.OUT.read_text()) == build_doac.build(), "run: python -m env.fixtures.build_doac"
+
+
 def test_fixture_matches_builder():
     assert json.loads(DEFAULT_FIXTURE.read_text()) == build(), "run: python -m env.fixtures.build_panel"
 

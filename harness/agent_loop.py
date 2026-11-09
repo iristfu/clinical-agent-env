@@ -27,7 +27,7 @@ def _with_cache_breakpoint(message):
 
 def run_model_trial(task, model, client, *, trial=0, attempt=1, traj_path=None, run_id=None, effort=None,
                     max_tokens=32000, show_thinking=True):
-    ehr = EHR()
+    ehr = EHR(task.fixture)
     initial, start_hash = ehr.snapshot(), ehr.state_hash()
     log = TrajectoryLog(traj_path)
     config = {"effort": effort or "model default", "max_tokens": max_tokens, "max_turns": task.max_turns,

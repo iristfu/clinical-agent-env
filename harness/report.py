@@ -138,8 +138,12 @@ def build_report(run_dir):
                          f"{sum(r['turns'] for r in rs) / n:.1f} | {sum(r['tool_calls'] for r in rs) / n:.1f} | "
                          f"{val_err:.2f} | {env_err} | {ends} |")
         starts = {r["start_hash"] for r in trials}
+        per_task = {t: {r["start_hash"] for r in rs} for t, rs in by_task.items()}
+        same = all(len(h) == 1 for h in per_task.values())
         lines += ["", f"Every trial started from state hash {', '.join(sorted(starts))}"
-                      + (" (identical)." if len(starts) == 1 else " (MISMATCH, investigate)."), ""]
+                      + (" (identical)." if len(starts) == 1 else
+                         " (identical within each task; tasks with their own fixture start from their own state)."
+                         if same else " (MISMATCH, investigate)."), ""]
 
         costs = [cost(r["model"], r.get("usage")) for r in trials if r.get("usage")]
         costs = [c for c in costs if c is not None]
