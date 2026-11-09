@@ -157,23 +157,23 @@
 </tr>
 </tbody>
 </table></div>
-<p>How to read the two runs. Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task’s pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled column is the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.</p>
+<p>Opus 5 makes a fresh choice on every trial, so a 10-trial final is a sample of the task’s pass rate, not a fixed property of the task. With 10 trials, 5 of 10 has a 95% interval of roughly 24% to 76%. Apixaban and panel were identical in both runs, yet apixaban went from 6/10 to 3/10 and panel from 7/10 to 9/10. Both moves are ordinary sampling variation, which is why the pooled column is the best estimate for those two tasks. Pooled, apixaban sits comfortably inside the band and panel sits at its top edge. I report every number as measured and did not retune anything on scored trials, because tuning on the trials being reported would make the numbers meaningless.</p>
 <h3 id="what-changed-between-frozen-v1-and-frozen-v2">What changed between frozen-v1 and frozen-v2</h3>
 <p>Only the strep_allergy task changed. Here is exactly what I did and why.</p>
-<p>Why. At frozen-v1, strep’s outcome hinged on a single decision per trial: whether to open one outside ED note for Maria Lopez (born 1958) that documents anaphylaxis to Augmentin. In pilots the frozen v1 task passed 5 of 8. In the final it passed 1 of 10, with the same miss each time: eight of the nine failing trials saw that note in their own search results and chose not to open it. I confirmed nothing else had changed (the final’s state, tool-schema and prompt hashes match the last pilot exactly). A task whose result rests on one yes-or-no choice swings this much between samples. Rather than retune v1 on its scored trials, I treated this as a design finding and built a version whose pass rate rests on two independent, moderately hard traps.</p>
-<p>What changed in the data (env/fixtures/build_panel.py, commit be82311). The diff from frozen-v1 is one note edited, plus one note and two lab results added:</p>
+<p>At frozen-v1, strep’s outcome hinged on a single decision per trial: whether to open one outside ED note for Maria Lopez (born 1958) that documents anaphylaxis to Augmentin. In pilots the frozen v1 task passed 5 of 8. In the final it passed 1 of 10, with the same miss each time: eight of the nine failing trials saw that note in their own search results and chose not to open it. I confirmed nothing else had changed (the final’s state, tool-schema and prompt hashes match the last pilot exactly). A task whose result rests on one yes-or-no choice swings this much between samples. Rather than retune v1 on its scored trials, I treated this as a design finding and built a version whose pass rate rests on two independent, moderately hard traps.</p>
+<p>The data changes are in env/fixtures/build_panel.py (commit be82311). The diff from frozen-v1 is one note edited, plus one note and two lab results added:</p>
 <ol type="1">
 <li>Maria Lopez’s 2019 ED note (note-1003-1) gained one line at the top: “Triage: allergies reviewed, 2 drug allergies (see allergy section).” That line falls inside the 200-character search preview, so a model skimming her notes now sees a hint that she has two drug allergies, while her structured allergy list shows only one (sulfa). The note still names the second allergy only as Augmentin, further down, so the model still has to open the note and know that Augmentin is a penicillin.</li>
 <li>A new positive patient, Kevin Patel (pt-1018), who exists only in lab results. He was swabbed at a walk-in nurse visit on 2026-10-01. His positive rapid strep result is a structured lab observation, and he has a temperature of 38.5 °C. His nurse-visit note says only that a throat swab was “sent for antigen testing” for the provider to review, plus “No known drug allergies”. It never uses the words strep, rapid or positive, so a note search for “rapid strep” doesn’t find him. He has no penicillin allergy, so penicillin V, amoxicillin, benzathine penicillin G or a first-generation cephalosporin are all accepted. A model that lists today’s tests from visit notes alone misses him. The prompt asks for every patient whose rapid strep was positive, and lab results are where test results live.</li>
 </ol>
-<p>What changed in the grader and checks.</p>
+<p>The grader and checks changed as follows.</p>
 <ul>
 <li>tasks/strep_allergy/task.py: Kevin was added to the list of positive patients, so he must get exactly one appropriate regimen. Every other check is unchanged.</li>
 <li>tasks/strep_allergy/reference.py: the reference solution now also searches notes for “throat” and checks lab results, and orders amoxicillin for Kevin. A new control, missed_lab_only_positive, must fail exactly on the missing-regimen and appropriateness checks. The alternate-correct control gives Kevin cephalexin and must still pass.</li>
 <li>tests/test_graders.py: new tests that Kevin’s visit note never names the test (otherwise a note search would find him and the trap would test nothing), and that the ED note’s preview mentions two allergies without naming Augmentin.</li>
 </ul>
-<p>What did not change. Apixaban, panel and med rec are untouched: same prompts, graders, rubrics and patients. I verified that every note search those tasks rely on returns identical results at frozen-v1 and frozen-v2. Each fact underlying the v2 traps is pinned by a test, and all 49 grader controls and 101 tests pass at frozen-v2.</p>
-<p>How v2 was calibrated. One 8-trial pilot before freezing (3/8), then the 10-trial final (6/10). The tasks/strep_allergy/rubric.md file documents both versions and the reasoning for each change.</p>
+<p>Apixaban, panel and med rec are untouched: same prompts, graders, rubrics and patients. I verified that every note search those tasks rely on returns identical results at frozen-v1 and frozen-v2. Each fact underlying the v2 traps is pinned by a test, and all 49 grader controls and 101 tests pass at frozen-v2.</p>
+<p>v2 was calibrated with one 8-trial pilot before freezing (3/8), then the 10-trial final (6/10). The tasks/strep_allergy/rubric.md file documents both versions and the reasoning for each change.</p>
 <h3 id="why-trials-failed">Why trials failed</h3>
 <p>Every failure was labeled first by Claude Opus 5.5 (a different model from the one under test) with the rubric in hand, then reviewed by hand against the full trajectory. Each label’s note names the turn where the model went wrong (triage.jsonl in each final run’s folder).</p>
 <p>frozen-v2 final.</p>
@@ -288,31 +288,31 @@
 </tr>
 <tr class="odd">
 <td>1 → 2</td>
-<td>Grader fix (strep). Accept one antibiotic regimen entered as several orders of the same drug at different doses. A repeated dose still fails as a duplicate. New controls alt_correct_azithromycin_taper_as_two_orders (must pass) and duplicate_azithromycin_orders (must fail)</td>
+<td>Strep grader fix: accept one antibiotic regimen entered as several orders of the same drug at different doses. A repeated dose still fails as a duplicate. New controls alt_correct_azithromycin_taper_as_two_orders (must pass) and duplicate_azithromycin_orders (must fail)</td>
 <td>All three strep trials said the order tool can’t express the labeled adult azithromycin course (500 mg day 1, then 250 mg days 2-5). One settled for a 3-day course instead. A run that entered the labeled course as two orders would have been failed for a clinically correct answer</td>
 <td>(see round 2)</td>
 </tr>
 <tr class="even">
 <td>1 → 2</td>
-<td>Strep harder. The ED note names the reaction drug only as Augmentin and no longer says “avoided all penicillins”. The grader accepts “Augmentin” and “clavulanate” as allergy wording</td>
+<td>Strep was made harder. The ED note names the reaction drug only as Augmentin and no longer says “avoided all penicillins”. The grader accepts “Augmentin” and “clavulanate” as allergy wording</td>
 <td>Every trial found the note with a note search for “penicillin”. The model now has to read the note or know the brand name. Did not apply the rubric’s other knob (drop “update her chart as needed”) because it would make the allergy check ambiguous</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>1 → 2</td>
-<td>Apixaban harder. Removed the discharge summary’s “reassess dosing” request (listed knob). Added a 9/28 pharmacist review recommending 5 mg, which openly uses the stale May flowsheet weight</td>
+<td>Apixaban was made harder. Removed the discharge summary’s “reassess dosing” request (listed knob). Added a 9/28 pharmacist review recommending 5 mg, which openly uses the stale May flowsheet weight</td>
 <td>Every trial found the 9/24 weight within six turns. The new trap is anchoring on an authoritative but wrong review, and the right answer is still unambiguous because the review cites the outdated weight</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>1 → 2</td>
-<td>Panel harder. Buried pt-1014’s diagnosis further into a longer note (listed knob). pt-1020 now has an A1c from 2026-08-05 documented only in an endocrinology consult note, so the expected set drops from 7 to 6. New control ignored_outside_a1c_in_note</td>
+<td>Panel was made harder. Buried pt-1014’s diagnosis further into a longer note (listed knob). pt-1020 now has an A1c from 2026-08-05 documented only in an endocrinology consult note, so the expected set drops from 7 to 6. New control ignored_outside_a1c_in_note</td>
 <td>The listed knob alone is weak because note search matches full text. The new trap punishes trusting structured results only. Also corrected the rubric: pt-1015’s second LOINC code is matched by the “A1c” query, so it’s a weak trap</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>1 → 2</td>
-<td>Med rec harder. Discharge changes written as narrative (listed knob). Added a cefpodoxime course that finished 9/30 and an inpatient pantoprazole formulary substitution for home omeprazole. New controls continued_completed_cefpodoxime, kept_inpatient_pantoprazole (must fail) and alt_correct_documents_completed_course (must pass)</td>
+<td>Med rec was made harder. Discharge changes written as narrative (listed knob). Added a cefpodoxime course that finished 9/30 and an inpatient pantoprazole formulary substitution for home omeprazole. New controls continued_completed_cefpodoxime, kept_inpatient_pantoprazole (must fail) and alt_correct_documents_completed_course (must pass)</td>
 <td>Every trial read all three notes and applied all seven changes. The new traps test whether the model reasons about what she should be taking today, not just what the summary lists</td>
 <td></td>
 </tr>
@@ -330,19 +330,19 @@
 </tr>
 <tr class="even">
 <td>2 → 3</td>
-<td>Strep harder. Added 11 routine notes from 2019 to 2026, three restating a sulfa-only allergy list (the rubric’s own knob), so the ED note is on page 2 of her chart</td>
+<td>Strep was made harder. Added 11 routine notes from 2019 to 2026, three restating a sulfa-only allergy list (the rubric’s own knob), so the ED note is on page 2 of her chart</td>
 <td>Opus reads every note when a patient has three. The one failure so far came from volume, not from hidden facts</td>
 <td>(see round 3)</td>
 </tr>
 <tr class="odd">
 <td>2 → 3</td>
-<td>Apixaban harder. The prompt says “last week” instead of “on 9/24”. The pharmacist review now also says no weight was recorded at the 9/24 visit, which the progress note contradicts</td>
+<td>Apixaban was made harder. The prompt says “last week” instead of “on 9/24”. The pharmacist review now also says no weight was recorded at the 9/24 visit, which the progress note contradicts</td>
 <td>In pilot 2 the date in the prompt sent every trial straight to the 9/24 weight</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>2 → 3</td>
-<td>Med rec harder. A 10/1 phone note restarts empagliflozin after a savings card, so the expected list now includes it. New control stopped_at_9_30_note. The alternate-correct control now follows all three sources in date order</td>
+<td>Med rec was made harder. A 10/1 phone note restarts empagliflozin after a savings card, so the expected list now includes it. New control stopped_at_9_30_note. The alternate-correct control now follows all three sources in date order</td>
 <td>The latest instruction now has to win twice</td>
 <td></td>
 </tr>
@@ -360,7 +360,7 @@
 </tr>
 <tr class="odd">
 <td>3 → 4</td>
-<td>Redesigned strep, apixaban and med rec for breadth. Strep covers every positive rapid strep today (5 positives, 1 negative). Apixaban is a panel-wide NVAF dose review (5 apixaban patients). Med rec covers every Valley General discharge since 9/17 (3 in scope, 2 older decoys). The original patient and traps carry over in each. New cases sit on existing background patients, and I confirmed the panel task’s note searches are unchanged. Controls 29 → 40</td>
+<td>Strep, apixaban and med rec were redesigned for breadth. Strep covers every positive rapid strep today (5 positives, 1 negative). Apixaban is a panel-wide NVAF dose review (5 apixaban patients). Med rec covers every Valley General discharge since 9/17 (3 in scope, 2 older decoys). The original patient and traps carry over in each. New cases sit on existing background patients, and I confirmed the panel task’s note searches are unchanged. Controls 29 → 40</td>
 <td>All three passed 9/9 as single-patient tasks. The only failures in rounds 1 to 3 came from coverage across many patients</td>
 <td>(see round 4)</td>
 </tr>
@@ -372,7 +372,7 @@
 </tr>
 <tr class="odd">
 <td>4 → 4b</td>
-<td>Environment fix. Note search now treats -y and -ies as the same word, and the tool description says singular and plural forms match. New test</td>
+<td>Environment fix: note search now treats -y and -ies as the same word, and the tool description says singular and plural forms match. New test</td>
 <td>In pilot 4, searches for “allergy” returned “No results” on charts whose notes have “Allergies:” sections. The failing trial still had a clear path to the note, but a misleading empty result shouldn’t be part of the evidence. Panel searches confirmed unchanged</td>
 <td>(see 4b)</td>
 </tr>
@@ -384,7 +384,7 @@
 </tr>
 <tr class="odd">
 <td>4 → 5</td>
-<td>Apixaban harder. Added Linda Park (pt-1002): weight 57.6 kg is structured, but her creatinine crossing 1.5 (1.66 on 9/18) exists only in an outside nephrology letter, past the preview. Her structured creatinine (1.18) and her 2025 start note both point to keeping 5 mg. Med rec harder. Added Angela Rossi (pt-1011), whose 9/28 discharge is filed as “hospital course and discharge instructions” and never says “summary”. Michael now has a 9/29 cardiology letter switching clopidogrel to ticagrelor (CYP2C19 poor metabolizer), among routine post-discharge notes. Controls 40 → 43</td>
+<td>Apixaban was made harder. Added Linda Park (pt-1002): weight 57.6 kg is structured, but her creatinine crossing 1.5 (1.66 on 9/18) exists only in an outside nephrology letter, past the preview. Her structured creatinine (1.18) and her 2025 start note both point to keeping 5 mg. Med rec was made harder. Added Angela Rossi (pt-1011), whose 9/28 discharge is filed as “hospital course and discharge instructions” and never says “summary”. Michael now has a 9/29 cardiology letter switching clopidogrel to ticagrelor (CYP2C19 poor metabolizer), among routine post-discharge notes. Controls 40 → 43</td>
 <td>Both passed 3/3 in pilot 4. The traps that have caught Opus put the deciding fact in a note the model has to choose to open, behind structured data that looks complete</td>
 <td>(see round 5)</td>
 </tr>
@@ -396,7 +396,7 @@
 </tr>
 <tr class="odd">
 <td>5 → 6</td>
-<td>Med rec harder. Barbara’s lisinopril restart is now conditional on her 9/29 creatinine (restart only if 1.2 or lower; it was 1.34, so it stays held). Added Karen Nguyen (pt-1009, 9/21 cholecystectomy) as a fifth in-scope discharge: start iron only if a ferritin sent at discharge is below 30 (it was 12), plus a finished ibuprofen course. Neither result appears in any note. Controls 43 → 48</td>
+<td>Med rec was made harder. Barbara’s lisinopril restart is now conditional on her 9/29 creatinine (restart only if 1.2 or lower; it was 1.34, so it stays held). Added Karen Nguyen (pt-1009, 9/21 cholecystectomy) as a fifth in-scope discharge: start iron only if a ferritin sent at discharge is below 30 (it was 12), plus a finished ibuprofen course. Neither result appears in any note. Controls 43 → 48</td>
 <td>Med rec had passed 15/15 across every version, and no trial had ever called get_observations. The two conditions resolve in opposite directions, so guessing fails one of them</td>
 <td>(see round 6)</td>
 </tr>
@@ -420,7 +420,7 @@
 </tr>
 <tr class="odd">
 <td>v2</td>
-<td>Strep v2 (after frozen-v1). Maria’s ED note preview now says “2 drug allergies (see allergy section)”. A new positive, Kevin Patel (pt-1018), was swabbed at a nurse visit whose note never names the test, so his result exists only as a lab observation. Diff from frozen-v1: one note edited, one note and two observations added; every search the other tasks use is unchanged</td>
+<td>Strep v2, after frozen-v1: Maria’s ED note preview now says “2 drug allergies (see allergy section)”. A new positive, Kevin Patel (pt-1018), was swabbed at a nurse visit whose note never names the test, so his result exists only as a lab observation. Diff from frozen-v1: one note edited, one note and two observations added; every search the other tasks use is unchanged</td>
 <td>frozen-v1 strep hinged on one decision and swung from 5/8 to 1/10</td>
 <td>Pilot, 8 trials: 3/8. Every failure is the model’s fault. All five missed Kevin: they listed today’s tests from visit notes only and checked lab results for at most one patient. Three of them also never opened Maria’s ED note. All three passes found Kevin’s nurse note through an “allergy” search and then checked lab results, so the two traps are correlated. Not yet frozen or run as a final</td>
 </tr>
@@ -455,24 +455,24 @@
 </ul>
 <h2 id="what-id-change-and-do-next">What I’d change and do next</h2>
 <ul>
-<li>More samples per task. Turn each task into a template that generates variants with different patients, values and note wording. That gives far more than 10 samples per task, tighter intervals, and protection against a model memorising a fixed chart. Strep is the case for it: 5/8 in pilots and 1/10 in the final, on identical tasks.</li>
-<li>Calibrate on more than one trap per task. Strep’s outcome hinges on one decision. A task with two or three independent traps of moderate difficulty would have a steadier pass rate than one with a single trap the model takes about half the time.</li>
-<li>Rebuild med rec around unreferenced changes. A version that could land in the band probably needs reconciliation across many charts where some changes are recorded only in documents nothing else points to, closer to how the panel task works.</li>
-<li>Show the tasks discriminate. Run Sonnet and Haiku on the same tasks. A good task should separate models, not just land Opus 5 in a band.</li>
-<li>Clinician review. Have a clinician sign off on each rubric’s accepted answers, especially anywhere guidelines leave room for judgment.</li>
-<li>A real backend. Put a HAPI FHIR server behind the same tools to test whether the results hold on a real API surface.</li>
-<li>Graded free text. Add tasks with a note or patient message as output, scored by an LLM judge validated against hand-labeled examples.</li>
-<li>Effort levels. Measure how pass rates move with effort, which says something about whether a failure comes from missing knowledge or missing diligence.</li>
+<li>Turn each task into a template that generates variants with different patients, values and note wording. That gives far more than 10 samples per task, tighter intervals, and protection against a model memorising a fixed chart. Strep is the case for it: 5/8 in pilots and 1/10 in the final, on identical tasks.</li>
+<li>Give each task two or three independent traps of moderate difficulty. Strep’s outcome hinged on one decision, and a task with several traps would have a steadier pass rate than one with a single trap the model takes about half the time.</li>
+<li>A med rec version that could land in the band probably needs reconciliation across many charts where some changes are recorded only in documents nothing else points to, closer to how the panel task works.</li>
+<li>Run Sonnet and Haiku on the same tasks. A good task should separate models, not just land Opus 5 in a band.</li>
+<li>Have a clinician sign off on each rubric’s accepted answers, especially anywhere guidelines leave room for judgment.</li>
+<li>Put a HAPI FHIR server behind the same tools to test whether the results hold on a real API surface.</li>
+<li>Add tasks with a note or patient message as output, scored by an LLM judge validated against hand-labeled examples.</li>
+<li>Measure how pass rates move with effort, which says something about whether a failure comes from missing knowledge or missing diligence.</li>
 </ul>
 <h3 id="a-clinical-reasoning-task">A clinical reasoning task</h3>
 <p>Every failure in this project is information gathering, so the scored tasks measure diligence across a chart. With more time, the task I would most want to add is one where finding the facts is trivial and the judgment is the whole difficulty. What it would take:</p>
 <ul>
-<li>Put every fact in plain sight. One or two patients, a short chart, and the deciding values in structured data or the prompt itself, so a failure can’t come from not reading.</li>
+<li>Put every fact in plain sight: one or two patients, a short chart, and the deciding values in structured data or the prompt itself, so a failure can’t come from not reading.</li>
 <li>Draw the difficulty from rules that are counterintuitive or interact, and that have a single citable answer. Drug labels are the best source because they are explicit. Some examples:
 <ul>
-<li>Edoxaban. It shouldn’t be used for atrial fibrillation when creatinine clearance is above 95 mL/min, so good kidney function is the contraindication, the opposite of most renal rules.</li>
-<li>Rivaroxaban. The AF dose is set by creatinine clearance calculated from body weight (15 mg daily at 50 or below). Apixaban’s rule uses serum creatinine directly, so the two DOACs need different inputs for the same patient.</li>
-<li>Interaction-driven changes. The apixaban label halves the dose with combined strong CYP3A4 and P-gp inhibitors, and says to avoid them entirely if the patient is already on 2.5 mg. It also carves out clarithromycin as an exception. Statin dose caps with amiodarone or clarithromycin are another example.</li>
+<li>Edoxaban shouldn’t be used for atrial fibrillation when creatinine clearance is above 95 mL/min, so good kidney function is the contraindication, the opposite of most renal rules.</li>
+<li>The rivaroxaban AF dose is set by creatinine clearance calculated from body weight (15 mg daily at 50 or below). Apixaban’s rule uses serum creatinine directly, so the two DOACs need different inputs for the same patient.</li>
+<li>For interactions, the apixaban label halves the dose with combined strong CYP3A4 and P-gp inhibitors, and says to avoid them entirely if the patient is already on 2.5 mg. It also carves out clarithromycin as an exception. Statin dose caps with amiodarone or clarithromycin are another example.</li>
 </ul>
 A task would combine two or three of these for one patient, for example choosing and dosing an anticoagulant for a patient with a borderline creatinine clearance who has just started an interacting antibiotic. Every accepted answer would cite the label section it comes from.</li>
 <li>Avoid places where guidelines disagree. Cockcroft-Gault with actual versus ideal body weight is a classic ambiguity. The rubric would name which weight the label specifies, and any case where reasonable clinicians would differ would be dropped or accept both answers, with an alternate-correct control for each.</li>
