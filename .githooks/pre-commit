@@ -1,0 +1,7 @@
+#!/bin/sh
+# Keep site/index.html in step with WRITEUP.md on every commit.
+# Opt in once per clone with:  git config core.hooksPath .githooks
+if git diff --cached --name-only | grep -qx 'WRITEUP.md'; then
+  python3 scripts/build_site.py || exit 1
+  git add site/index.html
+fi
