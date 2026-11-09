@@ -11,15 +11,31 @@ TARGET_PATIENTS = [TARGET]
 # use clindamycin, clarithromycin or azithromycin. First-generation cephalosporins are reserved for
 # patients who are not anaphylactically sensitive.
 ACCEPTED = {"azithromycin": 5, "clarithromycin": 10, "clindamycin": 10}  # drug -> guideline course (days)
-ALLERGY_TERMS = ("penicillin", "amoxicillin", "beta-lactam", "beta lactam", "aminopenicillin")
+# The ED note names the drug only as Augmentin (amoxicillin-clavulanate), so the brand name counts too.
+ALLERGY_TERMS = ("penicillin", "amoxicillin", "beta-lactam", "beta lactam", "aminopenicillin", "augmentin",
+                 "clavulanate")
+
+
+def _one_regimen(new_abx):
+    """The single antibiotic regimen ordered, or None. A regimen is one order, or several orders of the same drug for
+    the target patient at different doses, which is how the tools express a loading dose such as the labeled adult
+    azithromycin course (500 mg on day 1, then 250 mg on days 2 to 5). Repeating the same dose is a duplicate."""
+    if not new_abx or any(m["patient_id"] != TARGET for m in new_abx):
+        return None
+    if len(new_abx) == 1:
+        return new_abx[0]
+    same_drug = len({m["name"] for m in new_abx}) == 1
+    distinct_doses = len({float(m["dose_value"]) for m in new_abx}) == len(new_abx)
+    if same_drug and distinct_doses:
+        return {**new_abx[0], "duration_days": sum(m["duration_days"] or 0 for m in new_abx) or None}
+    return None
 
 
 def grade(ctx):
     form = formulary(ctx.final)
     new_meds = new_records(ctx, "medications")
     new_abx = [m for m in new_meds if "antibiotic" in form[m["formulary_id"]]["drug_class"]]
-    target_abx = [m for m in new_abx if m["patient_id"] == TARGET]
-    chosen = target_abx[0] if len(new_abx) == 1 and len(target_abx) == 1 else None
+    chosen = _one_regimen(new_abx)
     penicillins = [m for m in new_meds if form[m["formulary_id"]]["drug_class"] == "penicillin antibiotic"]
     pcn_allergy = [a for a in new_records(ctx, "allergies", TARGET)
                    if any(t in a["substance"].lower() for t in ALLERGY_TERMS)]

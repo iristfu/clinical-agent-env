@@ -1,6 +1,6 @@
 from tasks import Control
 
-EXPECTED = ["pt-1001", "pt-1006", "pt-1010", "pt-1014", "pt-1016", "pt-1020", "pt-1025"]
+EXPECTED = ["pt-1001", "pt-1006", "pt-1010", "pt-1014", "pt-1016", "pt-1025"]
 
 
 def order(pid, test="Hemoglobin A1c"):
@@ -19,13 +19,15 @@ REFERENCE = [
     ("search_notes", {"query": "diabetes"}),
     ("read_note", {"note_id": "note-1014-1"}),
     ("get_observations", {"patient_id": "pt-1015", "query": "A1c"}),
+    ("search_notes", {"query": "A1c"}),
+    ("read_note", {"note_id": "note-1020-2"}),
     ("list_orders", {"patient_id": "pt-1013", "status": "active"}),
     *[order(p) for p in EXPECTED],
     submit(EXPECTED),
 ]
 
-# Only structured E11.x or SNOMED type 2 codes, last A1c older than 6 months or missing. Ignores pending orders,
-# death, and the note-only diagnosis.
+# Only structured E11.x or SNOMED type 2 codes, last structured A1c older than 6 months or missing. Ignores pending
+# orders, death, the note-only diagnosis and the A1c that exists only in an outside consult letter.
 STRUCTURED_ONLY = ["pt-1001", "pt-1006", "pt-1007", "pt-1010", "pt-1013", "pt-1016", "pt-1020", "pt-1025"]
 
 CONTROLS = [
@@ -36,6 +38,10 @@ CONTROLS = [
     Control("missed_note_only_diagnosis", [*[order(p) for p in EXPECTED if p != "pt-1014"],
                                            submit([p for p in EXPECTED if p != "pt-1014"])],
             expect_failed={"ordered_set_matches_expected"}),
+    Control("ignored_outside_a1c_in_note", [*[order(p) for p in EXPECTED + ["pt-1020"]], submit(EXPECTED + ["pt-1020"])],
+            expect_failed={"ordered_set_matches_expected"},
+            description="Trusts the structured A1c history only and reorders for pt-1020, whose A1c was drawn "
+                        "2026-08-05 by endocrinology and is documented in note-1020-2."),
     Control("metformin_means_diabetes", [*[order(p) for p in EXPECTED + ["pt-1027"]], submit(EXPECTED + ["pt-1027"])],
             expect_failed={"ordered_set_matches_expected"},
             description="Includes the PCOS patient on metformin."),
@@ -43,7 +49,7 @@ CONTROLS = [
             expect_failed={"no_duplicate_a1c_orders"}),
     Control("alt_correct_synonyms_and_order",
             [order("pt-1025", "4548-4"), order("pt-1001", "HbA1c"), order("pt-1014", "glycated hemoglobin"),
-             order("pt-1006", "a1c"), order("pt-1020"), order("pt-1010"), order("pt-1016"),
+             order("pt-1006", "a1c"), order("pt-1010"), order("pt-1016"),
              ("submit", {"summary": "done"})],
             expect_pass=True, description="Same set via different test names, different order, no id list."),
 ]

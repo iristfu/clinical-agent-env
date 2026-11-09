@@ -3,7 +3,7 @@ from tasks import Control
 P = "pt-1003"
 SUBMIT = ("submit", {"summary": "Done."})
 
-ALLERGY = ("add_allergy", {"patient_id": P, "substance": "Penicillins (amoxicillin)",
+ALLERGY = ("add_allergy", {"patient_id": P, "substance": "Penicillins (amoxicillin-clavulanate / Augmentin)",
                            "reaction": "Hives with lip and throat swelling within 30 minutes, treated with epinephrine",
                            "criticality": "high", "category": "medication"})
 AZITHRO = ("place_medication_order", {"patient_id": P, "medication": "azithromycin", "dose_value": 500,
@@ -18,7 +18,7 @@ REFERENCE = [
     ("read_note", {"note_id": "note-1003-1"}),
     ALLERGY,
     AZITHRO,
-    ("submit", {"summary": "Penicillin anaphylaxis found in 2019 ED note and added to allergy list (high). "
+    ("submit", {"summary": "Anaphylaxis to Augmentin (a penicillin) found in 2019 ED note and added to allergy list (high). "
                            "Ordered azithromycin 500 mg daily x5 days per IDSA alternative for anaphylactic allergy."}),
 ]
 
@@ -50,4 +50,17 @@ CONTROLS = [
                                          "dose_unit": "mg", "frequency": "three times daily", "duration_days": 10}),
              SUBMIT],
             expect_pass=True, description="Different accepted drug, different allergy wording."),
+    Control("alt_correct_azithromycin_taper_as_two_orders",
+            [("add_allergy", {"patient_id": P, "substance": "Augmentin", "reaction": "Hives, lip and throat swelling",
+                              "criticality": "high", "category": "medication"}),
+             ("place_medication_order", {"patient_id": P, "medication": "azithromycin", "dose_value": 500,
+                                         "dose_unit": "mg", "frequency": "once", "duration_days": 1}),
+             ("place_medication_order", {"patient_id": P, "medication": "azithromycin", "dose_value": 250,
+                                         "dose_unit": "mg", "frequency": "once daily", "duration_days": 4}),
+             SUBMIT],
+            expect_pass=True, description="Labeled adult azithromycin course (500 mg day 1, 250 mg days 2-5) entered "
+                                          "as two orders, allergy recorded under the brand name only."),
+    Control("duplicate_azithromycin_orders", [ALLERGY, AZITHRO, AZITHRO, SUBMIT],
+            expect_failed={"one_antibiotic_order_for_patient", "antibiotic_appropriate_for_anaphylaxis_history"},
+            description="The same course ordered twice is a duplicate, not a loading-dose regimen."),
 ]

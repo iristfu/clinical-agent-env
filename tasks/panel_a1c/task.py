@@ -17,9 +17,10 @@ EXPECTED = {
     "pt-1010",  # T2DM, new patient, no A1c on record
     "pt-1014",  # problem list says prediabetes; 2025-11-18 note diagnoses T2DM and starts metformin; last A1c 2025-11-18
     "pt-1016",  # T2DM, last A1c 2026-03-09
-    "pt-1020",  # T2DM, last A1c 2025-06-30
     "pt-1025",  # T2DM, last A1c 2025-10-30
 }
+# Not expected, though the structured data says otherwise:
+#   pt-1020  last structured A1c 2025-06-30, but note-1020-2 documents an outside A1c of 7.0% drawn 2026-08-05.
 
 
 def grade(ctx):

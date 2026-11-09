@@ -61,7 +61,7 @@ def test_invalid_requests_return_clear_tool_errors(name, args, fragment):
 def test_note_previews_say_they_are_truncated():
     res = call_tool(EHR(), "search_notes", {"patient_id": "pt-1003"})
     ed_note = next(n for n in res["results"] if n["note_id"] == "note-1003-1")
-    assert "preview truncated" in ed_note["preview"] and "amoxicillin" not in ed_note["preview"]
+    assert "preview truncated" in ed_note["preview"] and "Augmentin" not in ed_note["preview"]
 
 
 def test_pagination_tells_the_model_there_is_more():

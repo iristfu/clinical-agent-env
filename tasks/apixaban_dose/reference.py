@@ -19,7 +19,8 @@ REFERENCE = [
 
 CONTROLS = [
     Control("do_nothing", [SUBMIT], expect_failed={"apixaban_2_5_mg_twice_daily"},
-            description="Uses the last flowsheet weight (63.5 kg), counts only the age criterion, keeps 5 mg."),
+            description="Uses the last flowsheet weight (63.5 kg), counts only the age criterion, keeps 5 mg. "
+                        "Also what a run that defers to the 9/28 pharmacist review ends with."),
     Control("reduced_to_once_daily",
             [("update_medication", {"medication_id": APIX, "dose_value": 2.5, "frequency": "once daily",
                                     "reason": "dose reduction"}), SUBMIT],

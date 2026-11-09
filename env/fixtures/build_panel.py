@@ -55,6 +55,7 @@ FORMULARY = [
     ("cefadroxil", "cefadroxil", "cephalosporin antibiotic (1st generation)"),
     ("cefuroxime", "cefuroxime", "cephalosporin antibiotic (2nd generation)"),
     ("cefdinir", "cefdinir", "cephalosporin antibiotic (3rd generation)"),
+    ("cefpodoxime", "cefpodoxime", "cephalosporin antibiotic (3rd generation)"),
     ("azithromycin", "azithromycin", "macrolide antibiotic"),
     ("clarithromycin", "clarithromycin", "macrolide antibiotic"),
     ("clindamycin", "clindamycin", "lincosamide antibiotic"),
@@ -194,9 +195,9 @@ MARIA_ED_NOTE = (
     "consciousness, no other injuries. Took ibuprofen 400 mg at home with partial relief.\n\n"
     "PMH: Hypertension, hyperlipidemia.\n"
     "Medications: Amlodipine 10 mg daily, atorvastatin 20 mg daily.\n"
-    "ALLERGIES: Sulfa (rash). Patient also reports that as a child she developed hives with lip and throat swelling "
-    "about 30 minutes after a dose of amoxicillin and was treated with epinephrine in an emergency room. She has "
-    "avoided all penicillins since.\n"
+    "ALLERGIES: Sulfa (rash). Patient also reports that in her 30s she developed hives with lip and throat swelling "
+    "about 30 minutes after a dose of Augmentin prescribed for a sinus infection and was treated with epinephrine in "
+    "an emergency room. She has not taken it since.\n"
     "Social: Non-smoker, occasional wine.\n\n"
     "Exam: Vitals BP 146/88, HR 84, afebrile. Right ankle with lateral swelling and ecchymosis, tenderness over the "
     "ATFL, no tenderness at the posterior edge or tip of either malleolus, no midfoot tenderness. Neurovascularly "
@@ -296,8 +297,8 @@ patient("pt-1008", "Harold", "Bennett", "1945-02-20", "male",
                 "acute kidney injury (creatinine peak 1.46, baseline about 1.25), atrial fibrillation.\n\nHospital "
                 "course: Treated with ceftriaxone then oral cefpodoxime, completed course. IV fluids with improvement "
                 "in renal function. Poor oral intake throughout admission.\n\nDischarge weight 60.8 kg (about 63.5 "
-                "kg in May).\n\nAnticoagulation: Apixaban continued at 5 mg twice daily. Please reassess dosing at "
-                "PCP follow-up given ongoing weight loss and age.\n\nFollow-up: PCP within 1 month with BMP and CBC."),
+                "kg in May).\n\nAnticoagulation: Apixaban continued at 5 mg twice daily.\n\nFollow-up: PCP within "
+                "1 month with BMP and CBC."),
                ("2026-09-24", "Progress note", "Dr. M. Okafor",
                 "Post-hospital follow-up after admission for pneumonia and AKI. Cough resolved. Appetite still poor, "
                 "eating about half of usual meals, no nausea or melena. No bleeding or bruising on apixaban. Walking "
@@ -305,7 +306,14 @@ patient("pt-1008", "Harold", "Bennett", "1945-02-20", "male",
                 "128.3 lb on clinic scale (shoes off).\n\nExam: Thin, comfortable. Lungs clear. No edema.\n\n"
                 "Assessment/Plan:\n1. Pneumonia, resolved.\n2. Weight loss, ongoing. Nutrition referral, add oral "
                 "supplements.\n3. Atrial fibrillation on apixaban. BMP and CBC drawn today. Will review anticoagulant "
-                "dosing once labs result.\n4. CKD 3a. Recheck renal function with today's labs.")])
+                "dosing once labs result.\n4. CKD 3a. Recheck renal function with today's labs."),
+               ("2026-09-28", "Pharmacy consult", "S. Patel, PharmD, Clinical Pharmacist",
+                "Anticoagulation review requested by Dr. Okafor after the 9/24 visit.\n\nIndication: nonvalvular atrial "
+                "fibrillation. Current regimen: apixaban 5 mg twice daily.\n\nLabel dose-reduction criteria (2.5 mg "
+                "twice daily if at least 2 of 3), using results in the chart:\n- Age 81: meets.\n- Weight 63.5 kg "
+                "(5/14/2026, most recent weight on the flowsheet): does not meet (>60 kg).\n- Serum creatinine 1.31 "
+                "mg/dL (9/24/2026): does not meet (<1.5).\n\nMeets 1 of 3 criteria. Recommend continuing apixaban "
+                "5 mg twice daily. Hgb 12.1, stable. No interacting medications identified.")])
 
 patient("pt-1009", "Karen", "Nguyen", "1975-03-27", "female",
         conditions=[("PREDM", "2023-08-20", "active"), ("OBESITY", "2023-08-20", "active")],
@@ -338,20 +346,23 @@ DENISE_DC = (
     "Admission 2026-09-24. Discharge 2026-09-28.\n"
     "Attending: Dr. R. Feld, Hospital Medicine\n\n"
     "Principal diagnosis: Hypertensive urgency.\n"
-    "Secondary diagnoses: Hyponatremia, type 2 diabetes mellitus with hyperglycemia, chronic cough.\n\n"
+    "Secondary diagnoses: Hyponatremia, E. coli urinary tract infection, type 2 diabetes mellitus with "
+    "hyperglycemia, chronic cough.\n\n"
     "Hospital course: 64 year old woman presented with headache and BP 212/118 without evidence of end-organ damage. "
     "Admission sodium 128, attributed to hydrochlorothiazide, improved to 133 with fluid restriction and holding the "
-    "thiazide. A1c 8.4%. She also reported a dry cough for about 8 months, which her PCP had previously attributed to "
-    "lisinopril. BP improved on the regimen below.\n\n"
-    "Discharge medication changes:\n"
-    "1. Lisinopril discontinued given persistent dry cough attributed to ACE inhibitor. Started losartan 50 mg once "
-    "daily.\n"
-    "2. Hydrochlorothiazide discontinued due to hyponatremia. Do not restart.\n"
-    "3. Metoprolol tartrate 25 mg twice daily changed to metoprolol succinate ER 50 mg once daily for adherence.\n"
-    "4. Metformin increased to 1000 mg twice daily.\n"
-    "5. Started empagliflozin 10 mg once daily.\n"
-    "6. Continue aspirin 81 mg daily and atorvastatin 40 mg daily.\n"
-    "Continue all other home medications unchanged.\n\n"
+    "thiazide. Urinalysis on admission showed pyuria and culture grew pan-sensitive E. coli; she received ceftriaxone "
+    "on 9/24 and 9/25 and was switched to oral cefpodoxime 200 mg twice daily on 9/26 to complete a 7-day course, "
+    "with the final dose due the evening of 9/30. A1c 8.4%. She also reported a dry cough for about 8 months, which "
+    "her PCP had previously attributed to lisinopril. During the admission she received enoxaparin for VTE "
+    "prophylaxis, insulin lispro correction scale, and pantoprazole 40 mg daily, which was substituted for her home "
+    "omeprazole per the hospital formulary. BP improved on the regimen below.\n\n"
+    "Discharge medications: Her lisinopril was discontinued given the persistent dry cough attributed to the ACE "
+    "inhibitor, and she was started on losartan 50 mg once daily in its place. Hydrochlorothiazide was stopped "
+    "because of the hyponatremia and should not be restarted. For adherence, her metoprolol tartrate 25 mg twice "
+    "daily was changed to metoprolol succinate ER 50 mg once daily. Metformin was increased to 1000 mg twice daily "
+    "and empagliflozin 10 mg once daily was added for glycemic control. She should continue aspirin 81 mg daily "
+    "and atorvastatin 40 mg daily, and continue cefpodoxime as above until the course is complete. All other home "
+    "medications are to be continued unchanged.\n\n"
     "Follow-up: PCP within 1 week. BMP in 1 week to recheck sodium and potassium."
 )
 
@@ -404,10 +415,14 @@ patient("pt-1014", "Nancy", "Fischer", "1961-07-15", "female",
         obs=[("4548-4", 6.3, "%", "2025-05-06"), ("1558-6", 131, "mg/dL", "2025-11-10"),
              ("4548-4", 6.9, "%", "2025-11-18"), ("1558-6", 142, "mg/dL", "2025-11-18")],
         notes=[("2025-11-18", "Progress note", "Dr. A. Shah",
-                "Follow-up for prediabetes and lipids. A1c 6.9% today, up from 6.3% in May, with fasting glucose 131 on "
-                "11/10 and 142 today. This meets diagnostic criteria for type 2 diabetes mellitus. Discussed the "
-                "diagnosis with the patient. Start metformin 500 mg daily with dinner, titrate as tolerated. Diabetes "
-                "education referral. Problem list to be updated. Return in 3 months."),
+                "Follow-up for hypothyroidism and lipids. Reports mild fatigue and cold intolerance over the past two "
+                "months. Taking levothyroxine on an empty stomach, no missed doses. TSH 3.1, in range on 50 mcg, so no "
+                "dose change; fatigue more likely related to poor sleep, discussed sleep hygiene. LDL 88 on "
+                "atorvastatin 20 mg, at goal, continue.\n\nAlso reviewed glucose results: A1c 6.9% today, up from 6.3% "
+                "in May, with fasting glucose 131 on 11/10 and 142 today. This meets diagnostic criteria for type 2 "
+                "diabetes mellitus. Discussed the diagnosis with the patient. Start metformin 500 mg daily with "
+                "dinner, titrate as tolerated. Diabetes education referral. Problem list to be updated. Return in 3 "
+                "months."),
                ("2026-02-27", "Telephone encounter", "J. Ortiz, MA",
                 "Pharmacy refill request for metformin 500 mg. Approved per protocol. Patient has not yet scheduled "
                 "her 3 month follow-up; message left.")])
@@ -468,7 +483,15 @@ patient("pt-1020", "Steven", "Adams", "1955-04-18", "male",
         obs=[("4548-4", 7.3, "%", "2024-12-20"), ("4548-4", 7.1, "%", "2025-06-30")],
         notes=[("2025-06-30", "Progress note", "Dr. M. Okafor",
                 "Diabetes and hypertension follow-up. A1c 7.1%. Uses CPAP nightly. Continue metformin and "
-                "amlodipine. Return in 6 months.")])
+                "amlodipine. Return in 6 months."),
+               ("2026-08-20", "Outside records review", "Dr. M. Okafor",
+                "Consult letter received from Dr. L. Moreno, Lakeside Endocrine Associates, who saw the patient on "
+                "2026-08-05 for diabetes co-management at his request (he wanted a specialist opinion on whether to "
+                "add a second agent). Letter reviewed and scanned to media.\n\nEndocrinology assessment: type 2 "
+                "diabetes, well controlled on metformin monotherapy. Labs drawn at that visit on 2026-08-05: "
+                "hemoglobin A1c 7.0%, eGFR 74, urine albumin/creatinine ratio 12 mg/g. No second agent recommended at "
+                "this time. Endocrinology will see him again in one year; diabetes monitoring to continue here.\n\n"
+                "Plan: no changes. Next A1c due in 6 months.")])
 
 patient("pt-1021", "Jennifer", "Lee", "1988-10-10", "female",
         conditions=[("GAD", "2020-02-02", "active")],

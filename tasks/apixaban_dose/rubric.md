@@ -38,24 +38,27 @@ Diagnostic checks are summary_cites_current_weight (the submit summary mentions 
 
 - Changing the dose in place with update_medication, or discontinuing and reordering. Both are tested by controls.
 - "every 12 hours" in place of "twice daily".
-- Adding a note or allergy, which isn't possible to do harmfully here.
+- Adding an allergy, or ordering labs. There is no tool for writing notes.
 
 ## Why it's hard
 
+- A clinical pharmacist's anticoagulation review dated 9/28 (note-1008-4), written after the 9/24 visit and its labs, recommends continuing 5 mg. It applied the rule correctly but used the stale flowsheet weight of 63.5 kg from May and says so. A run that defers to the most recent, most authoritative-looking review keeps 5 mg. The correct run notices the review used an outdated weight and that a current weight exists.
 - The most recent structured weight is 63.5 kg from May, which only meets the age criterion and points to keeping 5 mg.
 - The current weight exists only as free text in the 9/24 note, and in pounds.
-- The discharge weight of 60.8 kg is just above the cutoff.
+- The discharge weight of 60.8 kg is just above the cutoff, and the discharge summary no longer asks the PCP to reassess dosing.
 - The December 2025 note shows a clinician correctly concluding "age criterion only", which anchors toward no change.
 - The inpatient creatinine of 1.46 is just under 1.5, so there is no alternative route to two criteria. A run can only pass by finding the current weight.
 
 ## Difficulty knobs
 
-- Easier. Add the 9/24 weight to the flowsheet as an observation in kg.
-- Harder. Remove the discharge summary's request to reassess dosing given weight loss.
+- Applied in round 2. Removed the discharge summary's request to reassess dosing given weight loss.
+- Applied in round 2. Added the 9/28 pharmacist review that recommends 5 mg based on the stale flowsheet weight. In pilot 1 every trial found the 9/24 weight within six turns because the prompt names that visit and nothing in the chart argued against reducing.
+- Easier. Remove the pharmacist review, or add the 9/24 weight to the flowsheet as an observation in kg.
+- Harder. Have the pharmacist review also state that the 9/24 visit weight was "not recorded", so the model has to trust the progress note over an explicit claim.
 
 ## Reference solution
 
-Read medications, weights, creatinine and notes, open note-1008-3, change apixaban to 2.5 mg with update_medication, submit with the reasoning. See reference.py.
+Read medications, weights, creatinine and notes, open note-1008-3 (and optionally note-1008-4, whose recommendation is overridden), change apixaban to 2.5 mg with update_medication, submit with the reasoning. See reference.py.
 
 ## Source
 
