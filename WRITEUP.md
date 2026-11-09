@@ -4,11 +4,22 @@
 
 ## Summary
 
-- **What I built:** a mock EHR for a primary care practice with 30 synthetic patients and 17 tools, four tasks, state-based graders, reference solutions and a harness with one entry point.
-- **Final run (frozen-v2), Opus 5:** strep_allergy 6/10 and apixaban_dose 3/10, both inside the target 20-70% band, and panel_a1c 9/10, above it.
-- **Earlier final (frozen-v1):** strep 1/10, apixaban 6/10, panel 7/10. I redesigned strep after it and report both runs. Panel's task was identical in both runs and passed 16 of 20 pooled.
-- **med_rec_discharge is a poor task for training Opus.** It passed 10/10 on its frozen final and 18/18 in earlier pilots, so it never failed in any version. A task that always passes gives no signal about what the model gets wrong. The main reason is that every deciding fact in it is pointed to by something the model is already reading, such as a discharge summary that names a lab or a dated list of post-discharge notes. Opus follows explicit references reliably, so the task tests diligence far less than the others, where the deciding fact sits in a note nothing points to. It is reported separately and not scored.
-- **Why the 28 failures matter:** all 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand, and all 28 were the model's fault. Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn't look.
+- I built a mock EHR for a primary care practice with 30 synthetic patients and 17 tools.
+- It has four tasks, state-based graders, reference solutions and a harness with one entry point.
+- On the final run (frozen-v2), Opus 5 passed strep_allergy 6/10 and apixaban_dose 3/10, both inside the target 20-70% band.
+- On the same run, Opus 5 passed panel_a1c 9/10, which is above the band.
+- An earlier final (frozen-v1) gave strep 1/10, apixaban 6/10 and panel 7/10.
+- I redesigned strep after that run and report both runs.
+- Panel's task was identical in both runs, and it passed 16 of 20 pooled.
+- med_rec_discharge is a poor task for training Opus.
+- It passed 10/10 on its frozen final and 18/18 in earlier pilots, so it never failed in any version.
+- A task that always passes gives no signal about what the model gets wrong.
+- The main reason is that every deciding fact in it is pointed to by something the model is already reading, such as a discharge summary that names a lab or a dated list of post-discharge notes.
+- Opus follows explicit references reliably, so this task tests diligence far less than the others, where the deciding fact sits in a note nothing points to.
+- It is reported separately and not scored.
+- All 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand.
+- All 28 were the model's fault.
+- Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn't look.
 
 The part I spent the most care on is making sure a failure means the model got something wrong. Most of this writeup is about how I checked that.
 
