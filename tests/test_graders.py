@@ -119,6 +119,7 @@ def test_apixaban_expected_doses_follow_from_fixture():
     on_apixaban = {m["patient_id"]: m for m in state["medications"] if m["name"] == "apixaban" and m["status"] == "active"}
     assert set(on_apixaban) == set(EXPECTED)
     note_only_weight = {"pt-1008": 128.3 * 0.45359237}  # 9/24 clinic weight, only in note-1008-3, in pounds
+    note_only_creatinine = {"pt-1002": 1.66}  # 9/18 nephrology result, only in note-1002-4
     derived = {}
     for pid, med in on_apixaban.items():
         has_af = any(c["patient_id"] == pid and c["code"]["code"] == "I48.91" and c["clinicalStatus"] == "active"
@@ -127,7 +128,8 @@ def test_apixaban_expected_doses_follow_from_fixture():
             derived[pid] = float(med["dose_value"])
             continue
         weight = note_only_weight.get(pid, _latest(state, pid, "29463-7"))
-        criteria = [_age(state, pid) >= 80, weight <= 60, _latest(state, pid, "2160-0") >= 1.5]
+        creatinine = note_only_creatinine.get(pid, _latest(state, pid, "2160-0"))
+        criteria = [_age(state, pid) >= 80, weight <= 60, creatinine >= 1.5]
         derived[pid] = 2.5 if sum(criteria) >= 2 else 5.0
     assert derived == EXPECTED
 
@@ -140,6 +142,9 @@ def test_apixaban_traps_are_where_the_rubric_says():
     lisa_cr = sorted((o["effectiveDate"], o["value"]) for o in state["observations"]
                      if o["patient_id"] == "pt-1019" and o["code"]["code"] == "2160-0")
     assert any(v >= 1.5 for _, v in lisa_cr) and lisa_cr[-1][1] < 1.5, "Lisa's high creatinine must be resolved"
+    linda_letter = next(n for n in state["notes"] if n["id"] == "note-1002-4")["text"]
+    assert "1.66 on 9/18" in linda_letter and "1.66" not in linda_letter[:200], "Linda's result must be past the preview"
+    assert _latest(state, "pt-1002", "2160-0") < 1.5, "Linda's structured creatinine must point the wrong way"
     margaret = [c["code"]["code"] for c in state["conditions"] if c["patient_id"] == "pt-1029"]
     assert "I26.99" in margaret and "I48.91" not in margaret
     assert _latest(state, "pt-1029", "29463-7") <= 60 and _latest(state, "pt-1029", "2160-0") >= 1.5, \
@@ -178,14 +183,19 @@ def test_strep_positives_and_hidden_allergies_follow_from_fixture():
 def test_med_rec_scope_follows_from_fixture():
     from tasks.med_rec_discharge.task import EXPECTED
     state = EHR().state
-    discharges = {n["patient_id"]: n["date"] for n in state["notes"] if n["type"].startswith("Discharge summary")}
+    discharges = {n["patient_id"]: n["date"] for n in state["notes"]
+                  if n["type"].startswith("Discharge summary") or "DISCHARGE INSTRUCTIONS" in n["text"]}
     assert {p for p, d in discharges.items() if d >= "2026-09-17"} == set(EXPECTED)
+    angela = next(n for n in state["notes"] if n["id"] == "note-1011-2")
+    assert "summary" not in f"{angela['type']} {angela['text']}".lower(), "Angela's discharge must not say 'summary'"
+    letter = next(n for n in state["notes"] if n["id"] == "note-1006-5")["text"]
+    assert "started ticagrelor 90 mg twice daily" in letter and "ticagrelor" not in letter[:200]
     assert {p for p, d in discharges.items() if d < "2026-09-17"} == {"pt-1008", "pt-1029"}, "out-of-window decoys"
-    michael = sorted((n for n in state["notes"] if n["patient_id"] == "pt-1006"), key=lambda n: n["date"])
-    assert "Start pantoprazole 40 mg once daily" in michael[-2]["text"] and "stopping the lisinopril" in michael[-1]["text"]
+    notes = {n["id"]: n["text"] for n in state["notes"]}
+    assert "Start pantoprazole 40 mg once daily" in notes["note-1006-2"] and "stopping the lisinopril" in notes["note-1006-3"]
     barbara = next(n for n in state["notes"] if n["id"] == "note-1025-2")["text"]
     assert "last dose on 9/29" in barbara and "5 mg once daily (was 10 mg)" in barbara
-    assert "clopidogrel" in {d["name"] for d in state["formulary"]}
+    assert {"clopidogrel", "ticagrelor", "topiramate", "ondansetron"} <= {d["name"] for d in state["formulary"]}
 
 
 def test_med_rec_traps_follow_from_fixture():

@@ -423,6 +423,17 @@
    "onsetDate": "2020-01-15"
   },
   {
+   "id": "cond-1002-3",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "ICD-10-CM",
+    "code": "I48.91",
+    "display": "Unspecified atrial fibrillation"
+   },
+   "clinicalStatus": "active",
+   "onsetDate": "2025-03-10"
+  },
+  {
    "id": "cond-1003-1",
    "patient_id": "pt-1003",
    "code": {
@@ -1275,6 +1286,21 @@
    "frequency": "once daily",
    "status": "active",
    "authoredOn": "2020-01-15",
+   "duration_days": null,
+   "indication": null,
+   "source": "chart",
+   "history": []
+  },
+  {
+   "id": "med-1002-03",
+   "patient_id": "pt-1002",
+   "formulary_id": "rx-apixaban",
+   "name": "apixaban",
+   "dose_value": 5,
+   "dose_unit": "mg",
+   "frequency": "twice daily",
+   "status": "active",
+   "authoredOn": "2025-03-10",
    "duration_days": null,
    "indication": null,
    "source": "chart",
@@ -2447,6 +2473,30 @@
    "patient_id": "pt-1002",
    "code": {
     "system": "LOINC",
+    "code": "29463-7",
+    "display": "Body weight"
+   },
+   "value": 58.9,
+   "unit": "kg",
+   "effectiveDate": "2025-03-10"
+  },
+  {
+   "id": "obs-1002-002",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 0.98,
+   "unit": "mg/dL",
+   "effectiveDate": "2025-03-10"
+  },
+  {
+   "id": "obs-1002-003",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "LOINC",
     "code": "85354-9",
     "display": "Blood pressure panel"
    },
@@ -2455,7 +2505,7 @@
    "effectiveDate": "2026-05-19"
   },
   {
-   "id": "obs-1002-002",
+   "id": "obs-1002-004",
    "patient_id": "pt-1002",
    "code": {
     "system": "LOINC",
@@ -2467,15 +2517,39 @@
    "effectiveDate": "2026-05-19"
   },
   {
-   "id": "obs-1002-003",
+   "id": "obs-1002-005",
    "patient_id": "pt-1002",
    "code": {
     "system": "LOINC",
     "code": "29463-7",
     "display": "Body weight"
    },
-   "value": 66.0,
+   "value": 57.6,
    "unit": "kg",
+   "effectiveDate": "2026-05-19"
+  },
+  {
+   "id": "obs-1002-006",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "LOINC",
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+   },
+   "value": 1.18,
+   "unit": "mg/dL",
+   "effectiveDate": "2026-05-19"
+  },
+  {
+   "id": "obs-1002-007",
+   "patient_id": "pt-1002",
+   "code": {
+    "system": "LOINC",
+    "code": "98979-8",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted (CKD-EPI 2021)"
+   },
+   "value": 53,
+   "unit": "mL/min/1.73m2",
    "effectiveDate": "2026-05-19"
   },
   {
@@ -3807,10 +3881,34 @@
   {
    "id": "note-1002-1",
    "patient_id": "pt-1002",
+   "date": "2025-03-10",
+   "type": "Progress note",
+   "author": "Dr. M. Okafor",
+   "text": "Palpitations for a month. ECG shows atrial fibrillation, rate 88. Echo: normal valves, EF 60%. CHA2DS2-VASc 2 (female, hypertension). Start apixaban 5 mg twice daily: age 58, weight 58.9 kg, creatinine 0.98, so only the weight criterion is met."
+  },
+  {
+   "id": "note-1002-2",
+   "patient_id": "pt-1002",
    "date": "2026-05-19",
    "type": "Annual physical",
    "author": "Dr. M. Okafor",
    "text": "Annual exam. No new concerns. BP 128/80 on amlodipine. Reflux controlled on omeprazole. Fasting glucose 94, lipids within goal. Age-appropriate screening up to date. Return in one year."
+  },
+  {
+   "id": "note-1002-3",
+   "patient_id": "pt-1002",
+   "date": "2026-07-02",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Patient called about left knee pain after gardening. Advised ice and rest; she has been taking over-the-counter naproxen. Reminded her that NSAIDs raise bleeding risk with apixaban. Appointment offered."
+  },
+  {
+   "id": "note-1002-4",
+   "patient_id": "pt-1002",
+   "date": "2026-09-21",
+   "type": "Outside records review",
+   "author": "Dr. M. Okafor",
+   "text": "Letter received from Dr. S. Iyer, Lakeside Nephrology, who saw the patient on 9/18 at the request of her gynecologist, who had found protein on a urine dip. Letter reviewed and scanned to media.\n\nNephrology findings: urine albumin/creatinine ratio 340 mg/g. Serum creatinine 1.61 on 8/27 and 1.66 on 9/18 (eGFR 35), persistent after she stopped naproxen in July. Assessment: CKD stage 3b with albuminuria, likely hypertensive nephrosclerosis with an NSAID contribution. Avoid NSAIDs. Nephrology to follow every 3 months.\n\nPlan: results noted. Discuss at next visit."
   },
   {
    "id": "note-1003-1",
@@ -3965,6 +4063,30 @@
    "text": "Patient called reporting lightheadedness when standing since coming home. Home BP readings 96/58 to 104/62, HR 56 to 60. No chest pain, no syncope. Discussed with Dr. Okafor, who advises stopping the lisinopril for now and continuing metoprolol succinate ER 50 mg once daily. Recheck BP at the 10/2 visit. Patient verbalized understanding."
   },
   {
+   "id": "note-1006-4",
+   "patient_id": "pt-1006",
+   "date": "2026-09-26",
+   "type": "Patient portal message",
+   "author": "Riverbend Family Medicine",
+   "text": "Patient message: noticing small bruises on his forearms since coming home and asking if that is normal. Reply from Dr. Okafor: mild bruising is expected on aspirin plus a second blood thinner; call right away for black stools, blood in the urine or bleeding that won't stop."
+  },
+  {
+   "id": "note-1006-5",
+   "patient_id": "pt-1006",
+   "date": "2026-09-29",
+   "type": "Outside record (scanned)",
+   "author": "Lakeside Heart Associates",
+   "text": "LAKESIDE HEART ASSOCIATES - CLINIC LETTER\n\nDear Dr. Okafor,\n\nThank you for allowing us to share in the care of Mr. O'Brien, whom I saw today for early follow-up after his 9/19 LAD stent. He has no further chest pain and the access site has healed well. Lightheadedness has improved since the lisinopril was stopped.\n\nCYP2C19 genotyping sent during his admission has returned showing he is a poor metabolizer (*2/*2), so clopidogrel will not adequately protect his stent. Today I stopped clopidogrel and started ticagrelor 90 mg twice daily, first dose given in clinic. Please keep aspirin at 81 mg daily (no higher with ticagrelor). All other medications unchanged.\n\nWe will see him again in 3 months.\n\nSincerely,\nDr. N. Osei, Cardiology"
+  },
+  {
+   "id": "note-1006-6",
+   "patient_id": "pt-1006",
+   "date": "2026-09-30",
+   "type": "Telephone encounter",
+   "author": "J. Ortiz, MA",
+   "text": "Patient called to confirm his 10/2 appointment time and asked for a work note for the rest of the week. Note sent through the portal."
+  },
+  {
    "id": "note-1007-1",
    "patient_id": "pt-1007",
    "date": "2025-11-20",
@@ -4035,6 +4157,22 @@
    "type": "Postpartum follow-up",
    "author": "Dr. A. Shah",
    "text": "Postpartum visit. Gestational diabetes during pregnancy, diet controlled. Postpartum A1c 5.4%, gestational diabetes resolved. Recommend diabetes screening every 3 years."
+  },
+  {
+   "id": "note-1011-2",
+   "patient_id": "pt-1011",
+   "date": "2026-09-28",
+   "type": "Outside record (scanned)",
+   "author": "Valley General Hospital",
+   "text": "VALLEY GENERAL HOSPITAL - HOSPITAL COURSE AND DISCHARGE INSTRUCTIONS\n\nAdmitted 2026-09-26, discharged 2026-09-28. Attending: Dr. L. Brandt, Neurology.\n\nReason for admission: Status migrainosus, 4 days of continuous headache with vomiting, not relieved by sumatriptan at home. CT head normal.\n\nHospital course: Treated with IV fluids, IV metoclopramide, IV ketorolac and IV dihydroergotamine, with resolution of the headache by 9/27. She reports 6 to 8 migraine days a month, so preventive therapy was started.\n\nMedications at discharge: START topiramate 25 mg by mouth at bedtime for migraine prevention; neurology will titrate at follow-up. START ondansetron 4 mg by mouth as needed for nausea. CONTINUE sumatriptan 50 mg as needed for migraine, no more than 2 doses a day or 9 days a month. The IV medications given in hospital are not continued.\n\nFollow-up: Neurology clinic in 4 weeks. PCP in 1 to 2 weeks."
+  },
+  {
+   "id": "note-1011-3",
+   "patient_id": "pt-1011",
+   "date": "2026-09-30",
+   "type": "Patient portal message",
+   "author": "Riverbend Family Medicine",
+   "text": "Patient message: home from Valley General, headache gone. Some tingling in her fingers since starting the new preventive. Reply from Dr. Shah: tingling is a common, usually harmless side effect of topiramate and often fades; keep taking it as prescribed and let us know if it worsens."
   },
   {
    "id": "note-1012-1",
@@ -4617,6 +4755,12 @@
    "drug_class": "P2Y12 inhibitor antiplatelet"
   },
   {
+   "id": "rx-ticagrelor",
+   "name": "ticagrelor",
+   "ingredient": "ticagrelor",
+   "drug_class": "P2Y12 inhibitor antiplatelet"
+  },
+  {
    "id": "rx-metformin",
    "name": "metformin",
    "ingredient": "metformin",
@@ -4723,6 +4867,18 @@
    "name": "sumatriptan",
    "ingredient": "sumatriptan",
    "drug_class": "triptan"
+  },
+  {
+   "id": "rx-topiramate",
+   "name": "topiramate",
+   "ingredient": "topiramate",
+   "drug_class": "anticonvulsant (migraine prevention)"
+  },
+  {
+   "id": "rx-ondansetron",
+   "name": "ondansetron",
+   "ingredient": "ondansetron",
+   "drug_class": "antiemetic"
   },
   {
    "id": "rx-tamsulosin",

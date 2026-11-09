@@ -8,11 +8,12 @@ Before round 4 this was a single-patient task about Denise Carter. It passed 9 o
 
 ## Who is in scope
 
-Five Valley General discharge summaries are on the panel. A search for "discharge summary" finds all five, and the dates decide which are in scope.
+Six Valley General discharge documents are on the panel. Five are filed as discharge summaries. Angela Rossi's is a scanned "hospital course and discharge instructions" document that never uses the word "summary", so a search for "discharge summary" misses it, while searches for "Valley General" or "discharge" find it. The dates decide which are in scope.
 
 | Patient | Discharged | In scope |
 |---|---|---|
 | pt-1012 Denise Carter | 9/28, hypertensive urgency | yes |
+| pt-1011 Angela Rossi | 9/28, status migrainosus (discharge instructions) | yes |
 | pt-1025 Barbara Lewis | 9/23, cellulitis | yes |
 | pt-1006 Michael O'Brien | 9/22, NSTEMI | yes |
 | pt-1008 Harold Bennett | 8/30, pneumonia | no, before 9/17 (and his apixaban dose, which is wrong, belongs to another task) |
@@ -35,17 +36,27 @@ Five Valley General discharge summaries are on the panel. A search for "discharg
 | cefpodoxime | not on the list | course completed with the 9/30 evening dose |
 | pantoprazole | not on the list | inpatient formulary substitution |
 
-**Michael O'Brien (pt-1006).** Sources: the 9/22 NSTEMI discharge summary and the 9/25 phone note.
+**Michael O'Brien (pt-1006).** Sources: the 9/22 NSTEMI discharge summary, the 9/25 phone note and the 9/29 cardiology letter (scanned outside record), mixed in with a portal message and a scheduling call that change nothing.
 
 | Medication | Expected | Where it comes from |
 |---|---|---|
 | aspirin 81 mg daily | unchanged | continue indefinitely |
-| clopidogrel | 75 mg once daily | started for 12 months of dual antiplatelet therapy after a drug-eluting stent |
+| clopidogrel | not on the list | started at discharge, stopped by the 9/29 cardiology letter (CYP2C19 poor metabolizer) |
+| ticagrelor | 90 mg twice daily | started by cardiology on 9/29 in place of clopidogrel; the switch is past the letter's search preview |
 | metoprolol succinate ER | 50 mg once daily | increased from 25 mg |
 | atorvastatin 80 mg daily | unchanged | continue |
 | pantoprazole | 40 mg once daily | deliberately started at discharge for GI protection on dual antiplatelet therapy |
 | lisinopril | not on the list | started at 5 mg at discharge, stopped by the 9/25 phone note for orthostatic symptoms |
 | metformin 500 mg twice daily | unchanged | held 48 hours after contrast, resumed 9/21 at home dose |
+
+**Angela Rossi (pt-1011).** Sources: the 9/28 discharge instructions and a 9/30 portal reply that keeps topiramate unchanged.
+
+| Medication | Expected | Where it comes from |
+|---|---|---|
+| sumatriptan 50 mg as needed | unchanged | continue |
+| topiramate | 25 mg at bedtime | started for migraine prevention; tingling on 9/30 is a side effect, keep taking |
+| ondansetron | 4 mg as needed | started for nausea |
+| metoclopramide, ketorolac, dihydroergotamine | not on the list | IV, in hospital only |
 
 **Barbara Lewis (pt-1025).** Source: the 9/23 cellulitis discharge summary.
 
@@ -63,6 +74,7 @@ Five Valley General discharge summaries are on the panel. A search for "discharg
 | denise_list_matches_expected | Denise's active list equals her table exactly (drug, dose, unit, frequency), no duplicates |
 | michael_list_matches_expected | Same for Michael |
 | barbara_list_matches_expected | Same for Barbara |
+| angela_list_matches_expected | Same for Angela |
 | no_changes_to_other_patients | Nothing changed in any other chart, including the two out-of-window discharges |
 
 Diagnostic checks: one per trap (denise_losartan_100_mg_daily, denise_empagliflozin_restarted, denise_no_inpatient_pantoprazole, michael_pantoprazole_started, michael_lisinopril_stopped_by_phone_note, barbara_completed_cephalexin_not_active and so on), plus submitted_list_matches_scope. The partial score is the mean Jaccard overlap across the three patients.
@@ -76,18 +88,20 @@ Diagnostic checks: one per trap (denise_losartan_100_mg_daily, denise_empagliflo
 
 ## Why it's hard
 
-About fifteen decisions across three patients have to all be right, and the same surface pattern means different things in different charts. Pantoprazole is an inpatient-only substitution for Denise and a deliberate discharge start for Michael. Each patient has a superseding note or a finished course that the discharge summary alone gets wrong. The run also has to find the in-scope patients itself and leave Harold and Margaret alone.
+About twenty decisions across four patients have to all be right, and the same surface pattern means different things in different charts. Pantoprazole is an inpatient-only substitution for Denise and a deliberate discharge start for Michael. Each patient has a superseding note or a finished course that the discharge summary alone gets wrong. The run also has to find the in-scope patients itself, including one whose document isn't titled a discharge summary, and leave Harold and Margaret alone. Michael's decisive change is in a cardiology letter among routine post-discharge notes.
 
 ## Difficulty knobs
 
 - Easier. Name the three patients in the prompt, or remove the out-of-window decoys.
-- Harder. Add a fourth in-scope discharge whose summary arrived as a "Scanned outside record" note type rather than "Discharge summary", so a search on the type misses it.
+- Applied in round 5. Added Angela's discharge instructions and Michael's cardiology letter switching clopidogrel to ticagrelor. In pilot 4 every trial got all three discharges right.
+- Easier. Retitle Angela's document as a discharge summary, or move the ticagrelor switch into a phone note.
 
 ## Reference solution
 
-Search notes for "discharge summary", keep the three since 9/17, read each patient's notes, apply the changes above, submit. See reference.py.
+Search notes for "Valley General", keep the four discharges since 9/17, read each patient's notes, apply the changes above, submit. See reference.py.
 
 ## Calibration history
 
 - Rounds 1 to 3 (Denise only): 3/3, 3/3, 3/3. The changes were writing the discharge changes as narrative, adding the finished cefpodoxime course and the pantoprazole substitution, and adding the 10/1 empagliflozin restart. Every trial read all of her notes and applied every change.
-- Round 4: redesigned to cover every recent discharge, adding Michael and Barbara and two out-of-window decoys.
+- Round 4: redesigned to cover every recent discharge, adding Michael and Barbara and two out-of-window decoys. Pilot 4: 3/3.
+- Round 5: added Angela and Michael's cardiology letter.

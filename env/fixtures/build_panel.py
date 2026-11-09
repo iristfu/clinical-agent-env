@@ -81,6 +81,7 @@ FORMULARY = [
     ("rosuvastatin", "rosuvastatin", "statin"),
     ("aspirin", "aspirin", "antiplatelet"),
     ("clopidogrel", "clopidogrel", "P2Y12 inhibitor antiplatelet"),
+    ("ticagrelor", "ticagrelor", "P2Y12 inhibitor antiplatelet"),
     ("metformin", "metformin", "biguanide"),
     ("metformin ER", "metformin", "biguanide (extended release)"),
     ("empagliflozin", "empagliflozin", "SGLT2 inhibitor"),
@@ -99,6 +100,8 @@ FORMULARY = [
     ("alendronate", "alendronate", "bisphosphonate"),
     ("prednisone", "prednisone", "corticosteroid"),
     ("sumatriptan", "sumatriptan", "triptan"),
+    ("topiramate", "topiramate", "anticonvulsant (migraine prevention)"),
+    ("ondansetron", "ondansetron", "antiemetic"),
     ("tamsulosin", "tamsulosin", "alpha blocker"),
     ("benzonatate", "benzonatate", "antitussive"),
 ]
@@ -181,15 +184,36 @@ patient("pt-1001", "James", "Whitaker", "1959-01-11", "male",
                 "Patient called to cancel his diabetes follow-up appointment scheduled for 3/14 due to work travel. "
                 "Will call back to reschedule.")])
 
+# ---- Task apixaban_dose (round 5): NVAF on 5 mg. Weight <= 60 is structured; the creatinine that makes it 2 of 3
+# exists only in an outside nephrology letter. The structured creatinine (1.18) says keep 5 mg.
 patient("pt-1002", "Linda", "Park", "1966-04-03", "female",
-        conditions=[("HTN", "2018-05-01", "active"), ("GERD", "2020-01-15", "active")],
+        conditions=[("HTN", "2018-05-01", "active"), ("GERD", "2020-01-15", "active"),
+                    ("AFIB", "2025-03-10", "active")],
         meds=[("amlodipine", 5, "mg", "once daily", "2018-05-01", "active"),
-              ("omeprazole", 20, "mg", "once daily", "2020-01-15", "active")],
-        obs=[("85354-9", "128/80", "mm[Hg]", "2026-05-19"), ("1558-6", 94, "mg/dL", "2026-05-19"),
-             ("29463-7", 66.0, "kg", "2026-05-19")],
-        notes=[("2026-05-19", "Annual physical", "Dr. M. Okafor",
+              ("omeprazole", 20, "mg", "once daily", "2020-01-15", "active"),
+              ("apixaban", 5, "mg", "twice daily", "2025-03-10", "active")],
+        obs=[("29463-7", 58.9, "kg", "2025-03-10"), ("2160-0", 0.98, "mg/dL", "2025-03-10"),
+             ("85354-9", "128/80", "mm[Hg]", "2026-05-19"), ("1558-6", 94, "mg/dL", "2026-05-19"),
+             ("29463-7", 57.6, "kg", "2026-05-19"), ("2160-0", 1.18, "mg/dL", "2026-05-19"),
+             ("98979-8", 53, "mL/min/1.73m2", "2026-05-19")],
+        notes=[("2025-03-10", "Progress note", "Dr. M. Okafor",
+                "Palpitations for a month. ECG shows atrial fibrillation, rate 88. Echo: normal valves, EF 60%. "
+                "CHA2DS2-VASc 2 (female, hypertension). Start apixaban 5 mg twice daily: age 58, weight 58.9 kg, "
+                "creatinine 0.98, so only the weight criterion is met."),
+               ("2026-05-19", "Annual physical", "Dr. M. Okafor",
                 "Annual exam. No new concerns. BP 128/80 on amlodipine. Reflux controlled on omeprazole. Fasting "
-                "glucose 94, lipids within goal. Age-appropriate screening up to date. Return in one year.")])
+                "glucose 94, lipids within goal. Age-appropriate screening up to date. Return in one year."),
+               ("2026-07-02", "Telephone encounter", "J. Ortiz, MA",
+                "Patient called about left knee pain after gardening. Advised ice and rest; she has been taking "
+                "over-the-counter naproxen. Reminded her that NSAIDs raise bleeding risk with apixaban. Appointment "
+                "offered."),
+               ("2026-09-21", "Outside records review", "Dr. M. Okafor",
+                "Letter received from Dr. S. Iyer, Lakeside Nephrology, who saw the patient on 9/18 at the request "
+                "of her gynecologist, who had found protein on a urine dip. Letter reviewed and scanned to media.\n\n"
+                "Nephrology findings: urine albumin/creatinine ratio 340 mg/g. Serum creatinine 1.61 on 8/27 and "
+                "1.66 on 9/18 (eGFR 35), persistent after she stopped naproxen in July. Assessment: CKD stage 3b "
+                "with albuminuria, likely hypertensive nephrosclerosis with an NSAID contribution. Avoid NSAIDs. "
+                "Nephrology to follow every 3 months.\n\nPlan: results noted. Discuss at next visit.")])
 
 # ---- Task strep_allergy: Maria Lopez (1958). Penicillin anaphylaxis documented only inside a 2019 ED note.
 MARIA_ED_NOTE = (
@@ -325,7 +349,23 @@ patient("pt-1006", "Michael", "O'Brien", "1953-06-07", "male",
                 "Patient called reporting lightheadedness when standing since coming home. Home BP readings 96/58 to "
                 "104/62, HR 56 to 60. No chest pain, no syncope. Discussed with Dr. Okafor, who advises stopping the "
                 "lisinopril for now and continuing metoprolol succinate ER 50 mg once daily. Recheck BP at the 10/2 "
-                "visit. Patient verbalized understanding.")])
+                "visit. Patient verbalized understanding."),
+               ("2026-09-26", "Patient portal message", "Riverbend Family Medicine",
+                "Patient message: noticing small bruises on his forearms since coming home and asking if that is "
+                "normal. Reply from Dr. Okafor: mild bruising is expected on aspirin plus a second blood thinner; "
+                "call right away for black stools, blood in the urine or bleeding that won't stop."),
+               ("2026-09-29", "Outside record (scanned)", "Lakeside Heart Associates",
+                "LAKESIDE HEART ASSOCIATES - CLINIC LETTER\n\nDear Dr. Okafor,\n\nThank you for allowing us to "
+                "share in the care of Mr. O'Brien, whom I saw today for early follow-up after his 9/19 LAD stent. "
+                "He has no further chest pain and the access site has healed well. Lightheadedness has improved "
+                "since the lisinopril was stopped.\n\nCYP2C19 genotyping sent during his admission has returned "
+                "showing he is a poor metabolizer (*2/*2), so clopidogrel will not adequately protect his stent. "
+                "Today I stopped clopidogrel and started ticagrelor 90 mg twice daily, first dose given in clinic. "
+                "Please keep aspirin at 81 mg daily (no higher with ticagrelor). All other medications unchanged."
+                "\n\nWe will see him again in 3 months.\n\nSincerely,\nDr. N. Osei, Cardiology"),
+               ("2026-09-30", "Telephone encounter", "J. Ortiz, MA",
+                "Patient called to confirm his 10/2 appointment time and asked for a work note for the rest of the "
+                "week. Note sent through the portal.")])
 
 patient("pt-1007", "Susan", "Miller", "1949-12-19", "female", active=False, deceased="2026-07-02",
         conditions=[("T2DM", "2009-03-03", "active"), ("CHF", "2019-07-21", "active"), ("CKD4", "2023-02-14", "active")],
@@ -404,7 +444,23 @@ patient("pt-1011", "Angela", "Rossi", "1984-02-08", "female",
         obs=[("4548-4", 5.4, "%", "2020-03-02")],
         notes=[("2020-03-02", "Postpartum follow-up", "Dr. A. Shah",
                 "Postpartum visit. Gestational diabetes during pregnancy, diet controlled. Postpartum A1c 5.4%, "
-                "gestational diabetes resolved. Recommend diabetes screening every 3 years.")])
+                "gestational diabetes resolved. Recommend diabetes screening every 3 years."),
+               # ---- Task med_rec_discharge (round 5): in-scope discharge whose document is not titled a summary.
+               ("2026-09-28", "Outside record (scanned)", "Valley General Hospital",
+                "VALLEY GENERAL HOSPITAL - HOSPITAL COURSE AND DISCHARGE INSTRUCTIONS\n\nAdmitted 2026-09-26, "
+                "discharged 2026-09-28. Attending: Dr. L. Brandt, Neurology.\n\nReason for admission: Status "
+                "migrainosus, 4 days of continuous headache with vomiting, not relieved by sumatriptan at home. CT "
+                "head normal.\n\nHospital course: Treated with IV fluids, IV metoclopramide, IV ketorolac and IV "
+                "dihydroergotamine, with resolution of the headache by 9/27. She reports 6 to 8 migraine days a "
+                "month, so preventive therapy was started.\n\nMedications at discharge: START topiramate 25 mg by "
+                "mouth at bedtime for migraine prevention; neurology will titrate at follow-up. START ondansetron 4 mg "
+                "by mouth as needed for nausea. CONTINUE sumatriptan 50 mg as needed for migraine, no more than 2 "
+                "doses a day or 9 days a month. The IV medications given in hospital are not continued.\n\n"
+                "Follow-up: Neurology clinic in 4 weeks. PCP in 1 to 2 weeks."),
+               ("2026-09-30", "Patient portal message", "Riverbend Family Medicine",
+                "Patient message: home from Valley General, headache gone. Some tingling in her fingers since "
+                "starting the new preventive. Reply from Dr. Shah: tingling is a common, usually harmless side "
+                "effect of topiramate and often fades; keep taking it as prescribed and let us know if it worsens.")])
 
 # ---- Task med_rec_discharge: Denise Carter. Structured list never updated after discharge; a later phone note supersedes part of it.
 DENISE_DC = (

@@ -1,4 +1,4 @@
-"""Panel-wide apixaban dose review. Five patients take apixaban; four for nonvalvular AF, one for pulmonary embolism.
+"""Panel-wide apixaban dose review. Six patients take apixaban; five for nonvalvular AF, one for pulmonary embolism.
 
 Eliquis label, NVAF: 2.5 mg twice daily if at least 2 of age >= 80, weight <= 60 kg, serum creatinine >= 1.5 mg/dL;
 otherwise 5 mg twice daily. The VTE treatment dose has no such reduction. Today is 2026-10-01. See rubric.md.
@@ -10,17 +10,19 @@ from collections import Counter
 from tasks.common import Check, active_meds, completed_check, finalize, med_key, norm_freq, submitted_check
 
 MAX_TURNS = 60
-TARGET_PATIENTS = ["pt-1008", "pt-1019", "pt-1022", "pt-1028", "pt-1029"]
+TARGET_PATIENTS = ["pt-1002", "pt-1008", "pt-1019", "pt-1022", "pt-1028", "pt-1029"]
 
 # patient -> correct final apixaban dose (mg, twice daily), with the deciding facts.
 EXPECTED = {
+    "pt-1002": 2.5,  # NVAF. Weight 57.6 kg + Cr 1.66 (9/18, only in an outside nephrology letter). Age 60. Was 5 -> reduce.
     "pt-1008": 2.5,  # NVAF. Age 81 + weight 58.2 kg (128.3 lb, only in the 9/24 note). Cr 1.31. Was 5 -> reduce.
     "pt-1019": 5.0,  # NVAF. Weight 57.8 kg only. Cr 0.86 now; 1.74 on 8/18 was a resolved AKI. Age 68. Keep 5.
     "pt-1022": 5.0,  # NVAF. Cr 1.61 only. Age 79 (born 1947-03-03), weight 81.6 kg. On 2.5 -> increase to 5.
     "pt-1028": 2.5,  # NVAF. Age 82 + Cr 1.63 (stable CKD 3b). Weight 70.3 kg. Was 5 -> reduce.
     "pt-1029": 5.0,  # Acute PE (8/12), not AF. Treatment-phase dose; no criteria-based reduction. Keep 5.
 }
-CHANGED = {"pt-1008", "pt-1022", "pt-1028"}
+CHANGED = {"pt-1002", "pt-1008", "pt-1022", "pt-1028"}
+NVAF = ("pt-1002", "pt-1008", "pt-1019", "pt-1022", "pt-1028")
 WEIGHT_CITED = re.compile(r"\b58(\.\d)?\s*kg|\b128(\.3)?\s*(lb|lbs|pounds)", re.I)
 
 
@@ -54,7 +56,7 @@ def grade(ctx):
 
     checks = [
         completed_check(ctx),
-        Check("nvaf_doses_correct", all(per_patient[p] for p in ("pt-1008", "pt-1019", "pt-1022", "pt-1028")),
+        Check("nvaf_doses_correct", all(per_patient[p] for p in NVAF),
               detail="; ".join(f"{p}: {show(p)} want {EXPECTED[p]} twice daily" for p in EXPECTED if p != "pt-1029")),
         Check("non_af_apixaban_unchanged", per_patient["pt-1029"],
               detail=f"pt-1029 (pulmonary embolism): {show('pt-1029')} want 5 twice daily"),
