@@ -85,7 +85,13 @@ def ask(client, model, prompt):
     try:
         return json.loads(m.group(1) if m.lastindex else m.group(0))
     except Exception:  # noqa: BLE001
-        return {"category": "unparsed", "evidence": text[:500], "confidence": "low"}
+        # The JSON was malformed or the closing tag was missing (seen in the final run: 2 of 23 labels). Fall back to
+        # pulling the fields out individually rather than losing a label the model did give.
+        cat = re.search(r'"category"\s*:\s*"(\w+)"', text)
+        conf = re.search(r'"confidence"\s*:\s*"(\w+)"', text)
+        ev = re.search(r'"evidence"\s*:\s*"((?:[^"\\]|\\.)*)', text, re.S)
+        return {"category": cat.group(1) if cat else "unparsed", "evidence": ev.group(1) if ev else text[:500],
+                "confidence": conf.group(1) if conf else "low"}
 
 
 def write_all(path, rows):
