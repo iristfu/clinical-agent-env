@@ -13,26 +13,12 @@
 <p>Read this as a web page: <a href="https://iristfu.github.io/clinical-agent-env/">iristfu.github.io/clinical-agent-env</a> is the same writeup, rebuilt from this file on every update, and easier to read.</p>
 </blockquote>
 <h2 id="summary">Summary</h2>
-<ul>
-<li>I built a mock EHR for a primary care practice with 30 synthetic patients and 17 tools.</li>
-<li>It has four tasks, state-based graders, reference solutions and a harness with one entry point.</li>
-<li>On the final run (frozen-v2), Opus 5 passed strep_allergy 6/10 and apixaban_dose 3/10, both inside the target 20-70% band.</li>
-<li>On the same run, Opus 5 passed panel_a1c 9/10, which is above the band.</li>
-<li>An earlier final (frozen-v1) gave strep 1/10, apixaban 6/10 and panel 7/10.</li>
-<li>I redesigned strep after that run and report both runs.</li>
-<li>Panel’s task was identical in both runs, and it passed 16 of 20 pooled.</li>
-<li>med_rec_discharge is a poor task for training Opus.</li>
-<li>It passed 10/10 on its frozen final and 18/18 in earlier pilots, so it never failed in any version.</li>
-<li>A task that always passes gives no signal about what the model gets wrong.</li>
-<li>The main reason is that every deciding fact in it is pointed to by something the model is already reading, such as a discharge summary that names a lab or a dated list of post-discharge notes.</li>
-<li>Opus follows explicit references reliably, so this task tests diligence far less than the others, where the deciding fact sits in a note nothing points to.</li>
-<li>It is reported separately and not scored.</li>
-<li>All 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand.</li>
-<li>All 28 were the model’s fault.</li>
-<li>Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn’t look.</li>
-</ul>
+<p>I built a mock EHR for a primary care practice with 30 synthetic patients and 17 tools. It has four tasks, state-based graders, reference solutions and a harness with one entry point. Three of the tasks are scored.</p>
+<p>On the final run, frozen at the tag frozen-v2, Opus 5 passed strep_allergy 6/10 and apixaban_dose 3/10, both inside the target 20-70% band, and panel_a1c 9/10, above it. An earlier final at frozen-v1 gave strep 1/10, apixaban 6/10 and panel 7/10. I redesigned strep after that run and report both. Panel’s task was identical in both runs, and pooled it passed 16 of 20.</p>
+<p>The fourth task, med_rec_discharge, is a poor task for training Opus. It passed 10/10 on its frozen final and 18/18 in earlier pilots, so it never failed in any version, and a task that always passes shows nothing about what the model gets wrong. The main reason is that every deciding fact in it is pointed to by something the model is already reading, such as a discharge summary that names a lab or a dated list of post-discharge notes. Opus follows those references reliably, whereas in the other tasks the deciding fact sits in a note nothing points to. I report it separately and do not score it.</p>
+<p>All 28 failed trials across the two scored finals (16 in frozen-v1, 12 in frozen-v2) were labeled by cause and confirmed by hand, and all 28 were the model’s fault. Every one is an information-gathering miss: the deciding fact was in a note or lab result the model could reach, and it didn’t look.</p>
 <p>The part I spent the most care on is making sure a failure means the model got something wrong. Most of this writeup is about how I checked that.</p>
-<p><em>Note: a pilot is a small calibration run (3 to 5 trials per task) used to find and fix problems, with tasks edited between pilots. A final is a 10-trial run on frozen tasks. Only finals produce the scored pass rates.</em></p>
+<p>A pilot is a small calibration run (3 to 5 trials per task) used to find and fix problems, with tasks edited between pilots. A final is a 10-trial run on frozen tasks, and only finals produce the scored pass rates.</p>
 <h2 id="the-environment">The environment</h2>
 <p>The state is a set of FHIR-shaped records (patients, conditions, medications, allergies, observations, notes, orders) held in memory and rebuilt from a fixture file at the start of every trial. I chose this over running a real FHIR server. A HAPI server would look more realistic, but it brings slow resets, more moving parts, and more ways for a trial to fail for reasons unrelated to the model. The shapes and codes (ICD-10, SNOMED, LOINC) are realistic, and the tool layer is the seam where a real backend could be swapped in later.</p>
 <p>The date inside the environment is fixed at 2026-10-01, so anything time-relative (“more than 6 months ago”, “most recent”) is deterministic.</p>
